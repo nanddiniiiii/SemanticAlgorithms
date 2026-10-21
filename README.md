@@ -12,6 +12,11 @@ bounded-run launcher, not a completed all-model run. Local CPU regression tests
 cover helper code only; they do not establish GPU compatibility, model quality,
 or completed training.
 
+For the model-by-model history, prior artifacts, and exact next fixes, start at
+[`MODEL_STATUS.md`](MODEL_STATUS.md). It separates the first three-model batch,
+later model additions, and audit-only models; “has a run/checkpoint” is not
+treated as “verified and comparison-ready.”
+
 Current gates include:
 
 - DeepJSCC uses a pinned third-party implementation; original-author code for
