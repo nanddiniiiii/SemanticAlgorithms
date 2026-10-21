@@ -1,0 +1,7 @@
+{
+  "result": "PASS",
+  "initial_global_step": 16,
+  "resumed_final_global_step": 32,
+  "resumed_final_epoch": 4,
+  "optimizer_and_scheduler_states_restored": true
+}

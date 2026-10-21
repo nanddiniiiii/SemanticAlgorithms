@@ -1,0 +1,20 @@
+{
+  "id": "hmmkk20/swinjscc-div2k-kodak-150ep-20261018",
+  "title": "SwinJSCC DIV2K Kodak 150ep 20261018",
+  "code_file": "swinjscc_div2k_kodak_150ep_v4.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": "true",
+  "enable_gpu": "true",
+  "enable_tpu": "false",
+  "enable_internet": "true",
+  "machine_shape": "GPU_T4_X2",
+  "dataset_sources": [
+    "sherylmehta/kodak-dataset"
+  ],
+  "competition_sources": [],
+  "kernel_sources": [
+    "jagan028/div2k-dataset-generation-for-isr"
+  ],
+  "model_sources": []
+}

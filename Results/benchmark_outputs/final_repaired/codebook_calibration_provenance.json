@@ -1,0 +1,26 @@
+{
+  "dataset": "CIFAR-10 training split",
+  "dataset_root": "D:\\<local OneDrive>\\Desktop\\image_semcom\\data",
+  "selected_training_indices": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+  ],
+  "calibration_resize": [
+    128,
+    128
+  ],
+  "test_image_used_for_fit": false,
+  "deepjscc_codebook_sha256": "7924944c1201260256eea1b47bcd990d820f3586ef01a9d6a53d8ae7ea0151c1",
+  "ntscc_codebook_sha256": "1adac6882c5f9104436049b64206af40de9ecbaa6263ad1e124716d4c303f789",
+  "ntscc_codebook_design": "K=256 active-prefix product quantization with 16-D blocks",
+  "ntscc_calibration_active_block_count": 1129,
+  "separate_codebooks": true,
+  "official_encoders_decoders_frozen": true,
+  "fit_latency_s": 7.569245099963155
+}

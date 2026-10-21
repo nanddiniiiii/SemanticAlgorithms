@@ -1,0 +1,37 @@
+{
+  "kernel": "hmmkk20/sqgan-checkpoint-recovery-20261020",
+  "file": ".\\Results\\SQGAN\\validated_recovery_v15\\sqgan_div2k_channel_results\\upstream_logs\\10-19T17-22-21_sqgan_awgn_ssm_150ep\\checkpoints\\last.ckpt",
+  "remote_file": "sqgan_div2k_channel_results/upstream_logs/10-19T17-22-21_sqgan_awgn_ssm_150ep/checkpoints/last.ckpt",
+  "bytes": 1086727541,
+  "sha256": "6f3e02b84b7972501f279ddedb182497d2a8b21cecc03071d6195d003360a22d",
+  "saved_epoch_index": 96,
+  "global_step": 77600,
+  "state_dict_tensors": 562,
+  "optimizer_states": 2,
+  "lr_schedulers": 2,
+  "optimizer_learning_rates": [
+    [
+      6.950352863956827e-06
+    ],
+    [
+      6.950352863956827e-06
+    ]
+  ],
+  "loop_state_keys": [
+    "fit_loop",
+    "validate_loop",
+    "test_loop",
+    "predict_loop"
+  ],
+  "checkpoint_keys": [
+    "epoch",
+    "global_step",
+    "pytorch-lightning_version",
+    "state_dict",
+    "loops",
+    "callbacks",
+    "optimizer_states",
+    "lr_schedulers"
+  ],
+  "seconds": 4569.586778900004
+}

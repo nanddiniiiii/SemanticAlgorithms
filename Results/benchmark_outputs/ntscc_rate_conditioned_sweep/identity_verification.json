@@ -1,0 +1,20 @@
+{
+  "latent_max_abs_error": 0.0,
+  "rate_map_equal": true,
+  "reconstruction_max_abs_error": 0.0,
+  "direct_metrics": {
+    "mse": 0.0019432554254308343,
+    "psnr_db": 27.114701111015002,
+    "ssim": 0.847836971282959,
+    "lpips": null,
+    "clip_cosine": null
+  },
+  "wrapped_metrics": {
+    "mse": 0.0019432554254308343,
+    "psnr_db": 27.114701111015002,
+    "ssim": 0.847836971282959,
+    "lpips": null,
+    "clip_cosine": null
+  },
+  "passed": true
+}

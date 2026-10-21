@@ -1,0 +1,87 @@
+[{"stream_name":"stderr","time":6.614173109,"data":"/usr/local/lib/python3.13/dist-packages/nbformat/validator.py:434: MissingIDFieldWarning: Cell is missing an id field, this will become a hard error in future nbformat versions. You may want to use `normalize()` on your notebooks before validations (available since nbformat 5.1.4). Previous versions of nbformat are fixing this issue transparently, and will stop doing so in the future.\n"}
+,{"stream_name":"stderr","time":6.614218307,"data":"  _validate(nbdict, ref, version, version_minor, relax_add_props)\n"}
+,{"stream_name":"stderr","time":7.559757042,"data":"0.00s - Debugger warning: It seems that frozen modules are being used, which may\n"}
+,{"stream_name":"stderr","time":7.559785464,"data":"0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off\n"}
+,{"stream_name":"stderr","time":7.55979039,"data":"0.00s - to python to disable frozen modules.\n"}
+,{"stream_name":"stderr","time":7.559794415,"data":"0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.\n"}
+,{"stream_name":"stderr","time":8.166953972,"data":"0.00s - Debugger warning: It seems that frozen modules are being used, which may\n"}
+,{"stream_name":"stderr","time":8.166979138,"data":"0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off\n"}
+,{"stream_name":"stderr","time":8.166984,"data":"0.00s - to python to disable frozen modules.\n"}
+,{"stream_name":"stderr","time":8.166987713,"data":"0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.\n"}
+,{"stream_name":"stderr","time":16.956342284,"data":"Cloning into '/kaggle/working/Deep-JSCC-PyTorch'...\n"}
+,{"stream_name":"stderr","time":17.158736093999998,"data":"Cloning into '/kaggle/working/Deep-JSCC-PyTorch'...\n"}
+,{"stream_name":"stderr","time":17.158759984,"data":"\n"}
+,{"stream_name":"stderr","time":17.158764074,"data":"Cloning into '/kaggle/working/Deep-JSCC-PyTorch'...\n"}
+,{"stream_name":"stderr","time":19.88139147,"data":"Note: switching to '2665e0dc6d8bf216daf9442c5d6e5d69c5ad2f06'.\n"}
+,{"stream_name":"stderr","time":19.881416492,"data":"\n"}
+,{"stream_name":"stderr","time":19.881420882,"data":"You are in 'detached HEAD' state. You can look around, make experimental\n"}
+,{"stream_name":"stderr","time":19.881424477,"data":"changes and commit them, and you can discard any commits you make in this\n"}
+,{"stream_name":"stderr","time":19.881429623,"data":"state without impacting any branches by switching back to a branch.\n"}
+,{"stream_name":"stderr","time":19.881436713,"data":"\n"}
+,{"stream_name":"stderr","time":19.881438923,"data":"If you want to create a new branch to retain commits you create, you may\n"}
+,{"stream_name":"stderr","time":19.881441181,"data":"do so (now or later) by using -c with the switch command. Example:\n"}
+,{"stream_name":"stderr","time":19.881443674,"data":"\n"}
+,{"stream_name":"stderr","time":19.881445681,"data":"  git switch -c \u003cnew-branch-name\u003e\n"}
+,{"stream_name":"stderr","time":19.881448275,"data":"\n"}
+,{"stream_name":"stderr","time":19.88145048,"data":"Or undo this operation with:\n"}
+,{"stream_name":"stderr","time":19.881452779,"data":"\n"}
+,{"stream_name":"stderr","time":19.881454923,"data":"  git switch -\n"}
+,{"stream_name":"stderr","time":19.881457104,"data":"\n"}
+,{"stream_name":"stderr","time":19.881459314,"data":"Turn off this advice by setting config variable advice.detachedHead to false\n"}
+,{"stream_name":"stderr","time":19.881461515,"data":"\n"}
+,{"stream_name":"stderr","time":19.881463578,"data":"HEAD is now at 2665e0d update 2024-06-09\n"}
+,{"stream_name":"stderr","time":20.201023166,"data":"Note: switching to '2665e0dc6d8bf216daf9442c5d6e5d69c5ad2f06'.\n"}
+,{"stream_name":"stderr","time":20.201075928,"data":"\n"}
+,{"stream_name":"stderr","time":20.201081236,"data":"You are in 'detached HEAD' state. You can look around, make experimental\n"}
+,{"stream_name":"stderr","time":20.201084881,"data":"changes and commit them, and you can discard any commits you make in this\n"}
+,{"stream_name":"stderr","time":20.20108835,"data":"state without impacting any branches by switching back to a branch.\n"}
+,{"stream_name":"stderr","time":20.201091658,"data":"\n"}
+,{"stream_name":"stderr","time":20.201094759,"data":"If you want to create a new branch to retain commits you create, you may\n"}
+,{"stream_name":"stderr","time":20.201098248,"data":"do so (now or later) by using -c with the switch command. Example:\n"}
+,{"stream_name":"stderr","time":20.201107562,"data":"\n"}
+,{"stream_name":"stderr","time":20.201109861,"data":"  git switch -c \u003cnew-branch-name\u003e\n"}
+,{"stream_name":"stderr","time":20.201112467,"data":"\n"}
+,{"stream_name":"stderr","time":20.201114518,"data":"Or undo this operation with:\n"}
+,{"stream_name":"stderr","time":20.201117459,"data":"\n"}
+,{"stream_name":"stderr","time":20.201132518,"data":"  git switch -\n"}
+,{"stream_name":"stderr","time":20.201136624,"data":"\n"}
+,{"stream_name":"stderr","time":20.201140296,"data":"Turn off this advice by setting config variable advice.detachedHead to false\n"}
+,{"stream_name":"stderr","time":20.201144059,"data":"\n"}
+,{"stream_name":"stderr","time":20.201147849,"data":"HEAD is now at 2665e0d update 2024-06-09\n"}
+,{"stream_name":"stderr","time":20.201151601,"data":"\n"}
+,{"stream_name":"stderr","time":20.201154692,"data":"Note: switching to '2665e0dc6d8bf216daf9442c5d6e5d69c5ad2f06'.\n"}
+,{"stream_name":"stderr","time":20.201158036,"data":"\n"}
+,{"stream_name":"stderr","time":20.201161167,"data":"You are in 'detached HEAD' state. You can look around, make experimental\n"}
+,{"stream_name":"stderr","time":20.201164588,"data":"changes and commit them, and you can discard any commits you make in this\n"}
+,{"stream_name":"stderr","time":20.201167998,"data":"state without impacting any branches by switching back to a branch.\n"}
+,{"stream_name":"stderr","time":20.201171322,"data":"\n"}
+,{"stream_name":"stderr","time":20.201174383,"data":"If you want to create a new branch to retain commits you create, you may\n"}
+,{"stream_name":"stderr","time":20.201177785,"data":"do so (now or later) by using -c with the switch command. Example:\n"}
+,{"stream_name":"stderr","time":20.201181066,"data":"\n"}
+,{"stream_name":"stderr","time":20.201184169,"data":"  git switch -c \u003cnew-branch-name\u003e\n"}
+,{"stream_name":"stderr","time":20.20118748,"data":"\n"}
+,{"stream_name":"stderr","time":20.201190604,"data":"Or undo this operation with:\n"}
+,{"stream_name":"stderr","time":20.201193855,"data":"\n"}
+,{"stream_name":"stderr","time":20.201202249,"data":"  git switch -\n"}
+,{"stream_name":"stderr","time":20.201205009,"data":"\n"}
+,{"stream_name":"stderr","time":20.201207029,"data":"Turn off this advice by setting config variable advice.detachedHead to false\n"}
+,{"stream_name":"stderr","time":20.201209213,"data":"\n"}
+,{"stream_name":"stderr","time":20.201211278,"data":"HEAD is now at 2665e0d update 2024-06-09\n"}
+,{"stream_name":"stdout","time":20.237228777,"data":"GPU Tesla T4 torch 2.11.0+cu128 source 2665e0dc6d8bf216daf9442c5d6e5d69c5ad2f06\n"}
+,{"stream_name":"stderr","time":26.459771088,"data":"/usr/local/lib/python3.13/dist-packages/torch/profiler/profiler.py:224: UserWarning: Warning: Profiler clears events at the end of each cycle.Only events from the current cycle will be reported.To keep events across cycles, set acc_events=True.\n"}
+,{"stream_name":"stderr","time":26.459820885,"data":"  _warn_once(\n"}
+,{"stream_name":"stderr","time":26.459824935,"data":"\n"}
+,{"stream_name":"stderr","time":26.459827445,"data":"/usr/local/lib/python3.13/dist-packages/torch/profiler/profiler.py:224: UserWarning: Warning: Profiler clears events at the end of each cycle.Only events from the current cycle will be reported.To keep events across cycles, set acc_events=True.\n"}
+,{"stream_name":"stderr","time":26.459830175,"data":"  _warn_once(\n"}
+,{"stream_name":"stdout","time":28.070361516,"data":"{\"model\": \"DeepJSCC\", \"channel\": \"AWGN\", \"profile_input\": \"1x3x128x128\", \"training_forward_backward_flops_per_sample\": 167346181, \"inference_flops_per_image\": 167182338, \"source_commit\": \"2665e0dc6d8bf216daf9442c5d6e5d69c5ad2f06\", \"profiler\": \"torch.profiler with_flops=True\"}\n"}
+,{"stream_name":"stdout","time":28.233005644,"data":"{\"model\": \"DeepJSCC\", \"channel\": \"Rayleigh\", \"profile_input\": \"1x3x128x128\", \"training_forward_backward_flops_per_sample\": 167362567, \"inference_flops_per_image\": 167182340, \"source_commit\": \"2665e0dc6d8bf216daf9442c5d6e5d69c5ad2f06\", \"profiler\": \"torch.profiler with_flops=True\"}\n"}
+,{"stream_name":"stdout","time":28.235486904,"data":"DEEJJSCC_PROFILE_COMPLETE [{\"model\": \"DeepJSCC\", \"channel\": \"AWGN\", \"profile_input\": \"1x3x128x128\", \"training_forward_backward_flops_per_sample\": 167346181, \"inference_flops_per_image\": 167182338, \"source_commit\": \"2665e0dc6d8bf216daf9442c5d6e5d69c5ad2f06\", \"profiler\": \"torch.profiler with_flops=True\"}, {\"model\": \"DeepJSCC\", \"channel\": \"Rayleigh\", \"profile_input\": \"1x3x128x128\", \"training_forward_backward_flops_per_sample\": 167362567, \"inference_flops_per_image\": 167182340, \"source_commit\": \"2665e0dc6d8bf216daf9442c5d6e5d69c5ad2f06\", \"profiler\": \"torch.profiler with_flops=True\"}]\n"}
+,{"stream_name":"stderr","time":34.012088995,"data":"/usr/local/lib/python3.13/dist-packages/mistune.py:435: SyntaxWarning: invalid escape sequence '\\|'\n"}
+,{"stream_name":"stderr","time":34.012136442,"data":"  cells[i][c] = re.sub('\\\\\\\\\\|', '|', cell)\n"}
+,{"stream_name":"stderr","time":34.189737385,"data":"/usr/local/lib/python3.13/dist-packages/nbconvert/filters/filter_links.py:36: SyntaxWarning: invalid escape sequence '\\_'\n"}
+,{"stream_name":"stderr","time":34.189762547,"data":"  text = re.sub(r'_', '\\_', text) # Escape underscores in display text\n"}
+,{"stream_name":"stderr","time":35.005279957,"data":"[NbConvertApp] Converting notebook __notebook__.ipynb to notebook\n"}
+,{"stream_name":"stderr","time":35.080496353,"data":"[NbConvertApp] Writing 6985 bytes to __notebook__.ipynb\n"}
+,{"stream_name":"stderr","time":37.502572741,"data":"[NbConvertApp] Converting notebook __notebook__.ipynb to html\n"}
+,{"stream_name":"stderr","time":38.003649661,"data":"[NbConvertApp] Writing 291139 bytes to __results__.html\n"}
+]

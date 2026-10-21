@@ -1,0 +1,29 @@
+{
+  "DeepJSCC": {
+    "checkpoint_key_count": 29,
+    "missing_keys": [],
+    "unexpected_keys": [],
+    "shape_mismatches": {},
+    "skipped_regenerated_buffers": [],
+    "strict_load": true,
+    "checkpoint_sha256": "00b33bac630555d9a0d72a76d0fea9103cef9a38df0d5547be53c5320a451d44",
+    "source_commit": "e1cef6aeadedde9ff359760936a2ddf2540dd821"
+  },
+  "NTSCC": {
+    "checkpoint_key_count": 426,
+    "missing_keys": [],
+    "unexpected_keys": [],
+    "shape_mismatches": {},
+    "skipped_regenerated_buffers": [
+      "ga.layers.2.blocks.1.attn_mask",
+      "ga.layers.3.blocks.1.attn_mask",
+      "ga.layers.3.blocks.3.attn_mask",
+      "gs.layers.0.blocks.1.attn_mask",
+      "gs.layers.0.blocks.3.attn_mask",
+      "gs.layers.1.blocks.1.attn_mask"
+    ],
+    "strict_load": true,
+    "checkpoint_sha256": "7a8d1990dbd678ea5d3daa02c3aeaaf4459b347a96d6aa81a5c02eae6bfc7323",
+    "source_commit": "dd3c745374023af6d01f465c379122be785d936f"
+  }
+}

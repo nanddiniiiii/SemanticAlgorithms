@@ -1,0 +1,13 @@
+{
+  "epoch_index": 2,
+  "global_step": 16,
+  "optimizer_learning_rates": [
+    [
+      0.000625
+    ],
+    [
+      0.000625
+    ]
+  ],
+  "resume_verified": true
+}

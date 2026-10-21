@@ -1,0 +1,89 @@
+{
+  "status": "PASS",
+  "synthetic_only": true,
+  "model_forward_checked": false,
+  "author_source_sha256": "98aead75565c246a9d0cb997c03667088fc32ee8cdfa6baf57e3b9b7ca01db6f",
+  "training_transform": "Compose(\n    RandomCrop(size=(256, 256), padding=None)\n    ToTensor()\n)",
+  "checks": [
+    {
+      "original_height": 512,
+      "original_width": 768,
+      "padded_height": 512,
+      "padded_width": 768,
+      "padding_bottom": 0,
+      "padding_right": 0,
+      "padding_mode": "edge",
+      "alignment": 128,
+      "resize": false,
+      "tiling": false,
+      "author_preprocessing": true,
+      "native_author_output_hw": [
+        512,
+        768
+      ],
+      "synthetic_roundtrip": "PASS",
+      "example_padding_inclusive_uses": 73728,
+      "example_cbr_original_pixels": 0.0625
+    },
+    {
+      "original_height": 768,
+      "original_width": 512,
+      "padded_height": 768,
+      "padded_width": 512,
+      "padding_bottom": 0,
+      "padding_right": 0,
+      "padding_mode": "edge",
+      "alignment": 128,
+      "resize": false,
+      "tiling": false,
+      "author_preprocessing": true,
+      "native_author_output_hw": [
+        768,
+        512
+      ],
+      "synthetic_roundtrip": "PASS",
+      "example_padding_inclusive_uses": 73728,
+      "example_cbr_original_pixels": 0.0625
+    },
+    {
+      "original_height": 513,
+      "original_width": 769,
+      "padded_height": 640,
+      "padded_width": 896,
+      "padding_bottom": 127,
+      "padding_right": 127,
+      "padding_mode": "edge",
+      "alignment": 128,
+      "resize": false,
+      "tiling": false,
+      "author_preprocessing": false,
+      "native_author_output_hw": [
+        512,
+        768
+      ],
+      "synthetic_roundtrip": "PASS",
+      "example_padding_inclusive_uses": 107520,
+      "example_cbr_original_pixels": 0.09084986704588374
+    },
+    {
+      "original_height": 769,
+      "original_width": 513,
+      "padded_height": 896,
+      "padded_width": 640,
+      "padding_bottom": 127,
+      "padding_right": 127,
+      "padding_mode": "edge",
+      "alignment": 128,
+      "resize": false,
+      "tiling": false,
+      "author_preprocessing": false,
+      "native_author_output_hw": [
+        768,
+        512
+      ],
+      "synthetic_roundtrip": "PASS",
+      "example_padding_inclusive_uses": 107520,
+      "example_cbr_original_pixels": 0.09084986704588374
+    }
+  ]
+}

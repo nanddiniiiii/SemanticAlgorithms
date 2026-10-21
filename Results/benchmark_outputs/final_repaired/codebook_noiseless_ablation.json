@@ -1,0 +1,36 @@
+{
+  "DeepJSCC codebook": {
+    "method": "DeepJSCC codebook",
+    "experiment": "noiseless quantization ablation",
+    "packet_bits": 161632,
+    "shared_codebook_storage_bits": 155648,
+    "quantization_mse": 0.03875836357474327,
+    "latency_s": 0.8304070000303909,
+    "codebook_utilization": 0.92578125,
+    "used_entries": 237,
+    "dead_entries": 19,
+    "perplexity": 125.45904880230823,
+    "mse": 0.01898948848247528,
+    "psnr_db": 17.21486733642675,
+    "ssim": 0.3935128152370453,
+    "lpips": 0.6090054512023926,
+    "clip_cosine": 0.61134934425354
+  },
+  "NTSCC codebook": {
+    "method": "NTSCC codebook",
+    "experiment": "noiseless quantization ablation",
+    "packet_bits": 42440,
+    "shared_codebook_storage_bits": 131072,
+    "quantization_mse": 2.1220813092451283,
+    "latency_s": 4.6123579000122845,
+    "used_entries": 253,
+    "dead_entries": 3,
+    "codebook_utilization": 0.98828125,
+    "perplexity": 192.83200789227078,
+    "mse": 0.041617393493652344,
+    "psnr_db": 13.807251232299066,
+    "ssim": 0.38385847210884094,
+    "lpips": 0.5174413919448853,
+    "clip_cosine": 0.608644962310791
+  }
+}

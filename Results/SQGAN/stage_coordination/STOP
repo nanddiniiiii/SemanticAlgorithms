@@ -1,0 +1,1 @@
+New author-fidelity requirement: prevent further adapted-stage submissions while experiment provenance is audited. Existing jobs and artifacts must be preserved.

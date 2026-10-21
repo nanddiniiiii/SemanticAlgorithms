@@ -1,0 +1,23 @@
+{
+  "checked_at": "2026-10-20T15:36:08.687931+00:00",
+  "synthetic_channel_calibration_only": true,
+  "image_training_or_evaluation": false,
+  "nominal_snr_db": 10.0,
+  "complex_samples": 131072,
+  "checks": {
+    "deepjscc_third_party_awgn": {
+      "source": "Models\\author_releases\\DeepJSCC-third-party\\2665e0dc6d8bf216daf9442c5d6e5d69c5ad2f06\\channel.py",
+      "source_sha256": "fdfb00462cdd2a6de2a13e6307ec4189093752bb89dc80f87a62e54f1ba6568e",
+      "measured_complex_snr_db": 13.00821304321289,
+      "provenance": "third-party reference; historical run source revision was not pinned",
+      "conclusion": "This inspected source uses a different real-noise convention from unit-power complex AWGN. Do not equate its nominal SNR labels with the common contract."
+    },
+    "adjscc_author_awgn_function": {
+      "source": "Models\\author_releases\\ADJSCC\\e5332e95faf592aab9f440992de96029162dc7dd\\util_channel.py",
+      "source_sha256": "28215a42c873c3df8e5fee499513c3a8179790eeaa0463d15c26f156c9831d96",
+      "measured_complex_snr_db": 9.976701736450195,
+      "tensorflow": "2.21.0",
+      "scope": "Standalone unchanged author function; not full ADJSCC/TFC model or checkpoint validation"
+    }
+  }
+}

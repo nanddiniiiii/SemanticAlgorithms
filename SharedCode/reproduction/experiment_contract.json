@@ -1,0 +1,67 @@
+{
+  "schema_version": 2,
+  "status": "IMPLEMENTATION_PENDING_GPU_VALIDATION",
+  "requested_models": ["DeepJSCC", "NTSCC_plus", "ADJSCC", "SwinJSCC", "SQGAN", "DeepJSCC_Q"],
+  "audit_only_models": ["DiT-JSCC", "DDM-SSCC"],
+  "ntscc_selection": "User approved released NTSCC+; NTSCC++ online inference is unreleased",
+  "training": {
+    "dataset": "DIV2K_train_HR",
+    "unique_source_images_per_epoch": 800,
+    "minimum_complete_epochs_per_channel": 50,
+    "maximum_epochs_per_stage": 150,
+    "early_stopping": {"minimum_epochs": 50, "maximum_epochs": 150, "patience": 20, "relative_min_delta": 0.001, "monitor": "released_validation_reconstruction_objective", "mode": "min", "fixed_validation_seeds": true},
+    "fresh_benchmark_runs": true,
+    "global_batch_size": 16,
+    "snr_db": 10,
+    "seed": 20261020,
+    "checkpoint_interval_seconds": 300,
+    "sqgan_stages": ["semantic", "image", "finetune"],
+    "sqgan_channel_policy": "Train the unchanged codec stages once; evaluate real discrete payloads over both documented digital transports. Not native channel-aware training.",
+    "channels": ["awgn", "rayleigh"],
+    "accelerator": "two CUDA GPUs",
+    "parallelism": {"pytorch": "DataParallel", "tensorflow": "MirroredStrategy"},
+    "preprocessing": "Preserve each author's released augmentation; document DIV2K dataset substitution",
+    "precision": "Author-compatible FP32 unless separately validated and disclosed",
+    "discard_incomplete_epoch": false,
+    "incomplete_epoch_policy": "Save sampler cursor and RNG state; never count or silently skip incomplete epochs",
+    "preserve_existing_checkpoints": true
+  },
+  "evaluation": {
+    "dataset": "original Kodak24 RGB",
+    "images": 24,
+    "snr_db": [0, 5, 10, 15, 20],
+    "independent_channel_trials_per_image": 10,
+    "selection_dataset": "DIV2K validation only",
+    "metrics": ["PSNR", "SSIM", "MS-SSIM", "MSE", "LPIPS", "complex_channel_uses", "CBR", "encoder_seconds", "decoder_seconds", "channel_seconds", "end_to_end_seconds", "forward_FLOPs", "training_step_FLOPs"],
+    "primary_cbr_budget": 0.16666666666666666,
+    "rate_policy": "Measured rate-quality curves; no ranking of unmatched actual channel budgets",
+    "common_awgn": "Per-example unit mean complex-symbol energy; circular CN(0,10^(-snr_db/10)) additive noise",
+    "common_rayleigh": "One independent CN(0,1) gain per image/codeword; complex AWGN; perfect receiver CSI and equalization; no clipping of deep fades",
+    "geometry": "Native full image first; model-specific documented padding; remove only padding for scoring; no resize or silent crop",
+    "cbr_denominator": "3 * original_height * original_width",
+    "side_information": "Count every communicated stream; serialize if digital; disclose modulation/FEC mapping",
+    "flops": "FMA=2; include actual forward/backward and all optimizer updates; disclose unsupported operators and partial totals",
+    "channel_tracks": ["native_author_channel", "explicit_matched_channel_extension"],
+    "ranking_gate": "Never rank different realized rates, fading scopes, receiver CSI, or incomplete FLOP coverage as identical experiments"
+  },
+  "budget": {
+    "requested_gpu_hours": 30,
+    "completion_guaranteed": false,
+    "policy": "Measure warmed-up steps first; include evaluation/setup; do not shorten epochs, reduce data, replace architecture, or invent results to fit quota"
+  },
+  "publishing": {
+    "confirmation_pending": false,
+    "repository_name": "SemanticAlgorithms",
+    "visibility": "public",
+    "include": ["reviewed source", "source manifests", "notebook without private outputs", "tests", "documentation"],
+    "exclude": ["credentials", "tokens", "personal account metadata", "model weights", "datasets", "private historical notebook outputs"]
+  },
+  "runtime_readiness": {
+    "DeepJSCC": "BLOCKED_ORIGINAL_AUTHOR_CODE_NOT_VERIFIED",
+    "NTSCC_plus": "PENDING_PINNED_NATIVE_NATTEN_GPU_VALIDATION_AND_SIDEINFO_TRANSPORT",
+    "ADJSCC": "PENDING_TFC_GPU_RUNTIME_AND_CHECKPOINT_VALIDATION",
+    "SwinJSCC": "CPU_CORE_ONLY_PASSED_GPU_VALIDATION_INCOMPLETE",
+    "SQGAN": "PENDING_SEGMENTER_ASSETS_THREE_STAGE_AND_DISCRETE_TRANSPORT_VALIDATION",
+    "DeepJSCC_Q": "PENDING_ACTUAL_TRAINER_PAPER_FIDELITY_AND_RUNTIME_VALIDATION"
+  }
+}

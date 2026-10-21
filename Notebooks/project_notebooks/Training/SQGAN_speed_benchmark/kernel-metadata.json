@@ -1,0 +1,21 @@
+{
+  "id": "hmmkk20/sqgan-speed-benchmark-20261020",
+  "title": "SQGAN Speed Benchmark 20261020",
+  "code_file": "sqgan_speed_benchmark.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": true,
+  "enable_gpu": true,
+  "enable_tpu": false,
+  "enable_internet": true,
+  "machine_shape": "NvidiaTeslaT4",
+  "dataset_sources": [
+    "sherylmehta/kodak-dataset"
+  ],
+  "kernel_sources": [
+    "jagan028/div2k-dataset-generation-for-isr",
+    "hmmkk20/sqgan-checkpoint-publication-test-20261020"
+  ],
+  "competition_sources": [],
+  "model_sources": []
+}

@@ -1,0 +1,33 @@
+{
+  "model": "DeepJSCC",
+  "test_snr_db": 10.0,
+  "checkpoint_training_snr_db_inferred": 200.0,
+  "fairness_warning": "Test SNR is matched, but this checkpoint appears trained/configured at 200 dB.",
+  "input_size": [
+    512,
+    768
+  ],
+  "source_payload_bits": 9437184,
+  "latent_real_values": 383496,
+  "latent_shape_per_tile": [
+    19,
+    29,
+    29
+  ],
+  "tile_count": 24,
+  "repo_cbr_real_values_per_rgb_value": 0.3250935872395833,
+  "complex_channel_uses_iq_assumption": 191748,
+  "channel_uses_per_source_pixel_iq_assumption": 0.487640380859375,
+  "transmitted_bits": null,
+  "mse_mean": 0.025217412784695626,
+  "mse_std": 0.0001033779831989194,
+  "psnr_db_mean": 15.983023946243577,
+  "psnr_db_std": 0.01781595602595937,
+  "ssim_mean": 0.4109139323234558,
+  "ssim_std": 0.0014959630341297016,
+  "lpips_mean": 0.7099078893661499,
+  "lpips_std": 0.0,
+  "clip_cosine_mean": 0.7758010029792786,
+  "clip_cosine_std": 0.0,
+  "reconstruction_path": "D:\\<local OneDrive>\\Desktop\\image_semcom\\benchmark_outputs\\deepjscc_reconstruction.png"
+}

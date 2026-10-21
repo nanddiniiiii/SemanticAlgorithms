@@ -1,0 +1,20 @@
+{
+  "id": "hmmkk20/ntscc-plus-full-div2k-150ep-20261020",
+  "title": "NTSCC Plus Full DIV2K 150ep 20261020",
+  "code_file": "ntscc_plus_full_div2k_150ep.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": true,
+  "enable_gpu": true,
+  "enable_tpu": false,
+  "enable_internet": true,
+  "machine_shape": "NvidiaTeslaT4",
+  "dataset_sources": [
+    "sherylmehta/kodak-dataset"
+  ],
+  "kernel_sources": [
+    "jagan028/div2k-dataset-generation-for-isr"
+  ],
+  "competition_sources": [],
+  "model_sources": []
+}

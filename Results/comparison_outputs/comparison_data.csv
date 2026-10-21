@@ -1,0 +1,46 @@
+source,method,category,snr_db,cbr,psnr_db,ssim,lpips,clip_cosine
+Nandini final repaired notebook,RAW image,Source,10.0,,inf,1.0,0.0,1.0
+Nandini final repaired notebook,JPEG Q90,Codec only,10.0,,36.23053954274415,0.9730547070503236,0.0068341675214469,0.9870682954788208
+Nandini final repaired notebook,JPEG Q75,Codec only,10.0,,32.156016142677046,0.9435772895812988,0.0189456641674041,0.9855190515518188
+Nandini final repaired notebook,JPEG Q50,Codec only,10.0,,29.42581061453412,0.9102673530578612,0.0436089113354682,0.9724268913269044
+Nandini final repaired notebook,JPEG Q25,Codec only,10.0,,26.841378829581185,0.8611481785774231,0.087908923625946,0.9513055086135864
+Nandini final repaired notebook,RAW + LDPC/QPSK/AWGN,Digital PHY,10.0,8.000868055555555,inf,1.0,0.0,1.0000001192092896
+Nandini final repaired notebook,JPEG Q90 + LDPC/QPSK/AWGN,Digital PHY,10.0,1.1232638888888888,36.23053954274415,0.9730547070503236,0.0068341675214469,0.9870682954788208
+Nandini final repaired notebook,JPEG Q75 + LDPC/QPSK/AWGN,Digital PHY,10.0,0.6901041666666666,32.156016142677046,0.9435772895812988,0.0189456641674041,0.9855190515518188
+Nandini final repaired notebook,JPEG Q50 + LDPC/QPSK/AWGN,Digital PHY,10.0,0.4696180555555556,29.42581061453412,0.9102673530578612,0.0436089113354682,0.9724268913269044
+Nandini final repaired notebook,JPEG Q25 + LDPC/QPSK/AWGN,Digital PHY,10.0,0.3107638888888889,26.841378829581185,0.8611481785774231,0.087908923625946,0.9513055086135864
+Nandini final repaired notebook,DeepJSCC,Analog JSCC,10.0,0.1625467936197916,15.983023946243575,0.4109139323234558,0.702314031124115,0.7777390360832215
+Nandini final repaired notebook,NTSCC,Analog JSCC,10.0,0.0306243896484375,25.705845265786515,0.8207112908363342,0.1694770783185958,0.9674434423446656
+Nandini final repaired notebook,DeepJSCC codebook,K=256 + Digital PHY,10.0,0.1371527777777778,17.21486733642675,0.3935128152370453,0.6090054512023926,0.61134934425354
+Nandini final repaired notebook,NTSCC codebook,K=256 + Digital PHY,10.0,0.0164930555555555,12.661583717177926,0.25359046459198,0.782872200012207,0.5696456432342529
+Nandini final notebook follow-up,NTSCC active-prefix PQ16 K=256,K=256 product quantizer + Digital PHY,10.0,0.0364583333333333,14.90651904957682,0.3684633672237396,0.5518379807472229,0.5881370306015015
+Teammate executed SwinJSCC notebook,Teammate SwinJSCC SA+RA,Analog JSCC,1.0,0.020833,21.172,,,
+Teammate executed SwinJSCC notebook,Teammate SwinJSCC SA+RA,Analog JSCC,1.0,0.041667,22.48,,,
+Teammate executed SwinJSCC notebook,Teammate SwinJSCC SA+RA,Analog JSCC,1.0,0.0625,22.686,,,
+Teammate executed SwinJSCC notebook,Teammate SwinJSCC SA+RA,Analog JSCC,1.0,0.083333,22.99,,,
+Teammate executed SwinJSCC notebook,Teammate SwinJSCC SA+RA,Analog JSCC,1.0,0.125,23.221,,,
+Teammate executed SwinJSCC notebook,Teammate SwinJSCC SA+RA,Analog JSCC,4.0,0.020833,21.883,,,
+Teammate executed SwinJSCC notebook,Teammate SwinJSCC SA+RA,Analog JSCC,4.0,0.041667,23.106,,,
+Teammate executed SwinJSCC notebook,Teammate SwinJSCC SA+RA,Analog JSCC,4.0,0.0625,23.164,,,
+Teammate executed SwinJSCC notebook,Teammate SwinJSCC SA+RA,Analog JSCC,4.0,0.083333,23.393,,,
+Teammate executed SwinJSCC notebook,Teammate SwinJSCC SA+RA,Analog JSCC,4.0,0.125,23.585,,,
+Teammate executed SwinJSCC notebook,Teammate SwinJSCC SA+RA,Analog JSCC,7.0,0.020833,22.449,,,
+Teammate executed SwinJSCC notebook,Teammate SwinJSCC SA+RA,Analog JSCC,7.0,0.041667,23.548,,,
+Teammate executed SwinJSCC notebook,Teammate SwinJSCC SA+RA,Analog JSCC,7.0,0.0625,23.465,,,
+Teammate executed SwinJSCC notebook,Teammate SwinJSCC SA+RA,Analog JSCC,7.0,0.083333,23.628,,,
+Teammate executed SwinJSCC notebook,Teammate SwinJSCC SA+RA,Analog JSCC,7.0,0.125,23.743,,,
+Teammate executed SwinJSCC notebook,Teammate SwinJSCC SA+RA,Analog JSCC,10.0,0.020833,22.783,,,
+Teammate executed SwinJSCC notebook,Teammate SwinJSCC SA+RA,Analog JSCC,10.0,0.041667,23.819,,,
+Teammate executed SwinJSCC notebook,Teammate SwinJSCC SA+RA,Analog JSCC,10.0,0.0625,23.648,,,
+Teammate executed SwinJSCC notebook,Teammate SwinJSCC SA+RA,Analog JSCC,10.0,0.083333,23.777,,,
+Teammate executed SwinJSCC notebook,Teammate SwinJSCC SA+RA,Analog JSCC,10.0,0.125,23.84,,,
+Teammate executed SwinJSCC notebook,Teammate SwinJSCC SA+RA,Analog JSCC,13.0,0.020833,22.981,,,
+Teammate executed SwinJSCC notebook,Teammate SwinJSCC SA+RA,Analog JSCC,13.0,0.041667,23.96,,,
+Teammate executed SwinJSCC notebook,Teammate SwinJSCC SA+RA,Analog JSCC,13.0,0.0625,23.747,,,
+Teammate executed SwinJSCC notebook,Teammate SwinJSCC SA+RA,Analog JSCC,13.0,0.083333,23.854,,,
+Teammate executed SwinJSCC notebook,Teammate SwinJSCC SA+RA,Analog JSCC,13.0,0.125,23.889,,,
+Nandini NTSCC standalone sweep,Nandini NTSCC sweep,Analog JSCC,0.0,0.03125,15.856807249447183,,,
+Nandini NTSCC standalone sweep,Nandini NTSCC sweep,Analog JSCC,10.0,0.03125,25.3993437027317,,,
+Nandini NTSCC standalone sweep,Nandini NTSCC sweep,Analog JSCC,15.0,0.03125,26.26391825256977,,,
+Nandini NTSCC standalone sweep,Nandini NTSCC sweep,Analog JSCC,20.0,0.03125,26.591033279774024,,,
+Nandini NTSCC standalone sweep,Nandini NTSCC sweep,Analog JSCC,5.0,0.03125,22.037009874673657,,,

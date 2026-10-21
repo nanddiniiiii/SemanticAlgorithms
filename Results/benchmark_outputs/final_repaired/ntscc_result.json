@@ -1,0 +1,89 @@
+{
+  "method": "NTSCC",
+  "checkpoint_training_snr_db": 10.0,
+  "evaluation_snr_db": 10.0,
+  "channel_seeds": [
+    42,
+    43,
+    44,
+    45,
+    46
+  ],
+  "analysis_latent_shape": [
+    1,
+    256,
+    32,
+    48
+  ],
+  "channel_latent_shape": [
+    1,
+    256,
+    32,
+    48
+  ],
+  "bpp_y": 0.7791690230369568,
+  "bpp_z": 0.01619502529501915,
+  "total_entropy_bpp": 0.7953640483319759,
+  "entropy_estimated_bits": 312749.86962890625,
+  "complex_channel_uses": 36126,
+  "cbr_y": 0.0306243896484375,
+  "cbr": 0.0306243896484375,
+  "rate_map_token_count": 1536,
+  "rate_map_bits_untransmitted": 6144,
+  "payload_bits": null,
+  "latency_s": 51.7688036999898,
+  "warning": "Entropy BPP is diagnostic, not radio bits; native cbr_y excludes the untransmitted 4-bit/token rate map.",
+  "mse_mean": 0.002688028570264578,
+  "mse_std": 2.7697953822472417e-05,
+  "psnr_db_mean": 25.705845265786515,
+  "psnr_db_std": 0.044681951284746065,
+  "ssim_mean": 0.8207112908363342,
+  "ssim_std": 0.0008974531620193273,
+  "lpips_mean": 0.16947707831859588,
+  "lpips_std": 0.0015382826179558132,
+  "clip_cosine_mean": 0.9674434423446655,
+  "clip_cosine_std": 0.004278425940331576,
+  "trials": [
+    {
+      "seed": 42,
+      "mse": 0.0026757298037409782,
+      "psnr_db": 25.725577439194925,
+      "ssim": 0.8214349150657654,
+      "lpips": 0.16884921491146088,
+      "clip_cosine": 0.9740418195724487
+    },
+    {
+      "seed": 43,
+      "mse": 0.002680370118469,
+      "psnr_db": 25.718052323479576,
+      "ssim": 0.8201989531517029,
+      "lpips": 0.16894640028476715,
+      "clip_cosine": 0.9637844562530518
+    },
+    {
+      "seed": 44,
+      "mse": 0.002701413817703724,
+      "psnr_db": 25.68408883054542,
+      "ssim": 0.820016086101532,
+      "lpips": 0.16952738165855408,
+      "clip_cosine": 0.9681593179702759
+    },
+    {
+      "seed": 45,
+      "mse": 0.0026548588648438454,
+      "psnr_db": 25.759585615311845,
+      "ssim": 0.8219111561775208,
+      "lpips": 0.1680097132921219,
+      "clip_cosine": 0.9677488803863525
+    },
+    {
+      "seed": 46,
+      "mse": 0.002727770246565342,
+      "psnr_db": 25.641922120400796,
+      "ssim": 0.8199953436851501,
+      "lpips": 0.17205268144607544,
+      "clip_cosine": 0.9634827375411987
+    }
+  ],
+  "reconstruction_path": "D:\\<local OneDrive>\\Desktop\\image_semcom\\benchmark_outputs\\final_repaired\\ntscc_reconstruction.png"
+}

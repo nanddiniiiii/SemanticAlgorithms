@@ -1,0 +1,9 @@
+{
+  "status": "BLOCKED_BY_WEEKLY_GPU_QUOTA",
+  "kernel": "hmmkk20/sqgan-speed-benchmark-20261020",
+  "detail": "Maximum weekly GPU quota of 30.00 hours reached",
+  "dataset_mount_fix_prepared": true,
+  "new_version_submitted": false,
+  "production_run_modified": false,
+  "checked_at_utc": "2026-10-20T11:53:25.716094+00:00"
+}

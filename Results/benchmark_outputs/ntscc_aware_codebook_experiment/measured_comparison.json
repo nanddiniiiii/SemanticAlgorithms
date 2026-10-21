@@ -1,0 +1,41 @@
+[
+  {
+    "method": "Native NTSCC",
+    "experiment": "validated native baseline",
+    "packet_bits": null,
+    "complex_channel_uses": 36126,
+    "cbr": 0.0306243896484375,
+    "psnr_db": 25.705845265786515,
+    "ssim": 0.8207112908363342,
+    "lpips": 0.16947707831859588,
+    "clip_cosine": 0.9674434423446655,
+    "quantization_mse": null,
+    "quantization_mse_scope": "N/A: native NTSCC is not quantized by a codebook"
+  },
+  {
+    "method": "Generic NTSCC K=256",
+    "experiment": "validated generic codebook baseline",
+    "packet_bits": 18592,
+    "complex_channel_uses": 19456,
+    "cbr": 0.016493055555555556,
+    "psnr_db": 12.661583717177926,
+    "ssim": 0.25359046459198,
+    "lpips": 0.782872200012207,
+    "clip_cosine": 0.5696456432342529,
+    "quantization_mse": 0.5599429607391357,
+    "quantization_mse_scope": "mean over the generic zero-padded 256-D tensor"
+  },
+  {
+    "method": "NTSCC active-prefix PQ16 K=256",
+    "experiment": "LDPC/QPSK/AWGN",
+    "packet_bits": 42440,
+    "complex_channel_uses": 43008,
+    "cbr": 0.036458333333333336,
+    "psnr_db": 14.90651904957682,
+    "ssim": 0.3684633672237396,
+    "lpips": 0.5518379807472229,
+    "clip_cosine": 0.5881370306015015,
+    "quantization_mse": 2.121066108647094,
+    "quantization_mse_scope": "mean over officially active prefix values only"
+  }
+]

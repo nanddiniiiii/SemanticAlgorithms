@@ -1,0 +1,5 @@
+CONTINUATION CHECK ERROR ConnectionError(ProtocolError('Connection aborted.', RemoteDisconnected('Remote end closed connection without response')))
+CONTINUATION CHECK ERROR PermissionError(13, 'Access is denied')
+CONTINUATION CHECK ERROR ConnectionError(ProtocolError('Connection aborted.', RemoteDisconnected('Remote end closed connection without response')))
+CONTINUATION CHECK ERROR PermissionError(13, 'Access is denied')
+CONTINUATION CHECK ERROR PermissionError(13, 'Access is denied')

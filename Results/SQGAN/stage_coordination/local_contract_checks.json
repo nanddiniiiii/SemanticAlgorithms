@@ -1,0 +1,15 @@
+{
+  "result": "PASS",
+  "scope": "synthetic scheduler/selection and generated notebook structure",
+  "checks": [
+    "highest progress retained",
+    "equal-progress conflicting checkpoint rejected",
+    "partial stage resumed first",
+    "active stage cannot be assigned twice",
+    "joint stage waits for both complete pretraining stages",
+    "single-stage workers cannot execute the broad sequential loop",
+    "batch, geometry, horizon and output cleanliness retained"
+  ],
+  "real_checkpoint_merge_validation": "separate Kaggle CPU job required",
+  "model_training_results_generated": false
+}

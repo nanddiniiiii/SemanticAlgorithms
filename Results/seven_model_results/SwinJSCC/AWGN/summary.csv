@@ -1,0 +1,2 @@
+model,channel,snr_db,epochs,kodak_psnr_db,kodak_ssim,kodak_msssim,mean_complex_channel_uses_per_image,mean_cbr,training_flops_per_sample,inference_flops_per_image_256,div2k_pool_images,div2k_images_per_epoch,crop_px,batch_size,source_commit
+SwinJSCC,AWGN,10,150,28.98231709285191,0.8347020546595255,0.9572386716802915,73728.0,0.0625,206543376388,68925788161,800,800,256,16,a6d0e6da53548976acbe9317839a077ef31f190f

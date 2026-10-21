@@ -1,0 +1,44 @@
+[
+  {
+    "variant": "original_workers0",
+    "cpu_only": true,
+    "images_processed": 800,
+    "unique_images": 800,
+    "batch_size": 1,
+    "workers": 0,
+    "full_pass_seconds": 32.96789728900001,
+    "first100_seconds": 3.8559641739999506,
+    "remaining700_seconds": 29.111933115000056,
+    "cache_build_seconds": 0,
+    "gpu_training_speedup_measured": false,
+    "production_changed": false
+  },
+  {
+    "variant": "cached_workers0",
+    "cpu_only": true,
+    "images_processed": 800,
+    "unique_images": 800,
+    "batch_size": 1,
+    "workers": 0,
+    "full_pass_seconds": 32.21352733200001,
+    "first100_seconds": 4.059048892999954,
+    "remaining700_seconds": 28.15447843900006,
+    "cache_build_seconds": 37.00831754000001,
+    "gpu_training_speedup_measured": false,
+    "production_changed": false
+  },
+  {
+    "variant": "cached_workers2",
+    "cpu_only": true,
+    "images_processed": 800,
+    "unique_images": 800,
+    "batch_size": 1,
+    "workers": 2,
+    "full_pass_seconds": 21.67218080500004,
+    "first100_seconds": 2.794048142999941,
+    "remaining700_seconds": 18.878132662000098,
+    "cache_build_seconds": 37.00831754000001,
+    "gpu_training_speedup_measured": false,
+    "production_changed": false
+  }
+]

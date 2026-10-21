@@ -1,0 +1,3 @@
+model,channel,profile_input,training_forward_backward_flops_per_sample,inference_flops_per_image,source_commit,profiler
+DeepJSCC,AWGN,1x3x128x128,167346181,167182338,2665e0dc6d8bf216daf9442c5d6e5d69c5ad2f06,torch.profiler with_flops=True
+DeepJSCC,Rayleigh,1x3x128x128,167362567,167182340,2665e0dc6d8bf216daf9442c5d6e5d69c5ad2f06,torch.profiler with_flops=True

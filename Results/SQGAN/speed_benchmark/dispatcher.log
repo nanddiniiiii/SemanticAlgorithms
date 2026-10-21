@@ -1,0 +1,3 @@
+{"status": "WAITING_FOR_GPU_SLOT", "kernel": "hmmkk20/sqgan-speed-benchmark-20261020", "updated_utc": "2026-10-20T08:37:31.093386+00:00", "production_run_modified": false}
+{"status": "SUBMITTED", "kernel": "hmmkk20/sqgan-speed-benchmark-20261020", "updated_utc": "2026-10-20T08:43:20.607788+00:00", "production_run_modified": false}
+{"status": "BENCHMARK_FAILED", "kernel": "hmmkk20/sqgan-speed-benchmark-20261020", "updated_utc": "2026-10-20T09:09:13.935180+00:00", "production_run_modified": false, "detail": "hmmkk20/sqgan-speed-benchmark-20261020 has status \"KernelWorkerStatus.ERROR\"\n"}

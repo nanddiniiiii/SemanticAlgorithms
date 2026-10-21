@@ -1,0 +1,1604 @@
+[
+  {
+    "configuration": "rc_pq4_k256_norm",
+    "block_size": 4,
+    "K": 256,
+    "normalized": true,
+    "rvq_stages": 1,
+    "psnr_db": 24.203403885986713,
+    "ssim": 0.7967395782470703,
+    "latent_mse_active": 0.3705143326617888,
+    "total_transmitted_bits": 150944,
+    "bpp": 0.3838704427083333,
+    "index_bits": 144512,
+    "rate_map_bits": 6144,
+    "metadata_bits": 256,
+    "crc_bits": 32,
+    "active_value_count": 72252,
+    "fit_latency_s": 6.870749699999578,
+    "evaluation_latency_s": 18.55914369999664,
+    "status": "ok",
+    "rate_groups": [
+      [
+        0
+      ],
+      [
+        1
+      ],
+      [
+        2
+      ],
+      [
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      [
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ]
+    ],
+    "population_count": 9,
+    "population_samples": {
+      "rate-1_dim2": 2,
+      "rate-1_dim4": 594622,
+      "rate0_dim4": 21676,
+      "rate1_dim4": 357048,
+      "rate2_dim4": 184272,
+      "rate3_dim2": 1,
+      "rate3_dim4": 31593,
+      "rate4_dim2": 1,
+      "rate4_dim4": 33
+    },
+    "population_clusters": {
+      "rate-1_dim2": [
+        2
+      ],
+      "rate-1_dim4": [
+        256
+      ],
+      "rate0_dim4": [
+        256
+      ],
+      "rate1_dim4": [
+        256
+      ],
+      "rate2_dim4": [
+        256
+      ],
+      "rate3_dim2": [
+        1
+      ],
+      "rate3_dim4": [
+        256
+      ],
+      "rate4_dim2": [
+        1
+      ],
+      "rate4_dim4": [
+        33
+      ]
+    },
+    "model_sha256": "11b92379015ffdd6b8d19e74b37a13d5662fde9cbb76905260e4f4bb5656e267"
+  },
+  {
+    "configuration": "rc_pq4_k512_norm",
+    "block_size": 4,
+    "K": 512,
+    "normalized": true,
+    "rvq_stages": 1,
+    "psnr_db": 25.14159361818369,
+    "ssim": 0.8135963082313538,
+    "latent_mse_active": 0.26851430527334386,
+    "total_transmitted_bits": 169008,
+    "bpp": 0.4298095703125,
+    "index_bits": 162576,
+    "rate_map_bits": 6144,
+    "metadata_bits": 256,
+    "crc_bits": 32,
+    "active_value_count": 72252,
+    "fit_latency_s": 5.715333100000862,
+    "evaluation_latency_s": 7.8233737999689765,
+    "status": "ok",
+    "rate_groups": [
+      [
+        0
+      ],
+      [
+        1
+      ],
+      [
+        2
+      ],
+      [
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      [
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ]
+    ],
+    "population_count": 9,
+    "population_samples": {
+      "rate-1_dim2": 2,
+      "rate-1_dim4": 594622,
+      "rate0_dim4": 21676,
+      "rate1_dim4": 357048,
+      "rate2_dim4": 184272,
+      "rate3_dim2": 1,
+      "rate3_dim4": 31593,
+      "rate4_dim2": 1,
+      "rate4_dim4": 33
+    },
+    "population_clusters": {
+      "rate-1_dim2": [
+        2
+      ],
+      "rate-1_dim4": [
+        512
+      ],
+      "rate0_dim4": [
+        512
+      ],
+      "rate1_dim4": [
+        512
+      ],
+      "rate2_dim4": [
+        512
+      ],
+      "rate3_dim2": [
+        1
+      ],
+      "rate3_dim4": [
+        512
+      ],
+      "rate4_dim2": [
+        1
+      ],
+      "rate4_dim4": [
+        33
+      ]
+    },
+    "model_sha256": "97cff19788ba2a9ee1b594a5a41b24ffe1d53b1745ed5f6a1de8e8d87121b110"
+  },
+  {
+    "configuration": "rc_pq4_k1024_norm",
+    "block_size": 4,
+    "K": 1024,
+    "normalized": true,
+    "rvq_stages": 1,
+    "psnr_db": 25.63283182110567,
+    "ssim": 0.8237417340278625,
+    "latent_mse_active": 0.1971546307122993,
+    "total_transmitted_bits": 187072,
+    "bpp": 0.4757486979166667,
+    "index_bits": 180640,
+    "rate_map_bits": 6144,
+    "metadata_bits": 256,
+    "crc_bits": 32,
+    "active_value_count": 72252,
+    "fit_latency_s": 15.28492860001279,
+    "evaluation_latency_s": 9.663796399952844,
+    "status": "ok",
+    "rate_groups": [
+      [
+        0
+      ],
+      [
+        1
+      ],
+      [
+        2
+      ],
+      [
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      [
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ]
+    ],
+    "population_count": 9,
+    "population_samples": {
+      "rate-1_dim2": 2,
+      "rate-1_dim4": 594622,
+      "rate0_dim4": 21676,
+      "rate1_dim4": 357048,
+      "rate2_dim4": 184272,
+      "rate3_dim2": 1,
+      "rate3_dim4": 31593,
+      "rate4_dim2": 1,
+      "rate4_dim4": 33
+    },
+    "population_clusters": {
+      "rate-1_dim2": [
+        2
+      ],
+      "rate-1_dim4": [
+        1024
+      ],
+      "rate0_dim4": [
+        1024
+      ],
+      "rate1_dim4": [
+        1024
+      ],
+      "rate2_dim4": [
+        1024
+      ],
+      "rate3_dim2": [
+        1
+      ],
+      "rate3_dim4": [
+        1024
+      ],
+      "rate4_dim2": [
+        1
+      ],
+      "rate4_dim4": [
+        33
+      ]
+    },
+    "model_sha256": "cf72642fb7f06e6dc3941784012010053485931bc5fc6deb635e1005f4476f03"
+  },
+  {
+    "configuration": "rc_pq8_k256_norm",
+    "block_size": 8,
+    "K": 256,
+    "normalized": true,
+    "rvq_stages": 1,
+    "psnr_db": 18.70696288213733,
+    "ssim": 0.6092818379402161,
+    "latent_mse_active": 1.1802274474704715,
+    "total_transmitted_bits": 78688,
+    "bpp": 0.20011393229166666,
+    "index_bits": 72256,
+    "rate_map_bits": 6144,
+    "metadata_bits": 256,
+    "crc_bits": 32,
+    "active_value_count": 72252,
+    "fit_latency_s": 1.9542837999761105,
+    "evaluation_latency_s": 6.425795799994376,
+    "status": "ok",
+    "rate_groups": [
+      [
+        0
+      ],
+      [
+        1
+      ],
+      [
+        2
+      ],
+      [
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      [
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ]
+    ],
+    "population_count": 9,
+    "population_samples": {
+      "rate-1_dim6": 2,
+      "rate-1_dim8": 297310,
+      "rate0_dim8": 10838,
+      "rate1_dim8": 178524,
+      "rate2_dim8": 92136,
+      "rate3_dim6": 1,
+      "rate3_dim8": 15796,
+      "rate4_dim6": 1,
+      "rate4_dim8": 16
+    },
+    "population_clusters": {
+      "rate-1_dim6": [
+        2
+      ],
+      "rate-1_dim8": [
+        256
+      ],
+      "rate0_dim8": [
+        256
+      ],
+      "rate1_dim8": [
+        256
+      ],
+      "rate2_dim8": [
+        256
+      ],
+      "rate3_dim6": [
+        1
+      ],
+      "rate3_dim8": [
+        256
+      ],
+      "rate4_dim6": [
+        1
+      ],
+      "rate4_dim8": [
+        16
+      ]
+    },
+    "model_sha256": "b36815b5f80bf9779ff76a70833596418e0dfb4aa47be2d2f10fcbe165ad68d3"
+  },
+  {
+    "configuration": "rc_pq8_k512_norm",
+    "block_size": 8,
+    "K": 512,
+    "normalized": true,
+    "rvq_stages": 1,
+    "psnr_db": 20.001381171296263,
+    "ssim": 0.664093554019928,
+    "latent_mse_active": 1.008590205457619,
+    "total_transmitted_bits": 87720,
+    "bpp": 0.22308349609375,
+    "index_bits": 81288,
+    "rate_map_bits": 6144,
+    "metadata_bits": 256,
+    "crc_bits": 32,
+    "active_value_count": 72252,
+    "fit_latency_s": 4.916348900005687,
+    "evaluation_latency_s": 6.011795999947935,
+    "status": "ok",
+    "rate_groups": [
+      [
+        0
+      ],
+      [
+        1
+      ],
+      [
+        2
+      ],
+      [
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      [
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ]
+    ],
+    "population_count": 9,
+    "population_samples": {
+      "rate-1_dim6": 2,
+      "rate-1_dim8": 297310,
+      "rate0_dim8": 10838,
+      "rate1_dim8": 178524,
+      "rate2_dim8": 92136,
+      "rate3_dim6": 1,
+      "rate3_dim8": 15796,
+      "rate4_dim6": 1,
+      "rate4_dim8": 16
+    },
+    "population_clusters": {
+      "rate-1_dim6": [
+        2
+      ],
+      "rate-1_dim8": [
+        512
+      ],
+      "rate0_dim8": [
+        512
+      ],
+      "rate1_dim8": [
+        512
+      ],
+      "rate2_dim8": [
+        512
+      ],
+      "rate3_dim6": [
+        1
+      ],
+      "rate3_dim8": [
+        512
+      ],
+      "rate4_dim6": [
+        1
+      ],
+      "rate4_dim8": [
+        16
+      ]
+    },
+    "model_sha256": "53aa9a1a2c908df803a0183dd40fdb3cd198bd7f1a8a4c34ea1ce5919be17667"
+  },
+  {
+    "configuration": "rc_pq8_k1024_norm",
+    "block_size": 8,
+    "K": 1024,
+    "normalized": true,
+    "rvq_stages": 1,
+    "psnr_db": 20.89784203183872,
+    "ssim": 0.6970898509025574,
+    "latent_mse_active": 0.8646295175139049,
+    "total_transmitted_bits": 96752,
+    "bpp": 0.24605305989583334,
+    "index_bits": 90320,
+    "rate_map_bits": 6144,
+    "metadata_bits": 256,
+    "crc_bits": 32,
+    "active_value_count": 72252,
+    "fit_latency_s": 10.286721199983731,
+    "evaluation_latency_s": 5.380481200001668,
+    "status": "ok",
+    "rate_groups": [
+      [
+        0
+      ],
+      [
+        1
+      ],
+      [
+        2
+      ],
+      [
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      [
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ]
+    ],
+    "population_count": 9,
+    "population_samples": {
+      "rate-1_dim6": 2,
+      "rate-1_dim8": 297310,
+      "rate0_dim8": 10838,
+      "rate1_dim8": 178524,
+      "rate2_dim8": 92136,
+      "rate3_dim6": 1,
+      "rate3_dim8": 15796,
+      "rate4_dim6": 1,
+      "rate4_dim8": 16
+    },
+    "population_clusters": {
+      "rate-1_dim6": [
+        2
+      ],
+      "rate-1_dim8": [
+        1024
+      ],
+      "rate0_dim8": [
+        1024
+      ],
+      "rate1_dim8": [
+        1024
+      ],
+      "rate2_dim8": [
+        1024
+      ],
+      "rate3_dim6": [
+        1
+      ],
+      "rate3_dim8": [
+        1024
+      ],
+      "rate4_dim6": [
+        1
+      ],
+      "rate4_dim8": [
+        16
+      ]
+    },
+    "model_sha256": "a3c9b9f9cc455a420a9c652e5fadb90db9312cc2c7006b84587230b0de769073"
+  },
+  {
+    "configuration": "rc_rvq24_k1024_norm",
+    "block_size": 4,
+    "K": 1024,
+    "normalized": true,
+    "rvq_stages": 2,
+    "psnr_db": 26.99638477229454,
+    "ssim": 0.8459572792053223,
+    "latent_mse_active": 0.015306299000381763,
+    "total_transmitted_bits": 367712,
+    "bpp": 0.9351399739583334,
+    "index_bits": 361280,
+    "rate_map_bits": 6144,
+    "metadata_bits": 256,
+    "crc_bits": 32,
+    "active_value_count": 72252,
+    "fit_latency_s": 23.68925549997948,
+    "evaluation_latency_s": 10.929178700025659,
+    "status": "ok",
+    "rate_groups": [
+      [
+        0
+      ],
+      [
+        1
+      ],
+      [
+        2
+      ],
+      [
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      [
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ]
+    ],
+    "population_count": 9,
+    "population_samples": {
+      "rate-1_dim2": 2,
+      "rate-1_dim4": 594622,
+      "rate0_dim4": 21676,
+      "rate1_dim4": 357048,
+      "rate2_dim4": 184272,
+      "rate3_dim2": 1,
+      "rate3_dim4": 31593,
+      "rate4_dim2": 1,
+      "rate4_dim4": 33
+    },
+    "population_clusters": {
+      "rate-1_dim2": [
+        2,
+        2
+      ],
+      "rate-1_dim4": [
+        1024,
+        1024
+      ],
+      "rate0_dim4": [
+        1024,
+        1024
+      ],
+      "rate1_dim4": [
+        1024,
+        1024
+      ],
+      "rate2_dim4": [
+        1024,
+        1024
+      ],
+      "rate3_dim2": [
+        1,
+        1
+      ],
+      "rate3_dim4": [
+        1024,
+        1024
+      ],
+      "rate4_dim2": [
+        1,
+        1
+      ],
+      "rate4_dim4": [
+        33,
+        33
+      ]
+    },
+    "model_sha256": "614858f5fb3a14fbadf618c7f73442632c76de2ef1659bc1cf9498e3065200c2"
+  },
+  {
+    "configuration": "rc_rvq28_k1024_norm",
+    "block_size": 8,
+    "K": 1024,
+    "normalized": true,
+    "rvq_stages": 2,
+    "psnr_db": 25.363524658115445,
+    "ssim": 0.8181104063987732,
+    "latent_mse_active": 0.23135068551553964,
+    "total_transmitted_bits": 187072,
+    "bpp": 0.4757486979166667,
+    "index_bits": 180640,
+    "rate_map_bits": 6144,
+    "metadata_bits": 256,
+    "crc_bits": 32,
+    "active_value_count": 72252,
+    "fit_latency_s": 19.55322060000617,
+    "evaluation_latency_s": 7.691234900034033,
+    "status": "ok",
+    "rate_groups": [
+      [
+        0
+      ],
+      [
+        1
+      ],
+      [
+        2
+      ],
+      [
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      [
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ]
+    ],
+    "population_count": 9,
+    "population_samples": {
+      "rate-1_dim6": 2,
+      "rate-1_dim8": 297310,
+      "rate0_dim8": 10838,
+      "rate1_dim8": 178524,
+      "rate2_dim8": 92136,
+      "rate3_dim6": 1,
+      "rate3_dim8": 15796,
+      "rate4_dim6": 1,
+      "rate4_dim8": 16
+    },
+    "population_clusters": {
+      "rate-1_dim6": [
+        2,
+        2
+      ],
+      "rate-1_dim8": [
+        1024,
+        1024
+      ],
+      "rate0_dim8": [
+        1024,
+        1024
+      ],
+      "rate1_dim8": [
+        1024,
+        1024
+      ],
+      "rate2_dim8": [
+        1024,
+        1024
+      ],
+      "rate3_dim6": [
+        1,
+        1
+      ],
+      "rate3_dim8": [
+        1024,
+        1024
+      ],
+      "rate4_dim6": [
+        1,
+        1
+      ],
+      "rate4_dim8": [
+        16,
+        16
+      ]
+    },
+    "model_sha256": "1e134613a56f8ac7409a07d86f5f7afe0db7fb83b2916e36281422300a466cb6"
+  },
+  {
+    "configuration": "rc_pq2_k256_norm",
+    "block_size": 2,
+    "K": 256,
+    "normalized": true,
+    "rvq_stages": 1,
+    "psnr_db": 26.79968472660525,
+    "ssim": 0.8432778716087341,
+    "latent_mse_active": 0.03777947115405148,
+    "total_transmitted_bits": 295440,
+    "bpp": 0.7513427734375,
+    "index_bits": 289008,
+    "rate_map_bits": 6144,
+    "metadata_bits": 256,
+    "crc_bits": 32,
+    "active_value_count": 72252,
+    "fit_latency_s": 3.922823300003074,
+    "evaluation_latency_s": 13.594366100034676,
+    "status": "ok",
+    "rate_groups": [
+      [
+        0
+      ],
+      [
+        1
+      ],
+      [
+        2
+      ],
+      [
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      [
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ]
+    ],
+    "population_count": 6,
+    "population_samples": {
+      "rate-1_dim2": 1189246,
+      "rate0_dim2": 43352,
+      "rate1_dim2": 714096,
+      "rate2_dim2": 368544,
+      "rate3_dim2": 63187,
+      "rate4_dim2": 67
+    },
+    "population_clusters": {
+      "rate-1_dim2": [
+        256
+      ],
+      "rate0_dim2": [
+        256
+      ],
+      "rate1_dim2": [
+        256
+      ],
+      "rate2_dim2": [
+        256
+      ],
+      "rate3_dim2": [
+        256
+      ],
+      "rate4_dim2": [
+        67
+      ]
+    },
+    "model_sha256": "6c06dbc0611e01a056b9906f1987e9f31fcc1192c71f9c8a1e3ae9f7e413e3da"
+  },
+  {
+    "configuration": "rc_pq2_k512_norm",
+    "block_size": 2,
+    "K": 512,
+    "normalized": true,
+    "rvq_stages": 1,
+    "psnr_db": 26.977882705029046,
+    "ssim": 0.8456335663795471,
+    "latent_mse_active": 0.01955696530450387,
+    "total_transmitted_bits": 331566,
+    "bpp": 0.8432159423828125,
+    "index_bits": 325134,
+    "rate_map_bits": 6144,
+    "metadata_bits": 256,
+    "crc_bits": 32,
+    "active_value_count": 72252,
+    "fit_latency_s": 8.2422051000176,
+    "evaluation_latency_s": 12.006866100011393,
+    "status": "ok",
+    "rate_groups": [
+      [
+        0
+      ],
+      [
+        1
+      ],
+      [
+        2
+      ],
+      [
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      [
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ]
+    ],
+    "population_count": 6,
+    "population_samples": {
+      "rate-1_dim2": 1189246,
+      "rate0_dim2": 43352,
+      "rate1_dim2": 714096,
+      "rate2_dim2": 368544,
+      "rate3_dim2": 63187,
+      "rate4_dim2": 67
+    },
+    "population_clusters": {
+      "rate-1_dim2": [
+        512
+      ],
+      "rate0_dim2": [
+        512
+      ],
+      "rate1_dim2": [
+        512
+      ],
+      "rate2_dim2": [
+        512
+      ],
+      "rate3_dim2": [
+        512
+      ],
+      "rate4_dim2": [
+        67
+      ]
+    },
+    "model_sha256": "274fb86f9c7f3b3585fe077e4fbd0dc039922615deea3b0b72644daa87444970"
+  },
+  {
+    "configuration": "rc_pq2_k1024_norm",
+    "block_size": 2,
+    "K": 1024,
+    "normalized": true,
+    "rvq_stages": 1,
+    "psnr_db": 27.03412403388281,
+    "ssim": 0.846562385559082,
+    "latent_mse_active": 0.010701581357263129,
+    "total_transmitted_bits": 367692,
+    "bpp": 0.935089111328125,
+    "index_bits": 361260,
+    "rate_map_bits": 6144,
+    "metadata_bits": 256,
+    "crc_bits": 32,
+    "active_value_count": 72252,
+    "fit_latency_s": 14.649877200019546,
+    "evaluation_latency_s": 13.922360899974592,
+    "status": "ok",
+    "rate_groups": [
+      [
+        0
+      ],
+      [
+        1
+      ],
+      [
+        2
+      ],
+      [
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      [
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ]
+    ],
+    "population_count": 6,
+    "population_samples": {
+      "rate-1_dim2": 1189246,
+      "rate0_dim2": 43352,
+      "rate1_dim2": 714096,
+      "rate2_dim2": 368544,
+      "rate3_dim2": 63187,
+      "rate4_dim2": 67
+    },
+    "population_clusters": {
+      "rate-1_dim2": [
+        1024
+      ],
+      "rate0_dim2": [
+        1024
+      ],
+      "rate1_dim2": [
+        1024
+      ],
+      "rate2_dim2": [
+        1024
+      ],
+      "rate3_dim2": [
+        1024
+      ],
+      "rate4_dim2": [
+        67
+      ]
+    },
+    "model_sha256": "87e09f24432e423a2f000acc66da0d89823f46f3f75321ed00aab8d3924506d0"
+  },
+  {
+    "configuration": "rc_pq16_k256_norm",
+    "block_size": 16,
+    "K": 256,
+    "normalized": true,
+    "rvq_stages": 1,
+    "psnr_db": 15.56544537288296,
+    "ssim": 0.41347670555114746,
+    "latent_mse_active": 2.0155458720712867,
+    "total_transmitted_bits": 42568,
+    "bpp": 0.10825602213541667,
+    "index_bits": 36136,
+    "rate_map_bits": 6144,
+    "metadata_bits": 256,
+    "crc_bits": 32,
+    "active_value_count": 72252,
+    "fit_latency_s": 1.771631499985233,
+    "evaluation_latency_s": 4.823117799998727,
+    "status": "ok",
+    "rate_groups": [
+      [
+        0
+      ],
+      [
+        1
+      ],
+      [
+        2
+      ],
+      [
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      [
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ]
+    ],
+    "population_count": 9,
+    "population_samples": {
+      "rate-1_dim6": 2,
+      "rate-1_dim16": 148655,
+      "rate0_dim16": 5419,
+      "rate1_dim16": 89262,
+      "rate2_dim16": 46068,
+      "rate3_dim6": 1,
+      "rate3_dim16": 7898,
+      "rate4_dim6": 1,
+      "rate4_dim16": 8
+    },
+    "population_clusters": {
+      "rate-1_dim6": [
+        2
+      ],
+      "rate-1_dim16": [
+        256
+      ],
+      "rate0_dim16": [
+        256
+      ],
+      "rate1_dim16": [
+        256
+      ],
+      "rate2_dim16": [
+        256
+      ],
+      "rate3_dim6": [
+        1
+      ],
+      "rate3_dim16": [
+        256
+      ],
+      "rate4_dim6": [
+        1
+      ],
+      "rate4_dim16": [
+        8
+      ]
+    },
+    "model_sha256": "a0a9b8392b79df0aebfa73cad94e71068d814492fb25911c8f52ed35aff75929"
+  },
+  {
+    "configuration": "rc_pq16_k512_norm",
+    "block_size": 16,
+    "K": 512,
+    "normalized": true,
+    "rvq_stages": 1,
+    "psnr_db": 15.983075371269045,
+    "ssim": 0.4510461091995239,
+    "latent_mse_active": 1.8734588909974454,
+    "total_transmitted_bits": 47085,
+    "bpp": 0.11974334716796875,
+    "index_bits": 40653,
+    "rate_map_bits": 6144,
+    "metadata_bits": 256,
+    "crc_bits": 32,
+    "active_value_count": 72252,
+    "fit_latency_s": 5.3245511000277475,
+    "evaluation_latency_s": 4.804955499945208,
+    "status": "ok",
+    "rate_groups": [
+      [
+        0
+      ],
+      [
+        1
+      ],
+      [
+        2
+      ],
+      [
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      [
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ]
+    ],
+    "population_count": 9,
+    "population_samples": {
+      "rate-1_dim6": 2,
+      "rate-1_dim16": 148655,
+      "rate0_dim16": 5419,
+      "rate1_dim16": 89262,
+      "rate2_dim16": 46068,
+      "rate3_dim6": 1,
+      "rate3_dim16": 7898,
+      "rate4_dim6": 1,
+      "rate4_dim16": 8
+    },
+    "population_clusters": {
+      "rate-1_dim6": [
+        2
+      ],
+      "rate-1_dim16": [
+        512
+      ],
+      "rate0_dim16": [
+        512
+      ],
+      "rate1_dim16": [
+        512
+      ],
+      "rate2_dim16": [
+        512
+      ],
+      "rate3_dim6": [
+        1
+      ],
+      "rate3_dim16": [
+        512
+      ],
+      "rate4_dim6": [
+        1
+      ],
+      "rate4_dim16": [
+        8
+      ]
+    },
+    "model_sha256": "a2547c70265c7371feb91129dbfe3bf78a6b2ab21b6876793502e1328f0239eb"
+  },
+  {
+    "configuration": "rc_pq16_k1024_norm",
+    "block_size": 16,
+    "K": 1024,
+    "normalized": true,
+    "rvq_stages": 1,
+    "psnr_db": 17.149545757942658,
+    "ssim": 0.4963921308517456,
+    "latent_mse_active": 1.7350902163919035,
+    "total_transmitted_bits": 51602,
+    "bpp": 0.13123067220052084,
+    "index_bits": 45170,
+    "rate_map_bits": 6144,
+    "metadata_bits": 256,
+    "crc_bits": 32,
+    "active_value_count": 72252,
+    "fit_latency_s": 12.478566300007515,
+    "evaluation_latency_s": 6.045518999977503,
+    "status": "ok",
+    "rate_groups": [
+      [
+        0
+      ],
+      [
+        1
+      ],
+      [
+        2
+      ],
+      [
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      [
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ]
+    ],
+    "population_count": 9,
+    "population_samples": {
+      "rate-1_dim6": 2,
+      "rate-1_dim16": 148655,
+      "rate0_dim16": 5419,
+      "rate1_dim16": 89262,
+      "rate2_dim16": 46068,
+      "rate3_dim6": 1,
+      "rate3_dim16": 7898,
+      "rate4_dim6": 1,
+      "rate4_dim16": 8
+    },
+    "population_clusters": {
+      "rate-1_dim6": [
+        2
+      ],
+      "rate-1_dim16": [
+        1024
+      ],
+      "rate0_dim16": [
+        1024
+      ],
+      "rate1_dim16": [
+        1024
+      ],
+      "rate2_dim16": [
+        1024
+      ],
+      "rate3_dim6": [
+        1
+      ],
+      "rate3_dim16": [
+        1024
+      ],
+      "rate4_dim6": [
+        1
+      ],
+      "rate4_dim16": [
+        8
+      ]
+    },
+    "model_sha256": "18358f4be6dca34fcd0ae66de67c6ba2cda52f3b16100eb724b85e8072f850b4"
+  },
+  {
+    "configuration": "rc_pq4_k256_raw",
+    "block_size": 4,
+    "K": 256,
+    "normalized": false,
+    "rvq_stages": 1,
+    "psnr_db": 24.313332497190476,
+    "ssim": 0.7968737483024597,
+    "latent_mse_active": 0.37200748282920004,
+    "total_transmitted_bits": 150944,
+    "bpp": 0.3838704427083333,
+    "index_bits": 144512,
+    "rate_map_bits": 6144,
+    "metadata_bits": 256,
+    "crc_bits": 32,
+    "active_value_count": 72252,
+    "fit_latency_s": 6.190226799983066,
+    "evaluation_latency_s": 14.971743199974298,
+    "status": "ok",
+    "rate_groups": [
+      [
+        0
+      ],
+      [
+        1
+      ],
+      [
+        2
+      ],
+      [
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      [
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ]
+    ],
+    "population_count": 9,
+    "population_samples": {
+      "rate-1_dim2": 2,
+      "rate-1_dim4": 594622,
+      "rate0_dim4": 21676,
+      "rate1_dim4": 357048,
+      "rate2_dim4": 184272,
+      "rate3_dim2": 1,
+      "rate3_dim4": 31593,
+      "rate4_dim2": 1,
+      "rate4_dim4": 33
+    },
+    "population_clusters": {
+      "rate-1_dim2": [
+        2
+      ],
+      "rate-1_dim4": [
+        256
+      ],
+      "rate0_dim4": [
+        256
+      ],
+      "rate1_dim4": [
+        256
+      ],
+      "rate2_dim4": [
+        256
+      ],
+      "rate3_dim2": [
+        1
+      ],
+      "rate3_dim4": [
+        256
+      ],
+      "rate4_dim2": [
+        1
+      ],
+      "rate4_dim4": [
+        33
+      ]
+    },
+    "model_sha256": "fe473c177436cf0c6f947e73d97d5ea87f20daa6678c3ef108f00d6b0f2df64a"
+  },
+  {
+    "configuration": "rc_pq4_k512_raw",
+    "block_size": 4,
+    "K": 512,
+    "normalized": false,
+    "rvq_stages": 1,
+    "psnr_db": 25.099979653451644,
+    "ssim": 0.8137393593788147,
+    "latent_mse_active": 0.26928381890315495,
+    "total_transmitted_bits": 169008,
+    "bpp": 0.4298095703125,
+    "index_bits": 162576,
+    "rate_map_bits": 6144,
+    "metadata_bits": 256,
+    "crc_bits": 32,
+    "active_value_count": 72252,
+    "fit_latency_s": 4.9157433999935165,
+    "evaluation_latency_s": 8.129580200009514,
+    "status": "ok",
+    "rate_groups": [
+      [
+        0
+      ],
+      [
+        1
+      ],
+      [
+        2
+      ],
+      [
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      [
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ]
+    ],
+    "population_count": 9,
+    "population_samples": {
+      "rate-1_dim2": 2,
+      "rate-1_dim4": 594622,
+      "rate0_dim4": 21676,
+      "rate1_dim4": 357048,
+      "rate2_dim4": 184272,
+      "rate3_dim2": 1,
+      "rate3_dim4": 31593,
+      "rate4_dim2": 1,
+      "rate4_dim4": 33
+    },
+    "population_clusters": {
+      "rate-1_dim2": [
+        2
+      ],
+      "rate-1_dim4": [
+        512
+      ],
+      "rate0_dim4": [
+        512
+      ],
+      "rate1_dim4": [
+        512
+      ],
+      "rate2_dim4": [
+        512
+      ],
+      "rate3_dim2": [
+        1
+      ],
+      "rate3_dim4": [
+        512
+      ],
+      "rate4_dim2": [
+        1
+      ],
+      "rate4_dim4": [
+        33
+      ]
+    },
+    "model_sha256": "83633e8baaa01c8199d477b5a86eef73c1decfb390e4268943bf7615eed7f17a"
+  },
+  {
+    "configuration": "rc_pq8_k256_raw",
+    "block_size": 8,
+    "K": 256,
+    "normalized": false,
+    "rvq_stages": 1,
+    "psnr_db": 18.626773694661146,
+    "ssim": 0.6090364456176758,
+    "latent_mse_active": 1.1825880628055045,
+    "total_transmitted_bits": 78688,
+    "bpp": 0.20011393229166666,
+    "index_bits": 72256,
+    "rate_map_bits": 6144,
+    "metadata_bits": 256,
+    "crc_bits": 32,
+    "active_value_count": 72252,
+    "fit_latency_s": 1.7969556999742053,
+    "evaluation_latency_s": 6.546462400001474,
+    "status": "ok",
+    "rate_groups": [
+      [
+        0
+      ],
+      [
+        1
+      ],
+      [
+        2
+      ],
+      [
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      [
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ]
+    ],
+    "population_count": 9,
+    "population_samples": {
+      "rate-1_dim6": 2,
+      "rate-1_dim8": 297310,
+      "rate0_dim8": 10838,
+      "rate1_dim8": 178524,
+      "rate2_dim8": 92136,
+      "rate3_dim6": 1,
+      "rate3_dim8": 15796,
+      "rate4_dim6": 1,
+      "rate4_dim8": 16
+    },
+    "population_clusters": {
+      "rate-1_dim6": [
+        2
+      ],
+      "rate-1_dim8": [
+        256
+      ],
+      "rate0_dim8": [
+        256
+      ],
+      "rate1_dim8": [
+        256
+      ],
+      "rate2_dim8": [
+        256
+      ],
+      "rate3_dim6": [
+        1
+      ],
+      "rate3_dim8": [
+        256
+      ],
+      "rate4_dim6": [
+        1
+      ],
+      "rate4_dim8": [
+        16
+      ]
+    },
+    "model_sha256": "bab7cdf71dbc901038fcb98eaa4734bd09ef556dd0113b1d9a5197c547776d36"
+  },
+  {
+    "configuration": "rc_pq8_k512_raw",
+    "block_size": 8,
+    "K": 512,
+    "normalized": false,
+    "rvq_stages": 1,
+    "psnr_db": 19.967350685581668,
+    "ssim": 0.6621903777122498,
+    "latent_mse_active": 1.0036925121891052,
+    "total_transmitted_bits": 87720,
+    "bpp": 0.22308349609375,
+    "index_bits": 81288,
+    "rate_map_bits": 6144,
+    "metadata_bits": 256,
+    "crc_bits": 32,
+    "active_value_count": 72252,
+    "fit_latency_s": 4.481306599976961,
+    "evaluation_latency_s": 6.350014499970712,
+    "status": "ok",
+    "rate_groups": [
+      [
+        0
+      ],
+      [
+        1
+      ],
+      [
+        2
+      ],
+      [
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      [
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ]
+    ],
+    "population_count": 9,
+    "population_samples": {
+      "rate-1_dim6": 2,
+      "rate-1_dim8": 297310,
+      "rate0_dim8": 10838,
+      "rate1_dim8": 178524,
+      "rate2_dim8": 92136,
+      "rate3_dim6": 1,
+      "rate3_dim8": 15796,
+      "rate4_dim6": 1,
+      "rate4_dim8": 16
+    },
+    "population_clusters": {
+      "rate-1_dim6": [
+        2
+      ],
+      "rate-1_dim8": [
+        512
+      ],
+      "rate0_dim8": [
+        512
+      ],
+      "rate1_dim8": [
+        512
+      ],
+      "rate2_dim8": [
+        512
+      ],
+      "rate3_dim6": [
+        1
+      ],
+      "rate3_dim8": [
+        512
+      ],
+      "rate4_dim6": [
+        1
+      ],
+      "rate4_dim8": [
+        16
+      ]
+    },
+    "model_sha256": "7d10cea55c5bf126815e54b4a5616c6817403b543f7a4a1e5fb0691011698cee"
+  }
+]

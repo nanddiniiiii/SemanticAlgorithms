@@ -1,0 +1,13 @@
+{
+  "id": "hmmkk20/sqgan-checkpoint-recovery-20261020",
+  "title": "SQGAN checkpoint recovery 20261020",
+  "code_file": "recover_sqgan_checkpoint.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": true,
+  "enable_gpu": false,
+  "enable_internet": true,
+  "dataset_sources": [],
+  "kernel_sources": [],
+  "competition_sources": []
+}

@@ -1,0 +1,27 @@
+{
+  "kernel": "hmmkk20/sqgan-div2k-150ep-continuation-02",
+  "verified_at_utc": "2026-10-20T06:53:23.366322+00:00",
+  "source_integrity_commit": "0e5cdd7c0240b89749dad684645c53f783ac24cc",
+  "resume": {
+    "epoch_index": 98,
+    "global_step": 78400,
+    "resume_verified": true,
+    "optimizer_learning_rates": [
+      [
+        6.716849382857474e-06
+      ],
+      [
+        6.716849382857474e-06
+      ]
+    ]
+  },
+  "observed_training_progress": {
+    "epoch_index": 98,
+    "batch_index": 0,
+    "global_step": 78402,
+    "training_batches": 400
+  },
+  "gpus": 2,
+  "max_epochs": 150,
+  "evidence_source": "Kaggle CLI kernels logs --follow live stream"
+}

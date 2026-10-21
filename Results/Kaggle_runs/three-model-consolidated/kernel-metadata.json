@@ -1,0 +1,16 @@
+{
+  "id": "hmmkk20/deepjscc-adjscc-ntsccplus-consolidated-20261017",
+  "title": "DeepJSCC ADJSCC NTSCC Plus Consolidated Results",
+  "code_file": "three_model_consolidated_results.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": "true",
+  "enable_gpu": "false",
+  "enable_tpu": "false",
+  "enable_internet": "false",
+  "machine_shape": "",
+  "dataset_sources": [],
+  "competition_sources": [],
+  "kernel_sources": [],
+  "model_sources": []
+}

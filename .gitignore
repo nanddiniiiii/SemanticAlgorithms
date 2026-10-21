@@ -1,0 +1,71 @@
+# Python and notebook runtime
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+.pytest_cache/
+.mypy_cache/
+.venv/
+.venv*/
+venv/
+env/
+.cpu_dependencies/
+
+# Credentials and machine-specific manifests
+kaggle.json
+.kaggle/
+.env
+.env.*
+!.env.example
+COPY_MANIFEST.local.json
+**/credentials.json
+**/*oauth*token*
+
+# Raw datasets and local caches
+**/DIV2K/
+**/DIV2K_train_HR/
+**/DIV2K_valid_HR/
+**/KODAK/
+**/kodak24/
+**/datasets/
+**/dataset_cache/
+**/download_parts/
+
+# OS/editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Temporary signed artifact URLs and incomplete checkpoint transfers
+**/*.partial
+**/*.part
+**/*.tmp
+**/*.bak
+**/*.before_source_integrity_fix.ipynb
+Notebooks/project_notebooks/Training/sqgan_checkpoint_recovery/recover_sqgan_checkpoint.ipynb
+
+# Avoid generated environments and editor state anywhere in the tree.
+**/.venv/
+**/venv/
+**/env/
+**/.idea/
+**/.vscode/
+
+# Upstream source snapshots without redistribution rights. The locked manifest
+# records their revisions and the notebook fetches them at runtime.
+Models/author_releases/
+Models/upstream_jscc_models/
+Models/additional_reference_checkout/
+Models/DeepJSCC/checkpoint_source/
+Models/DeepJSCC/root_checkout/
+Models/NTSCC/official/
+Models/NTSCC/root_checkout/
+Models/NTSCC++/official/
+Models/SQ-GAN/official/
+Models/SQ-GAN/official_working_copy/
+Models/SwinJSCC/local_source/
+Models/SwinJSCC/official_working_copy/
+
+# Unrelated scheduler project archive and nested source checkout.
+Results/SemanticSchedulerEnd2End/
+Results/SQGAN/recovery_v15/SQ-GAN/

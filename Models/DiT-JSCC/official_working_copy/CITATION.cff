@@ -1,0 +1,25 @@
+cff-version: 1.2.0
+message: "If you use DiT-JSCC, please cite this work."
+title: "DiT-JSCC: Rethinking Deep JSCC with Diffusion Transformers and Semantic Representations"
+type: software
+authors:
+  - family-names: Tan
+    given-names: Kailin
+  - family-names: Dai
+    given-names: Jincheng
+  - family-names: Wang
+    given-names: Sixian
+  - family-names: Lu
+    given-names: Guo
+  - family-names: Shao
+    given-names: Shuo
+  - family-names: Niu
+    given-names: Kai
+  - family-names: Zhang
+    given-names: Wenjun
+  - family-names: Zhang
+    given-names: Ping
+repository-code: "https://github.com/semcomm/DiTJSCC"
+license: Apache-2.0
+version: 0.1.0
+date-released: 2026-10-11

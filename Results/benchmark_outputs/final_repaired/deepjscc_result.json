@@ -1,0 +1,80 @@
+{
+  "method": "DeepJSCC",
+  "checkpoint_training_snr_db": 200.0,
+  "evaluation_snr_db": 10.0,
+  "channel_seeds": [
+    42,
+    43,
+    44,
+    45,
+    46
+  ],
+  "tile_size": 128,
+  "tile_count": 24,
+  "latent_shape_per_tile": [
+    19,
+    29,
+    29
+  ],
+  "latent_real_values": 383496,
+  "continuous_channel_symbols": 383496,
+  "complex_channel_uses": 191748,
+  "cbr": 0.16254679361979166,
+  "repo_real_value_cbr": 0.3250935872395833,
+  "payload_bits": null,
+  "latency_s": 22.144665800035,
+  "warning": "Continuous JSCC symbols are not bits; evaluation SNR differs from the 200 dB checkpoint training SNR.",
+  "mse_mean": 0.025217412784695626,
+  "mse_std": 0.0001033779831989194,
+  "psnr_db_mean": 15.983023946243577,
+  "psnr_db_std": 0.01781595602595937,
+  "ssim_mean": 0.4109139323234558,
+  "ssim_std": 0.0014959630341297016,
+  "lpips_mean": 0.702314031124115,
+  "lpips_std": 0.005181956544443118,
+  "clip_cosine_mean": 0.7777390360832215,
+  "clip_cosine_std": 0.012948023613365816,
+  "trials": [
+    {
+      "seed": 42,
+      "mse": 0.025235921144485474,
+      "psnr_db": 15.97980838318215,
+      "ssim": 0.41246381402015686,
+      "lpips": 0.7099078893661499,
+      "clip_cosine": 0.7758010029792786
+    },
+    {
+      "seed": 43,
+      "mse": 0.025318387895822525,
+      "psnr_db": 15.965639507177855,
+      "ssim": 0.40928730368614197,
+      "lpips": 0.703066349029541,
+      "clip_cosine": 0.7866545915603638
+    },
+    {
+      "seed": 44,
+      "mse": 0.02530514821410179,
+      "psnr_db": 15.967911146532357,
+      "ssim": 0.4093268811702728,
+      "lpips": 0.7013811469078064,
+      "clip_cosine": 0.7637472152709961
+    },
+    {
+      "seed": 45,
+      "mse": 0.02515280432999134,
+      "psnr_db": 15.994135876599437,
+      "ssim": 0.41172680258750916,
+      "lpips": 0.6953802108764648,
+      "clip_cosine": 0.7677001357078552
+    },
+    {
+      "seed": 46,
+      "mse": 0.025074802339076996,
+      "psnr_db": 16.007624817726086,
+      "ssim": 0.41176486015319824,
+      "lpips": 0.7018345594406128,
+      "clip_cosine": 0.7947922348976135
+    }
+  ],
+  "reconstruction_path": "D:\\<local OneDrive>\\Desktop\\image_semcom\\benchmark_outputs\\final_repaired\\deepjscc_reconstruction.png"
+}

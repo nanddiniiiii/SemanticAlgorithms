@@ -1,0 +1,38 @@
+{
+  "schema": 1,
+  "phase": "COORDINATOR_STOPPED",
+  "legacy_kernel": "hmmkk20/sqgan-div2k-150ep-continuation-02",
+  "inventory": {
+    "awgn/ssm": {
+      "completed_epochs": 150,
+      "global_step": 120000,
+      "kernel": "hmmkk20/sqgan-div2k-150ep-continuation-02",
+      "status": "complete"
+    }
+  },
+  "leases": {},
+  "history": [],
+  "sequence": 2,
+  "comparison_ready": false,
+  "contract": {
+    "source_commit": "0e5cdd7c0240b89749dad684645c53f783ac24cc",
+    "images_per_epoch": 800,
+    "batch_per_gpu": 1,
+    "gpus": 2,
+    "geometry": [
+      256,
+      512
+    ],
+    "epochs_per_stage": 150,
+    "precision": 32
+  },
+  "coordinator_pid": 26368,
+  "legacy_status": "COMPLETE",
+  "checked_at": "2026-10-20T13:58:16.040701+00:00",
+  "worker_template_sha256": "7f12e2e327f52419d7a844a18792add96bd5782f4183cb585c14b6786402e1fd",
+  "merge_module_sha256": "8db254fa48fb53f3890dc5c6b632c8e580af483029e0e10c06bf9916ed94691f",
+  "error_at": "2026-10-20T11:22:59.066393+00:00",
+  "handoff_at": "2026-10-20T13:47:28.552964+00:00",
+  "resource_blocker": "Maximum weekly GPU quota of 30.00 hours reached.",
+  "resource_retry_after_unix": 1792505853.321354
+}

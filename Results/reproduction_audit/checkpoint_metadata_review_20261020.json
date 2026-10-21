@@ -1,0 +1,117 @@
+{
+  "DeepJSCC": {
+    "path": "Results\\SemanticSchedulerEnd2End\\results\\jscc_three_model\\DeepJSCC\\AWGN\\latest.pt",
+    "keys": [
+      "epoch",
+      "model",
+      "optimizer",
+      "config"
+    ],
+    "epoch": 150,
+    "config": {
+      "model": "DeepJSCC",
+      "channel": "AWGN",
+      "snr_db": 10.0,
+      "epoch": 150,
+      "train_mse": 0.0072437833994627,
+      "epoch_seconds": 1.446413278579712,
+      "c": 8,
+      "nominal_cbr": 0.16666666666666666
+    },
+    "state_tensors": 29,
+    "stored_parameter_and_buffer_elements": 156252,
+    "optimizer_present": true,
+    "scheduler_present": false,
+    "metadata": {
+      "epoch": 150
+    }
+  },
+  "SwinJSCC": {
+    "path": "Results\\seven_model_results\\SwinJSCC\\AWGN\\model.pth",
+    "keys": [
+      "epoch",
+      "model",
+      "optimizer",
+      "config"
+    ],
+    "epoch": 150,
+    "config": {
+      "model": "SwinJSCC",
+      "channel": "AWGN",
+      "snr_db": 10,
+      "epoch": 150,
+      "train_loss": 148.25152603149414,
+      "epoch_seconds": 33.526106119155884,
+      "samples_seen": 800,
+      "div2k_pool_images": 800,
+      "crop_px": 256,
+      "batch_size": 16,
+      "rate_C": 96,
+      "nominal_cbr_target": 0.0625,
+      "training_flops_per_sample": 206543376388,
+      "inference_flops_per_image_256": 68925788161,
+      "source_commit": "a6d0e6da53548976acbe9317839a077ef31f190f"
+    },
+    "state_tensors": 493,
+    "stored_parameter_and_buffer_elements": 31348752,
+    "optimizer_present": true,
+    "scheduler_present": false,
+    "metadata": {
+      "epoch": 150
+    }
+  },
+  "NTSCC_plus": {
+    "path": "Results\\SemanticSchedulerEnd2End\\results\\kaggle_downloads\\ntscc_plus\\jscc_results\\NTSCC_plus\\AWGN\\latest.pt",
+    "keys": [
+      "epoch",
+      "state_dict",
+      "optimizer",
+      "aux_optimizer",
+      "source_commit"
+    ],
+    "epoch": 150,
+    "config": null,
+    "state_tensors": 1057,
+    "stored_parameter_and_buffer_elements": 69409155,
+    "optimizer_present": true,
+    "scheduler_present": false,
+    "metadata": {
+      "epoch": 150,
+      "source_commit": "765c6f6c11cf3bbe249a26b624dbaf47a4f0676d"
+    }
+  },
+  "DeepJSCC-Q": {
+    "path": "Results\\SemanticSchedulerEnd2End\\outputs\\DeepJSCC_Q_DIV2K_Kodak_150ep_Kaggle\\seven_model_results\\DeepJSCC_Q\\AWGN\\model.pth",
+    "keys": [
+      "epoch",
+      "model",
+      "optimizer",
+      "config"
+    ],
+    "epoch": 150,
+    "config": {
+      "model": "DeepJSCC-Q paper-based",
+      "channel": "AWGN",
+      "snr_db": 10.0,
+      "epoch": 150,
+      "train_mse": 0.006289195138961077,
+      "epoch_seconds": 1.1511707305908203,
+      "samples_seen": 800,
+      "div2k_pool_images": 800,
+      "crop_px": 128,
+      "batch_size": 32,
+      "encoder_decoder_source_commit": "2665e0dc6d8bf216daf9442c5d6e5d69c5ad2f06",
+      "complex_channel_uses_per_pixel_rate": 0.16666666666666666,
+      "constellation_size": 16,
+      "training_flops_per_sample": 168034406,
+      "inference_flops_per_image_128": 167878658
+    },
+    "state_tensors": 30,
+    "stored_parameter_and_buffer_elements": 156284,
+    "optimizer_present": true,
+    "scheduler_present": false,
+    "metadata": {
+      "epoch": 150
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "id": "hmmkk20/sqgan-stage-merge-validation-20261020",
+  "title": "sqgan stage merge validation 20261020",
+  "code_file": "sqgan_coordinated_stage.ipynb",
+  "kernel_type": "notebook",
+  "language": "python",
+  "is_private": true,
+  "enable_gpu": false,
+  "enable_tpu": false,
+  "enable_internet": true,
+  "dataset_sources": [
+    "sherylmehta/kodak-dataset"
+  ],
+  "competition_sources": [],
+  "model_sources": [],
+  "kernel_sources": [
+    "jagan028/div2k-dataset-generation-for-isr",
+    "hmmkk20/sqgan-checkpoint-publication-test-20261020"
+  ]
+}

@@ -1,0 +1,4 @@
+method,experiment,packet_bits,complex_channel_uses,cbr,psnr_db,ssim,lpips,clip_cosine,quantization_mse,quantization_mse_scope
+Native NTSCC,validated native baseline,N/A,36126,0.0306243896484375,25.705845265786515,0.8207112908363342,0.16947707831859588,0.9674434423446655,N/A,N/A: native NTSCC is not quantized by a codebook
+Generic NTSCC K=256,validated generic codebook baseline,18592.0,19456,0.016493055555555556,12.661583717177926,0.25359046459198,0.782872200012207,0.5696456432342529,0.5599429607391357,mean over the generic zero-padded 256-D tensor
+NTSCC active-prefix PQ16 K=256,LDPC/QPSK/AWGN,42440.0,43008,0.036458333333333336,14.90651904957682,0.3684633672237396,0.5518379807472229,0.5881370306015015,2.121066108647094,mean over officially active prefix values only

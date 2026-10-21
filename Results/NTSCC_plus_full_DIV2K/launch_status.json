@@ -1,0 +1,10 @@
+{
+  "kernel": "hmmkk20/ntscc-plus-full-div2k-150ep-20261020",
+  "version": 2,
+  "status": "QUEUED",
+  "phase": "AMP main/auxiliary gradient isolation fix submitted; GPU stability not verified",
+  "accelerator_request": "NvidiaTeslaT4",
+  "protocol": "800 images per epoch, 150 epochs per channel, AWGN and Rayleigh",
+  "parallel_sqgan_status": "RUNNING",
+  "checked_at_utc": "2026-10-20T08:13:43.582289+00:00"
+}

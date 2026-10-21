@@ -1,0 +1,20 @@
+[
+  {
+    "model": "DeepJSCC",
+    "channel": "AWGN",
+    "profile_input": "1x3x128x128",
+    "training_forward_backward_flops_per_sample": 167346181,
+    "inference_flops_per_image": 167182338,
+    "source_commit": "2665e0dc6d8bf216daf9442c5d6e5d69c5ad2f06",
+    "profiler": "torch.profiler with_flops=True"
+  },
+  {
+    "model": "DeepJSCC",
+    "channel": "Rayleigh",
+    "profile_input": "1x3x128x128",
+    "training_forward_backward_flops_per_sample": 167362567,
+    "inference_flops_per_image": 167182340,
+    "source_commit": "2665e0dc6d8bf216daf9442c5d6e5d69c5ad2f06",
+    "profiler": "torch.profiler with_flops=True"
+  }
+]

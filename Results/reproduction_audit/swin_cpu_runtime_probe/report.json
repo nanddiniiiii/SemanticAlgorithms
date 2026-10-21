@@ -1,0 +1,52 @@
+{
+  "started_at": "2026-10-20T15:32:39.559688+00:00",
+  "status": "PASS_CPU_CORE_ONLY",
+  "device": "cpu",
+  "synthetic_inputs_only": true,
+  "benchmark_metrics_computed": false,
+  "real_training_epochs_completed": 0,
+  "source_model_edits": [],
+  "native_channel_executed": false,
+  "torch_version": "2.12.1+cpu",
+  "timm_version": "0.6.13",
+  "cuda_available": false,
+  "source_commit": "a6d0e6da53548976acbe9317839a077ef31f190f",
+  "source_integrity": "PASS",
+  "checkpoint_epoch": 150,
+  "checkpoint_strict_load": "PASS",
+  "missing_keys": [],
+  "unexpected_keys": [],
+  "checkpoint_parameter_tensors": 493,
+  "parameter_count": 28203024,
+  "original_checkpoint_path": ".\\Results\\seven_model_results\\SwinJSCC\\AWGN\\model.pth",
+  "cpu_scope": "Direct unchanged encoder/decoder/loss at initialized 256x256; CUDA-only resolution updater and channel not tested",
+  "full_kodak_geometry_checked": false,
+  "forward_checks": [
+    {
+      "input_shape": [
+        1,
+        3,
+        256,
+        256
+      ],
+      "output_shape": [
+        1,
+        3,
+        256,
+        256
+      ],
+      "finite": true,
+      "reported_cbr": 0.0625,
+      "seconds": 1.0915885999565944
+    }
+  ],
+  "backward_finite": "PASS",
+  "optimizer_state_load": "PASS",
+  "synthetic_optimizer_steps": 1,
+  "diagnostic_step_seconds": 5.285685500013642,
+  "checkpoint_roundtrip": "PASS",
+  "source_checkpoint_overwritten": false,
+  "synthetic_checkpoint_bytes": 351987575,
+  "limitation": "CPU mode directly exercises unchanged encoder/decoder/loss, without CUDA-only resolution update and channel. New PyTorch CPU runtime is not the native paper environment. This is compatibility evidence only.",
+  "elapsed_seconds": 16.120630000019446
+}

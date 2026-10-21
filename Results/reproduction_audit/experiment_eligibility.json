@@ -1,0 +1,88 @@
+{
+  "updated_at": "2026-10-20T14:10:22.620093+00:00",
+  "models": [
+    {
+      "model": "DeepJSCC",
+      "release_status": "third_party",
+      "author_experiment_certified": false,
+      "fair_comparison_eligible": false,
+      "reason": "Original-author 2019 code unverified; used repository is a third-party reproduction."
+    },
+    {
+      "model": "ADJSCC",
+      "release_status": "author_training_available",
+      "author_experiment_certified": false,
+      "fair_comparison_eligible": false,
+      "reason": "Native ImageNet data/runtime and AWGN initialization/protocol must be reproduced; previous run is a DIV2K adaptation."
+    },
+    {
+      "model": "NTSCC",
+      "release_status": "author_training_available",
+      "author_experiment_certified": false,
+      "fair_comparison_eligible": false,
+      "reason": "Separate 2022 model; required initialization, paths and 5000-epoch native-loop constraint unresolved."
+    },
+    {
+      "model": "NTSCC_plus",
+      "release_status": "author_training_available",
+      "author_experiment_certified": false,
+      "fair_comparison_eligible": false,
+      "reason": "Restore original NATTEN-compatible environment and author training path; previous run used 128 images/epoch and added fading."
+    },
+    {
+      "model": "NTSCC++",
+      "release_status": "online_code_unreleased",
+      "author_experiment_certified": false,
+      "fair_comparison_eligible": false,
+      "reason": "Author README marks online NTSCC++ inference as TODO; cannot rename NTSCC+ to NTSCC++."
+    },
+    {
+      "model": "SwinJSCC",
+      "release_status": "author_training_available",
+      "author_experiment_certified": false,
+      "fair_comparison_eligible": false,
+      "reason": "Base w/o-SA-and-RA architecture matches source settings; training/initialization and common evaluation still require runtime validation."
+    },
+    {
+      "model": "SQ-GAN",
+      "release_status": "author_training_available",
+      "author_experiment_certified": false,
+      "fair_comparison_eligible": false,
+      "reason": "Previous analog channel/pseudo-label adaptation differs from the published codec; native Cityscapes reproduction and external digital transport study are distinct."
+    },
+    {
+      "model": "DeepJSCC-Q",
+      "release_status": "candidate_source_found",
+      "author_experiment_certified": false,
+      "fair_comparison_eligible": false,
+      "reason": "Dedicated trainer found in r0ymanesco/deepjscc_stream; authorship and journal-variant fidelity not established. Old simplified notebook is not certified."
+    },
+    {
+      "model": "DiT-JSCC",
+      "release_status": "author_inference_only",
+      "author_experiment_certified": false,
+      "fair_comparison_eligible": false,
+      "reason": "Public README explicitly omits training workspace; original training code/weights required."
+    },
+    {
+      "model": "DDM-SSCC",
+      "release_status": "author_code_unverified",
+      "author_experiment_certified": false,
+      "fair_comparison_eligible": false,
+      "reason": "No author release verified; exact lossless codec/transport cannot be certified from a substitute model."
+    }
+  ],
+  "all_models_complete": false,
+  "gpu_launches_by_this_correction": 0,
+  "gpu_blocker": "Last confirmed Kaggle error: Maximum weekly GPU quota of 30.00 hours reached.",
+  "old_checkpoints_preserved": true,
+  "old_sqgan_coordinator_dispatch": "STOP guard installed",
+  "legacy_sqgan_awgn_semantic_epochs": 150,
+  "legacy_sqgan_run_is_author_exact": false,
+  "proposed_common_training_geometry": [
+    256,
+    512
+  ],
+  "proposed_evaluation_protocol": "matched_tiled_v1",
+  "protocol_runtime_validated": false
+}

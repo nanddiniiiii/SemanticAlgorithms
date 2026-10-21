@@ -1,0 +1,23 @@
+{
+  "local_10db": {
+    "ntscc": {
+      "cbr": 0.0306243896484375,
+      "psnr_db": 25.705845265786515
+    },
+    "deepjscc": {
+      "cbr": 0.1625467936197916,
+      "psnr_db": 15.983023946243575
+    },
+    "teammate_swinjscc_interpolated_at_ntscc_cbr": {
+      "cbr": 0.0306243896484375,
+      "psnr_db": 23.269890643936893,
+      "ntscc_minus_swinjscc_db": 2.4359546218496213
+    }
+  },
+  "paper_reported_context": {
+    "ntscc_kodak_bandwidth_saving_vs_bpg_ldpc_percent": 17.96,
+    "ntscc_kodak_bd_psnr_gain_vs_bpg_ldpc_db": 0.81,
+    "swinjscc_sa_ra_bd_rate_vs_bpg_ldpc_percent": -25.1,
+    "swinjscc_fixed_bd_rate_vs_bpg_ldpc_percent": -29.71
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "source_kernel": "hmmkk20/sqgan-div2k-150ep-20261019",
+  "sha256": "6f3e02b84b7972501f279ddedb182497d2a8b21cecc03071d6195d003360a22d",
+  "bytes": 1086727541,
+  "saved_epoch_index": 96,
+  "completed_epochs": 96,
+  "global_step": 77600,
+  "optimizer_states": 2,
+  "lr_schedulers": 2,
+  "state_dict_tensors": 562,
+  "epoch_progress": {
+    "total": {
+      "ready": 97,
+      "completed": 96,
+      "started": 97,
+      "processed": 97
+    },
+    "current": {
+      "ready": 97,
+      "completed": 96,
+      "started": 97,
+      "processed": 97
+    }
+  },
+  "optimizer_learning_rates": [
+    [
+      6.950352863956827e-06
+    ],
+    [
+      6.950352863956827e-06
+    ]
+  ]
+}

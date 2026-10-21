@@ -1,0 +1,15 @@
+{
+  "input": "D:\\<local OneDrive>\\Desktop\\image_semcom\\benchmark_outputs\\final_repaired\\final_comparison.csv",
+  "measured_values_only": true,
+  "models_or_phy_rerun": false,
+  "plot_orientation": "vertical bars",
+  "reconstruction_quality": "Codec-only JPEG Q25/Q50/Q75/Q90 and learned methods use measured PSNR/SSIM. RAW is exact and is annotated rather than assigned a finite PSNR bar.",
+  "channel_usage": "Only transmitted methods with measured complex channel uses are included; log scale is used.",
+  "channel_resource_saving": "Computed from measured complex channel uses as 100*(1-method/RAW+LDPC).",
+  "supplementary_metrics": "LPIPS and CLIP remain in final_comparison.csv/json and are not main plots.",
+  "outputs": {
+    "reconstruction_quality": "D:\\<local OneDrive>\\Desktop\\image_semcom\\benchmark_outputs\\final_repaired\\presentation_reconstruction_quality.png",
+    "channel_usage": "D:\\<local OneDrive>\\Desktop\\image_semcom\\benchmark_outputs\\final_repaired\\presentation_channel_usage.png",
+    "channel_resource_saving": "D:\\<local OneDrive>\\Desktop\\image_semcom\\benchmark_outputs\\final_repaired\\presentation_channel_resource_saving.png"
+  }
+}

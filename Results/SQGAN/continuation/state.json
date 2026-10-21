@@ -1,0 +1,12 @@
+{
+  "kernel": "hmmkk20/sqgan-div2k-150ep-continuation-02",
+  "expected_version": 1,
+  "chunk": 2,
+  "status": "RUNNING",
+  "source_sha256": "83600bab1595ccf11dd171f3c20e01b4273e190b5d5263b1dfb279c156b60b21",
+  "watcher_pid": 15476,
+  "checked_at": "2026-10-20T09:02:19.870105+00:00",
+  "verification_pilot": "Normal exit and output publication at cumulative stage epoch 98; subsequent chunks target 150",
+  "submitted_at": "2026-10-20T06:42:03.813318+00:00",
+  "previous_kernel": "hmmkk20/sqgan-checkpoint-publication-test-20261020"
+}

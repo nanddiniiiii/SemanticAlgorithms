@@ -1,0 +1,11 @@
+model,release_status,author_experiment_certified,fair_comparison_eligible,reason
+DeepJSCC,third_party,False,False,Original-author 2019 code unverified; used repository is a third-party reproduction.
+ADJSCC,author_training_available,False,False,Native ImageNet data/runtime and AWGN initialization/protocol must be reproduced; previous run is a DIV2K adaptation.
+NTSCC,author_training_available,False,False,"Separate 2022 model; required initialization, paths and 5000-epoch native-loop constraint unresolved."
+NTSCC_plus,author_training_available,False,False,Restore original NATTEN-compatible environment and author training path; previous run used 128 images/epoch and added fading.
+NTSCC++,online_code_unreleased,False,False,Author README marks online NTSCC++ inference as TODO; cannot rename NTSCC+ to NTSCC++.
+SwinJSCC,author_training_available,False,False,Base w/o-SA-and-RA architecture matches source settings; training/initialization and common evaluation still require runtime validation.
+SQ-GAN,author_training_available,False,False,Previous analog channel/pseudo-label adaptation differs from the published codec; native Cityscapes reproduction and external digital transport study are distinct.
+DeepJSCC-Q,candidate_source_found,False,False,Dedicated trainer found in r0ymanesco/deepjscc_stream; authorship and journal-variant fidelity not established. Old simplified notebook is not certified.
+DiT-JSCC,author_inference_only,False,False,Public README explicitly omits training workspace; original training code/weights required.
+DDM-SSCC,author_code_unverified,False,False,No author release verified; exact lossless codec/transport cannot be certified from a substitute model.

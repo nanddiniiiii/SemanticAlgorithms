@@ -1,0 +1,9 @@
+{
+  "source_and_merged_checkpoint_equal": true,
+  "completed_epochs": 98,
+  "global_step": 78400,
+  "optimizer_states": 2,
+  "lr_schedulers": 2,
+  "checkpoint_sha256": "5f4e5c181f95e12caa994aa5746faea8d589075442748f1089f5d81e141df3eb",
+  "model_updates_performed": 0
+}

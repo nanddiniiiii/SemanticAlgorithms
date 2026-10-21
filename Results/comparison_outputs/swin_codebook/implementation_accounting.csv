@@ -1,0 +1,11 @@
+representation,setting,per_image_bits,shared_bits,status,per_image_KiB,shared_KiB,payload_compression_vs_raw
+Original RGB,256x256x3x8,1572864,0,deterministic input size,192.0,0.0,1.0
+Continuous latent FP32,256x320 values,2621440,0,memory diagnostic; not over-air bitrate,320.0,0.0,0.6
+Active latent FP32,C=32,262144,0,memory diagnostic; not over-air bitrate,32.0,0.0,6.0
+Active latent FP32,C=64,524288,0,memory diagnostic; not over-air bitrate,64.0,0.0,3.0
+Active latent FP32,C=96,786432,0,memory diagnostic; not over-air bitrate,96.0,0.0,2.0
+Active latent FP32,C=128,1048576,0,memory diagnostic; not over-air bitrate,128.0,0.0,1.5
+Active latent FP32,C=192,1572864,0,memory diagnostic; not over-air bitrate,192.0,0.0,1.0
+Codebook indices,K=64,1536,655360,implementation-derived payload; excludes packet/PHY overhead,0.1875,80.0,1024.0
+Codebook indices,K=256,2048,2621440,implementation-derived payload; excludes packet/PHY overhead,0.25,320.0,768.0
+Codebook indices,K=1024,2560,10485760,implementation-derived payload; excludes packet/PHY overhead,0.3125,1280.0,614.4

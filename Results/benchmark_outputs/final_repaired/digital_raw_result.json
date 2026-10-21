@@ -1,0 +1,42 @@
+{
+  "method": "RAW + LDPC/QPSK/AWGN",
+  "evaluation_snr_db": 10.0,
+  "payload_bits": 9437184,
+  "framed_bits": 9437248,
+  "coded_bits": 18876416,
+  "complex_channel_uses": 9438208,
+  "cbr": 8.000868055555555,
+  "frame_success_rate": 1.0,
+  "compression_ratio_vs_raw": 1.0,
+  "bit_reduction_vs_raw_pct": 0.0,
+  "latency_s": 275.2336305999779,
+  "warning": "Metrics include successful CRC-valid frames only; LDPC adds redundancy and does not compress. Full-resolution RAW used one CPU trial; JPEG used five.",
+  "mse_mean": 0.0,
+  "mse_std": 0.0,
+  "psnr_db_mean": null,
+  "psnr_db_std": 0.0,
+  "ssim_mean": 1.0,
+  "ssim_std": 0.0,
+  "lpips_mean": 0.0,
+  "lpips_std": 0.0,
+  "clip_cosine_mean": 1.0000001192092896,
+  "clip_cosine_std": 0.0,
+  "trials": [
+    {
+      "seed": 42,
+      "frame_success": true,
+      "failure_reason": "ok",
+      "information_bits": 9437184,
+      "framed_bits": 9437248,
+      "padding_bits": 960,
+      "coded_bits": 18876416,
+      "complex_channel_uses": 9438208,
+      "mse": 0.0,
+      "psnr_db": null,
+      "ssim": 1.0,
+      "lpips": 0.0,
+      "clip_cosine": 1.0000001192092896
+    }
+  ],
+  "reconstruction_path": "D:\\<local OneDrive>\\Desktop\\image_semcom\\benchmark_outputs\\final_repaired\\digital_raw_reconstruction.png"
+}

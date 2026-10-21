@@ -1,0 +1,29 @@
+[{"stream_name":"stderr","time":7.381568165,"data":"/usr/local/lib/python3.13/dist-packages/nbformat/validator.py:434: MissingIDFieldWarning: Cell is missing an id field, this will become a hard error in future nbformat versions. You may want to use `normalize()` on your notebooks before validations (available since nbformat 5.1.4). Previous versions of nbformat are fixing this issue transparently, and will stop doing so in the future.\n"}
+,{"stream_name":"stderr","time":7.381629533,"data":"  _validate(nbdict, ref, version, version_minor, relax_add_props)\n"}
+,{"stream_name":"stderr","time":8.56262844,"data":"0.00s - Debugger warning: It seems that frozen modules are being used, which may\n"}
+,{"stream_name":"stderr","time":8.562663088,"data":"0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off\n"}
+,{"stream_name":"stderr","time":8.562668308,"data":"0.00s - to python to disable frozen modules.\n"}
+,{"stream_name":"stderr","time":8.562671176,"data":"0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.\n"}
+,{"stream_name":"stderr","time":9.327622804,"data":"0.00s - Debugger warning: It seems that frozen modules are being used, which may\n"}
+,{"stream_name":"stderr","time":9.327663038,"data":"0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off\n"}
+,{"stream_name":"stderr","time":9.327668929,"data":"0.00s - to python to disable frozen modules.\n"}
+,{"stream_name":"stderr","time":9.327673739,"data":"0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.\n"}
+,{"stream_name":"stdout","time":13.950782386,"data":"Embedded Kodak per-image records: 96 (DeepJSCC and NTSCC_plus). ADJSCC per-image CSVs are linked from its Kaggle output page.\n"}
+,{"stream_name":"stdout","time":13.995717061,"data":"Wrote report tables to /kaggle/working/consolidated_jscc_results\n"}
+,{"stream_name":"stdout","time":13.995754736,"data":"Training runs (private Kaggle kernels):\n"}
+,{"stream_name":"stdout","time":13.995760157,"data":"https://www.kaggle.com/code/hmmkk20/deepjscc-div2k-kodak-150ep\n"}
+,{"stream_name":"stdout","time":13.9957644,"data":"https://www.kaggle.com/code/hmmkk20/adjscc-div2k-kodak-150ep-20261016\n"}
+,{"stream_name":"stdout","time":13.995767876,"data":"https://www.kaggle.com/code/hmmkk20/ntscc-plus-div2k-kodak-150ep-20261016\n"}
+,{"stream_name":"stderr","time":17.467233128,"data":"/usr/local/lib/python3.13/dist-packages/mistune.py:435: SyntaxWarning: invalid escape sequence '\\|'\n"}
+,{"stream_name":"stderr","time":17.467276893,"data":"  cells[i][c] = re.sub('\\\\\\\\\\|', '|', cell)\n"}
+,{"stream_name":"stderr","time":17.67939141,"data":"/usr/local/lib/python3.13/dist-packages/nbconvert/filters/filter_links.py:36: SyntaxWarning: invalid escape sequence '\\_'\n"}
+,{"stream_name":"stderr","time":17.679422548,"data":"  text = re.sub(r'_', '\\_', text) # Escape underscores in display text\n"}
+,{"stream_name":"stderr","time":18.601150181,"data":"[NbConvertApp] Converting notebook __notebook__.ipynb to notebook\n"}
+,{"stream_name":"stderr","time":18.703398957,"data":"[NbConvertApp] Writing 326065 bytes to __notebook__.ipynb\n"}
+,{"stream_name":"stderr","time":22.018995908,"data":"[NbConvertApp] Converting notebook __notebook__.ipynb to html\n"}
+,{"stream_name":"stderr","time":22.714106008999998,"data":"[NbConvertApp] Support files will be in __results___files/\n"}
+,{"stream_name":"stderr","time":22.714134962,"data":"[NbConvertApp] Making directory __results___files\n"}
+,{"stream_name":"stderr","time":22.714512046,"data":"[NbConvertApp] Making directory __results___files\n"}
+,{"stream_name":"stderr","time":22.71454297,"data":"[NbConvertApp] Making directory __results___files\n"}
+,{"stream_name":"stderr","time":22.714994827,"data":"[NbConvertApp] Writing 444550 bytes to __results__.html\n"}
+]
