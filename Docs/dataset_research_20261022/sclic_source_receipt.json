@@ -1,0 +1,104 @@
+{
+  "source": "https://zenodo.org/records/16780952",
+  "record_version": "1.0.0",
+  "checked": "2026-10-22",
+  "download_scope": "metadata only; no image archives",
+  "files": [
+    {
+      "name": "miscomp_hific-hi.zip",
+      "bytes": 7005086201,
+      "checksum": "md5:8ffa7220f3ddc90b4ccc014e0d067d28",
+      "url": "https://zenodo.org/api/records/16780952/files/miscomp_hific-hi.zip/content"
+    },
+    {
+      "name": "sclic_annotations.csv",
+      "bytes": 2078165,
+      "checksum": "md5:201099320f42b5008055a369ce018295",
+      "url": "https://zenodo.org/api/records/16780952/files/sclic_annotations.csv/content"
+    },
+    {
+      "name": "sclic_images.csv",
+      "bytes": 2516681,
+      "checksum": "md5:83f4db69a65fc898f46627801c622dc3",
+      "url": "https://zenodo.org/api/records/16780952/files/sclic_images.csv/content"
+    },
+    {
+      "name": "miscomp_jpegai-075hoff.zip",
+      "bytes": 6776654165,
+      "checksum": "md5:7e25a5e6b89f15e00b59d7135c28e2e6",
+      "url": "https://zenodo.org/api/records/16780952/files/miscomp_jpegai-075hoff.zip/content"
+    },
+    {
+      "name": "miscomp_uncompressed.zip",
+      "bytes": 6806853917,
+      "checksum": "md5:573ba986b1f025d1d11f1be8f85815b9",
+      "url": "https://zenodo.org/api/records/16780952/files/miscomp_uncompressed.zip/content"
+    },
+    {
+      "name": "miscomp_hyper-msssim025.zip",
+      "bytes": 4959753840,
+      "checksum": "md5:cb25639a29b7870313eee5f0ff11b2f5",
+      "url": "https://zenodo.org/api/records/16780952/files/miscomp_hyper-msssim025.zip/content"
+    },
+    {
+      "name": "miscomp_hyper-msssim075.zip",
+      "bytes": 5986811277,
+      "checksum": "md5:6856640149532f6c4e600c81b601c53e",
+      "url": "https://zenodo.org/api/records/16780952/files/miscomp_hyper-msssim075.zip/content"
+    },
+    {
+      "name": "miscomp_hyper-mse7.zip",
+      "bytes": 6303743024,
+      "checksum": "md5:090f2eb6c07db00a677b576808d73ae4",
+      "url": "https://zenodo.org/api/records/16780952/files/miscomp_hyper-mse7.zip/content"
+    },
+    {
+      "name": "miscomp_hific-lo.zip",
+      "bytes": 6992111813,
+      "checksum": "md5:676a1f53de2ac20f8bc922c895c0da17",
+      "url": "https://zenodo.org/api/records/16780952/files/miscomp_hific-lo.zip/content"
+    },
+    {
+      "name": "miscomp_jpegai-025hoff.zip",
+      "bytes": 5885821596,
+      "checksum": "md5:c15925ce99a874757753dfd225736279",
+      "url": "https://zenodo.org/api/records/16780952/files/miscomp_jpegai-025hoff.zip/content"
+    },
+    {
+      "name": "croissant.json",
+      "bytes": 9807,
+      "checksum": "md5:c7997a33ffc6b484eecb261dc1db44bd",
+      "url": "https://zenodo.org/api/records/16780952/files/croissant.json/content"
+    },
+    {
+      "name": "miscomp_hyper-mse3.zip",
+      "bytes": 5157007119,
+      "checksum": "md5:29c603aec1104d8e0689e621da144e15",
+      "url": "https://zenodo.org/api/records/16780952/files/miscomp_hyper-mse3.zip/content"
+    },
+    {
+      "name": "miscomp_cdc-2048x09.zip",
+      "bytes": 6962938316,
+      "checksum": "md5:cb71a54899a2b8a4b76171a27b81fc18",
+      "url": "https://zenodo.org/api/records/16780952/files/miscomp_cdc-2048x09.zip/content"
+    },
+    {
+      "name": "miscomp_cdc-0512x09.zip",
+      "bytes": 7245165081,
+      "checksum": "md5:26e18ed96bf9abc6ea03b732cb4bcfdb",
+      "url": "https://zenodo.org/api/records/16780952/files/miscomp_cdc-0512x09.zip/content"
+    },
+    {
+      "name": "miscomp_stf-0067.zip",
+      "bytes": 4573654755,
+      "checksum": "md5:db53f37c7dec94bfac18f25c1fd2829f",
+      "url": "https://zenodo.org/api/records/16780952/files/miscomp_stf-0067.zip/content"
+    },
+    {
+      "name": "miscomp_stf-0250.zip",
+      "bytes": 5065509353,
+      "checksum": "md5:731541589860d89790f7f4645840ab9b",
+      "url": "https://zenodo.org/api/records/16780952/files/miscomp_stf-0250.zip/content"
+    }
+  ]
+}

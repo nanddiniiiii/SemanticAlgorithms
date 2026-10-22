@@ -1,0 +1,49 @@
+{
+  "source": "https://zenodo.org/records/16780952",
+  "checked": "2026-10-22",
+  "image_model_records": 18756,
+  "unique_source_filenames": 1563,
+  "annotation_rows": 18019,
+  "model_quality_variants": [
+    "cdc-0512x09",
+    "cdc-2048x09",
+    "hific-hi",
+    "hific-lo",
+    "hyper-mse3",
+    "hyper-mse7",
+    "hyper-msssim025",
+    "hyper-msssim075",
+    "jpegai-025hoff",
+    "jpegai-075hoff",
+    "stf-0067",
+    "stf-0250"
+  ],
+  "unique_filenames_by_source_dataset": {
+    "clic2024_test_image": 29,
+    "DIV2K_train_HR": 603,
+    "RAISE_PNG": 382,
+    "clic2020_test_image_professional": 226,
+    "clic2020_test_image_mobile": 153,
+    "DIV2K_valid_HR": 62,
+    "clic2020_validation_image_professional": 25,
+    "clic2024_validation_image": 27,
+    "clic2020_validation_image_mobile": 56
+  },
+  "annotation_columns": [
+    "annotation_id",
+    "filename",
+    "model",
+    "x",
+    "y",
+    "width",
+    "height",
+    "labeller",
+    "timestamp_label"
+  ],
+  "notes": [
+    "Rows are not independent source images.",
+    "Annotation CSV contains boxes and annotator IDs, not semantic-error category labels.",
+    "Dataset filename provenance must be used to avoid overlap with CLIC/Kodak/other benchmark strata.",
+    "Only metadata downloaded; original image archive is not downloaded."
+  ]
+}

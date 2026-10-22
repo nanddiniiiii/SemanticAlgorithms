@@ -1,0 +1,103 @@
+{
+  "status": "design_only_not_populated",
+  "date": "2026-10-22",
+  "seed": 22,
+  "pilot_total": 270,
+  "software_pilot_per_stratum": 5,
+  "strata": [
+    {
+      "id": "natural_control",
+      "dataset": "CLIC2024 image validation",
+      "count": 30,
+      "selection": "all official 30; reserve duplicate ownership against other strata"
+    },
+    {
+      "id": "semantic_miscompression",
+      "dataset": "SCLIC v1.0.0 original images",
+      "count": 40,
+      "selection": "prefer RAISE_PNG-origin candidates; exclude DIV2K and selected CLIC sources; stratify ROI size/content"
+    },
+    {
+      "id": "scene_text",
+      "dataset": "TextOCR accessible annotated held-out split",
+      "count": 40,
+      "selection": "annotation-driven word-size/count coverage; no model-output selection"
+    },
+    {
+      "id": "objects",
+      "dataset": "COCO2017 validation",
+      "count": 40,
+      "selection": "small-object/crowding/category coverage"
+    },
+    {
+      "id": "screen",
+      "dataset": "SCID clean references",
+      "count": 40,
+      "selection": "all clean originals, not distorted derivatives"
+    },
+    {
+      "id": "high_resolution",
+      "dataset": "LIU4K-v2 validation",
+      "count": 40,
+      "selection": "resolution/texture/aspect ratio coverage"
+    },
+    {
+      "id": "adverse_conditions",
+      "dataset": "ACDC accessible annotated held-out material",
+      "count": 40,
+      "selection": "10 each fog/night/rain/snow; verify IDs and ignore masks"
+    }
+  ],
+  "training_candidate": {
+    "base": "DIV2K official training",
+    "additional": "fixed 5000-image LSDIR HR training subset",
+    "status": "proposed_not_selected",
+    "kodak_training": false
+  },
+  "separate_tracks": [
+    "native_reproduction",
+    "frozen_checkpoint_transfer",
+    "controlled_common_data_adaptation"
+  ],
+  "image_manifest_fields": [
+    "sample_id",
+    "dataset",
+    "dataset_version",
+    "official_split",
+    "source_url",
+    "source_image_id",
+    "parent_scene_id",
+    "license",
+    "local_path",
+    "file_sha256",
+    "decoded_pixel_sha256",
+    "width",
+    "height",
+    "channels",
+    "bit_depth",
+    "source_format",
+    "color_transform",
+    "annotation_path",
+    "annotation_origin",
+    "primary_stratum",
+    "secondary_tags",
+    "known_training_overlap",
+    "dedup_group",
+    "development_or_holdout",
+    "selection_rule"
+  ],
+  "inference_contract": {
+    "mac_flops": 2,
+    "encoder_and_decoder_separate": true,
+    "unsupported_ops_explicit": true,
+    "count_segmentation_and_repeated_diffusion_work": true,
+    "profile_same_shape_precision_hardware": true
+  },
+  "notes": [
+    "No image IDs selected and no benchmark images downloaded by this specification.",
+    "Do not pass this design file as an executable training config.",
+    "All derived crops/corruptions follow parent-image split.",
+    "Do not assume all models support all input shapes or semantic label vocabularies.",
+    "All candidate failures require measurement before claims."
+  ]
+}
