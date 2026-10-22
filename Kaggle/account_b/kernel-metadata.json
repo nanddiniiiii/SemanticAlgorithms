@@ -1,0 +1,15 @@
+{
+  "id": "satyapaladuguplus/semantic-lossless-account-b",
+  "title": "Semantic Lossless Account B",
+  "code_file": "../../Notebooks/Current/account_b.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": true,
+  "enable_gpu": true,
+  "enable_internet": true,
+  "machine_shape": "NvidiaTeslaT4",
+  "dataset_sources": [],
+  "competition_sources": [],
+  "kernel_sources": [],
+  "model_sources": []
+}

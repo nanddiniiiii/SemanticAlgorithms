@@ -1,0 +1,8 @@
+{
+  "algorithm": "ntscc",
+  "test_root": "DATASET_TEST_ROOT",
+  "device": "cpu",
+  "max_images": 0,
+  "snr_db": 10,
+  "rate": 96
+}

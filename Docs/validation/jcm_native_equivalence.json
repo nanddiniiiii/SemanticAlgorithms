@@ -1,0 +1,64 @@
+{
+  "status": "passed",
+  "scope": "CPU synthetic native-forward, objective and gradient equivalence; not paper reproduction",
+  "model": {
+    "source_commit": "9a53ef0a3df2f41ecae6cd531968f70a13d53088",
+    "native_modulation": "16qam",
+    "native_channel_uses": 128,
+    "classification_classes": 10,
+    "power_scope": "native batch-wide normalization; per replica under DataParallel",
+    "eval_sampling": "author stochastic Gumbel softmax retained",
+    "initialization": "pretrained_strict_load",
+    "checkpoint": "D:\\Bunker\\BaseCamp\\WirelessCommunication\\SemanticCommunication\\SemanticLossless\\Semantic_Lossless\\Models\\pretrained_downloads\\JCM\\CIFAR_SNR12_Trans128_16qam.pth.tar",
+    "checkpoint_sha256": "b7d3a1df66512421b057eabf4f7faa937a3dc22d6fe83632d3f0bca0f0c3b897",
+    "strict_load": true,
+    "native_training_snr_db": 12
+  },
+  "torch": "2.10.0+cpu",
+  "shapes": {
+    "input": [
+      2,
+      3,
+      32,
+      32
+    ],
+    "encoder": [
+      2,
+      256,
+      4,
+      4
+    ],
+    "code": [
+      2,
+      256
+    ],
+    "normalized_channel_input": [
+      2,
+      256
+    ],
+    "received": [
+      2,
+      256
+    ],
+    "class_logits": [
+      2,
+      10
+    ],
+    "reconstruction": [
+      2,
+      3,
+      32,
+      32
+    ]
+  },
+  "forward_max_absolute_error": 0,
+  "loss_absolute_error": 0,
+  "parameter_gradients": "exact equality",
+  "rng": "identical Torch state before each forward",
+  "excluded": [
+    "dataset preprocessing",
+    "training convergence",
+    "GPU equivalence",
+    "published metrics"
+  ]
+}

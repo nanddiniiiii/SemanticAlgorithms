@@ -1,0 +1,1785 @@
+{
+  "created_utc": "2026-10-21T14:45:30.601113+00:00",
+  "source_repository": "saltypal/SemanticSchedulerEnd2End",
+  "source_commit": "032c23a3dafc7bfeb39a84ba55193b6b6f3a22a0",
+  "source_identity": "working files verified individually",
+  "source_files_removed": false,
+  "inference_validation": "not_run_by_importer",
+  "file_count": 197,
+  "total_bytes": 928302119,
+  "files": [
+    {
+      "path": "EncDec/__init__.py",
+      "bytes": 76,
+      "sha256": "e871dbf0b96bf175b53425163afe413b9e34e47fbd6ede52a14cbd43717a5e2b",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "EncDec/__init__.py",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "EncDec/Models/__init__.py",
+      "bytes": 51,
+      "sha256": "4aaed7f1db502ef3a3dd621c019d5738ecb746a33a2f157f19d80d8d4968fb75",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "EncDec/Models/__init__.py",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "INFRA/dependencies.py",
+      "bytes": 1996,
+      "sha256": "d204e426ff1b52bfcbe5aafdbbc562a5c0822d21db664d5c471a82bcb7c216f8",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "INFRA/dependencies.py",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "INFRA/errors.py",
+      "bytes": 457,
+      "sha256": "64c4bdaa708c63f66cfd075ff2c2cbaec9aef53317d1f318607634939c32cb54",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "INFRA/errors.py",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "EncDec/Research/__init__.py",
+      "bytes": 242,
+      "sha256": "1e29c501b4ce8c50e36e8b02330cc093771eab4a46d8ffad1abac1214b3c6982",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "EncDec/Research/__init__.py",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "EncDec/Research/codebooks.py",
+      "bytes": 6322,
+      "sha256": "773b49d95e2d4577590228ca85b9358cca03c50e087c054e6a51ba624d6feeaa",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "EncDec/Research/codebooks.py",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "EncDec/Research/compressai_1_2_compat.py",
+      "bytes": 7950,
+      "sha256": "341e115414c7d1f334e324e31c04365f4d35439a52e6b1074ae1d1d180195300",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "EncDec/Research/compressai_1_2_compat.py",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "EncDec/Research/digital_phy.py",
+      "bytes": 4620,
+      "sha256": "c11a191ae049efcfcacfc5cc8e8e4e66ee918a872763373ba06f68b6c0720d3c",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "EncDec/Research/digital_phy.py",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "EncDec/Research/metrics.py",
+      "bytes": 4558,
+      "sha256": "a2fe506941a843d82fb1be2df50ae17bf68e9914f389879fa34275630b573ff7",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "EncDec/Research/metrics.py",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "EncDec/Research/model_wrappers.py",
+      "bytes": 15683,
+      "sha256": "c8186db91cc8393db890b12ff822d1bbe4f1481c92f6c3f34a3cce1d2983cdbf",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "EncDec/Research/model_wrappers.py",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "EncDec/Research/ntscc_rate_codebook.py",
+      "bytes": 8718,
+      "sha256": "0967ddd3d1066960224e8280eee9578cf3e8935bfb315791115ce45efd4a26ac",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "EncDec/Research/ntscc_rate_codebook.py",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "EncDec/Research/ntscc_rate_conditioned_vq.py",
+      "bytes": 14962,
+      "sha256": "0b72bd6432dc9e8ed03ef9c897eee373f911dd9918140e80030c96405d3a2ca8",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "EncDec/Research/ntscc_rate_conditioned_vq.py",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "EncDec/Research/reporting.py",
+      "bytes": 6389,
+      "sha256": "0b99096bc47a4aef5f34e8944085f2ca36af259b6393f9195d7f727592a7d296",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "EncDec/Research/reporting.py",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "EncDec/Research/session.py",
+      "bytes": 33487,
+      "sha256": "a9dc3e6f5596b290ffca456104f09dd1e8e5bc4f77590e881167f64b91dc12b3",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "EncDec/Research/session.py",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "EncDec/Codebooks/__init__.py",
+      "bytes": 182,
+      "sha256": "b57c397d1b66a3864bed3c244d95741118fc04a503e5cb2171df1856e1881f4e",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "EncDec/Codebooks/__init__.py",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "EncDec/Codebooks/codebook_codec.py",
+      "bytes": 5532,
+      "sha256": "9e543916563267a889708ea59b6abb0a474a95f5cc4fd3a7e5ed2b9a0945e78c",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "EncDec/Codebooks/codebook_codec.py",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "EncDec/Codebooks/codebook_metrics.py",
+      "bytes": 768,
+      "sha256": "8c89416c0e61ee202bf2ade42ae26639030ead67583c2b65efb085bbf6bd299e",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "EncDec/Codebooks/codebook_metrics.py",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "EncDec/Codebooks/grouped_vq.py",
+      "bytes": 226,
+      "sha256": "f7764f31f9d37d58159c31f8c35d62ef739d31edb7d9523858d79ddac7a2c114",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "EncDec/Codebooks/grouped_vq.py",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "EncDec/Codebooks/index_codec.py",
+      "bytes": 170,
+      "sha256": "a883d1e56a4c4a7191f91cd3768dda4b4dc3f4a1eb1a5223fa9018f45f684f36",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "EncDec/Codebooks/index_codec.py",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "EncDec/Codebooks/kmeans_vq.py",
+      "bytes": 193,
+      "sha256": "fff5df29593a0d6a8baa6fb2dbcc40c40c2dac4f4f13beba76ab1b92b2a18b08",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "EncDec/Codebooks/kmeans_vq.py",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "EncDec/Codebooks/minibatch_kmeans_vq.py",
+      "bytes": 9308,
+      "sha256": "aad169e89120aca520b7ecde3d1e7338aed0ebd6037d065bc744169e12eae0a3",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "EncDec/Codebooks/minibatch_kmeans_vq.py",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "EncDec/Codebooks/product_vq.py",
+      "bytes": 226,
+      "sha256": "306e49be346912e39ed89402d07eeb88807bd3b84756a22a0932bafad6b8cb50",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "EncDec/Codebooks/product_vq.py",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "EncDec/Models/DeepJSCC/__init__.py",
+      "bytes": 320,
+      "sha256": "ead716028643ead51b929c5d9becbc7ed4123fc9eda6b40c80cf1c9f134f30a7",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "EncDec/Models/DeepJSCC/__init__.py",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "EncDec/Models/DeepJSCC/adapter.py",
+      "bytes": 7149,
+      "sha256": "2178982127b79ef8b7b765736a1501ae5173fb1cea41232de54ee29186788082",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "EncDec/Models/DeepJSCC/adapter.py",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "EncDec/Models/DeepJSCC/channel_wrapper.py",
+      "bytes": 1168,
+      "sha256": "556d59d61087f7d9c979a032fc3983b09b0b75165ce0401945d6edc317d102ac",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "EncDec/Models/DeepJSCC/channel_wrapper.py",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "EncDec/Models/SwinJSCC/__init__.py",
+      "bytes": 266,
+      "sha256": "099b58a485ab9a7820d05f376dc6dadda88bb95979716a73ca9a5747764e3abb",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "EncDec/Models/SwinJSCC/__init__.py",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "EncDec/Models/SwinJSCC/adapter.py",
+      "bytes": 7737,
+      "sha256": "be2895e22052e5ab3e96c205d716daf870395155c4cff268a6cb84fc70a5896b",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "EncDec/Models/SwinJSCC/adapter.py",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "EncDec/Models/SwinJSCC/checkpoint_manager.py",
+      "bytes": 9714,
+      "sha256": "ffe2c43234f0aaa5d2b6c67eb9deaf6b3cb72d7a023e603fec4c43cc6b1d927d",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "EncDec/Models/SwinJSCC/checkpoint_manager.py",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "EncDec/Models/SwinJSCC/codebook_adapter.py",
+      "bytes": 2036,
+      "sha256": "313aedd3b7d6f31de20cd9173621445e1b4d6dda1969b3a31c26ba2b9df7f552",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "EncDec/Models/SwinJSCC/codebook_adapter.py",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "EncDec/Models/SwinJSCC/decoder_runtime.py",
+      "bytes": 359,
+      "sha256": "5b39471f18cdc3223b0da1b0cc3003940ff0e3089df4d2758dedc17410df7278",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "EncDec/Models/SwinJSCC/decoder_runtime.py",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "EncDec/Models/SwinJSCC/encoder_runtime.py",
+      "bytes": 379,
+      "sha256": "d8d53f76232bf8e66478cfb658c54897bd2e22c7f0c3e8424c65a419287ed8f1",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "EncDec/Models/SwinJSCC/encoder_runtime.py",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "EncDec/Models/SwinJSCC/features.py",
+      "bytes": 2013,
+      "sha256": "1750129d2e9e1f023f24602f780daad776de11aa5003e127ad8088a120e76311",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "EncDec/Models/SwinJSCC/features.py",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "EncDec/Models/SwinJSCC/latent_extractor.py",
+      "bytes": 305,
+      "sha256": "fddc35874db340997b16cf1915b32ab7963e18584026cb3542fd8a6452bdbe7e",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "EncDec/Models/SwinJSCC/latent_extractor.py",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "EncDec/Models/SwinJSCC/model_loader.py",
+      "bytes": 642,
+      "sha256": "3bf56a105d9413c476ee4c1f74b347ce1bad72f8ae6147358159d5107963071e",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "EncDec/Models/SwinJSCC/model_loader.py",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "EncDec/Models/SwinJSCC/stage1_runner.py",
+      "bytes": 16658,
+      "sha256": "f77b8f80d9eb82b5c2e7d83ec827aff7b91e850ffcbe3c579d58e06aa6155ef9",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "EncDec/Models/SwinJSCC/stage1_runner.py",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "EncDec/Models/SwinJSCC/swin_config.py",
+      "bytes": 3665,
+      "sha256": "8192446c38971563c19565ca871dba6a039cf02da11a7f8abb3d8eb8ccaccd02",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "EncDec/Models/SwinJSCC/swin_config.py",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "EncDec/Models/SwinJSCC/symbol_extractor.py",
+      "bytes": 397,
+      "sha256": "4647020d86fddd491e785b6f7c716eba6cd207de14a43c4a20798872760533b6",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "EncDec/Models/SwinJSCC/symbol_extractor.py",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "EncDec/Models/SwinJSCC/trainer.py",
+      "bytes": 9691,
+      "sha256": "01414b539b529c27a0638f07dfd21d5c5574cedede4c0e710997524263785a5a",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "EncDec/Models/SwinJSCC/trainer.py",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "EncDec/Models/SwinJSCC/training_utils.py",
+      "bytes": 2780,
+      "sha256": "c21837e8e4730ab8c82ae8221e6ada8d384035686d61a3dba5e25d3bb40883e2",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "EncDec/Models/SwinJSCC/training_utils.py",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "INFRA/Artifacts/__init__.py",
+      "bytes": 1221,
+      "sha256": "7150b0cc545c02acebd2ab5dc2ad82df4eb518d8a86e3025352c9f45776e931d",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "INFRA/Artifacts/__init__.py",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "INFRA/Artifacts/evaluation_artifact.py",
+      "bytes": 338,
+      "sha256": "73a55dcd496fa18c97256e955b35f067f68ca2d0c9aad53788d0147bdbe0bc88",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "INFRA/Artifacts/evaluation_artifact.py",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "INFRA/Artifacts/image_artifact.py",
+      "bytes": 562,
+      "sha256": "35e90bbfb7cc62f9df800c4317b16d9598525cdf14b5b8b749ad7e3f58b320e6",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "INFRA/Artifacts/image_artifact.py",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "INFRA/Artifacts/knowledge_artifact.py",
+      "bytes": 300,
+      "sha256": "d535bda2ff082ac6241810be68856481ae51f6e7839fba7c149a6e03e9489acf",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "INFRA/Artifacts/knowledge_artifact.py",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "INFRA/Artifacts/latent_artifact.py",
+      "bytes": 589,
+      "sha256": "5bfae72383e1390489e87cafef6cecf061b0922a51c26250e5aaf6ecdae1920f",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "INFRA/Artifacts/latent_artifact.py",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "INFRA/Artifacts/observation_artifact.py",
+      "bytes": 2809,
+      "sha256": "526ebefd848973166f96d6ab6a3bf25454c1f408faede2399dfbd0a07bb19b69",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "INFRA/Artifacts/observation_artifact.py",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "INFRA/Artifacts/scheduling_artifact.py",
+      "bytes": 282,
+      "sha256": "f7fce2af962ed91ace0fb3a2a4191f89e2f3a6bfc08c88d20615bc92e4f2ff72",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "INFRA/Artifacts/scheduling_artifact.py",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "INFRA/Artifacts/semantic_packet_artifact.py",
+      "bytes": 940,
+      "sha256": "10efe6525b6da5e425d87827442c943e9c98f4495aba27fe88aba7281dd5424d",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "INFRA/Artifacts/semantic_packet_artifact.py",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "INFRA/Artifacts/semantic_params_artifact.py",
+      "bytes": 5562,
+      "sha256": "eecb6f56f2dbe24f478bf465408c33319f9b1f0ed8afca30ca74f2d6295975f5",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "INFRA/Artifacts/semantic_params_artifact.py",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "INFRA/Artifacts/transmission_artifact.py",
+      "bytes": 604,
+      "sha256": "74d0089a4a4ded239593ef742bb96b7bac956ece6dbd0b02a0f40a8cab4d546e",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "INFRA/Artifacts/transmission_artifact.py",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "INFRA/Interfaces/__init__.py",
+      "bytes": 780,
+      "sha256": "97d664237d8bf61bdc86c1eb2d64cbc45c6d5b90504c960ac7de7c5717f35744",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "INFRA/Interfaces/__init__.py",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "INFRA/Interfaces/channel_interface.py",
+      "bytes": 387,
+      "sha256": "6396d13756bcc475a555f40c8adcdf12ff14b98bb2416522846b37a4278b61bc",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "INFRA/Interfaces/channel_interface.py",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "INFRA/Interfaces/codebook_interface.py",
+      "bytes": 615,
+      "sha256": "b1362775f234757c6aac4da6264fd73b310953f48f6e073582276c0bd8848925",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "INFRA/Interfaces/codebook_interface.py",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "INFRA/Interfaces/deployment_interface.py",
+      "bytes": 260,
+      "sha256": "b2fee5db1f1948aff1d706c9affecc497aed0a30657c74f5f6b03becbe7d331e",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "INFRA/Interfaces/deployment_interface.py",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "INFRA/Interfaces/encdec_interface.py",
+      "bytes": 732,
+      "sha256": "90258bc5922b1bef09b22ba2d0e815ed624ef363c2b9a3b3a941854117123e9b",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "INFRA/Interfaces/encdec_interface.py",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "INFRA/Interfaces/evaluator_interface.py",
+      "bytes": 355,
+      "sha256": "269a851046e9f70a522b8f04b3e5ff5befc3be2de1ff678f7061e103963f2083",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "INFRA/Interfaces/evaluator_interface.py",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "INFRA/Interfaces/knowledge_interface.py",
+      "bytes": 519,
+      "sha256": "f8da7b3ffb81a6e589715f4b99148caadd08b8583f57496ba22e2955898f970d",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "INFRA/Interfaces/knowledge_interface.py",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "INFRA/Interfaces/latent_interface.py",
+      "bytes": 330,
+      "sha256": "0ee6935ae317aab9950fb968467f712281db14867e0b20ca08dcb2399c61dea0",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "INFRA/Interfaces/latent_interface.py",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "INFRA/Interfaces/param_extractor_interface.py",
+      "bytes": 542,
+      "sha256": "a57ab7b0324aa073685e87e04dbaf81e2f985269c555897121f29d76fe4754f4",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "INFRA/Interfaces/param_extractor_interface.py",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "INFRA/Interfaces/scheduler_interface.py",
+      "bytes": 392,
+      "sha256": "ac311182c610ebe636eea3e694dee4d4b324ebd912843b480d9253a43e6f89cb",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "INFRA/Interfaces/scheduler_interface.py",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "INFRA/Registries/__init__.py",
+      "bytes": 880,
+      "sha256": "563ecb5f0e508fb5007893b8b0c7b36501aaafa58f4eb9bf875e73a9cd5b489a",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "INFRA/Registries/__init__.py",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "INFRA/Registries/base_registry.py",
+      "bytes": 1454,
+      "sha256": "841decc8a7d739f230e7b6e88b78457a5c8b7bc530419a0493600f2f51f6d9e2",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "INFRA/Registries/base_registry.py",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "INFRA/Registries/channel_registry.py",
+      "bytes": 140,
+      "sha256": "ab9752c2596153626f880b0f2225d81bbb0988ca91418a05cc0980dec5dc05e5",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "INFRA/Registries/channel_registry.py",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "INFRA/Registries/codebook_registry.py",
+      "bytes": 142,
+      "sha256": "f734831c0d20bbb624574ea53471e4f68e1b128d82f5ec5865675f7aaab30dfd",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "INFRA/Registries/codebook_registry.py",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "INFRA/Registries/encdec_registry.py",
+      "bytes": 147,
+      "sha256": "2379a22a9e120f52cf375830ab8991743744e1af41595542ccc541edac015e80",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "INFRA/Registries/encdec_registry.py",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "INFRA/Registries/evaluator_registry.py",
+      "bytes": 144,
+      "sha256": "0c4be1879d965ee7ccfb1fdd037a4a8f45c455828ba12784f0147ddfb5c7f683",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "INFRA/Registries/evaluator_registry.py",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "INFRA/Registries/knowledge_registry.py",
+      "bytes": 149,
+      "sha256": "d4b8326514c9fb0e98d5ac082c5f3900735ec0bb68b98a7fd35a5c0605f9922f",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "INFRA/Registries/knowledge_registry.py",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "INFRA/Registries/parameter_codebook_registry.py",
+      "bytes": 257,
+      "sha256": "1e81f716712a2df4e9a10c9bc4d22c44f878e4578c7e47e84c8e030c3d81432f",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "INFRA/Registries/parameter_codebook_registry.py",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "INFRA/Registries/scheduler_registry.py",
+      "bytes": 144,
+      "sha256": "c889cc8150c7eb518189c0e49709c9d4b139cdcd0ab13ff91a8da1a5a61fe2a6",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "INFRA/Registries/scheduler_registry.py",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "INFRA/Registries/transformer_registry.py",
+      "bytes": 168,
+      "sha256": "257b33044e7b725c6517e4e0f72bd7836b17f9c4cb4bb4cf7089264397a1d3c6",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "INFRA/Registries/transformer_registry.py",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "INFRA/Channels/__init__.py",
+      "bytes": 341,
+      "sha256": "c31095ddeb5222f2957aa8414451e4b88acb96ed4b0696cf666cf52ca2f276af",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "INFRA/Channels/__init__.py",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "INFRA/Channels/awgn.py",
+      "bytes": 2406,
+      "sha256": "75bffd7468551e314b4b40bb54cf5b879eee12d277aec631ca3c5949214c94a8",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "INFRA/Channels/awgn.py",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "INFRA/Channels/channel_factory.py",
+      "bytes": 688,
+      "sha256": "0c251d2526b041fafe1fd5a4ef5faddd1e7b9c8ce60a34baf8c6c2a9cee1053b",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "INFRA/Channels/channel_factory.py",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "INFRA/Channels/channel_utils.py",
+      "bytes": 3737,
+      "sha256": "f32a8771ff68d1d74c762efbba51b2ed9b757eac769e75d27085639f33c2501b",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "INFRA/Channels/channel_utils.py",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "INFRA/Channels/qam.py",
+      "bytes": 2026,
+      "sha256": "e283c0ee13190ed14dde65a919494be8633417a80972bfbcc22376bce2d975e3",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "INFRA/Channels/qam.py",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "INFRA/Channels/qpsk.py",
+      "bytes": 211,
+      "sha256": "fee87b406552ac044c44619188f4e3dec2a758ef1473dcb4e9caaea8f4dff231",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "INFRA/Channels/qpsk.py",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "INFRA/Channels/rayleigh.py",
+      "bytes": 2212,
+      "sha256": "14286a677309c07edbdc62518f7a74c85ce9904a334aada4050db079190b941c",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "INFRA/Channels/rayleigh.py",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "INFRA/Channels/rician.py",
+      "bytes": 614,
+      "sha256": "5779dba3ed9bfeea9071b27c5842ac7905e9359ce6df0168eac4632916789d06",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "INFRA/Channels/rician.py",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "Models/DeepJSCC/checkpoint_source/.gitignore",
+      "bytes": 95,
+      "sha256": "8d0ed5646f2227958ba71b4252556469f48566962fd94311a2629cfffd2c305b",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "references/DeepJSCC_checkpoint_source/.gitignore",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "Models/DeepJSCC/checkpoint_source/channel.py",
+      "bytes": 1540,
+      "sha256": "e117c853e0b6ab2a4f88eade5aec1673e161c417232c7be786a9e8879ef541a0",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "references/DeepJSCC_checkpoint_source/channel.py",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "Models/DeepJSCC/checkpoint_source/dataset.py",
+      "bytes": 2075,
+      "sha256": "06d27eae7813c5da59ef56b88bf34336ecc9ff22435a674227f4269d8ee31a96",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "references/DeepJSCC_checkpoint_source/dataset.py",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "Models/DeepJSCC/checkpoint_source/demo/arc.png",
+      "bytes": 148733,
+      "sha256": "2785a34d9f887a152151102dc8ba62867f276cc8be4c70cd14b8fdaf9941e51a",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "references/DeepJSCC_checkpoint_source/demo/arc.png",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "Models/DeepJSCC/checkpoint_source/demo/cifar10_kodim08.png",
+      "bytes": 1661247,
+      "sha256": "083d3084c2bcd0dc15933c6da5f08c05df2207e60ba1f0e6efa864f83ad990a7",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "references/DeepJSCC_checkpoint_source/demo/cifar10_kodim08.png",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "Models/DeepJSCC/checkpoint_source/demo/cifar_0.08.png",
+      "bytes": 83211,
+      "sha256": "74d7f93a777fc64e9fa115a8f5c8235697d510b46b855b7a853ee57d03403842",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "references/DeepJSCC_checkpoint_source/demo/cifar_0.08.png",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "Models/DeepJSCC/checkpoint_source/demo/cifar_0.17.png",
+      "bytes": 82580,
+      "sha256": "0d4f18bd84c65417087aeefae7e6aa2b0edb82015857c4b835ede6a766fa0b83",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "references/DeepJSCC_checkpoint_source/demo/cifar_0.17.png",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "Models/DeepJSCC/checkpoint_source/demo/imagenet_kodim08.png",
+      "bytes": 1563312,
+      "sha256": "5ff7808686ddaecfec045aa2c463ef954e842382dcb6c5765d0583d3dee5cab5",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "references/DeepJSCC_checkpoint_source/demo/imagenet_kodim08.png",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "Models/DeepJSCC/checkpoint_source/demo/kodim08.png",
+      "bytes": 788470,
+      "sha256": "ba23983c76b4832ee0e8af0592664756841a16779acd69f792e268fb6d13d6e7",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "references/DeepJSCC_checkpoint_source/demo/kodim08.png",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "Models/DeepJSCC/checkpoint_source/demo/kodim23.png",
+      "bytes": 557596,
+      "sha256": "e3111a2fd4da24af15d6459ef9eacfe54106b38e27b4a21821b75c3f5d2d5baf",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "references/DeepJSCC_checkpoint_source/demo/kodim23.png",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "Models/DeepJSCC/checkpoint_source/eval.py",
+      "bytes": 3046,
+      "sha256": "dea5420c822d7a136970ebef528af7abe499b23b2b64819826a029c2b07c60bd",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "references/DeepJSCC_checkpoint_source/eval.py",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "Models/DeepJSCC/checkpoint_source/model.py",
+      "bytes": 6845,
+      "sha256": "b33d8a5afc40859ffd3e37c7612e8d2b2b844de7bb86bd1bfcbb77cbb69f5596",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "references/DeepJSCC_checkpoint_source/model.py",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "Models/DeepJSCC/checkpoint_source/README.md",
+      "bytes": 6274,
+      "sha256": "ad44c85b979bbafad32c25c4d8969daf9c36061ce13d659aca53d5304e10c097",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "references/DeepJSCC_checkpoint_source/README.md",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "Models/DeepJSCC/checkpoint_source/requirements.txt",
+      "bytes": 50,
+      "sha256": "475f1a40cdd41db0ed12c6beba2b15c2ce7b5895025eb5a1a7c603614950c88e",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "references/DeepJSCC_checkpoint_source/requirements.txt",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "Models/DeepJSCC/checkpoint_source/train.py",
+      "bytes": 19400,
+      "sha256": "752005eb4088df5795e8880d34b087287481e11d8544cd6bf83e21fed605960a",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "references/DeepJSCC_checkpoint_source/train.py",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "Models/DeepJSCC/checkpoint_source/utils.py",
+      "bytes": 1447,
+      "sha256": "8b0cbd7ac53a37002a773a02966c7a1ccd8dd807a6324f6506c3600cfc0ef58a",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "references/DeepJSCC_checkpoint_source/utils.py",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "Models/NTSCC/official/channel/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "references/NTSCC_JSAC22_official/channel/__init__.py",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "Models/NTSCC/official/channel/channel.py",
+      "bytes": 2221,
+      "sha256": "69029b9cfe474211dd0404d09837eff2a813565a38b1141bc7667afce034461c",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "references/NTSCC_JSAC22_official/channel/channel.py",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "Models/NTSCC/official/config.py",
+      "bytes": 1732,
+      "sha256": "c80d89a5525db1e82838404e206c65d170b88b1e83cbb92b018d9d30897a1151",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "references/NTSCC_JSAC22_official/config.py",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "Models/NTSCC/official/data/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "references/NTSCC_JSAC22_official/data/__init__.py",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "Models/NTSCC/official/data/datasets.py",
+      "bytes": 2683,
+      "sha256": "3d605e413aa227b34e4a418f3de3068220846cdb7a92f40d1e61b6e6cec23307",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "references/NTSCC_JSAC22_official/data/datasets.py",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "Models/NTSCC/official/fig/kodak_results_bandwidth/kodak_psnr_cbr_10dB.png",
+      "bytes": 72170,
+      "sha256": "21e47f2724f5e70a3a0460c6870057092104a795f7e7ea21d9959f77b99d9174",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "references/NTSCC_JSAC22_official/fig/kodak_results_bandwidth/kodak_psnr_cbr_10dB.png",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "Models/NTSCC/official/layer/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "references/NTSCC_JSAC22_official/layer/__init__.py",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "Models/NTSCC/official/layer/analysis_transform.py",
+      "bytes": 10364,
+      "sha256": "2477df74874141bc1bf64c42eaa6edb467f8d99d570542d30283f6bff0058b32",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "references/NTSCC_JSAC22_official/layer/analysis_transform.py",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "Models/NTSCC/official/layer/jscc_decoder.py",
+      "bytes": 3363,
+      "sha256": "70643c0b544519b18dd15a5e65a29ecb3d7019c3bc0fd4b4dd0a3b0063c398bd",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "references/NTSCC_JSAC22_official/layer/jscc_decoder.py",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "Models/NTSCC/official/layer/jscc_encoder.py",
+      "bytes": 5372,
+      "sha256": "e630e424db51f962ac69516c20f3a8913925b743f064f93d457ee31887d5a5b5",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "references/NTSCC_JSAC22_official/layer/jscc_encoder.py",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "Models/NTSCC/official/layer/layers.py",
+      "bytes": 23558,
+      "sha256": "98002e7e10cc492ed94369f5100871071621fd3fbfc5057677ec31669a7ff2ff",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "references/NTSCC_JSAC22_official/layer/layers.py",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "Models/NTSCC/official/layer/synthesis_transform.py",
+      "bytes": 10363,
+      "sha256": "e5d67729f38e86eac14d86a9310bd195100641ed563a9915e85d6834b2bcbe4a",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "references/NTSCC_JSAC22_official/layer/synthesis_transform.py",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "Models/NTSCC/official/loss/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "references/NTSCC_JSAC22_official/loss/__init__.py",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "Models/NTSCC/official/loss/distortion.py",
+      "bytes": 8080,
+      "sha256": "e9b43e66b0fc3bf5a9131e642ccf0d3e78e1466f7158b8ce55e6f37433a2f528",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "references/NTSCC_JSAC22_official/loss/distortion.py",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "Models/NTSCC/official/loss/gan_loss.py",
+      "bytes": 1614,
+      "sha256": "dfba266abf5ade4630d8e20160b72a906766d0308621b1688fccefc079f5713f",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "references/NTSCC_JSAC22_official/loss/gan_loss.py",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "Models/NTSCC/official/main.py",
+      "bytes": 9158,
+      "sha256": "ca8bdc105a1d9e594450cf3bd6684a609ee7e7748a21c04e7b97db52659af50c",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "references/NTSCC_JSAC22_official/main.py",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "Models/NTSCC/official/net/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "references/NTSCC_JSAC22_official/net/__init__.py",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "Models/NTSCC/official/net/NTSCC_Hyperior.py",
+      "bytes": 6371,
+      "sha256": "d4ed0c7a5ed0b424a3252af228f20240c52e14365a5088b1ac0a1db9ec288ad5",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "references/NTSCC_JSAC22_official/net/NTSCC_Hyperior.py",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "Models/NTSCC/official/README.md",
+      "bytes": 2150,
+      "sha256": "6a3564d2e36fbb8038cdc76cc1c1ded72044c6bf0b6874383d6c97b0a894f567",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "references/NTSCC_JSAC22_official/README.md",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "Models/NTSCC/official/requirements.txt",
+      "bytes": 161,
+      "sha256": "44d0cb48a60998890257b71e78d2b983e44ff8ef8a526ac3ced7121a11a030b9",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "references/NTSCC_JSAC22_official/requirements.txt",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "Models/NTSCC/official/utils.py",
+      "bytes": 3300,
+      "sha256": "13628c46b4214a37f2745800e29feda02b55ebe38c286c2bca76ca1b4a6e17b8",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "references/NTSCC_JSAC22_official/utils.py",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "Models/SwinJSCC/local_source/.stage1a_patch.json",
+      "bytes": 424,
+      "sha256": "f55efbe7bbddeab4c3eae960b4c0c552109fbc9f2cb62dd50f5c15086445b5ec",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "external/SwinJSCC/.stage1a_patch.json",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "Models/SwinJSCC/local_source/data/datasets.py",
+      "bytes": 5467,
+      "sha256": "98aead75565c246a9d0cb997c03667088fc32ee8cdfa6baf57e3b9b7ca01db6f",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "external/SwinJSCC/data/datasets.py",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "Models/SwinJSCC/local_source/loss/distortion.py",
+      "bytes": 8453,
+      "sha256": "df05ac188b2ec1eb315f973ca5da9239a1b5f24d68734b87d9094b5740014f09",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "external/SwinJSCC/loss/distortion.py",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "Models/SwinJSCC/local_source/main.py",
+      "bytes": 16805,
+      "sha256": "013f1bf13e7f4536173bdf061b602e723817a40776582206631d0b76cd3fd4f9",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "external/SwinJSCC/main.py",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "Models/SwinJSCC/local_source/net/channel.py",
+      "bytes": 4698,
+      "sha256": "449666623386c016705c8fd69ec66e52fa8573b4b1f1e592895daeeebb9b5723",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "external/SwinJSCC/net/channel.py",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "Models/SwinJSCC/local_source/net/decoder.py",
+      "bytes": 9105,
+      "sha256": "7f5c52be85f3eae4627b76cd0b4ab5ce02aded3b653a0e2911b94547ba5ca68e",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "external/SwinJSCC/net/decoder.py",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "Models/SwinJSCC/local_source/net/encoder.py",
+      "bytes": 17927,
+      "sha256": "ca20bfc7720a28895b6f5a296f31aee4b43c22dd299f2b2a68b8790286181a84",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "external/SwinJSCC/net/encoder.py",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "Models/SwinJSCC/local_source/net/modules.py",
+      "bytes": 13576,
+      "sha256": "341213cd8f59e983045acd7354ca2d0768da58389fc346ee9516856ecd90e6ce",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "external/SwinJSCC/net/modules.py",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "Models/SwinJSCC/local_source/net/network.py",
+      "bytes": 3788,
+      "sha256": "215fc46a52809f9db57570bb8a1d1a278c936c30abd2018aa55efb7b0fc73b6a",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "external/SwinJSCC/net/network.py",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "Models/SwinJSCC/local_source/README.md",
+      "bytes": 6187,
+      "sha256": "dd2a9fa46fff4f4dd3d7334f6430d058fe120fd6d1468259f4561e44febc0497",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "external/SwinJSCC/README.md",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "Models/SwinJSCC/local_source/utils.py",
+      "bytes": 1994,
+      "sha256": "48027e772236aca5ea62047d067546dd9bd4c2810e8add33b4d623b72ee72d0e",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "external/SwinJSCC/utils.py",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "Models/trained_checkpoints/SwinJSCC/encdec_sa_ra/.gitkeep",
+      "bytes": 1,
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "models/SwinJSCC/.gitkeep",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "Models/trained_checkpoints/SwinJSCC/encdec_sa_ra/stage1_manifest.json",
+      "bytes": 56968,
+      "sha256": "e8b0e9bf7d833a75092394391228792b2ac86b7314b7304e9d3c081ac1a34f45",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "models/SwinJSCC/stage1_manifest.json",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "Models/trained_checkpoints/SwinJSCC/encdec_sa_ra/stage1_swinjscc_decoder.pt",
+      "bytes": 154279863,
+      "sha256": "22c2d3f2e4089126276ea5d6895013827df7c6bf38843df669bc7e770a8dfaaf",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "models/SwinJSCC/stage1_swinjscc_decoder.pt",
+      "disposition": "already_identical",
+      "storage": "hardlink_immutable"
+    },
+    {
+      "path": "Models/trained_checkpoints/SwinJSCC/encdec_sa_ra/stage1_swinjscc_encoder.pt",
+      "bytes": 174045233,
+      "sha256": "db5df10f6f7e40b4dc2df8b49239b7a5a8b6cfb9d764f8fb73bdc4ef4d76d322",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "models/SwinJSCC/stage1_swinjscc_encoder.pt",
+      "disposition": "already_identical",
+      "storage": "hardlink_immutable"
+    },
+    {
+      "path": "Models/trained_checkpoints/SwinJSCC/encdec_sa_ra/stage1_swinjscc_full.pt",
+      "bytes": 328322830,
+      "sha256": "8e9d53d875e807177ba767209e605b680a91b7aae4046a6cb0bdffe1e5f4a7ef",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "models/SwinJSCC/stage1_swinjscc_full.pt",
+      "disposition": "already_identical",
+      "storage": "hardlink_immutable"
+    },
+    {
+      "path": "Models/trained_checkpoints/Codebooks/encdec/.gitkeep",
+      "bytes": 1,
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "models/Codebooks/.gitkeep",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "Models/trained_checkpoints/Codebooks/encdec/swinjscc_tx_k256.joblib",
+      "bytes": 329592,
+      "sha256": "3a158294aa6e94fe9ac66189f83be294249b6f9d27a09b098af187e830d31039",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "models/Codebooks/swinjscc_tx_k256.joblib",
+      "disposition": "already_identical",
+      "storage": "hardlink_immutable"
+    },
+    {
+      "path": "Models/trained_checkpoints/DeepJSCC/cifar10/CIFAR10_10_1.0_0.08_AWGN_02h08m39s_on_Jun_04_2024/epoch_999.pkl",
+      "bytes": 620943,
+      "sha256": "9c7f589adedefb1fa9d184fccd771d11af5e830f0801b8fe24f86ab0e095eaf2",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "models/DeepJSCC/cifar10/CIFAR10_10_1.0_0.08_AWGN_02h08m39s_on_Jun_04_2024/epoch_999.pkl",
+      "disposition": "already_identical",
+      "storage": "hardlink_immutable"
+    },
+    {
+      "path": "Models/trained_checkpoints/DeepJSCC/cifar10/CIFAR10_10_13.0_0.08_AWGN_02h08m39s_on_Jun_04_2024/epoch_999.pkl",
+      "bytes": 620943,
+      "sha256": "708b6aa718b8662c97305cf6297557ac243a70a3b6e1cd3996d6e156cc4619e4",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "models/DeepJSCC/cifar10/CIFAR10_10_13.0_0.08_AWGN_02h08m39s_on_Jun_04_2024/epoch_999.pkl",
+      "disposition": "already_identical",
+      "storage": "hardlink_immutable"
+    },
+    {
+      "path": "Models/trained_checkpoints/DeepJSCC/cifar10/CIFAR10_10_19.0_0.08_AWGN_02h08m39s_on_Jun_04_2024/epoch_999.pkl",
+      "bytes": 620943,
+      "sha256": "cc04097e61ea7b5f809389373a6439c22db9f0af8e93cd0ab496881a99d09187",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "models/DeepJSCC/cifar10/CIFAR10_10_19.0_0.08_AWGN_02h08m39s_on_Jun_04_2024/epoch_999.pkl",
+      "disposition": "already_identical",
+      "storage": "hardlink_immutable"
+    },
+    {
+      "path": "Models/trained_checkpoints/DeepJSCC/cifar10/CIFAR10_10_4.0_0.08_AWGN_02h08m39s_on_Jun_04_2024/epoch_999.pkl",
+      "bytes": 620943,
+      "sha256": "01c41a16fa678836776674d50c61cd1ebcee3162d8e2dc2aa5b0e20753a38363",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "models/DeepJSCC/cifar10/CIFAR10_10_4.0_0.08_AWGN_02h08m39s_on_Jun_04_2024/epoch_999.pkl",
+      "disposition": "already_identical",
+      "storage": "hardlink_immutable"
+    },
+    {
+      "path": "Models/trained_checkpoints/DeepJSCC/cifar10/CIFAR10_10_7.0_0.08_AWGN_02h08m39s_on_Jun_04_2024/epoch_999.pkl",
+      "bytes": 620943,
+      "sha256": "799f9e74465c1659ec49526158870563a13e4fba7d25480972944bf682dc9c04",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "models/DeepJSCC/cifar10/CIFAR10_10_7.0_0.08_AWGN_02h08m39s_on_Jun_04_2024/epoch_999.pkl",
+      "disposition": "already_identical",
+      "storage": "hardlink_immutable"
+    },
+    {
+      "path": "Models/trained_checkpoints/DeepJSCC/cifar10/CIFAR10_16_1.0_0.33_Rayleigh_17h38m47s_on_Jun_08_2024/epoch_999.pkl",
+      "bytes": 737231,
+      "sha256": "d9279d78a19465d8b0fc23384516757bca9d211cf3e618ec598175f6f2f25d11",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "models/DeepJSCC/cifar10/CIFAR10_16_1.0_0.33_Rayleigh_17h38m47s_on_Jun_08_2024/epoch_999.pkl",
+      "disposition": "already_identical",
+      "storage": "hardlink_immutable"
+    },
+    {
+      "path": "Models/trained_checkpoints/DeepJSCC/cifar10/CIFAR10_16_13.0_0.33_Rayleigh_17h38m47s_on_Jun_08_2024/epoch_999.pkl",
+      "bytes": 737231,
+      "sha256": "2de86f86e43b4db53cdb0d3dc987db768c980b9ff784bcabae78af9ee7b735fe",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "models/DeepJSCC/cifar10/CIFAR10_16_13.0_0.33_Rayleigh_17h38m47s_on_Jun_08_2024/epoch_999.pkl",
+      "disposition": "already_identical",
+      "storage": "hardlink_immutable"
+    },
+    {
+      "path": "Models/trained_checkpoints/DeepJSCC/cifar10/CIFAR10_16_19.0_0.33_Rayleigh_17h38m47s_on_Jun_08_2024/epoch_999.pkl",
+      "bytes": 737231,
+      "sha256": "cd0dcfecfe79fa7c24436f48485bf0a8944bc0f886d9f612dc9f5a63bc3e4f5a",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "models/DeepJSCC/cifar10/CIFAR10_16_19.0_0.33_Rayleigh_17h38m47s_on_Jun_08_2024/epoch_999.pkl",
+      "disposition": "already_identical",
+      "storage": "hardlink_immutable"
+    },
+    {
+      "path": "Models/trained_checkpoints/DeepJSCC/cifar10/CIFAR10_16_4.0_0.33_Rayleigh_17h38m47s_on_Jun_08_2024/epoch_999.pkl",
+      "bytes": 737231,
+      "sha256": "ed6d512b0261b120f008db4710e0229a640f3d624de49edfe7b599a176cd1744",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "models/DeepJSCC/cifar10/CIFAR10_16_4.0_0.33_Rayleigh_17h38m47s_on_Jun_08_2024/epoch_999.pkl",
+      "disposition": "already_identical",
+      "storage": "hardlink_immutable"
+    },
+    {
+      "path": "Models/trained_checkpoints/DeepJSCC/cifar10/CIFAR10_16_7.0_0.33_Rayleigh_17h38m47s_on_Jun_08_2024/epoch_999.pkl",
+      "bytes": 737231,
+      "sha256": "7980a883f4058169f169ea2e14988d5c2de0b15ff3cd1516557b96385d4d74e1",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "models/DeepJSCC/cifar10/CIFAR10_16_7.0_0.33_Rayleigh_17h38m47s_on_Jun_08_2024/epoch_999.pkl",
+      "disposition": "already_identical",
+      "storage": "hardlink_immutable"
+    },
+    {
+      "path": "Models/trained_checkpoints/DeepJSCC/cifar10/CIFAR10_20_1.0_0.17_AWGN_02h08m39s_on_Jun_04_2024/epoch_999.pkl",
+      "bytes": 685007,
+      "sha256": "84f8f36e52857ead1c61bda7491672e51500a580ef6fa04b5d49a57b138736aa",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "models/DeepJSCC/cifar10/CIFAR10_20_1.0_0.17_AWGN_02h08m39s_on_Jun_04_2024/epoch_999.pkl",
+      "disposition": "already_identical",
+      "storage": "hardlink_immutable"
+    },
+    {
+      "path": "Models/trained_checkpoints/DeepJSCC/cifar10/CIFAR10_20_13.0_0.17_AWGN_02h08m39s_on_Jun_04_2024/epoch_999.pkl",
+      "bytes": 685007,
+      "sha256": "90e0d39e997276761de3f667d88533ba9a9fc74bcba0a4fa76396a3f2773b67b",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "models/DeepJSCC/cifar10/CIFAR10_20_13.0_0.17_AWGN_02h08m39s_on_Jun_04_2024/epoch_999.pkl",
+      "disposition": "already_identical",
+      "storage": "hardlink_immutable"
+    },
+    {
+      "path": "Models/trained_checkpoints/DeepJSCC/cifar10/CIFAR10_20_19.0_0.17_AWGN_02h08m39s_on_Jun_04_2024/epoch_999.pkl",
+      "bytes": 685007,
+      "sha256": "0fdc934edc819e4e7f904fec26bff3399244a2e8f68cb88245add7e407891532",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "models/DeepJSCC/cifar10/CIFAR10_20_19.0_0.17_AWGN_02h08m39s_on_Jun_04_2024/epoch_999.pkl",
+      "disposition": "already_identical",
+      "storage": "hardlink_immutable"
+    },
+    {
+      "path": "Models/trained_checkpoints/DeepJSCC/cifar10/CIFAR10_20_4.0_0.17_AWGN_02h08m39s_on_Jun_04_2024/epoch_999.pkl",
+      "bytes": 685007,
+      "sha256": "bdf49bda82f1a4f21f90248f22076738aeb4ed7be80d112f69d1233e77226b36",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "models/DeepJSCC/cifar10/CIFAR10_20_4.0_0.17_AWGN_02h08m39s_on_Jun_04_2024/epoch_999.pkl",
+      "disposition": "already_identical",
+      "storage": "hardlink_immutable"
+    },
+    {
+      "path": "Models/trained_checkpoints/DeepJSCC/cifar10/CIFAR10_20_7.0_0.17_AWGN_02h08m39s_on_Jun_04_2024/epoch_999.pkl",
+      "bytes": 685007,
+      "sha256": "6f675bcfe42e80284a09d675c6de539f908264a463405046276a7704eda015aa",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "models/DeepJSCC/cifar10/CIFAR10_20_7.0_0.17_AWGN_02h08m39s_on_Jun_04_2024/epoch_999.pkl",
+      "disposition": "already_identical",
+      "storage": "hardlink_immutable"
+    },
+    {
+      "path": "Models/trained_checkpoints/DeepJSCC/cifar10/CIFAR10_4_1.0_0.08_AWGN_22h13m53s_on_Jun_07_2024/epoch_999.pkl",
+      "bytes": 583503,
+      "sha256": "af1b6feb68fb2e47b4908d831a6ec7fd87c277f3e47f9a0554c6028676d02b1f",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "models/DeepJSCC/cifar10/CIFAR10_4_1.0_0.08_AWGN_22h13m53s_on_Jun_07_2024/epoch_999.pkl",
+      "disposition": "already_identical",
+      "storage": "hardlink_immutable"
+    },
+    {
+      "path": "Models/trained_checkpoints/DeepJSCC/cifar10/CIFAR10_4_13.0_0.08_AWGN_22h13m53s_on_Jun_07_2024/epoch_999.pkl",
+      "bytes": 583503,
+      "sha256": "8e16e48b1191f69c50ac445c13c4a65c0543b53e7b0825b0adbfd702f4a97eb5",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "models/DeepJSCC/cifar10/CIFAR10_4_13.0_0.08_AWGN_22h13m53s_on_Jun_07_2024/epoch_999.pkl",
+      "disposition": "already_identical",
+      "storage": "hardlink_immutable"
+    },
+    {
+      "path": "Models/trained_checkpoints/DeepJSCC/cifar10/CIFAR10_4_19.0_0.08_AWGN_22h13m53s_on_Jun_07_2024/epoch_999.pkl",
+      "bytes": 583503,
+      "sha256": "579acc4a9e9d355a689cad9147631b801a01b3e3a1b8817f8dffcb3b9d8f3ae4",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "models/DeepJSCC/cifar10/CIFAR10_4_19.0_0.08_AWGN_22h13m53s_on_Jun_07_2024/epoch_999.pkl",
+      "disposition": "already_identical",
+      "storage": "hardlink_immutable"
+    },
+    {
+      "path": "Models/trained_checkpoints/DeepJSCC/cifar10/CIFAR10_4_4.0_0.08_AWGN_22h13m53s_on_Jun_07_2024/epoch_999.pkl",
+      "bytes": 583503,
+      "sha256": "53765323a6c300e18d694becf8ae64e401acf665ba85bdf29904138c81a8de2a",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "models/DeepJSCC/cifar10/CIFAR10_4_4.0_0.08_AWGN_22h13m53s_on_Jun_07_2024/epoch_999.pkl",
+      "disposition": "already_identical",
+      "storage": "hardlink_immutable"
+    },
+    {
+      "path": "Models/trained_checkpoints/DeepJSCC/cifar10/CIFAR10_4_7.0_0.08_AWGN_22h13m53s_on_Jun_07_2024/epoch_999.pkl",
+      "bytes": 583503,
+      "sha256": "4ea31e854051777633dfdaa5a378498e5f66ad62beda4b97d4646d7e71915fa2",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "models/DeepJSCC/cifar10/CIFAR10_4_7.0_0.08_AWGN_22h13m53s_on_Jun_07_2024/epoch_999.pkl",
+      "disposition": "already_identical",
+      "storage": "hardlink_immutable"
+    },
+    {
+      "path": "Models/trained_checkpoints/DeepJSCC/cifar10/CIFAR10_8_1.0_0.17_AWGN_22h13m53s_on_Jun_07_2024/epoch_999.pkl",
+      "bytes": 634767,
+      "sha256": "995b6dc9b1ff58dd873748beaff2c4c2ee4277d6731b6f318a842a1234c79df8",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "models/DeepJSCC/cifar10/CIFAR10_8_1.0_0.17_AWGN_22h13m53s_on_Jun_07_2024/epoch_999.pkl",
+      "disposition": "already_identical",
+      "storage": "hardlink_immutable"
+    },
+    {
+      "path": "Models/trained_checkpoints/DeepJSCC/cifar10/CIFAR10_8_1.0_0.17_Rayleigh_17h38m47s_on_Jun_08_2024/epoch_999.pkl",
+      "bytes": 634767,
+      "sha256": "9fd94ce3c2cf1dab8c4ce8e9c371a84ed141e1db7e147fa947be7a1570437ae8",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "models/DeepJSCC/cifar10/CIFAR10_8_1.0_0.17_Rayleigh_17h38m47s_on_Jun_08_2024/epoch_999.pkl",
+      "disposition": "already_identical",
+      "storage": "hardlink_immutable"
+    },
+    {
+      "path": "Models/trained_checkpoints/DeepJSCC/cifar10/CIFAR10_8_13.0_0.17_AWGN_22h13m53s_on_Jun_07_2024/epoch_999.pkl",
+      "bytes": 634767,
+      "sha256": "107be2500d8c2802424007cc30b8fa7d256f29ac95efcfab8c7292cf95d76155",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "models/DeepJSCC/cifar10/CIFAR10_8_13.0_0.17_AWGN_22h13m53s_on_Jun_07_2024/epoch_999.pkl",
+      "disposition": "already_identical",
+      "storage": "hardlink_immutable"
+    },
+    {
+      "path": "Models/trained_checkpoints/DeepJSCC/cifar10/CIFAR10_8_13.0_0.17_Rayleigh_17h38m46s_on_Jun_08_2024/epoch_999.pkl",
+      "bytes": 634767,
+      "sha256": "a586f37aa49eaadda9a916ca3b1606e1d8e8b1dd2a19a92a56d229947a3a89c2",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "models/DeepJSCC/cifar10/CIFAR10_8_13.0_0.17_Rayleigh_17h38m46s_on_Jun_08_2024/epoch_999.pkl",
+      "disposition": "already_identical",
+      "storage": "hardlink_immutable"
+    },
+    {
+      "path": "Models/trained_checkpoints/DeepJSCC/cifar10/CIFAR10_8_19.0_0.17_AWGN_22h13m53s_on_Jun_07_2024/epoch_999.pkl",
+      "bytes": 634767,
+      "sha256": "08db0de3a9656dcdae79fce626cba8b92f3d1c03bc3477597607fd0444b7e4d0",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "models/DeepJSCC/cifar10/CIFAR10_8_19.0_0.17_AWGN_22h13m53s_on_Jun_07_2024/epoch_999.pkl",
+      "disposition": "already_identical",
+      "storage": "hardlink_immutable"
+    },
+    {
+      "path": "Models/trained_checkpoints/DeepJSCC/cifar10/CIFAR10_8_19.0_0.17_Rayleigh_17h38m47s_on_Jun_08_2024/epoch_999.pkl",
+      "bytes": 634767,
+      "sha256": "2ded7660eeb3f86ba204a104e8c53900dada1dd40c8ffffcba42bc724a1127d7",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "models/DeepJSCC/cifar10/CIFAR10_8_19.0_0.17_Rayleigh_17h38m47s_on_Jun_08_2024/epoch_999.pkl",
+      "disposition": "already_identical",
+      "storage": "hardlink_immutable"
+    },
+    {
+      "path": "Models/trained_checkpoints/DeepJSCC/cifar10/CIFAR10_8_4.0_0.17_AWGN_22h13m52s_on_Jun_07_2024/epoch_999.pkl",
+      "bytes": 634767,
+      "sha256": "cd2d557ce71513c589bc0afa7d82eaad3a38329533e7f65ef0068eee924afbe1",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "models/DeepJSCC/cifar10/CIFAR10_8_4.0_0.17_AWGN_22h13m52s_on_Jun_07_2024/epoch_999.pkl",
+      "disposition": "already_identical",
+      "storage": "hardlink_immutable"
+    },
+    {
+      "path": "Models/trained_checkpoints/DeepJSCC/cifar10/CIFAR10_8_4.0_0.17_Rayleigh_17h38m47s_on_Jun_08_2024/epoch_999.pkl",
+      "bytes": 634767,
+      "sha256": "3b643108dfc62fde0b558583388131187b1c962e90667e5b47331477d611ff59",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "models/DeepJSCC/cifar10/CIFAR10_8_4.0_0.17_Rayleigh_17h38m47s_on_Jun_08_2024/epoch_999.pkl",
+      "disposition": "already_identical",
+      "storage": "hardlink_immutable"
+    },
+    {
+      "path": "Models/trained_checkpoints/DeepJSCC/cifar10/CIFAR10_8_7.0_0.17_AWGN_22h13m53s_on_Jun_07_2024/epoch_999.pkl",
+      "bytes": 634767,
+      "sha256": "36165f1aca18a3a141c244d253138fe9e0b0d9ff35a8f477e2c075ff333addda",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "models/DeepJSCC/cifar10/CIFAR10_8_7.0_0.17_AWGN_22h13m53s_on_Jun_07_2024/epoch_999.pkl",
+      "disposition": "already_identical",
+      "storage": "hardlink_immutable"
+    },
+    {
+      "path": "Models/trained_checkpoints/DeepJSCC/cifar10/CIFAR10_8_7.0_0.17_Rayleigh_17h38m47s_on_Jun_08_2024/epoch_999.pkl",
+      "bytes": 634767,
+      "sha256": "16e54097721988ce17b3ae4d901a5726a82ad13b00dc75e49d0ec3834ebb6fd8",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "models/DeepJSCC/cifar10/CIFAR10_8_7.0_0.17_Rayleigh_17h38m47s_on_Jun_08_2024/epoch_999.pkl",
+      "disposition": "already_identical",
+      "storage": "hardlink_immutable"
+    },
+    {
+      "path": "Models/trained_checkpoints/DeepJSCC/configs/CIFAR10_10_1.0_0.08_AWGN_02h08m39s_on_Jun_04_2024.yaml",
+      "bytes": 813,
+      "sha256": "dc0be16bac4957d32f231ae5403da339e3745c7c5a25fedb2027d149db81de90",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "models/DeepJSCC/configs/CIFAR10_10_1.0_0.08_AWGN_02h08m39s_on_Jun_04_2024.yaml",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "Models/trained_checkpoints/DeepJSCC/configs/CIFAR10_10_13.0_0.08_AWGN_02h08m39s_on_Jun_04_2024.yaml",
+      "bytes": 815,
+      "sha256": "616decf36a91d3a2e6a952846b9e70a9db60eaa2a26c9942433e3c979b13ea1b",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "models/DeepJSCC/configs/CIFAR10_10_13.0_0.08_AWGN_02h08m39s_on_Jun_04_2024.yaml",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "Models/trained_checkpoints/DeepJSCC/configs/CIFAR10_10_19.0_0.08_AWGN_02h08m39s_on_Jun_04_2024.yaml",
+      "bytes": 815,
+      "sha256": "afbec31007e4b849eb452096a008272a1ead49e6f3e33366cc1479ab6ba92e14",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "models/DeepJSCC/configs/CIFAR10_10_19.0_0.08_AWGN_02h08m39s_on_Jun_04_2024.yaml",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "Models/trained_checkpoints/DeepJSCC/configs/CIFAR10_10_4.0_0.08_AWGN_02h08m39s_on_Jun_04_2024.yaml",
+      "bytes": 813,
+      "sha256": "f99d2b8cbfcbdefc61eab3455fae9fbb259c873842c51ea7d227be40d2f31e02",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "models/DeepJSCC/configs/CIFAR10_10_4.0_0.08_AWGN_02h08m39s_on_Jun_04_2024.yaml",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "Models/trained_checkpoints/DeepJSCC/configs/CIFAR10_10_7.0_0.08_AWGN_02h08m39s_on_Jun_04_2024.yaml",
+      "bytes": 813,
+      "sha256": "f9833a90a2a7918ca33a3b5f01250caac84d7e06d3b60cff5201bebe342f2ccd",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "models/DeepJSCC/configs/CIFAR10_10_7.0_0.08_AWGN_02h08m39s_on_Jun_04_2024.yaml",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "Models/trained_checkpoints/DeepJSCC/configs/CIFAR10_16_1.0_0.33_Rayleigh_17h38m47s_on_Jun_08_2024.yaml",
+      "bytes": 815,
+      "sha256": "2974d60599faced7db13bd996256d80c57511f9441378f3801fce5a923eca00c",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "models/DeepJSCC/configs/CIFAR10_16_1.0_0.33_Rayleigh_17h38m47s_on_Jun_08_2024.yaml",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "Models/trained_checkpoints/DeepJSCC/configs/CIFAR10_16_13.0_0.33_Rayleigh_17h38m47s_on_Jun_08_2024.yaml",
+      "bytes": 817,
+      "sha256": "26ea7faab231cc4d868d3a426179ed09b0215d90ea4ef9034a40c6465d412bad",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "models/DeepJSCC/configs/CIFAR10_16_13.0_0.33_Rayleigh_17h38m47s_on_Jun_08_2024.yaml",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "Models/trained_checkpoints/DeepJSCC/configs/CIFAR10_16_19.0_0.33_Rayleigh_17h38m47s_on_Jun_08_2024.yaml",
+      "bytes": 817,
+      "sha256": "fcc9bde31b3458d84e75ca3e975d64f6f98eee28a9d284c6ec27806dd353dbe0",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "models/DeepJSCC/configs/CIFAR10_16_19.0_0.33_Rayleigh_17h38m47s_on_Jun_08_2024.yaml",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "Models/trained_checkpoints/DeepJSCC/configs/CIFAR10_16_4.0_0.33_Rayleigh_17h38m47s_on_Jun_08_2024.yaml",
+      "bytes": 815,
+      "sha256": "e4704a9b86b0fe3ea837a1e44af0be33e10180fa5a6b98907af43846f3f7354e",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "models/DeepJSCC/configs/CIFAR10_16_4.0_0.33_Rayleigh_17h38m47s_on_Jun_08_2024.yaml",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "Models/trained_checkpoints/DeepJSCC/configs/CIFAR10_16_7.0_0.33_Rayleigh_17h38m47s_on_Jun_08_2024.yaml",
+      "bytes": 815,
+      "sha256": "163a14e7283f3d8fe6fe99be38112975fb75cf24a65dc0b347d71dc39099b15e",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "models/DeepJSCC/configs/CIFAR10_16_7.0_0.33_Rayleigh_17h38m47s_on_Jun_08_2024.yaml",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "Models/trained_checkpoints/DeepJSCC/configs/CIFAR10_20_1.0_0.17_AWGN_02h08m39s_on_Jun_04_2024.yaml",
+      "bytes": 813,
+      "sha256": "df2ddc6acd0de4c1688bd6a75a59575d17773e3bd5c3645a0047228d4c5000d4",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "models/DeepJSCC/configs/CIFAR10_20_1.0_0.17_AWGN_02h08m39s_on_Jun_04_2024.yaml",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "Models/trained_checkpoints/DeepJSCC/configs/CIFAR10_20_13.0_0.17_AWGN_02h08m39s_on_Jun_04_2024.yaml",
+      "bytes": 815,
+      "sha256": "c1912d396b2106aff99c3b1b66a2003a165dad6c5572e2b262abba5fff8fc8be",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "models/DeepJSCC/configs/CIFAR10_20_13.0_0.17_AWGN_02h08m39s_on_Jun_04_2024.yaml",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "Models/trained_checkpoints/DeepJSCC/configs/CIFAR10_20_19.0_0.17_AWGN_02h08m39s_on_Jun_04_2024.yaml",
+      "bytes": 815,
+      "sha256": "ad6e794188bdc33059bf084f05b67c82fd90497bc5475f38bf001ce811f0437d",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "models/DeepJSCC/configs/CIFAR10_20_19.0_0.17_AWGN_02h08m39s_on_Jun_04_2024.yaml",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "Models/trained_checkpoints/DeepJSCC/configs/CIFAR10_20_4.0_0.17_AWGN_02h08m39s_on_Jun_04_2024.yaml",
+      "bytes": 813,
+      "sha256": "f052aa494c33c374052a16d7fcf755fc6d5b7ed1f6b3d29bf115a5e6a470bf67",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "models/DeepJSCC/configs/CIFAR10_20_4.0_0.17_AWGN_02h08m39s_on_Jun_04_2024.yaml",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "Models/trained_checkpoints/DeepJSCC/configs/CIFAR10_20_7.0_0.17_AWGN_02h08m39s_on_Jun_04_2024.yaml",
+      "bytes": 813,
+      "sha256": "0ac138a3c27da98386d96728ad7ab0b2ed7b58248e402be43da046c078b5fa3a",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "models/DeepJSCC/configs/CIFAR10_20_7.0_0.17_AWGN_02h08m39s_on_Jun_04_2024.yaml",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "Models/trained_checkpoints/DeepJSCC/configs/CIFAR10_4_1.0_0.08_AWGN_22h13m53s_on_Jun_07_2024.yaml",
+      "bytes": 812,
+      "sha256": "d9f33a5c640e3ee169a1c18a21a00c040ddd7b00ec60c73173ec9ee539e5b2cd",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "models/DeepJSCC/configs/CIFAR10_4_1.0_0.08_AWGN_22h13m53s_on_Jun_07_2024.yaml",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "Models/trained_checkpoints/DeepJSCC/configs/CIFAR10_4_13.0_0.08_AWGN_22h13m53s_on_Jun_07_2024.yaml",
+      "bytes": 814,
+      "sha256": "297415798b0596eccae979a36d9214700c9ca6775e7d3ed467bc95359029ddd2",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "models/DeepJSCC/configs/CIFAR10_4_13.0_0.08_AWGN_22h13m53s_on_Jun_07_2024.yaml",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "Models/trained_checkpoints/DeepJSCC/configs/CIFAR10_4_19.0_0.08_AWGN_22h13m53s_on_Jun_07_2024.yaml",
+      "bytes": 814,
+      "sha256": "9d34cb371262f39a3409b9a80addc2318176ed6d1c5a168900ac61b2b1cdc960",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "models/DeepJSCC/configs/CIFAR10_4_19.0_0.08_AWGN_22h13m53s_on_Jun_07_2024.yaml",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "Models/trained_checkpoints/DeepJSCC/configs/CIFAR10_4_4.0_0.08_AWGN_22h13m53s_on_Jun_07_2024.yaml",
+      "bytes": 812,
+      "sha256": "9648dbcb7a5084a0423d60fd5ebe2cf003e1207fdb67f6559522a5043428e649",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "models/DeepJSCC/configs/CIFAR10_4_4.0_0.08_AWGN_22h13m53s_on_Jun_07_2024.yaml",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "Models/trained_checkpoints/DeepJSCC/configs/CIFAR10_4_7.0_0.08_AWGN_22h13m53s_on_Jun_07_2024.yaml",
+      "bytes": 812,
+      "sha256": "26556aa07542c626acb13f5936f1134df4e3e1585b8305259a48895d7ee46085",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "models/DeepJSCC/configs/CIFAR10_4_7.0_0.08_AWGN_22h13m53s_on_Jun_07_2024.yaml",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "Models/trained_checkpoints/DeepJSCC/configs/CIFAR10_8_1.0_0.17_AWGN_22h13m53s_on_Jun_07_2024.yaml",
+      "bytes": 812,
+      "sha256": "c63e0d2cab3560b9b268274de4afd2d9840185a8acdf80f9d35c1bdb56dbc97d",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "models/DeepJSCC/configs/CIFAR10_8_1.0_0.17_AWGN_22h13m53s_on_Jun_07_2024.yaml",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "Models/trained_checkpoints/DeepJSCC/configs/CIFAR10_8_1.0_0.17_Rayleigh_17h38m47s_on_Jun_08_2024.yaml",
+      "bytes": 816,
+      "sha256": "51a8f34a572468cef1d1269f84c800357cf115a007d7ae35a7e1db88503cb427",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "models/DeepJSCC/configs/CIFAR10_8_1.0_0.17_Rayleigh_17h38m47s_on_Jun_08_2024.yaml",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "Models/trained_checkpoints/DeepJSCC/configs/CIFAR10_8_13.0_0.17_AWGN_22h13m53s_on_Jun_07_2024.yaml",
+      "bytes": 814,
+      "sha256": "4e23b7259f4c282947e6fd3dafa67a198124a28f690cac44dbb9f4a5714af1f9",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "models/DeepJSCC/configs/CIFAR10_8_13.0_0.17_AWGN_22h13m53s_on_Jun_07_2024.yaml",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "Models/trained_checkpoints/DeepJSCC/configs/CIFAR10_8_13.0_0.17_Rayleigh_17h38m46s_on_Jun_08_2024.yaml",
+      "bytes": 818,
+      "sha256": "7c563c25c6dcc92f2a31396c59d6dca8026fa693a00e6836e76c3c0288b6776e",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "models/DeepJSCC/configs/CIFAR10_8_13.0_0.17_Rayleigh_17h38m46s_on_Jun_08_2024.yaml",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "Models/trained_checkpoints/DeepJSCC/configs/CIFAR10_8_19.0_0.17_AWGN_22h13m53s_on_Jun_07_2024.yaml",
+      "bytes": 814,
+      "sha256": "4aa3848a40cd9c381d6a838a168ccc842cc0ec73cea85d5342e1ebbbc5f915bf",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "models/DeepJSCC/configs/CIFAR10_8_19.0_0.17_AWGN_22h13m53s_on_Jun_07_2024.yaml",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "Models/trained_checkpoints/DeepJSCC/configs/CIFAR10_8_19.0_0.17_Rayleigh_17h38m47s_on_Jun_08_2024.yaml",
+      "bytes": 818,
+      "sha256": "4fb43f51614b05a315888291fcaf3971b5b23c8a934c9f434c6a3c8606c51773",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "models/DeepJSCC/configs/CIFAR10_8_19.0_0.17_Rayleigh_17h38m47s_on_Jun_08_2024.yaml",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "Models/trained_checkpoints/DeepJSCC/configs/CIFAR10_8_4.0_0.17_AWGN_22h13m52s_on_Jun_07_2024.yaml",
+      "bytes": 812,
+      "sha256": "5e87b06b81fe4a206fd8f52d73f72a3914e512011ac0a44c61e521ab077d38f8",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "models/DeepJSCC/configs/CIFAR10_8_4.0_0.17_AWGN_22h13m52s_on_Jun_07_2024.yaml",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "Models/trained_checkpoints/DeepJSCC/configs/CIFAR10_8_4.0_0.17_Rayleigh_17h38m47s_on_Jun_08_2024.yaml",
+      "bytes": 816,
+      "sha256": "a630bca74f8492a1f0301f90a0cef5e7b24e7740b7c6b715b95603fb06b266fd",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "models/DeepJSCC/configs/CIFAR10_8_4.0_0.17_Rayleigh_17h38m47s_on_Jun_08_2024.yaml",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "Models/trained_checkpoints/DeepJSCC/configs/CIFAR10_8_7.0_0.17_AWGN_22h13m53s_on_Jun_07_2024.yaml",
+      "bytes": 812,
+      "sha256": "a9f1e7e37a1e0a83960272309baf86e15cd27760991f7e9bf37347193f9001bd",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "models/DeepJSCC/configs/CIFAR10_8_7.0_0.17_AWGN_22h13m53s_on_Jun_07_2024.yaml",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "Models/trained_checkpoints/DeepJSCC/configs/CIFAR10_8_7.0_0.17_Rayleigh_17h38m47s_on_Jun_08_2024.yaml",
+      "bytes": 816,
+      "sha256": "3ae0e84c9ad321e1b3692fb8b8863197b5409e33da98cb54827c6f73e717a533",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "models/DeepJSCC/configs/CIFAR10_8_7.0_0.17_Rayleigh_17h38m47s_on_Jun_08_2024.yaml",
+      "disposition": "already_identical",
+      "storage": "preexisting"
+    },
+    {
+      "path": "Models/trained_checkpoints/NTSCC/calibration/calibration_500_cifar_plus_23_kodak.pt",
+      "bytes": 69509225,
+      "sha256": "320b7d15be957686edf9938624d74db91a670717db49b01dc9919000d2399b57",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "models/NTSCC/calibration/calibration_500_cifar_plus_23_kodak.pt",
+      "disposition": "already_identical",
+      "storage": "hardlink_immutable"
+    },
+    {
+      "path": "Models/trained_checkpoints/NTSCC/calibration/encdec_calibration_provenance.json",
+      "bytes": 5899,
+      "sha256": "fc0e630e9e0bd68a3306efbc106e6a226bb8425dd9e889ac6f09d5004366e4a4",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "models/NTSCC/calibration/calibration_provenance.json",
+      "disposition": "copied",
+      "storage": "independent_copy"
+    },
+    {
+      "path": "Models/trained_checkpoints/ADJSCC/adjscc_r16.pt",
+      "bytes": 44546933,
+      "sha256": "ae54972e4a1499b2cb4202ffe39e69e3fc2301039b948c05b60f32110ddc02c8",
+      "source_group": "scheduler_encdec",
+      "source_relative_path": "models/ADJSCC/adjscc_r16.pt",
+      "disposition": "hydrated_lfs",
+      "storage": "hardlink_immutable"
+    },
+    {
+      "path": "Models/trained_checkpoints/DeepJSCC/production/imagenet_10_0.33_200.00_32_19.pth",
+      "bytes": 679231,
+      "sha256": "00b33bac630555d9a0d72a76d0fea9103cef9a38df0d5547be53c5320a451d44",
+      "source_group": "supplemental_production_checkpoint",
+      "source_relative_path": "DeepJSCC/production/imagenet_10_0.33_200.00_32_19.pth",
+      "disposition": "hydrated_lfs",
+      "storage": "independent_copy"
+    },
+    {
+      "path": "Models/trained_checkpoints/NTSCC/production/ntscc_hyperprior_quality_1_psnr.pth",
+      "bytes": 131622445,
+      "sha256": "7a8d1990dbd678ea5d3daa02c3aeaaf4459b347a96d6aa81a5c02eae6bfc7323",
+      "source_group": "supplemental_production_checkpoint",
+      "source_relative_path": "NTSCC/production/ntscc_hyperprior_quality_1_psnr.pth",
+      "disposition": "hydrated_lfs",
+      "storage": "independent_copy"
+    }
+  ]
+}

@@ -9,6 +9,8 @@ __pycache__/
 venv/
 env/
 .cpu_dependencies/
+.runtime_deps/
+*.importing
 
 # Credentials and machine-specific manifests
 kaggle.json
@@ -69,3 +71,18 @@ Models/SwinJSCC/official_working_copy/
 # Unrelated scheduler project archive and nested source checkout.
 Results/SemanticSchedulerEnd2End/
 Results/SQGAN/recovery_v15/SQ-GAN/
+# Generated native upstream sources and local execution outputs
+.upstream/
+*.egg-info/
+Results/experiments/
+Results/metrics.csv
+Results/metrics.csv.lock
+
+# Author checkpoints are downloaded from their provenance ledger, not Git blobs
+Models/pretrained_downloads/
+Results/implementation_checks/
+Kaggle/assets/
+Results/kaggle_pilot/
+Results/author_evaluation_download/
+Kaggle/*/kernel.py
+Kaggle/pilot/notebook.ipynb

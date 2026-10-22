@@ -1,0 +1,20 @@
+{
+  "scope": "author pretrained checkpoint evaluation; training not reproduced",
+  "source_commit": "9a53ef0a3df2f41ecae6cd531968f70a13d53088",
+  "checkpoint_sha256": "b7d3a1df66512421b057eabf4f7faa937a3dc22d6fe83632d3f0bca0f0c3b897",
+  "torch": "2.11.0+cu128",
+  "torchvision": "0.26.0+cu128",
+  "device": "Tesla T4",
+  "dataset": "official CIFAR-10 test, 10000 images",
+  "batch_size": 32,
+  "shuffle": true,
+  "precision": "float32",
+  "data_parallel": false,
+  "snr_db": 12,
+  "channel_uses": 128,
+  "metric_note": "Native AST PSNR averages channel PSNR; native SSIM uses data_range=1 on [-1,1]. Standard RGB PSNR reported separately.",
+  "remaining_differences": [
+    "modern Torch/torchvision/skimage environment; not author package versions",
+    "constellation plotting omitted; it uses Python random but not Torch forward RNG"
+  ]
+}

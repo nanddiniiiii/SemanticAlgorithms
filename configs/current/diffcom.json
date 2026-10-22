@@ -1,0 +1,14 @@
+{
+  "algorithm": "diffcom",
+  "reproduction_status": "adapted",
+  "test_root": "DATASET_NATIVE_RGB_256X256_TEST_ROOT",
+  "device": "cuda:0",
+  "seed": 22,
+  "snr_db": 10,
+  "batch_size": 1,
+  "model_options": {
+    "conditioning_method": "hifi_diffcom",
+    "sampling_steps": 1000,
+    "adaptive_start": true
+  }
+}

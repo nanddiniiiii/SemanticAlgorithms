@@ -1,8 +1,40 @@
-# SemanticAlgorithms
+# Semantic Lossless
 
 Research code for reproducing and comparing semantic image communication models.
 
-## Status
+## Active implementation: 22 October 2026
+
+New work uses `src/semantic_lossless`, `configs/current`, and
+`Notebooks/Current`. Start with `python semcom.py list` and
+[implementation status](Docs/IMPLEMENTATION_STATUS.md).
+The project name does not imply lossless neural reconstruction.
+
+JCM pretrained evaluation passed on all 10,000 CIFAR-10 test images: 23.4097 dB
+native PSNR and 87.64% accuracy at 12 dB, 16-QAM, 128 channel uses. DiffCom's
+complete T4 posterior pilot passed on one 256x256 crop. These are different
+scopes: pretrained quality evaluation versus reconstruction runtime validation.
+Receipts are in `Docs/validation/`; see the JCM and SQ-GAN reproduction audits.
+
+Retained Swin SA+RA, original NTSCC and DeepJSCC are distinct from the archived
+variants below. Generic training examples are adapted experiments, not certified
+paper recipes. The two main launchers select no long training by default.
+Native datasets, losses, schedules and dimensions take priority over a uniform
+150-epoch request. See [reproduction requirements](Docs/REPRODUCTION_PROTOCOL.md).
+
+## Current working copy and retained EncDec models
+
+New project work uses this repository. The 21 October EncDec transfer retained
+DeepJSCC, original NTSCC and adaptive SwinJSCC, including their required sources
+and checkpoint assets. All 197 imported file identities were verified; all three
+models passed strict checkpoint loading and a synthetic CPU reconstruction test.
+These checks do not establish benchmark quality or Kaggle GPU readiness.
+
+Start with [`Docs/RETAINED_ENCDEC.md`](Docs/RETAINED_ENCDEC.md) for assets and
+validation limits and [`Docs/MODEL_SELECTION.md`](Docs/MODEL_SELECTION.md) for
+the retain/pretrained/implementation priorities. Historical status below remains
+applicable to its original experiments, not automatically to the new adapters.
+
+## Historical archive status
 
 This repository is an implementation and evaluation work in progress. The
 archive includes historical notebooks, tables, plots, logs, and checkpoints
@@ -39,7 +71,7 @@ model result without checking its provenance, full-image evaluation, actual
 channel-use ledger, training coverage, and checkpoint lineage. No new GPU run
 or final six-model comparison is claimed by this release.
 
-## Repository layout
+## Historical archive layout
 
 - `SharedCode/reproduction/` — pinned-source manifest, common experiment
   contract, runtime adapters, channel/accounting helpers, bounded-run engine,
@@ -58,7 +90,7 @@ unlicensed source snapshots. Raw datasets, credentials, machine-local manifests,
 virtual environments, caches, and incomplete partial downloads are excluded.
 Check the license and provenance before redistributing any model weights.
 
-## Reproduction contract
+## Historical proposed comparison contract
 
 The intended matched study uses 800 distinct DIV2K training images per complete
 epoch, a separate 100-image validation split, and Kodak24 for final evaluation.
@@ -77,3 +109,11 @@ See [`Docs/MODEL_RUNTIME.md`](Docs/MODEL_RUNTIME.md),
 No umbrella license is provided yet. Treat the project's original adaptation
 code as all-rights-reserved until a license is added. Each upstream repository
 retains its own license; check it before use or redistribution.
+
+## Current modular runtime
+
+New work uses `src/semantic_lossless`, `configs/current`, and the two notebooks in
+`Notebooks/Current`. Start with `python semcom.py list`. See
+[implementation status](Docs/IMPLEMENTATION_STATUS.md) for verified capabilities,
+commands, data protocols and remaining integrations, and
+[download provenance](Docs/PRETRAINED_DOWNLOADS.md) for pretrained assets.

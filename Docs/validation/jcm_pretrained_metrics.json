@@ -1,0 +1,11 @@
+{
+  "author_psnr_db": 23.409674152790007,
+  "author_ssim": 0.6781130446928225,
+  "author_mse_01": 0.005199987430125475,
+  "standard_rgb_psnr_db": 23.363642150878906,
+  "accuracy": 0.8764,
+  "images": 10000,
+  "elapsed_seconds": 16.134823121000068,
+  "status": "completed",
+  "scope": "pretrained evaluation, not trained reproduction"
+}

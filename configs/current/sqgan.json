@@ -1,0 +1,12 @@
+{
+  "algorithm": "sqgan",
+  "dataset": "cityscapes",
+  "data_root": "CITYSCAPES_ROOT",
+  "device": "cuda:0",
+  "batch_size": 1,
+  "workers": 2,
+  "model_options": {
+    "image_fraction": 0.25,
+    "semantic_fraction": 0.25
+  }
+}

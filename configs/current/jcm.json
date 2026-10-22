@@ -1,0 +1,19 @@
+{
+  "algorithm": "jcm",
+  "dataset": "cifar10",
+  "data_root": "DATASET_CIFAR10_ROOT",
+  "crop_size": 32,
+  "device": "cuda:0",
+  "multi_gpu": true,
+  "batch_size": 32,
+  "workers": 2,
+  "amp": false,
+  "epochs": 150,
+  "max_seconds": 14400,
+  "snr_db": 12,
+  "model_options": {
+    "modulation": "16qam",
+    "tradeoff_lambda": 200
+  },
+  "reproduction_status": "adapted"
+}

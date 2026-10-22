@@ -1,0 +1,24 @@
+{
+  "algorithm": "adjscc",
+  "data_root": "DATASET_TRAIN_ROOT",
+  "val_root": "DATASET_VAL_ROOT",
+  "test_root": "DATASET_TEST_ROOT",
+  "device": "cuda:0",
+  "crop_size": 256,
+  "batch_size": 2,
+  "accumulation_steps": 2,
+  "multi_gpu": true,
+  "workers": 2,
+  "amp": true,
+  "epochs": 150,
+  "max_seconds": 14400,
+  "model_options": {
+    "latent_channels": 2,
+    "from_scratch": true,
+    "train_snr_range": [
+      0,
+      14
+    ]
+  },
+  "reproduction_status": "adapted"
+}

@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "semantic-lossless"
+version = "0.1.0"
+description = "Small, evidence-tracked semantic image communication experiments"
+requires-python = ">=3.10"
+dependencies = ["numpy", "Pillow"]
+
+[project.optional-dependencies]
+torch = ["torch>=2.10,<2.11", "torchvision>=0.25,<0.26", "timm==0.4.12"]
+sqgan = ["PyYAML==6.0.3", "einops==0.8.2"]
+metrics = ["pytorch-msssim", "lpips"]
+test = ["pytest"]
+
+[project.scripts]
+semcom = "semantic_lossless.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests/current"]
+pythonpath = ["src", "."]
