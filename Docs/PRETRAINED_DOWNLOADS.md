@@ -73,6 +73,21 @@ One native CLIC2021 AWGN pair is downloaded for 256x256, SNR 10 dB, PSNR loss, `
 
 Safe archive inspection (without unpickling) shows these are full serialized module objects referencing `models.network.Mamba_encoder` and `models.network.Mamba_decoder`, not plain state dictionaries. The internal archive directory says `rsl512_epoch0_i99999`, which conflicts with the external filename tag `rsl256`; confirm the intended resolution against the pinned source/config before loading. No model load or inference was performed.
 
+#### CSI-ReST (adaptive) Rayleigh checkpoint pair
+
+At the author's Drive folder there is no AWGN `adpssm` pair. The available CSI-ReST pair selected for preservation is C=32, Rayleigh, 256x256, PSNR loss, and SNR values `[1, 3, 5, 7, 9, 11, 13, 15, 17, 20]` dB. It is a separate channel-specific model from the AWGN `adpno` ablation above; do not report it as AWGN-trained.
+
+| Local path | Native artifact | Bytes | SHA-256 |
+|---|---|---:|---|
+| `Models/pretrained_downloads/MambaJSCC/encoderOUTCHANS32_extentMLP_lossPSNR_SCANnum2_SNR[1, 3, 5, 7, 9, 11, 13, 15, 17, 20]_adpssm_typerayleigh_depth4_embed[128, 192, 256, 320]_nums[2, 2, 6, 2]_rsl256.pt` | encoder (same filename as Drive) | 29,313,858 | `6282cdea3f2e89813d00c25ccde7babbef5d741e3a2a393dabfdea2cfe7d68b9` |
+| `Models/pretrained_downloads/MambaJSCC/decoderOUTCHANS32_extentMLP_lossPSNR_SCANnum2_SNR[1, 3, 5, 7, 9, 11, 13, 15, 17, 20]_adpssm_typerayleigh_depth4_embed[128, 192, 256, 320]_nums[2, 2, 6, 2]_rsl256.pt` | decoder (same filename as Drive) | 29,300,842 | `bb394b67804a9de410e21202687ff7579429f5e798c01b057903c894e14e0423` |
+
+Safe archive metadata confirms these are full serialized `models.network.Mamba_encoder` and `models.network.Mamba_decoder` objects. No unpickling, model loading, or inference was performed.
+
+#### Drive availability audit
+
+The public author Drive folder contains 16 files (eight encoder/decoder pairs). All listed AWGN/CLIC2021 PSNR pairs use `adpno` (no CSI adaptation), at OUTCHANS 16, 32, 48, 80, and 115; there is no listed AWGN `adpssm` CSI-ReST pair at C=16 or any other channel count. The `adpssm` pairs are only C=32 Rayleigh at resolution 256 and SNR values `[1, 3, 5, 7, 9, 11, 13, 15, 17, 20]`, with separate LPIPS, MSSSIM, and PSNR variants. Only the PSNR pair is downloaded.
+
 ### DiffJSCC OpenImage CBR 1/384
 
 Source: [Hugging Face model repository](https://huggingface.co/Mingyuyang/DiffJSCC-OpenImage-CBR-1-384), pinned revision `58eb8a69fe83318e0a5aa0fae2b6c2ff2c518853`.
@@ -93,7 +108,7 @@ The config identifies a latent-diffusion/ControlNet reconstruction pipeline and 
 |---|---|---|
 | DiffCom ADJSCC C=4 and C=6 | [author-linked Drive folder](https://drive.google.com/drive/folders/1N0EzzxCv1wh6JeFr0g8vkmB0Qj23ozZJ?usp=sharing) | Not requested; C=2 is complete above. |
 | MDJCM-A checkpoint | [author README](https://github.com/zhang-guangyi/Semantic-MDJCM#pretrained-models), [Baidu share](https://pan.baidu.com/s/1-xiEIH6eG2xnsOPDvlbo3Q) | Not downloaded. The public Baidu endpoint forcibly closed the unauthenticated probe; no account credential was supplied or attempted. |
-| MambaJSCC other variants | [author's Drive folder](https://drive.google.com/drive/folders/1nrX6FiULN04PomW2eVaWwNDmM3Hhka0Y?usp=sharing) | CLIC2021 AWGN SNR 10 dB C=16 pair is downloaded above; other C values and adaptive/Rayleigh variants were not downloaded. |
+| MambaJSCC other variants | [author's Drive folder](https://drive.google.com/drive/folders/1nrX6FiULN04PomW2eVaWwNDmM3Hhka0Y?usp=sharing) | AWGN SNR 10 dB C=16 no-CSI pair and Rayleigh CSI-ReST C=32 PSNR pair are downloaded above. No AWGN CSI-ReST pair is listed in the author folder; other AWGN C values and Rayleigh LPIPS/MSSSIM pairs were not downloaded. |
 | DiffJSCC OpenImage CBR 1/384 | [Hugging Face model](https://huggingface.co/Mingyuyang/DiffJSCC-OpenImage-CBR-1-384) | Complete above; exact size and LFS SHA-256 verified. HF pickle scan carries a caution noted above. |
 
 No other files in this ledger should be described as locally downloaded or checkpoint-validated. Hashes were computed from the completed local files using SHA-256. No upload, Git push, training, or FLOPs measurement was performed by the downloader.

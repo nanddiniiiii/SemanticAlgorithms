@@ -104,7 +104,12 @@ def main(argv=None):
                     def forward(self, image):
                         return self.core(image, self.semantic)
                 profiled = Paired(codec, batch['semantic'].to(config.device))
-            result = profile_forward(profiled, batch['image'].to(config.device))
+            gradient_sampling = getattr(codec,'requires_gradient_inference',False)
+            result = profile_forward(profiled, batch['image'].to(config.device),
+                warmup=0 if gradient_sampling else 3, repeats=1 if gradient_sampling else 10,
+                count_flops=not gradient_sampling)
+            if gradient_sampling:
+                result['flops_limitation'] = 'Posterior sampling includes input-gradient computation; complete inference FLOPs profiling is pending. No denoiser-only count is substituted.'
             write_json(run / 'profile.json', result)
             events.emit('profile', 'completed', metrics={k: v for k, v in result.items() if isinstance(v, (int, float))}, coverage=result['flops_coverage'])
         else:

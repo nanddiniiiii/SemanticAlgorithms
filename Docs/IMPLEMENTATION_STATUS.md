@@ -21,10 +21,10 @@ class logits, objective and all parameter gradients under identical RNG state.
 The native pretrained evaluation completed on account A on all 10,000 CIFAR-10
 test images: native PSNR 23.409674 dB and classification accuracy 0.8764.
 Account B was reauthenticated in WSL Firefox; its private-dataset query and asset
-uploads succeeded. Its GPU requests still receive no GPU hardware, including
-with explicit accelerator selection and a working CUDA image. Browser-side
-accelerator eligibility/settings verification is pending; the cause is not yet
-confirmed. SQ-GAN evaluation has not produced quality results.
+uploads succeeded. Earlier GPU requests received no GPU hardware, including
+with explicit accelerator selection and a working CUDA image. Submission retry
+version 6 then allocated two real Tesla T4s and SQ-GAN proceeded with CUDA.
+The provisioning failure's cause is unconfirmed. Quality results are pending.
 
 Shared-codebook construction and codec have synthetic CPU checks, not native
 dataset training results. The DCT complementary hybrid is our proposed reference,

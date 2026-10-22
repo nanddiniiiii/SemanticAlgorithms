@@ -30,9 +30,11 @@ def quality(original, reconstruction, use_lpips=False):
     return result
 
 
-def profile_forward(codec, image, warmup=3, repeats=10):
+def profile_forward(codec, image, warmup=3, repeats=10, count_flops=True):
     import time
     import torch
+    if warmup < 0 or repeats < 1:
+        raise ValueError('Profiling needs nonnegative warmup and at least one repeat')
     def synchronize():
         if image.is_cuda:
             torch.cuda.synchronize(image.device)
@@ -50,20 +52,22 @@ def profile_forward(codec, image, warmup=3, repeats=10):
             codec(image)
             synchronize()
             elapsed.append(time.perf_counter() - start)
-        try:
-            with torch.profiler.profile(activities=[torch.profiler.ProfilerActivity.CPU], with_flops=True) as profiler:
-                codec(image)
-                synchronize()
-            operations = profiler.key_averages()
-            flops = sum(event.flops or 0 for event in operations)
-            counted = [event.key for event in operations if event.flops]
-            coverage = "partial_supported_operators"
-            error = None
-        except Exception as exc:
-            flops, counted, coverage, error = None, [], "unavailable", str(exc)
+        flops, counted, coverage, error = None, [], 'not_requested', None
+        if count_flops:
+            try:
+                with torch.profiler.profile(activities=[torch.profiler.ProfilerActivity.CPU], with_flops=True) as profiler:
+                    codec(image)
+                    synchronize()
+                operations = profiler.key_averages()
+                flops = sum(event.flops or 0 for event in operations)
+                counted = [event.key for event in operations if event.flops]
+                coverage = "partial_supported_operators"
+            except Exception as exc:
+                flops, counted, coverage, error = None, [], "unavailable", str(exc)
     elapsed.sort()
     return {"latency_p50_seconds": elapsed[len(elapsed)//2],
-            "latency_p95_seconds": elapsed[min(len(elapsed)-1, math.ceil(0.95*len(elapsed))-1)],
+            "latency_p95_seconds": elapsed[min(len(elapsed)-1, math.ceil(0.95*len(elapsed))-1)] if repeats >= 10 else None,
+            "latency_note": 'single observed execution; not a latency distribution' if repeats == 1 else 'empirical repeated executions; p95 omitted below ten observations',
             "parameters": sum(p.numel() for p in codec.parameters()), "forward_flops": flops,
             "flops_scope": "complete codec forward including native channel/classifier where present",
             "flops_coverage": coverage, "counted_operator_types": counted,
