@@ -101,10 +101,12 @@ def build_codec(config):
                                                   upstream_root=root / "Models/SwinJSCC/local_source")
                 self.core = self.adapter.build_training_module()
                 self.metadata = {"manifest": json.loads((directory / "stage1_manifest.json").read_text()), "strict_load": True}
+                self.metadata.update(comparison_eligible=False,
+                    comparison_limitation='Retained AWGN normalizes over dense inactive zeros; nominal SNR is not active-symbol Es/N0 at masked rates. Native-author comparison pending.')
                 self.rate_scope = "active complex latent symbols; assumes receiver knows rate/mask protocol"
-            self.trainable = self.name == "swinjscc"
+            self.trainable = False
             if config.checkpoint:
-                if not self.trainable:
+                if self.name != 'swinjscc':
                     raise ValueError("Custom retained checkpoints are currently supported only for SwinJSCC")
                 checkpoint = resolve_path(config.checkpoint)
                 state = torch.load(checkpoint, map_location="cpu", weights_only=True)

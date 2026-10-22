@@ -1,0 +1,4 @@
+{
+  "status": "passed",
+  "scope": "one real image: native RGB validation transform and one-hot labels; official raw-ID conversion"
+}

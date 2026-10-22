@@ -24,7 +24,7 @@ Account B was reauthenticated in WSL Firefox; its private-dataset query and asse
 uploads succeeded. Earlier GPU requests received no GPU hardware, including
 with explicit accelerator selection and a working CUDA image. Submission retry
 version 6 then allocated two real Tesla T4s and SQ-GAN proceeded with CUDA.
-The provisioning failure's cause is unconfirmed. Quality results are pending.
+The provisioning failure's cause is unconfirmed. SQ-GAN version 8 completed all 500 validation images; see the update below.
 
 Shared-codebook construction and codec have synthetic CPU checks, not native
 dataset training results. The DCT complementary hybrid is our proposed reference,
@@ -43,6 +43,24 @@ there are no optimizer steps. The catalog now enables this inference backend.
 Swin resolution-dependent checkpoint reload passed with exactly equal synthetic
 128x128 reconstruction under identical RNG, then finite 256x256 inference. Only
 regenerated attention-mask buffers are replaced; all learned tensors load strictly.
+
+Original NTSCC quality-1 retained checkpoint completed native-resolution Kodak24
+evaluation at 10 dB AWGN, one trial: 29.790670 dB mean RGB PSNR, 0.825372 mean
+SSIM and 0.02397565 mean main-stream CBR. Side information is omitted, so this
+is not a complete transmission-budget comparison. Windows entropy compatibility
+and metric conventions remain declared adaptations. Small aggregate receipt:
+`Docs/validation/ntscc_kodak24_metrics.json`.
+
+SQ-GAN version 6 completed a 500-image adapted-preprocessing evaluation; the
+subsequent native loader check exposed PIL/tensor nearest-label differences.
+The loader was corrected and an independent boundary-pattern test now matches
+native semantic maps exactly. Version 8 completed the native-preprocessing and saved-image evaluation.
+The first result is preserved separately and is not a native paper baseline.
+
+DeepJSCC-Q candidate quantizer checks found nonfinite fixed-constellation eval
+and mutating learned-constellation eval state. See its reproduction audit before
+enabling training. Mamba's adaptive CUDA extension compiled, but its standard extension failed
+with native C++ source errors (an extra argument and trailing comma); neither its AWGN no-CSI nor Rayleigh CSI-ReST pair is yet runtime-certified.
 
 The earlier table below is an implementation inventory; this update supersedes
 its older statements about absent GPU checks and downloaded assets.
@@ -203,3 +221,19 @@ is a separate controller/platform capability, not implemented by these notebooks
 Each training run has a four-hour cap, not a promise of 150 completed epochs.
 Unavailable releases and slow native pipelines are recorded as gaps rather than
 claiming all registered methods have been trained in a fixed wall-clock window.
+
+## Latest completed verification
+
+SQ-GAN version 8 passed a real-image native preprocessing check and evaluated
+all 500 Cityscapes validation images through the native forward function.
+At branch fractions 0.25/0.25, conventional rounded RGB PSNR is 21.256595 dB;
+native saved-image fixed-range PSNR is 21.240841 dB. The auto-range formula
+yields 21.001077 dB; the original unpinned torchmetrics version is not certified.
+The codec has no radio channel, so these are not AWGN results. LPIPS, MS-SSIM
+and segmentation mIoU remain unmeasured. Per-image results were collected locally.
+
+The retained Swin adapter is quarantined after its active-symbol power audit.
+Both downloaded native base checkpoints (fixed C32 and SA+RA) strictly load
+against the pinned authors' configuration with 28,162,000 and 33,073,488
+parameters respectively. This verifies architecture compatibility; native CUDA
+forward and quality evaluation remain pending.

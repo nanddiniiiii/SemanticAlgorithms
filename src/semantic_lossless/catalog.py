@@ -15,11 +15,11 @@ class Model:
 MODELS = {
     m.name: m for m in [
         Model("deepjscc", "continuous/CNN", "image_folder", "retained", note="Legacy channel; complex-use mapping not certified"),
-        Model("swinjscc", "continuous/transformer", "image_folder", "retained", True, "Retained adaptive SA+RA AWGN; fine-tuning enabled"),
+        Model("swinjscc", "continuous/transformer", "image_folder", "retained", False, "Retained port has masked-power SNR mismatch; audit-only until native author path is verified"),
         Model("ntscc", "entropy-adaptive", "image_folder", "retained", note="Original NTSCC; main-latent rate excludes side information"),
         Model("jcm", "finite-constellation/VAE", "cifar10", "jcm", True, "Native 32x32; reconstruction plus classification objective"),
         Model("adjscc", "continuous/attention", "image_folder", "adjscc", True, "DiffCom PyTorch architecture; per-image AWGN adaptation; original TF lineage stays separate"),
-        Model("shared_semantic_codebook", "shared-codebook", "stl10", "shared", True, "Native SAC w/o information loss; construct classifier/codebook before codec training"),
+        Model("shared_semantic_codebook", "shared-codebook", "stl10", "shared", True, "SAC without proposed information-theoretic loss term; lossy reconstruction; construct classifier/codebook first"),
         Model("sqgan", "codebook/generative", "cityscapes", "sqgan", note="Ten-part strict checkpoint inference; native trainer pending"),
         Model("mdjcm", "digital/rate-adaptive", "image_folder", "pending", note="Checkpoint and native runtime pilot required"),
         Model("mambajscc", "continuous/state-space", "image_folder", "pending", note="CUDA extensions and native checkpoint required"),

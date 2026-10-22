@@ -12,6 +12,7 @@ from .artifacts import write_json
 from .paths import project_root
 
 SOURCES = {
+    "swinjscc": ("semcomm/SwinJSCC", "a6d0e6da53548976acbe9317839a077ef31f190f"),
     "jcm": ("SJTU-mxtao/Joint-Coding-Modulation-for-Digital-Semantic-Communication", "9a53ef0a3df2f41ecae6cd531968f70a13d53088"),
     "shared_semantic_codebook": ("SJTU-mxtao/semantic-communication-w-codebook", "ee4ea1d3395a5100d79ebe7e19109a0c99d2eec6"),
     "sqgan": ("frapez1/SQ-GAN", "0e5cdd7c0240b89749dad684645c53f783ac24cc"),

@@ -1,0 +1,10 @@
+{
+  "images": 24,
+  "mean_psnr_db": 29.79066990411615,
+  "mean_ssim": 0.825371707479159,
+  "mean_main_stream_cbr": 0.02397565488462095,
+  "main_stream_cbr_min": 0.020433213975694444,
+  "main_stream_cbr_max": 0.0306243896484375,
+  "rate_complete": false,
+  "scope": "original NTSCC quality1 retained checkpoint; Kodak24 native resolution; 10 dB AWGN; one trial; Windows entropy compatibility; side information omitted"
+}

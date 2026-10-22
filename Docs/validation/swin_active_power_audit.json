@@ -1,0 +1,36 @@
+{
+  "scope": "synthetic audit of retained port, not native author model; no source modified",
+  "finding": "normalization averages inactive zeros while channel-use count omits them",
+  "measurements": [
+    {
+      "feature_rate": 32,
+      "nominal_snr_db": 10,
+      "measured_active_coordinate_snr_db": 17.780073902939385,
+      "expected_dense_padding_gain_db": 7.781512503836437
+    },
+    {
+      "feature_rate": 64,
+      "nominal_snr_db": 10,
+      "measured_active_coordinate_snr_db": 14.764954207434036,
+      "expected_dense_padding_gain_db": 4.771212547196624
+    },
+    {
+      "feature_rate": 96,
+      "nominal_snr_db": 10,
+      "measured_active_coordinate_snr_db": 13.002287814142406,
+      "expected_dense_padding_gain_db": 3.010299956639812
+    },
+    {
+      "feature_rate": 128,
+      "nominal_snr_db": 10,
+      "measured_active_coordinate_snr_db": 11.746276697175617,
+      "expected_dense_padding_gain_db": 1.7609125905568124
+    },
+    {
+      "feature_rate": 192,
+      "nominal_snr_db": 10,
+      "measured_active_coordinate_snr_db": 9.993340700903568,
+      "expected_dense_padding_gain_db": 0.0
+    }
+  ]
+}

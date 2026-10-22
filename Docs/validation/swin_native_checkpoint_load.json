@@ -1,0 +1,33 @@
+{
+  "scope": "native author configuration and strict CPU state loading; CUDA forward pending",
+  "models": [
+    {
+      "variant": "SwinJSCC_w/o_SAandRA",
+      "checkpoint": "SwinJSCC_wo_SAandRA_AWGN_HRimage_snr10_psnr_C32.model",
+      "sha256": "864d52a64281b3fcd4db34f7696b225b96c998b040b81d96cc556ecb837a17ff",
+      "strict_load": true,
+      "parameters": 28162000,
+      "model_size": "base",
+      "input_config": [
+        3,
+        256,
+        256
+      ],
+      "forward_verified": false
+    },
+    {
+      "variant": "SwinJSCC_w/_SAandRA",
+      "checkpoint": "SwinJSCC_w_SAandRA_AWGN_HRimage_cbr_psnr_snr.model",
+      "sha256": "eaa56bc7ba82c2d145afced4b54f563253e7e9c59dba2f868076ee8a0066887c",
+      "strict_load": true,
+      "parameters": 33073488,
+      "model_size": "base",
+      "input_config": [
+        3,
+        256,
+        256
+      ],
+      "forward_verified": false
+    }
+  ]
+}

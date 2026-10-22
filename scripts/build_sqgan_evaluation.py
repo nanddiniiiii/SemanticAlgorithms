@@ -47,7 +47,7 @@ else:
     assert len(sources)==1, {{'archives':list(map(str,snapshots)),'sources':list(map(str,sources)),'mounts':[str(p) for p in Path('/kaggle/input').iterdir()]}}
     shutil.copytree(sources[0],root/'.upstream/sqgan')
 '''
-body='''import ast, csv, json, random, time, types, subprocess
+body='''import ast, csv, json, random, time, types, subprocess, importlib
 import numpy as np
 import torch
 from PIL import Image
@@ -55,8 +55,10 @@ from semantic_lossless.config import Config
 from semantic_lossless.data import Cityscapes
 from semantic_lossless.sources import fetch_source,source_path
 from semantic_lossless.sqgan import build_sqgan
+from semantic_lossless.codecs import upstream_import
 from semantic_lossless.artifacts import write_json
-run=root/'Results/author_evaluation/sqgan_cityscapes_quarter'
+from torchvision import transforms
+run=root/'Results/author_evaluation/sqgan_cityscapes_quarter_native_save'
 run.mkdir(parents=True,exist_ok=False)
 try:
     hardware=subprocess.run(['bash','-lc','command -v nvidia-smi && nvidia-smi -L; ls /dev/nvidia* 2>/dev/null'],capture_output=True,text=True)
@@ -80,39 +82,84 @@ try:
     native_forward=types.MethodType(namespace['forward_all'],codec)
     mean=torch.tensor([.485,.456,.406],device='cuda')[None,:,None,None]
     std=torch.tensor([.229,.224,.225],device='cuda')[None,:,None,None]
+    # Preserve sample.py's normalized-space clamp and uint8 truncation exactly.
+    # This differs from conventional [0,1] clipping and rounding in version 6.
+    inverse=transforms.Compose([transforms.Normalize(mean=[-.485/.229,-.456/.224,-.406/.225],std=[1/.229,1/.224,1/.225])])
+    upper=mean.new_tensor([2.24,2.42,2.64]).view(1,3,1,1)
+    lower=mean.new_tensor([-2.11,-2.03,-1.80]).view(1,3,1,1)
+    def native_pixels(value):
+        normalized=torch.max(torch.min(value,upper),lower)
+        array=inverse(normalized).squeeze(0).cpu().numpy().transpose(1,2,0)
+        return (array*255).astype(np.uint8)
+    # Independently validate the raw-label conversion and RGB transforms against
+    # the pinned author validation dataset on the first real sample.
+    first_path=dataset.paths[0]
+    relative=first_path.relative_to(dataset.image_root)
+    raw_path=dataset.label_root/relative.parent/first_path.name.replace('_leftImg8bit.png','_gtFine_labelIds.png')
+    from semantic_lossless.data import cityscapes_label_lut
+    with Image.open(raw_path) as handle:
+        raw=np.asarray(handle,dtype=np.int64)
+        mapped=np.asarray(cityscapes_label_lut(),dtype=np.uint8)[raw]
+        mapped[mapped==19]=255
+        label_copy=run/'first_native_trainIds.png';Image.fromarray(mapped).save(label_copy)
+    with upstream_import(source_path('sqgan'),('data',)):
+        native_images=importlib.import_module('data.cityscapes_base').ImagePaths(
+            split='val',is_val=True,paths=[str(first_path)],elements_input={'file_path_':[str(first_path)],'ssm_path':[str(label_copy)]},
+            size=256,ratio_dim=2,relevant_obj=[0]*19)
+        reference_input=native_images[0]
+    first=dataset[0]
+    torch.testing.assert_close((first['image']-mean[0].cpu())/std[0].cpu(),reference_input['image'],rtol=0,atol=1e-6)
+    torch.testing.assert_close(first['semantic'],reference_input['semantic'],rtol=0,atol=0)
+    write_json(run/'native_preprocessing.json',{'status':'passed','scope':'one real image: native RGB validation transform and one-hot labels; official raw-ID conversion'})
     torch.manual_seed(22);np.random.seed(22);random.seed(22)
-    start=time.monotonic();total_psnr=0.
+    start=time.monotonic();total_psnr=0.;total_native_range1=0.;total_native_auto=0.
     with (run/'per_image.csv').open('w',newline='') as stream, torch.inference_mode():
-        writer=csv.DictWriter(stream,fieldnames=['sample','psnr_png_db','source_bits','paper_payload_bits','packet_bpp','paper_bpp'])
+        writer=csv.DictWriter(stream,fieldnames=['sample','psnr_png_db','psnr_native_saved_range1_db','psnr_native_saved_auto_range_db','source_bits','paper_payload_bits','packet_bpp','paper_bpp'])
         writer.writeheader()
         for index in range(len(dataset)):
             batch=dataset[index];image=batch['image'][None].cuda();semantic=batch['semantic'][None].cuda()
+            rng=torch.cuda.get_rng_state();cpu_rng=torch.get_rng_state();np_rng=np.random.get_state();py_rng=random.getstate()
+            native_result=native_forward((image-mean)/std,semantic)
+            expected=native_result[0]*std+mean
             if index==0:
-                rng=torch.cuda.get_rng_state();cpu_rng=torch.get_rng_state();np_rng=np.random.get_state();py_rng=random.getstate()
-                expected=native_forward((image-mean)/std,semantic)[0]*std+mean
                 torch.cuda.set_rng_state(rng);torch.set_rng_state(cpu_rng);np.random.set_state(np_rng);random.setstate(py_rng)
-            result=codec(image,semantic)
+                result=codec(image,semantic)
+            else:
+                # Count the actual selected positions from both native branches.
+                # Packet length uses separate byte padding for the two ID arrays.
+                ni=native_result[6]['sample_index'].numel();ns=native_result[7]['sample_index'].numel()
+                packet_bits=128+1024+8*((ni*10+7)//8+(ns*10+7)//8)
+                result={'source_bits':packet_bits,'vq_index_bits':(ni+ns)*10,'mask_bitmap_bits':1024,'reconstruction':expected}
             if index==0:
                 error=float((result['reconstruction']-expected).abs().max())
                 torch.testing.assert_close(result['reconstruction'],expected,rtol=1e-4,atol=2e-5)
                 write_json(run/'native_equivalence.json',{'max_absolute_error':error,'input_shape':list(image.shape),'semantic_shape':list(semantic.shape),'scope':'one real image, native forward vs independent packet decoder'})
-            reconstruction=result['reconstruction'].clamp(0,1).mul(255).round()/255
+            reconstruction=expected.clamp(0,1).mul(255).round()/255
             original=image.clamp(0,1).mul(255).round()/255
             mse=(reconstruction-original).square().mean()
             assert torch.isfinite(reconstruction).all() and mse>0
             psnr=float(-10*torch.log10(mse));total_psnr+=psnr
+            native_reconstructed=native_pixels(native_result[0])
+            native_original=native_pixels((image-mean)/std)
+            native_a=native_original.astype(np.float64)/255
+            native_b=native_reconstructed.astype(np.float64)/255
+            native_mse=float(np.mean((native_a-native_b)**2))
+            native_range1=float(-10*np.log10(native_mse))
+            native_auto=float(10*np.log10((native_a.max()-native_a.min())**2/native_mse))
+            total_native_range1+=native_range1;total_native_auto+=native_auto
             paper_bits=result['vq_index_bits']+result['mask_bitmap_bits']
-            writer.writerow({'sample':batch['sample'],'psnr_png_db':psnr,'source_bits':result['source_bits'],
+            writer.writerow({'sample':batch['sample'],'psnr_png_db':psnr,'psnr_native_saved_range1_db':native_range1,'psnr_native_saved_auto_range_db':native_auto,'source_bits':result['source_bits'],
                 'paper_payload_bits':paper_bits,'packet_bpp':result['source_bits']/(256*512),'paper_bpp':paper_bits/(256*512)})
             stream.flush()
             if index==0:
-                Image.fromarray(reconstruction[0].mul(255).byte().permute(1,2,0).cpu().numpy()).save(run/'reconstruction.png')
+                Image.fromarray(native_reconstructed).save(run/'reconstruction.png')
                 (run/'source_packet.sq01').write_bytes(result['source_packet'])
             if index%25==0: print(json.dumps({'stage':'evaluation','images':index+1,'total':len(dataset)}),flush=True)
     write_json(run/'metrics.json',{'status':'completed','images':len(dataset),'mean_psnr_png_db':total_psnr/len(dataset),
+        'mean_psnr_native_saved_range1_db':total_native_range1/len(dataset),'mean_psnr_native_saved_auto_range_db':total_native_auto/len(dataset),
         'elapsed_seconds':time.monotonic()-start,'scope':'partial native-component evaluation at one source-codec rate; no channel model',
         'unmeasured':['LPIPS','MS-SSIM','InternImage mIoU'],'training_reproduced':False,
-        'metric_protocol':'[0,1] RGB, clipped and rounded to 8-bit as saved sampling images; per-image RGB PSNR mean'})
+        'metric_protocol':'native forward; exact native normalized-space clamp and NumPy uint8 truncation; fixed-range and auto-range RGB PSNR formulas; conventional rounded PSNR also recorded'})
     print((run/'metrics.json').read_text(),flush=True)
 except Exception as error:
     write_json(run/'status.json',{'status':'failed','error':str(error)})

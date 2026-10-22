@@ -88,6 +88,17 @@ Safe archive metadata confirms these are full serialized `models.network.Mamba_e
 
 The public author Drive folder contains 16 files (eight encoder/decoder pairs). All listed AWGN/CLIC2021 PSNR pairs use `adpno` (no CSI adaptation), at OUTCHANS 16, 32, 48, 80, and 115; there is no listed AWGN `adpssm` CSI-ReST pair at C=16 or any other channel count. The `adpssm` pairs are only C=32 Rayleigh at resolution 256 and SNR values `[1, 3, 5, 7, 9, 11, 13, 15, 17, 20]`, with separate LPIPS, MSSSIM, and PSNR variants. Only the PSNR pair is downloaded.
 
+### SwinJSCC author checkpoints
+
+Source code: [official SwinJSCC repository](https://github.com/semcomm/SwinJSCC); [author Drive root](https://drive.google.com/drive/folders/1_EouRY4yYvMCtamX2ReBzEd5YBQbyesc?usp=sharing). Selected file metadata was matched against the official README and checkpoint folder names. The official README specifies the SA+RA HR-image configuration as AWGN, PSNR, C values `[32, 64, 96, 128, 192]`, and SNRs `[1, 4, 7, 10, 13]`. Official `main.py` sets `model_size='base'` by default; the selected filename is untagged for size, while the Drive separately labels large and small variants.
+
+| Local path | Exact Drive filename | Operating point / variant | Bytes | SHA-256 |
+|---|---|---|---:|---|
+| `Models/pretrained_downloads/SwinJSCC/SwinJSCC_w_SAandRA_AWGN_HRimage_cbr_psnr_snr.model` | `SwinJSCC_w_SAandRA_AWGN_HRimage_cbr_psnr_snr.model` | HR image; AWGN; SA+RA; variable C `{32,64,96,128,192}` and SNR `{1,4,7,10,13}`; PSNR/MSE objective; base size (untagged; matches official code default) | 145,490,858 | `eaa56bc7ba82c2d145afced4b54f563253e7e9c59dba2f868076ee8a0066887c` |
+| `Models/pretrained_downloads/SwinJSCC/SwinJSCC_wo_SAandRA_AWGN_HRimage_snr10_psnr_C32.model` | `SwinJSCC_wo_SAandRA_AWGN_HRimage_snr10_psnr_C32.model` | HR image; AWGN; no SA/RA; fixed C=32; SNR=10 dB; PSNR/MSE objective; base size (untagged; matches official code default) | 125,823,492 | `864d52a64281b3fcd4db34f7696b225b96c998b040b81d96cc556ecb837a17ff` |
+
+Checkpoint storage inspection was non-executing: both files are PyTorch ZIP state dictionaries (not full pickled model objects), ZIP CRC checks passed, and their tensor storage tags identify `cuda:0`. The SA+RA file has 549 ZIP entries (547 storage records; `data.pkl` 111,126 bytes; 487 distinct `.weight`/`.bias` names); the fixed-C32 file has 495 ZIP entries (493 storage records; `data.pkl` 100,576 bytes; 433 distinct `.weight`/`.bias` names). SHA-256 values were computed locally. No model loading or inference was performed.
+
 ### DiffJSCC OpenImage CBR 1/384
 
 Source: [Hugging Face model repository](https://huggingface.co/Mingyuyang/DiffJSCC-OpenImage-CBR-1-384), pinned revision `58eb8a69fe83318e0a5aa0fae2b6c2ff2c518853`.

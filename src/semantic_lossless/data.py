@@ -180,7 +180,7 @@ class Cityscapes:
         with Image.open(path) as handle:
             image = handle.convert("RGB").resize((512,256),Image.Resampling.BILINEAR)
         with Image.open(label_path) as handle:
-            label = handle.resize((512,256),Image.Resampling.NEAREST)
+            label = handle.copy()
         if self.split == "train" and random.random() < 0.5:
             image = image.transpose(Image.Transpose.FLIP_LEFT_RIGHT)
             label = label.transpose(Image.Transpose.FLIP_LEFT_RIGHT)
@@ -191,13 +191,23 @@ class Cityscapes:
             if not np.isin(values, list(range(34)) + [255]).all():
                 raise ValueError('Invalid official Cityscapes labelIds')
             values = np.asarray(cityscapes_label_lut(),dtype=np.int64)[values]
+            values[values==19]=255  # official ignored trainId before native tensor transform
+        # SQ-GAN's validation source uses ToTensor -> tensor Resize(NEAREST),
+        # then multiplies by 255 and converts to long. PIL nearest-neighbor
+        # chooses different source pixels at class boundaries.
+        from torchvision.transforms import InterpolationMode
+        from torchvision.transforms.functional import resize
+        label_tensor=torch.from_numpy(values.astype(np.uint8)).unsqueeze(0).float()/255
+        label_tensor=resize(label_tensor,[256,512],interpolation=InterpolationMode.NEAREST)
+        values=(label_tensor*255).long().squeeze(0).numpy()
         values[values == 255] = 19
         if values.min() < 0 or values.max() > 19:
             raise ValueError("Expected Cityscapes trainIds 0..18, 19/255 ignored")
         labels = torch.from_numpy(values)
         semantic = torch.nn.functional.one_hot(labels,20).permute(2,0,1).float()
         image = torch.from_numpy(np.asarray(image,dtype=np.float32).copy()/255).permute(2,0,1)
-        return {"image":image,"label":labels,"semantic":semantic,"sample":relative.as_posix()}
+        return {"image":image,"label":labels,"semantic":semantic,"sample":relative.as_posix(),
+                "official_split":"val" if self.split=='test' else 'train'}
 
 
 class STL:

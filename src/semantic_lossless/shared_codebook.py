@@ -1,6 +1,7 @@
 """Native shared semantic-aware codebook components and construction stages.
 
-Integrates the SAC-without-information-loss branch. Common transport, holdout
+Integrates SAC without the proposed information-theoretic loss term; this does
+not mean lossless reconstruction. Common transport, holdout
 splits, and the corrected per-image construction search are explicit adaptations.
 """
 import ast

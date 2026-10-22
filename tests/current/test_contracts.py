@@ -12,6 +12,11 @@ from semantic_lossless.events import Events, collect
 
 
 class Contracts(unittest.TestCase):
+    def test_ideal_source_codec_does_not_claim_a_radio_snr(self):
+        with tempfile.TemporaryDirectory() as folder:
+            self.assertIsNone(Events(folder,Config('sqgan')).identity['snr_db'])
+            self.assertEqual(Events(folder,Config('jcm')).identity['snr_db'],10)
+
     def test_cityscapes_official_labels_and_ignore_classes(self):
         table=cityscapes_label_lut()
         self.assertEqual(len(table),256)

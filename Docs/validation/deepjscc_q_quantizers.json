@@ -1,0 +1,9 @@
+{
+  "source_commit": "da863de5e3acb4fbb307c0cf8dfe830303e99aa7",
+  "scope": "native quantizer behavior on synthetic input; no architecture/training reproduction",
+  "fixed_quantizer_eval_finite": false,
+  "learned_quantizer_eval_finite": true,
+  "learned_eval_annealing_counter_change": 1,
+  "learned_train_annealing_counter_change": 2,
+  "source_modified": false
+}

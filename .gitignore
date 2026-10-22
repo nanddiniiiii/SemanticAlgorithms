@@ -86,3 +86,5 @@ Results/kaggle_pilot/
 Results/author_evaluation_download/
 Kaggle/*/kernel.py
 Kaggle/pilot/notebook.ipynb
+Results/prepared_configs/
+Results/mamba_latest_log.txt

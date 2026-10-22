@@ -71,6 +71,8 @@ def main(argv=None):
         check_separate_folders(config)
         codec = build_codec(config).eval()
         write_json(run / 'model.json', codec.metadata)
+        if args.command == 'evaluate' and codec.metadata.get('comparison_eligible') is False:
+            raise RuntimeError('This checkpoint/channel adapter is audit-only and cannot produce a nominal-SNR benchmark: '+codec.metadata['comparison_limitation'])
         write_json(run / 'environment.json', {'torch': torch.__version__, 'device': config.device, 'cuda': torch.version.cuda})
         if args.command == 'pilot' and (not codec.trainable or args.inference_only):
             split = 'val' if config.dataset == 'cityscapes' else 'test'
@@ -92,7 +94,8 @@ def main(argv=None):
             print(str(run), flush=True)
             return
         dataset = loader(config, 'test')
-        events.emit(args.command, 'started', test_samples=len(dataset.dataset))
+        evaluation_dataset = config.model_options.get('evaluation_dataset',config.dataset)
+        events.emit(args.command, 'started', test_samples=len(dataset.dataset), dataset=evaluation_dataset)
         if args.command == 'profile':
             batch = next(iter(dataset))
             profiled = codec
@@ -111,7 +114,7 @@ def main(argv=None):
             if gradient_sampling:
                 result['flops_limitation'] = 'Posterior sampling includes input-gradient computation; complete inference FLOPs profiling is pending. No denoiser-only count is substituted.'
             write_json(run / 'profile.json', result)
-            events.emit('profile', 'completed', metrics={k: v for k, v in result.items() if isinstance(v, (int, float))}, coverage=result['flops_coverage'])
+            events.emit('profile', 'completed', metrics={k: v for k, v in result.items() if isinstance(v, (int, float))}, coverage=result['flops_coverage'], dataset=evaluation_dataset)
         else:
             with torch.inference_mode():
                 for index, batch in enumerate(dataset):
@@ -135,7 +138,9 @@ def main(argv=None):
                             metrics['source_bpp_estimate'] = output['source_bits_estimate'] / (image.shape[-2] * image.shape[-1])
                         metrics['complex_channel_uses'] = uses if uses >= 0 else None
                         metrics['cbr_main_stream'] = uses / image.numel() if uses >= 0 else None
-                        events.emit('evaluate', 'sample_completed', metrics=metrics, split='test', sample=batch['sample'][0], trial=trial, rate_complete=codec.rate_complete)
+                        events.emit('evaluate', 'sample_completed', metrics=metrics,
+                            split=batch.get('official_split',['test'])[0], dataset=evaluation_dataset,
+                            sample=batch['sample'][0], trial=trial, rate_complete=codec.rate_complete)
                         if config.save_reconstructions:
                             from PIL import Image
                             values = output['reconstruction'][0].clamp(0, 1).permute(1, 2, 0).cpu().numpy()
@@ -146,7 +151,7 @@ def main(argv=None):
                                 (target / f'{index:06d}-{trial}.sq01').write_bytes(output['source_packet'])
                             if 'side_packet' in output:
                                 (target / f'{index:06d}-{trial}.side').write_bytes(output['side_packet'])
-            events.emit('evaluate', 'completed', evaluated_samples=len(dataset.dataset), trials=config.trials)
+            events.emit('evaluate', 'completed', evaluated_samples=len(dataset.dataset), trials=config.trials, dataset=evaluation_dataset)
         write_json(run / 'status.json', {'status': 'completed', 'command': args.command})
         export_manifest(run)
     except BaseException as exc:

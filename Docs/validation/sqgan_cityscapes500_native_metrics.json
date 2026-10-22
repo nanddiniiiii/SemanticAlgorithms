@@ -1,0 +1,16 @@
+{
+  "status": "completed",
+  "images": 500,
+  "mean_psnr_png_db": 21.256594638824463,
+  "mean_psnr_native_saved_range1_db": 21.240841088705064,
+  "mean_psnr_native_saved_auto_range_db": 21.00107676220677,
+  "elapsed_seconds": 1137.564384179,
+  "scope": "partial native-component evaluation at one source-codec rate; no channel model",
+  "unmeasured": [
+    "LPIPS",
+    "MS-SSIM",
+    "InternImage mIoU"
+  ],
+  "training_reproduced": false,
+  "metric_protocol": "native forward; exact native normalized-space clamp and NumPy uint8 truncation; fixed-range and auto-range RGB PSNR formulas; conventional rounded PSNR also recorded"
+}

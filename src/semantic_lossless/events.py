@@ -15,7 +15,7 @@ class Events:
         self.path = Path(run_dir) / "events.jsonl"
         self.identity = {"algorithm": config.algorithm, "variant": config.variant,
                          "run_id": Path(run_dir).name, "dataset": config.dataset,
-                         "seed": config.seed, "snr_db": config.snr_db}
+                         "seed": config.seed, "snr_db": None if config.algorithm == 'sqgan' else config.snr_db}
 
     def emit(self, stage, status="running", metrics=None, **details):
         record = clean_json({"record_id": uuid.uuid4().hex, "timestamp": datetime.now(timezone.utc).isoformat(),
