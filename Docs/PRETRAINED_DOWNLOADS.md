@@ -113,12 +113,28 @@ The minimal config and README and full `model.ckpt` checkpoint are downloaded fr
 
 The config identifies a latent-diffusion/ControlNet reconstruction pipeline and enables SNR conditioning (`use_snr: true`, `min_snr: 0`, `snr_scale: 100`). Hugging Face reports a pickle-scan caution for `pytorch_lightning.callbacks.model_checkpoint.ModelCheckpoint`; do not load the checkpoint casually, and only use it with the pinned/trusted upstream code in an isolated environment. No model loading or inference was done by the downloader.
 
+## Stage 1 checkpoint availability recheck (2026-10-22)
+
+The following official-source audit separates transferable checkpoints from author-linked files that are not currently downloadable and models for which no official checkpoint source was verified. No third-party reproduction was substituted for an author checkpoint.
+
+| Candidate | Official source checked | Verdict | Evidence / consequence |
+|---|---|---|---|
+| Shared Semantic-Aware Codebook | [author implementation](https://github.com/SJTU-mxtao/semantic-communication-w-codebook) | **Not verified / no weights found** | The Git tree has the implementation and `saved_model` channel/dataset folders, but each contains only `instructions.txt`; no checkpoint binaries or author weight link were found. The code constructs/trains the codebook and codec. |
+| DeepJSCC-Q | [paper](https://arxiv.org/abs/2206.08100) and [revised paper](https://arxiv.org/abs/2111.13042) | **Not verified / no official weight source found** | Paper and author-associated code search did not surface an author-linked checkpoint repository or pretrained file. Third-party reproductions exist, but were not accepted as author weights or downloaded. |
+| MDJCM-A | [author implementation](https://github.com/zhang-guangyi/Semantic-MDJCM), [published Baidu share](https://pan.baidu.com/s/1-xiEIH6eG2xnsOPDvlbo3Q?pwd=94yp) | **Author-linked but inaccessible** | The current official README supplies the Baidu share code `94yp` and says the checkpoint is for MDJCM-A. Direct unauthenticated retrieval attempts using the published code were reset by the remote host, so no checkpoint file or hash is available locally. |
+| MOC-RVQ | [author-associated official repository](https://github.com/Albert2X/moc_rvq), [paper](https://arxiv.org/abs/2401.01272) | **Author-linked but unreleased** | The repository README calls itself the official PyTorch implementation but states that code and pretrained weights will be released soon. The current repository tree contains only README and a paper figure; no code/checkpoint files are downloadable. |
+
+These verdicts concern author-provided pretrained weights only; they do not mean the algorithms cannot be implemented and trained from source.
+
 ## Pending or not downloaded
 
 | Model/artifact | Author source | Status |
 |---|---|---|
+| Shared Semantic-Aware Codebook weights | [author repository](https://github.com/SJTU-mxtao/semantic-communication-w-codebook) | Not found in current Git tree; `saved_model` contains instruction placeholders only. See Stage 1 audit. |
+| DeepJSCC-Q author checkpoint | [paper](https://arxiv.org/abs/2206.08100) | No official checkpoint link/repository verified; third-party reproductions were not substituted. See Stage 1 audit. |
+| MOC-RVQ weights | [author-associated repository](https://github.com/Albert2X/moc_rvq) | Author-linked but unreleased; README says code and weights are forthcoming, current tree has no checkpoints. See Stage 1 audit. |
 | DiffCom ADJSCC C=4 and C=6 | [author-linked Drive folder](https://drive.google.com/drive/folders/1N0EzzxCv1wh6JeFr0g8vkmB0Qj23ozZJ?usp=sharing) | Not requested; C=2 is complete above. |
-| MDJCM-A checkpoint | [author README](https://github.com/zhang-guangyi/Semantic-MDJCM#pretrained-models), [Baidu share](https://pan.baidu.com/s/1-xiEIH6eG2xnsOPDvlbo3Q) | Not downloaded. The public Baidu endpoint forcibly closed the unauthenticated probe; no account credential was supplied or attempted. |
+| MDJCM-A checkpoint | [author README](https://github.com/zhang-guangyi/Semantic-MDJCM#pretrained-models), [Baidu share](https://pan.baidu.com/s/1-xiEIH6eG2xnsOPDvlbo3Q?pwd=94yp) | Author-linked but inaccessible. Attempts using the README's share code `94yp` were reset by the remote host; no account credentials were used. |
 | MambaJSCC other variants | [author's Drive folder](https://drive.google.com/drive/folders/1nrX6FiULN04PomW2eVaWwNDmM3Hhka0Y?usp=sharing) | AWGN SNR 10 dB C=16 no-CSI pair and Rayleigh CSI-ReST C=32 PSNR pair are downloaded above. No AWGN CSI-ReST pair is listed in the author folder; other AWGN C values and Rayleigh LPIPS/MSSSIM pairs were not downloaded. |
 | DiffJSCC OpenImage CBR 1/384 | [Hugging Face model](https://huggingface.co/Mingyuyang/DiffJSCC-OpenImage-CBR-1-384) | Complete above; exact size and LFS SHA-256 verified. HF pickle scan carries a caution noted above. |
 

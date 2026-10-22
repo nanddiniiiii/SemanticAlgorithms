@@ -22,7 +22,7 @@ MODELS = {
         Model("shared_semantic_codebook", "shared-codebook", "stl10", "shared", True, "SAC without proposed information-theoretic loss term; lossy reconstruction; construct classifier/codebook first"),
         Model("sqgan", "codebook/generative", "cityscapes", "sqgan", note="Ten-part strict checkpoint inference; native trainer pending"),
         Model("mdjcm", "digital/rate-adaptive", "image_folder", "pending", note="Checkpoint and native runtime pilot required"),
-        Model("mambajscc", "continuous/state-space", "image_folder", "pending", note="CUDA extensions and native checkpoint required"),
+        Model("mambajscc", "continuous/state-space", "image_folder", "pending", note="Author AWGN/Rayleigh pairs downloaded; native CUDA extension build failed; inference unverified"),
         Model("diffcom", "generative/diffusion", "image_folder", "diffcom", note="Complete T4 posterior pilot passed; AWGN adapter differences remain explicit; no diffusion training"),
         Model("diffjscc", "generative/diffusion", "image_folder", "pending", note="Author Hugging Face checkpoint; inference integration pending"),
         Model("deepjscc_q", "finite-constellation", "cifar10", "pending", note="Public trainer needs paper-variant verification"),

@@ -1,0 +1,48 @@
+{
+  "latency_p50_seconds": 0.19457920000422746,
+  "latency_p95_seconds": 0.40640540001913905,
+  "latency_note": "empirical repeated executions; p95 omitted below ten observations",
+  "parameters": 14369487,
+  "forward_flops": 1080805378,
+  "flops_scope": "complete codec forward including native channel/classifier where present",
+  "flops_coverage": "partial_supported_operators",
+  "counted_operator_types": [
+    "aten::mul",
+    "aten::conv2d",
+    "aten::addmm",
+    "aten::add"
+  ],
+  "profiler_error": null,
+  "batch_size": 1,
+  "precision": "torch.float32",
+  "peak_cuda_memory_bytes": null,
+  "peak_cuda_reserved_bytes": null,
+  "warmup": 3,
+  "repeats": 10,
+  "training_flops_measured": false,
+  "algorithm": "jcm",
+  "input_shape": [
+    1,
+    3,
+    32,
+    32
+  ],
+  "input_scope": "synthetic constant input for computational profiling only; no quality benchmark",
+  "hardware": "local CPU; OMP/MKL threads2",
+  "torch": "2.10.0+cpu",
+  "model_metadata": {
+    "source_commit": "9a53ef0a3df2f41ecae6cd531968f70a13d53088",
+    "native_modulation": "16qam",
+    "native_channel_uses": 128,
+    "classification_classes": 10,
+    "power_scope": "native batch-wide normalization; per replica under DataParallel",
+    "eval_sampling": "author stochastic Gumbel softmax retained",
+    "initialization": "pretrained_strict_load",
+    "checkpoint": "D:\\Bunker\\BaseCamp\\WirelessCommunication\\SemanticCommunication\\SemanticLossless\\Semantic_Lossless\\Models\\pretrained_downloads\\JCM\\CIFAR_SNR12_Trans128_16qam.pth.tar",
+    "checkpoint_sha256": "b7d3a1df66512421b057eabf4f7faa937a3dc22d6fe83632d3f0bca0f0c3b897",
+    "strict_load": true,
+    "native_training_snr_db": 12
+  },
+  "timing_comparison_eligible": false,
+  "timing_limitation": "diagnostic local CPU timing, concurrent profiling workload; not an idle-host or GPU latency benchmark"
+}

@@ -1,0 +1,99 @@
+{
+  "latency_p50_seconds": 31.73635879997164,
+  "latency_p95_seconds": null,
+  "latency_note": "single observed execution; not a latency distribution",
+  "parameters": 186271386,
+  "forward_flops": 2336917424388,
+  "flops_scope": "ten-component SQ01 packet encode/decode adapter, not a native GAN training loop; partial supported operations",
+  "flops_coverage": "partial_supported_operators",
+  "counted_operator_types": [
+    "aten::conv2d",
+    "aten::add",
+    "aten::mul",
+    "aten::bmm",
+    "aten::mm",
+    "aten::addmm"
+  ],
+  "profiler_error": null,
+  "batch_size": 1,
+  "precision": "torch.float32",
+  "input_shape": [
+    1,
+    3,
+    256,
+    512
+  ],
+  "peak_cuda_memory_bytes": null,
+  "peak_cuda_reserved_bytes": null,
+  "warmup": 0,
+  "repeats": 1,
+  "training_flops_measured": false,
+  "algorithm": "sqgan",
+  "input_scope": "synthetic constant RGB and valid single-class one-hot map for computational profiling only",
+  "hardware": "local CPU; threads2",
+  "torch": "2.10.0+cpu",
+  "model_metadata": {
+    "source_commit": "0e5cdd7c0240b89749dad684645c53f783ac24cc",
+    "components": [
+      {
+        "component": "encoder",
+        "sha256": "6afacd86a809fb8f2e2f898934a4a5e8797ac034a50ad90234d12ef36dba0268",
+        "strict_load": true
+      },
+      {
+        "component": "decoder",
+        "sha256": "a6af82ae24c772790757f93861aa7ac835a684e8251eaeb597a5ecdee39bfe8f",
+        "strict_load": true
+      },
+      {
+        "component": "masker",
+        "sha256": "da3187ab8165c0151f3e7e1efa08f9342c10ec89cfbd7ab03cad734f822ba678",
+        "strict_load": true
+      },
+      {
+        "component": "demasker",
+        "sha256": "87a83124c20d839f6fef65f724d86dc9445ab638994834d58bbf7dd3a5408b65",
+        "strict_load": true
+      },
+      {
+        "component": "quantize",
+        "sha256": "10bf41064c07bca2d46a3bdd06799f28e48212813553f51028f5be38847bee95",
+        "strict_load": true
+      },
+      {
+        "component": "encoder_semantic",
+        "sha256": "e40534ce8c0335d01e4a201fafc47121dc5102f2a217e525cb9973facd61572f",
+        "strict_load": true
+      },
+      {
+        "component": "decoder_semantic",
+        "sha256": "28e1f6f400c3f09f01c77c11a1190b800e7886323f30b876e47bd8ad642b462e",
+        "strict_load": true
+      },
+      {
+        "component": "masker_semantic",
+        "sha256": "0932245c0a1a3e82fb44d99c87017e5983fddd6e558f8966624be7cebe5fda99",
+        "strict_load": true
+      },
+      {
+        "component": "demasker_semantic",
+        "sha256": "d6d6dad1331ff8a832f20ad5e0256d6d341cb82d39fcd77a09c7bca54e6dcf1d",
+        "strict_load": true
+      },
+      {
+        "component": "quantize_semantic",
+        "sha256": "46c4968df648b214c86ca25e648612c59107ab395c01e8819531db45d2dbc20c",
+        "strict_load": true
+      }
+    ],
+    "training_adapter": false,
+    "preprocessing": "RGB ImageNet normalization; paired 20-class trainIds; 256x512",
+    "channel": "ideal source codec; no AWGN/FEC stage implemented",
+    "rate_scope": "actual experimental SQ01 source packet bytes including bitmap/header/CRC; no radio/FEC cost",
+    "packet_format": "our SQ01 adapter format; preagreed synchronized checkpoint; not author entropy coder",
+    "image_fraction": 0.25,
+    "semantic_fraction": 0.25
+  },
+  "timing_comparison_eligible": false,
+  "timing_limitation": "diagnostic CPU timing; separate GPU/idle-host profiling required"
+}

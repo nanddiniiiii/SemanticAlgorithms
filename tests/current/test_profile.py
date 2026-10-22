@@ -10,6 +10,16 @@ from semantic_lossless.metrics import profile_forward, quality
 
 @unittest.skipIf(torch is None, 'Run these checks in the model Torch environment')
 class MetricContracts(unittest.TestCase):
+    def test_exact_sample_and_rgb_pixel_fractions_are_distinct(self):
+        source = torch.zeros(1, 3, 32, 32)
+        reconstructed = source.clone()
+        reconstructed[0, 0, 0, 0] = 1/255
+        result = quality(source, reconstructed)
+        self.assertAlmostEqual(result['exact_uint8_sample_fraction'], 3071/3072, places=6)
+        self.assertAlmostEqual(result['exact_uint8_spatial_pixel_fraction'], 1023/1024, places=6)
+        self.assertEqual(result['max_absolute_uint8_error'], 1)
+        self.assertEqual(result['exact_uint8_pixels'], 0)
+
     def test_cityscapes_validation_matches_pinned_author_loader(self):
         from semantic_lossless.sources import source_path
         directory=source_path('sqgan')

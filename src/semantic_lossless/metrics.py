@@ -15,6 +15,12 @@ def quality(original, reconstruction, use_lpips=False):
               "max_absolute_error": float((a - b).abs().max()),
               "exact_float_reconstruction": int(torch.equal(a, b)),
               "exact_uint8_pixels": int(torch.equal((a*255).round().to(torch.uint8), (b*255).round().to(torch.uint8)))}
+    original_samples = (a*255).round().to(torch.int16)
+    reconstructed_samples = (b*255).round().to(torch.int16)
+    equal_samples = original_samples == reconstructed_samples
+    result['exact_uint8_sample_fraction'] = float(equal_samples.float().mean())
+    result['exact_uint8_spatial_pixel_fraction'] = float(equal_samples.all(dim=1).float().mean())
+    result['max_absolute_uint8_error'] = int((original_samples-reconstructed_samples).abs().max())
     try:
         from pytorch_msssim import ssim
         result["ssim"] = float(ssim(a, b, data_range=1, size_average=True))
@@ -72,5 +78,7 @@ def profile_forward(codec, image, warmup=3, repeats=10, count_flops=True):
             "flops_scope": "complete codec forward including native channel/classifier where present",
             "flops_coverage": coverage, "counted_operator_types": counted,
             "profiler_error": error, "batch_size": len(image), "precision": str(image.dtype),
+            "input_shape": list(image.shape),
             "peak_cuda_memory_bytes": torch.cuda.max_memory_allocated(image.device) if image.is_cuda else None,
+            "peak_cuda_reserved_bytes": torch.cuda.max_memory_reserved(image.device) if image.is_cuda else None,
             "warmup": warmup, "repeats": repeats, "training_flops_measured": False}
