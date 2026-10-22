@@ -1,0 +1,96 @@
+# All-model implementation, checkpoint and results inventory
+
+Snapshot: 22 October 2026. Local receipts and files were checked for this inventory.
+This is a progress table, not a performance ranking: datasets, rates, channel
+settings and metric protocols differ. A model folder or train entry point alone
+does not establish a working implementation. No complete paper training
+reproduction has been established in this execution.
+
+## All models
+
+| Model | Family | Implementation / verification | Weights held locally | Quality result / execution result | Next step |
+|---|---|---|---|---|---|
+| DeepJSCC | Continuous CNN JSCC | Retained adapter; legacy channel and complex-use accounting uncertified | Retained EncDec checkpoint | No current certified full evaluation | Verify checkpoint operating point and channel accounting, then evaluate |
+| ADJSCC | SNR-adaptive continuous JSCC | DiffCom PyTorch architecture integrated; adapted per-image AWGN; dual-T4 optimizer/save-reload pilot passed | Downloaded author-linked C=2 checkpoint | Training/runtime pilot only; no full quality benchmark | Evaluate pretrained model; distinguish this lineage from original TensorFlow implementation |
+| SwinJSCC | Continuous transformer JSCC | Retained port audit-only; both native base variants strictly load on CPU | Retained port plus downloaded native fixed-C32 and SA+RA checkpoints | Retained quality run excluded for masked-power SNR mismatch; native quality pending | Integrate native CUDA forward and evaluate Kodak |
+| NTSCC | Entropy/data-adaptive JSCC | Original retained quality-1 model evaluated | Retained original checkpoint | Kodak24: 29.790670 dB RGB PSNR, 0.825372 SSIM, mean main-stream CBR 0.02397565 at 10 dB AWGN | Account for hyperprior/side information and profile inference |
+| JCM | Finite-constellation digital / joint reconstruction and classification | Native forward/objective/gradient equivalence; GPU training pilot; full pretrained evaluation | Downloaded native 16-QAM checkpoint and analog initialization | CIFAR-10 test10k: 23.409674 dB author PSNR; 23.363642 dB standard RGB PSNR; accuracy 87.64%, 12 dB, 128 complex uses | Profile inference; use native single-GPU semantics for training baseline |
+| DeepJSCC-Q | Finite-constellation neural JSCC | Candidate source and quantizer diagnostic only; model integration pending | No verified pretrained checkpoint | Fixed-constellation evaluation produced nonfinite output; learned quantizer mutates evaluation state | Resolve source/paper variant and explicitly document any fixes before training |
+| Shared Semantic-Aware Codebook | Shared codebook / classification-guided coding | Classifier/codebook construction and synthetic CPU forward/backward checks | No verified pretrained author model | No native STL-10 quality benchmark | Validate native data and classifier/codebook training stages |
+| SQ-GAN | Masked VQ codebook + generative reconstruction | Ten native components strictly loaded; native forward, real-image preprocessing and independent packet checks; native staged trainer pending | Downloaded ten author component checkpoints | Cityscapes val500: 21.240841 dB native saved-image fixed-range PSNR; 21.256595 dB conventional rounded PSNR; no radio channel | Measure missing perceptual/semantic metrics; implement verified staged trainer if required |
+| MDJCM | Rate-adaptive digital transmission | Pinned source; executable backend pending | No downloaded checkpoint | None | Resolve checkpoint access and native runtime |
+| MambaJSCC | Continuous state-space JSCC | Pinned source; adaptive extension compiled; standard CUDA extension failed | Downloaded AWGN no-CSI C16 and Rayleigh CSI-ReST C32 encoder/decoder pairs | No successful model inference; build failure preserved | Resolve documented native C++ source errors, then verify checkpoint configurations |
+| DiffCom | Diffusion-assisted reconstruction | Native prior and posterior pipeline integrated with declared AWGN/operator adaptations | Downloaded ImageNet256 prior plus ADJSCC C2 | One Kodak256 crop: full reconstruction, 235 denoiser evaluations, 284.10 s, 4096 complex uses + 32 assumed-correct side bits, 8.70 GB peak allocated GPU memory | Matched quality evaluation and bounded inference profiling; no diffusion training planned |
+| DiffJSCC | Generative diffusion JSCC | Source/config downloaded; backend integration pending | Downloaded 9.86 GB author checkpoint | No inference result | Resolve native dependencies and additional BLIP model, then memory pilot |
+| Hybrid semantic-complementary reference | Hybrid continuous + transform complement | Our frozen ADJSCC + fixed DCT complementary-stream implementation | Reuses ADJSCC; no separate author hybrid checkpoint | No full benchmark | Verify end-to-end budget and benchmark; do not label as named-paper reproduction |
+| DiT-JSCC | Diffusion transformer JSCC | Research-only; executable backend unavailable | Required JSCC weights unavailable in inspected release | None | Revisit verified release availability |
+| HDA-DeepSC | Hybrid digital-analog | Research-only; verified author executable release not identified | None verified | None | Identify native executable implementation |
+| Masked VQ-VAE | Task-oriented codebook | Research-only; inspected classification path disables VQ/AWGN | None verified for requested communication path | None | Verify actual codebook + channel path before adopting |
+| MOC-RVQ | Residual VQ codebook | Research-only; not registered as an executable backend | None verified | None | Revisit author code/weights release |
+
+## Measured results with protocol
+
+| Model / result type | Data and scope | Channel | Rate | Quality | Runtime / memory |
+|---|---|---|---|---|---|
+| JCM pretrained evaluation | Official CIFAR-10 test; 10,000 images, 32x32 | Native 16-QAM chain, 12 dB | 128 complex uses/image; derived CBR 128/(32x32x3) = 0.041667, excluding unspecified transport overhead | Author PSNR 23.409674 dB; standard RGB PSNR 23.363642 dB; author SSIM 0.678113; accuracy 0.8764 | Whole evaluation loop 16.13 s; not isolated inference latency |
+| NTSCC retained evaluation | Kodak24, native resolutions, one noise trial | AWGN, 10 dB | Mean main-stream CBR 0.02397565; range 0.02043321–0.03062439; side information excluded | Mean RGB PSNR 29.790670 dB; SSIM 0.825372 | Isolated latency/FLOPs not established |
+| SQ-GAN native-component evaluation | Cityscapes validation500, 256x512; semantic maps also supplied to encoder | Ideal source codec; no SNR or radio channel | Fractions 0.25/0.25: 3584 paper-payload bits/image = 0.02734375 bpp; independent SQ01 packet 3712 bits = 0.0283203125 bpp including header/CRC; no radio protection overhead | Native saved-image fixed-range PSNR 21.240841 dB; conventional rounded PSNR 21.256595 dB | Whole evaluation 1137.56 s; includes data, metrics and first-image checks, not isolated inference |
+| DiffCom runtime pilot | One Kodak center crop, 256x256 | AWGN adapter; not a matched native-channel benchmark | 4096 complex uses = CBR 1/48, plus 32 assumed-correct side bits | Validated quality benchmark not measured | 284.10 s complete posterior reconstruction; 8,703,745,536 peak allocated bytes on T4 |
+
+JCM's native SSIM uses its source convention (data_range=1 with normalized
+[-1,1] inputs); it must not be treated as interchangeable with standard RGB SSIM.
+SQ-GAN's auto-range PSNR formula also gives 21.001077 dB, but the original
+unpinned torchmetrics version has not been reproduced. LPIPS, MS-SSIM and
+InternImage mIoU were not measured in this SQ-GAN run. These are lossy image
+reconstruction experiments, not evidence of exact/lossless delivery.
+
+## Where the files are
+
+All paths below are relative to this repository root.
+
+| Artifact | Location |
+|---|---|
+| Downloaded author weights | [Models/pretrained_downloads](../Models/pretrained_downloads/) — JCM, ADJSCC, SwinJSCC, SQ-GAN, DiffCom, DiffJSCC, MambaJSCC |
+| Retained/imported weights | [Models/trained_checkpoints](../Models/trained_checkpoints/) — keep immutable |
+| Weight provenance and hashes | [PRETRAINED_DOWNLOADS.md](PRETRAINED_DOWNLOADS.md) |
+| Package and model adapters | [src/semantic_lossless](../src/semantic_lossless/) |
+| Per-model entry folders | [src/semantic_lossless/algorithms](../src/semantic_lossless/algorithms/) — includes pending placeholders |
+| JCM full results | [Results/experiments/jcm/author-eval-db95c8804981cc0d](../Results/experiments/jcm/author-eval-db95c8804981cc0d/) |
+| NTSCC full results | [Results/experiments/ntscc/20261022T050952Z-73226734](../Results/experiments/ntscc/20261022T050952Z-73226734/) |
+| Corrected SQ-GAN full results | [Results/experiments/sqgan/source-eval-7bd7fb0ded4aa51f](../Results/experiments/sqgan/source-eval-7bd7fb0ded4aa51f/) |
+| Earlier adapted SQ-GAN run | [Results/experiments/sqgan/source-eval-380e6857fd643b74](../Results/experiments/sqgan/source-eval-380e6857fd643b74/) — differs in label preprocessing; do not pool as a repeat |
+| DiffCom full GPU pilot | [Results/kaggle_pilot/diffcom_v4](../Results/kaggle_pilot/diffcom_v4/) |
+| ADJSCC/JCM GPU training pilots | [Results/kaggle_pilot/v3](../Results/kaggle_pilot/v3/) |
+| Mamba failed CUDA build | [Results/kaggle_pilot/mamba_v2](../Results/kaggle_pilot/mamba_v2/) |
+| Excluded retained Swin quality run | [Results/implementation_checks/swin_kodak24_invalid_nominal_snr](../Results/implementation_checks/swin_kodak24_invalid_nominal_snr/) |
+| Aggregated long-form metric/event CSV | [Results/metrics.csv](../Results/metrics.csv) — includes multiple protocols and status events; filter by run and metric, never average blindly |
+| Small versioned verification receipts | [Docs/validation](validation/) |
+| Notebook source | [Notebooks/Current](../Notebooks/Current/) and [Kaggle](../Kaggle/) |
+
+Large checkpoints, raw outputs and the central metrics CSV are local artifacts
+ignored by Git; their presence on this laptop does not mean they are committed
+to the public repository. The small validation receipts and this report are
+versioned. Full SQ-GAN and JCM source exports also retain per-image metrics.
+
+## Current work and execution order
+
+The two latest checked Kaggle jobs are finished: SQ-GAN completed, Mamba failed.
+No long training job was launched by those submissions. We have not trained
+every registered model for 150 epochs, and we have not yet demonstrated a new
+method outperforming the papers.
+
+1. Run the strictly loaded native Swin checkpoints through their native CUDA
+   channel and evaluate Kodak. Preserve the excluded retained run separately.
+2. Evaluate ADJSCC and verify DeepJSCC's legacy channel/rate operating point.
+3. Complete inference timing, memory and supported FLOPs reports for runnable
+   models, preserving unsupported-operation and diffusion-gradient limitations.
+4. Validate Shared Codebook native data/construction and SQ-GAN's staged native
+   training before spending GPU quota on full runs.
+5. Repair Mamba compatibility and integrate DiffJSCC as separate bounded pilots;
+   retain DeepJSCC-Q/MDJCM as pending until their specific blockers are resolved.
+6. Build matched baseline comparisons before testing improvements. First compare
+   rate/quality curves under the same data and channel; then evaluate novelty.
+
+The immediate goal is a defensible collection of verified baselines across
+families, followed by matched improvements. A registry entry, downloaded
+checkpoint, CPU test and completed quality benchmark are distinct milestones.
