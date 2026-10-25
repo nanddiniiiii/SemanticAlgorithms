@@ -7,6 +7,21 @@ train missing models only after their native method and training path are checke
 Downloading weights, matching architecture, running inference, completing training
 and measuring all metrics are separate milestones.
 
+## Recovery checkpoint 25 October 2026
+
+Both earlier Stage1 submissions obtained two T4 GPUs but failed before model
+execution because the source bundle omitted sources.lock.json, required by the
+project-root contract. No classifier training or Swin quality result came from
+those runs. The bundle now includes that file and a fresh-process preflight;
+the regression test executes the transported checkout rather than the local one.
+Subprocess progress/errors are persisted by named stage with elapsed time and
+snapshot identity. A bounded Medium assessment accepted the startup correction.
+Its two reporting findings were also addressed: native checkpoint variants are
+distinct in the canonical CSV, and memory measurements separate warmed residency
+from forward allocation growth, exclude FLOPs tracing and state that component
+measurements retain the whole model. The canonical remote artifact map is
+KAGGLE_RUNS.md; only retrieved files establish durable output recovery.
+
 ## Classification
 
 The categories below are action priorities, not mutually exclusive facts.

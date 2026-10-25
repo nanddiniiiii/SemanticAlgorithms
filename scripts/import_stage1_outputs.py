@@ -29,6 +29,7 @@ def main():
         for path in source.glob('*'):
             if path.is_file(): shutil.copyfile(path, run/path.name)
         events = Events(run, Config('swinjscc', dataset='Kodak24', snr_db=10, seed=22, rate=32))
+        events.identity['variant'] = 'baseline_native_'+source.name
         previous = [json.loads(line) for line in (run/'events.jsonl').read_text().splitlines()] if (run/'events.jsonl').exists() else []
         known = {row.get('sample') for row in previous if row.get('stage') == 'native_evaluation'}
         with (source/'per_image.csv').open(newline='') as stream: rows = list(csv.DictReader(stream))

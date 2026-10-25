@@ -38,6 +38,12 @@ def main():
     snr, rate = 10, 32
     first_image = None
     rows = []
+    latent_shapes = {}
+    def observe_encoder(module, inputs, output):
+        feature = output[0] if isinstance(output, tuple) else output
+        latent_shapes.update(feature_shape=list(feature.shape),
+            mask_shape=list(output[1].shape) if isinstance(output, tuple) else None)
+    shape_hook = model.encoder.register_forward_hook(observe_encoder)
     for index, path in enumerate(paths):
         with Image.open(path) as image:
             image = np.asarray(image.convert('RGB'), dtype=np.float32).copy()/255
@@ -60,10 +66,14 @@ def main():
         rows.append(row)
         if first_image is None:
             first_image = image
+            write_json(args.output/'tensor_shapes.json', {'input':list(image.shape),
+                'reconstruction':list(recon.shape), **latent_shapes})
             Image.fromarray(recon[0].clamp(0, 1).mul(255).round().byte().permute(1, 2, 0).cpu().numpy()).save(args.output/'reconstruction.png')
         with (args.output/'per_image.csv').open('w', newline='') as stream:
             writer = csv.DictWriter(stream, fieldnames=list(rows[0])); writer.writeheader(); writer.writerows(rows)
         print(json.dumps({'stage': 'evaluation', 'variant': args.variant, 'images': index+1, 'psnr_db': values['psnr_db']}), flush=True)
+    shape_hook.remove()
+    del image, recon
 
     class Full(torch.nn.Module):
         def __init__(self): super().__init__(); self.native = model
@@ -85,6 +95,7 @@ def main():
         result = profile_forward(module, tensor, warmup=3, repeats=10)
         result['flops_scope'] = 'native '+name+' only; partial supported-operator count'
         result['input_shape'] = list(tensor.shape)
+        result['memory_note'] = 'Whole native model remains resident; not isolated encoder/decoder deployment memory'
         write_json(args.output/('profile_'+name+'.json'), result)
     summary = {'status': 'completed', 'variant': args.variant, 'images': len(rows), 'snr_db': snr,
         'mean_psnr_db': sum(r['psnr_db'] for r in rows)/len(rows),

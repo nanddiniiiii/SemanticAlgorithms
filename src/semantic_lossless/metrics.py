@@ -51,6 +51,8 @@ def profile_forward(codec, image, warmup=3, repeats=10, count_flops=True):
         synchronize()
         if image.is_cuda:
             torch.cuda.reset_peak_memory_stats(image.device)
+        baseline_allocated = torch.cuda.memory_allocated(image.device) if image.is_cuda else None
+        baseline_reserved = torch.cuda.memory_reserved(image.device) if image.is_cuda else None
         elapsed = []
         for _ in range(repeats):
             synchronize()
@@ -58,6 +60,8 @@ def profile_forward(codec, image, warmup=3, repeats=10, count_flops=True):
             codec(image)
             synchronize()
             elapsed.append(time.perf_counter() - start)
+        peak_allocated = torch.cuda.max_memory_allocated(image.device) if image.is_cuda else None
+        peak_reserved = torch.cuda.max_memory_reserved(image.device) if image.is_cuda else None
         flops, counted, coverage, error = None, [], 'not_requested', None
         if count_flops:
             try:
@@ -79,6 +83,10 @@ def profile_forward(codec, image, warmup=3, repeats=10, count_flops=True):
             "flops_coverage": coverage, "counted_operator_types": counted,
             "profiler_error": error, "batch_size": len(image), "precision": str(image.dtype),
             "input_shape": list(image.shape),
-            "peak_cuda_memory_bytes": torch.cuda.max_memory_allocated(image.device) if image.is_cuda else None,
-            "peak_cuda_reserved_bytes": torch.cuda.max_memory_reserved(image.device) if image.is_cuda else None,
+            "peak_cuda_memory_bytes": peak_allocated,
+            "peak_cuda_reserved_bytes": peak_reserved,
+            "baseline_cuda_allocated_bytes": baseline_allocated,
+            "baseline_cuda_reserved_bytes": baseline_reserved,
+            "incremental_peak_cuda_allocated_bytes": peak_allocated-baseline_allocated if image.is_cuda else None,
+            "memory_scope": "repeated-forward process residency plus temporary allocations; not isolated component memory; subsequent FLOPs tracing excluded",
             "warmup": warmup, "repeats": repeats, "training_flops_measured": False}
