@@ -1,0 +1,103 @@
+{
+  "latency_p50_seconds": 0.10396243699997854,
+  "latency_p95_seconds": 0.10475666700000374,
+  "latency_note": "empirical repeated executions; p95 omitted below ten observations",
+  "parameters": 5288332,
+  "forward_flops": 277044790406,
+  "flops_scope": "encoder forward only; inference; registered counts and profiler counts are separate estimates",
+  "flops_coverage": "partial_supported_operators",
+  "counted_operator_types": [
+    "aten::conv2d",
+    "aten::mul",
+    "aten::addmm"
+  ],
+  "profiler_error": null,
+  "batch_size": 1,
+  "precision": "torch.float32",
+  "input_shape": [
+    1,
+    3,
+    512,
+    768
+  ],
+  "peak_cuda_memory_bytes": 380512256,
+  "peak_cuda_reserved_bytes": 2134900736,
+  "baseline_cuda_allocated_bytes": 78259200,
+  "baseline_cuda_reserved_bytes": 2134900736,
+  "incremental_peak_cuda_allocated_bytes": 302253056,
+  "memory_scope": "repeated-forward process residency plus temporary allocations; not isolated component memory; subsequent FLOPs tracing excluded",
+  "warmup": 3,
+  "repeats": 20,
+  "training_flops_measured": false,
+  "registered_kernel_count": {
+    "registered_kernel_flops": 277000487040,
+    "operator_flops": {
+      "aten.convolution": 277000421376,
+      "aten.addmm": 65664
+    },
+    "counted_operator_types": [
+      "aten.addmm",
+      "aten.convolution"
+    ],
+    "observed_uncounted_operator_types": [
+      "aten._prelu_kernel",
+      "aten.cat",
+      "aten.div",
+      "aten.maximum",
+      "aten.mean",
+      "aten.mul",
+      "aten.ones",
+      "aten.pow",
+      "aten.relu",
+      "aten.sigmoid",
+      "aten.sqrt",
+      "aten.sub",
+      "aten.t",
+      "aten.unsqueeze",
+      "aten.view"
+    ],
+    "module_flops": {
+      "Global": 277000487040,
+      "Component.core.conv_block1": 25115492352,
+      "Component": 277000487040,
+      "Component.core.conv_block1.0": 12230590464,
+      "Component.core": 277000487040,
+      "Component.core.conv_block1.1": 12884901888,
+      "Component.core.attention1.fc1": 8224,
+      "Component.core.attention1": 16416,
+      "Component.core.attention1.fc2": 8192,
+      "Component.core.conv_block2": 83751862272,
+      "Component.core.conv_block2.0": 80530636800,
+      "Component.core.conv_block2.1": 3221225472,
+      "Component.core.attention2": 16416,
+      "Component.core.attention2.fc1": 8224,
+      "Component.core.attention2.fc2": 8192,
+      "Component.core.conv_block3": 83751862272,
+      "Component.core.conv_block3.0": 80530636800,
+      "Component.core.conv_block3.1": 3221225472,
+      "Component.core.attention3.fc1": 8224,
+      "Component.core.attention3": 16416,
+      "Component.core.attention3.fc2": 8192,
+      "Component.core.conv_block4.0": 80530636800,
+      "Component.core.conv_block4": 83751862272,
+      "Component.core.conv_block4.1": 3221225472,
+      "Component.core.attention4.fc1": 8224,
+      "Component.core.attention4": 16416,
+      "Component.core.attention4.fc2": 8192,
+      "Component.core.conv_block5": 629342208,
+      "Component.core.conv_block5.0": 629145600,
+      "Component.core.conv_block5.1": 196608
+    },
+    "coverage": "PyTorch registered kernels only; convolution including transposed, matrix and supported attention kernels",
+    "convention": "two FLOPs per multiply-accumulate; unregistered elementwise, coding and integer operations not estimated",
+    "complete_arithmetic_count": false,
+    "input_shape": [
+      1,
+      3,
+      512,
+      768
+    ],
+    "torch": "2.11.0+cu128"
+  },
+  "memory_note": "Whole codec remains resident; evaluator removed; not isolated component deployment memory"
+}

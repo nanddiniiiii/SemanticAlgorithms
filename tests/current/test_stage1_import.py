@@ -22,10 +22,10 @@ class Stage1Import(unittest.TestCase):
             with (source/'per_image.csv').open('w', newline='') as stream:
                 writer = csv.DictWriter(stream, fieldnames=['sample','sha256','psnr_db','rate_complete'])
                 writer.writeheader(); writer.writerow({'sample':'fixture.png','sha256':'fixture','psnr_db':31,'rate_complete':False})
-            with contextlib.redirect_stdout(io.StringIO()): module.main()
+            with contextlib.redirect_stdout(io.StringIO()): module.main([])
             destination = root/'Results/metrics.csv'
             first = destination.read_bytes()
-            with contextlib.redirect_stdout(io.StringIO()): module.main()
+            with contextlib.redirect_stdout(io.StringIO()): module.main([])
             self.assertEqual(destination.read_bytes(), first)
             with destination.open(newline='') as stream: rows = list(csv.DictReader(stream))
             self.assertEqual(len(rows), 1)
@@ -34,7 +34,7 @@ class Stage1Import(unittest.TestCase):
             other = root/'Results/stage1_downloads/fixture/fixed_c32'; other.mkdir()
             (other/'metrics.json').write_bytes((source/'metrics.json').read_bytes())
             (other/'per_image.csv').write_bytes((source/'per_image.csv').read_bytes())
-            with contextlib.redirect_stdout(io.StringIO()): module.main()
+            with contextlib.redirect_stdout(io.StringIO()): module.main([])
             with destination.open(newline='') as stream: both = list(csv.DictReader(stream))
             self.assertEqual({row['variant'] for row in both}, {'baseline_native_sa_ra','baseline_native_fixed_c32'})
             self.assertEqual(len(both), 2)

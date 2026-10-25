@@ -4,13 +4,17 @@
   "mean_psnr_png_db": 21.256594638824463,
   "mean_psnr_native_saved_range1_db": 21.240841088705064,
   "mean_psnr_native_saved_auto_range_db": 21.00107676220677,
-  "elapsed_seconds": 1137.564384179,
-  "scope": "partial native-component evaluation at one source-codec rate; no channel model",
+  "elapsed_seconds": 443.995774306,
+  "scope": "native-component evaluation at one source-codec rate with added conventional RGB fidelity and semantic-branch metrics; no channel model",
   "unmeasured": [
-    "LPIPS",
-    "MS-SSIM",
-    "InternImage mIoU"
+    "InternImage mIoU",
+    "separate encoder and decoder GPU profiles"
   ],
   "training_reproduced": false,
+  "mean_ssim": 0.6609061824679374,
+  "mean_ms_ssim": 0.7828344950675964,
+  "mean_lpips": 0.27673418018221857,
+  "mean_exact_uint8_sample_fraction": 0.0600273556523025,
+  "mean_exact_uint8_spatial_pixel_fraction": 0.0030833587646484375,
   "metric_protocol": "native forward; exact native normalized-space clamp and NumPy uint8 truncation; fixed-range and auto-range RGB PSNR formulas; conventional rounded PSNR also recorded"
 }

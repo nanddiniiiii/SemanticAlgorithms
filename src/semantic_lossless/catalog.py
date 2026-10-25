@@ -15,7 +15,7 @@ class Model:
 MODELS = {
     m.name: m for m in [
         Model("deepjscc", "continuous/CNN", "image_folder", "retained", note="Legacy channel; complex-use mapping not certified"),
-        Model("swinjscc", "continuous/transformer", "image_folder", "retained", False, "Retained port has masked-power SNR mismatch; audit-only until native author path is verified"),
+        Model("swinjscc", "continuous/transformer", "image_folder", "retained", False, "Retained port audit-only for power mismatch; separate native fixed/adaptive Kodak24 evaluations and T4 profiles completed; adaptive quality anomaly unresolved"),
         Model("ntscc", "entropy-adaptive", "image_folder", "retained", note="Original NTSCC; main-latent rate excludes side information"),
         Model("jcm", "finite-constellation/VAE", "cifar10", "jcm", True, "Native 32x32; reconstruction plus classification objective"),
         Model("adjscc", "continuous/attention", "image_folder", "adjscc", True, "DiffCom PyTorch architecture; per-image AWGN adaptation; original TF lineage stays separate"),
@@ -28,7 +28,7 @@ MODELS = {
         Model("mambajscc", "continuous/state-space", "image_folder", "pending", note="Author AWGN/Rayleigh pairs downloaded; native CUDA extension build failed; inference unverified"),
         Model("diffcom", "generative/diffusion", "image_folder", "diffcom", note="Complete T4 posterior pilot passed; AWGN adapter differences remain explicit; no diffusion training"),
         Model("diffjscc", "generative/diffusion", "image_folder", "pending", note="Author Hugging Face checkpoint; inference integration pending"),
-        Model("deepjscc_q", "finite-constellation", "cifar10", "pending", note="Public trainer needs paper-variant verification"),
+        Model("deepjscc_q", "finite-constellation", "cifar10", "pending", note="Candidate mixes paper variants; quantizer evaluation/regularizer defects verified; no faithful trained model yet"),
         Model("hybrid_semantic_complementary", "hybrid", "image_folder", "hybrid", note="Our frozen ADJSCC plus fixed DCT complement reference; not an author reproduction"),
         Model("dit_jscc", "generative/diffusion-transformer", "image_folder", "unavailable", note="JSCC weights reserved for future release"),
         Model("hda_deepsc", "hybrid", "image_folder", "unavailable", note="Verified author executable release not identified"),

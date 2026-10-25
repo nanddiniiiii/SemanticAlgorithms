@@ -1,0 +1,18 @@
+{
+  "status": "completed",
+  "images": 24,
+  "snr_db": 10,
+  "noise_seed": 22,
+  "scope": "retained q1 GPU evaluation with device and entropy compatibility adapter; not author training reproduction",
+  "rate_complete": false,
+  "fixed_width_rate_index_bits_per_image": 6144,
+  "rate_warning": "main symbols exclude metadata/protection/headers and receiver rescaling information; hyperprior refinement disabled",
+  "semantic_metrics": null,
+  "semantic_metric_reason": "Kodak has no independent task labels",
+  "exact_rgb_images": 0,
+  "mean_psnr_db": 29.790245132494054,
+  "mean_ssim": 0.825329860051473,
+  "mean_ms_ssim": 0.9571655491987864,
+  "mean_lpips": 0.22138667634377876,
+  "mean_main_stream_cbr": 0.023975372314453125
+}

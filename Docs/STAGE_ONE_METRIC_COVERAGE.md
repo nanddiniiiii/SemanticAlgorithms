@@ -5,13 +5,13 @@ Missing values are unmeasured, not zero. Different native datasets/protocols can
 
 | Model | Action group | Evaluation data | RGB PSNR dB | SSIM | LPIPS | Profile input BxCxHxW | Counted forward GFLOPs (partial) |
 |---|---|---|---:|---:|---:|---|---:|
-| deepjscc | retain_existing | — | — | — | — | 1x3x128x128 | 0.142504 |
-| swinjscc | retain_existing | — | — | — | — | — | — |
-| ntscc | retain_existing | Kodak24 | 29.790670 | 0.825372 | — | 1x3x512x768 | 787.821029 |
+| deepjscc | retain_existing | Kodak24; legacy real-channel diagnostic only | 16.429049 | 0.230969 | — | 1x3x128x128 | 0.142504 |
+| swinjscc | retain_existing | Kodak24; native fixed-C32 | 29.371070 | 0.823342 | 0.221242 | 1x3x512x768 | 413.428359 |
+| ntscc | retain_existing | Kodak24; retained q1 GPU | 29.790245 | 0.825330 | 0.221387 | 1x3x512x768 | 787.821029 |
 | jcm | use_downloaded_author_weights | CIFAR10 test10000 | 23.363642 | 0.678113 (author convention) | — | 1x3x32x32 | 1.080805 |
-| adjscc | use_downloaded_author_weights | — | — | — | — | 1x3x256x256 | 63.503600 |
+| adjscc | use_downloaded_author_weights | Kodak24; DiffCom PyTorch C2 | 27.645612 | 0.789660 | 0.299968 | 1x3x512x768 | 381.017902 |
 | shared_semantic_codebook | code_only_candidate | — | — | — | — | — | — |
-| sqgan | use_downloaded_author_weights | Cityscapes val500 | 21.240841 | — | — | 1x3x256x512 | 2336.917424 |
+| sqgan | use_downloaded_author_weights | Cityscapes val500 | 21.240841 | 0.660906 | 0.276734 | 1x3x256x512 | 2336.916638 |
 | vq_deepsc | unverified_executable_release | — | — | — | — | — | — |
 | vq_deepisc | unverified_executable_release | — | — | — | — | — | — |
 | sc_lmkb | reference_only_non_reconstruction | — | — | — | — | — | — |

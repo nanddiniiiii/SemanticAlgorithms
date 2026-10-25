@@ -24,6 +24,10 @@ def main():
     with (directory/'per_image.csv').open(newline='') as stream:rows=list(csv.DictReader(stream))
     if len(rows)!=500 or len({row['sample'] for row in rows})!=500:
         raise ValueError('Expected 500 unique sample records')
+    write_json(ROOT/'Docs/validation/sqgan_cityscapes500_native_metrics.json',summary)
+    for name in ['profile_full.json','semantic_branch.json']:
+        if (directory/name).is_file():
+            shutil.copyfile(directory/name,ROOT/'Docs/validation'/('sqgan_'+name))
     identity=sha256(directory/'per_image.csv')[:16]
     run=ROOT/'Results/experiments/sqgan'/('source-eval-'+identity)
     run.mkdir(parents=True,exist_ok=True)
@@ -33,6 +37,8 @@ def main():
             shutil.copyfile(directory/name,run/name)
         if (directory/'native_preprocessing.json').is_file():
             shutil.copyfile(directory/'native_preprocessing.json',run/'native_preprocessing.json')
+        for name in ['profile_full.json','semantic_branch.json','reconstruction.png','source_packet.sq01']:
+            if (directory/name).is_file():shutil.copyfile(directory/name,run/name)
         previous=[json.loads(line) for line in (run/'events.jsonl').read_text().splitlines()] if (run/'events.jsonl').exists() else []
         known={record.get('sample') for record in previous if record.get('status')=='sample_completed'}
         events=Events(run,Config('sqgan',dataset='cityscapes',seed=22))

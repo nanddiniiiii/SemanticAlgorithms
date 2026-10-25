@@ -24,6 +24,23 @@ KAGGLE_RUNS.md; only retrieved files establish durable output recovery.
 
 ## Classification
 
+25 October execution: account B native Swin version2 completed Kodak24 for both
+checkpoints, with encoder/decoder/full T4 profiles recovered locally. Fixed-C32
+PSNR29.3711dB; SA+RA21.3327dB at requested10dB/C32. The adaptive result remains
+flagged pending explanation; it does not establish an architecture ranking.
+Account A classifier version3 continues independently. The report is
+STAGE_ONE_REPORT.md and output/pdf/SemanticLossless_Stage1_Report.pdf.
+
+NTSCC accounting correction: the configured retained decoder has hyperprior
+refinement disabled (`use_side_info=False`). Its known missing transport is
+the rate-index/mask information supplied directly to the decoder, not a
+demonstrated mandatory hyperprior bitstream. Sixteen choices require four
+fixed-width bits per spatial index; Kodak has32x48=1536 indices, or6144 uncoded
+bits (768bytes,0.015625bpp), before protection/headers. This is a simple explicit
+representation, not an entropy lower bound. Encoder-derived power restoration
+also assumes receiver availability inside the simulator. Main-stream CBR
+therefore remains incomplete even after this metadata estimate is recorded.
+
 The categories below are action priorities, not mutually exclusive facts.
 SwinJSCC, for example, has both retained weights and downloaded author weights.
 Implementation fidelity is a separate column rather than a third weight category.
@@ -147,3 +164,14 @@ Keep diffusion models outside this phase under the current user instruction.
 Submission alone does not establish actual GPU allocation, completed pilot or
 training. Job statuses must be checked and outputs downloaded before reporting
 results. The two account credentials remain separate; none belongs in Git.
+
+## Continuation checkpoint
+Recovered: native Swin fixed/adaptive Kodak24 profiles, ADJSCC Kodak24 profiles, Shared auxiliary classifier200epochs, traditional11x24 source-codec results, legacyDeepJSCC diagnostic24. All imported into Results/metrics.csv and Docs/validation/stage1_summary.csv. Report: output/pdf/SemanticLossless_Stage1_Report.pdf (6pages).
+Updated execution: JCM A v1, SQ-GAN B v10 and NTSCC A v1 completed and were recovered with hashes. SQ v9 failure remains preserved. Latest JCM and NTSCC measurements are imported by scripts/import_stage1_gpu_extension.py (repeat import appended zero rows); SQ v10 is imported separately. Shared native construction/prefix implementation is prepared with checkpoint and pilot gates; a launch does not establish training completion.
+
+Custom-data extension authorized: DIV2K plus diverse RGB sources; freeze actual
+image identities and splits before training. The initial design is
+CUSTOM_DATASET_PROTOCOL.json. Custom ADJSCC adaptation uses separate modified
+runs and pristine author initialization; it must not replace Phase1 native
+checkpoints. Kodak stays evaluation-only. No dataset selection or successful
+training is claimed by the protocol file alone.

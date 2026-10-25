@@ -1,0 +1,36 @@
+{
+  "latency_p50_seconds": 0.13607367000008708,
+  "latency_p95_seconds": 0.13853006299996196,
+  "latency_note": "empirical repeated executions; p95 omitted below ten observations",
+  "parameters": 19004696,
+  "forward_flops": 217085842594,
+  "flops_scope": "native encoder only; partial supported-operator count",
+  "flops_coverage": "partial_supported_operators",
+  "counted_operator_types": [
+    "aten::conv2d",
+    "aten::addmm",
+    "aten::mul",
+    "aten::bmm",
+    "aten::add",
+    "aten::mm"
+  ],
+  "profiler_error": null,
+  "batch_size": 1,
+  "precision": "torch.float32",
+  "input_shape": [
+    1,
+    3,
+    512,
+    768
+  ],
+  "peak_cuda_memory_bytes": 990108672,
+  "peak_cuda_reserved_bytes": 1518338048,
+  "baseline_cuda_allocated_bytes": 235133952,
+  "baseline_cuda_reserved_bytes": 1518338048,
+  "incremental_peak_cuda_allocated_bytes": 754974720,
+  "memory_scope": "repeated-forward process residency plus temporary allocations; not isolated component memory; subsequent FLOPs tracing excluded",
+  "warmup": 3,
+  "repeats": 10,
+  "training_flops_measured": false,
+  "memory_note": "Whole native model remains resident; not isolated encoder/decoder deployment memory"
+}

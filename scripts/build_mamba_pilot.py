@@ -31,7 +31,22 @@ try:
     checked(['bash','-lc','command -v nvcc && nvcc --version'])
     checked([sys.executable,'-m','pip','install','--no-deps','timm==0.4.12','fvcore','iopath','yacs','termcolor','einops','ninja'])
     os.environ['MAX_JOBS']='2'
-    # Build the exact author kernels first; do not replace state-space scans.
+    # Fix two confirmed C++ signature syntax defects on this disposable copy.
+    # The immutable downloaded source was hash-checked above; CUDA math stays intact.
+    cpp=source/'selective_scan/csrc/selective_scan/selective_scan.cpp'
+    original=cpp.read_text()
+    old_call='set_ssm_params_fwd(params, batch, dim, seqlen, dstate, n_groups, n_chunks, 0,'
+    old_parameter='int nrows,\\n                  \\n                  )'
+    assert original.count(old_call)==original.count(old_parameter)==1
+    patched=original.replace(old_call,old_call.replace('n_chunks, 0,','n_chunks,'))
+    patched=patched.replace(old_parameter,old_parameter.replace('int nrows,','int nrows'))
+    cpp.write_text(patched)
+    record('compatibility_patch.json',{'file':str(cpp.relative_to(source)),
+        'original_sha256':hashlib.sha256(original.encode()).hexdigest(),
+        'patched_sha256':hashlib.sha256(patched.encode()).hexdigest(),
+        'changes':['remove stale extra0 argument from backward setup call matching existing forward signature',
+                   'remove trailing comma from final nrows argument declaration'],
+        'scope':'compile compatibility only; scan CUDA kernels unchanged; numerical runtime validation pending'})
     for folder in ['adaptive_selective_scan','selective_scan']:
         checked([sys.executable,'-m','pip','install','--no-build-isolation','--no-deps','-v','.'],cwd=source/folder)
     sys.path.insert(0,str(source))
@@ -88,7 +103,7 @@ try:
             'input_shape':list(image.shape),'latent_shape':list(feature.shape),'output_shape':list(reconstructed.shape),
             'snr_db':10,'complex_uses':feature.numel()//2,'cbr':feature.numel()/2/image.numel(),
             'elapsed_seconds':time.monotonic()-start,'peak_allocated_bytes':torch.cuda.max_memory_allocated(),
-            'compatibility_change':'restore commented import of selective_scan_cuda_core; kernels unchanged'})
+            'compatibility_change':'restore commented extension import and two recorded C++ signature syntax fixes; CUDA kernels unchanged'})
         # Export data-only checkpoints for later explicit architecture loading.
         torch.save({'state_dict':encoder.state_dict(),'native_config':str(config)},ROOT/(channel_type+'_encoder_state.pt'))
         torch.save({'state_dict':decoder.state_dict(),'native_config':str(decoder.config)},ROOT/(channel_type+'_decoder_state.pt'))

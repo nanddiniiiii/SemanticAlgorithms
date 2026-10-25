@@ -1,6 +1,6 @@
 # All-model implementation, checkpoint and results inventory
 
-Snapshot: 22 October 2026. Local receipts and files were checked for this inventory.
+Snapshot: 25 October 2026. Local receipts and files were checked for this inventory.
 This is a progress table, not a performance ranking: datasets, rates, channel
 settings and metric protocols differ. A model folder or train entry point alone
 does not establish a working implementation. No complete paper training
@@ -12,7 +12,7 @@ reproduction has been established in this execution.
 |---|---|---|---|---|---|
 | DeepJSCC | Continuous CNN JSCC | Retained adapter; legacy channel and complex-use accounting uncertified | Retained EncDec checkpoint | No current certified full evaluation | Verify checkpoint operating point and channel accounting, then evaluate |
 | ADJSCC | SNR-adaptive continuous JSCC | DiffCom PyTorch architecture integrated; adapted per-image AWGN; dual-T4 optimizer/save-reload pilot passed | Downloaded author-linked C=2 checkpoint | Training/runtime pilot only; no full quality benchmark | Evaluate pretrained model; distinguish this lineage from original TensorFlow implementation |
-| SwinJSCC | Continuous transformer JSCC | Retained port audit-only; both native base variants strictly load on CPU | Retained port plus downloaded native fixed-C32 and SA+RA checkpoints | Retained quality run excluded for masked-power SNR mismatch; native quality pending | Integrate native CUDA forward and evaluate Kodak |
+| SwinJSCC | Continuous transformer JSCC | Retained port audit-only; native CUDA evaluation and separate component profiles completed | Retained port plus downloaded native fixed-C32 and SA+RA checkpoints | Kodak24 at10dB/C32: fixed29.371070dB, SSIM.823342, LPIPS.221242; adaptive21.332709dB, SSIM.624726, LPIPS.490452 | Investigate adaptive quality anomaly; preserve native profiles and excluded retained run separately |
 | NTSCC | Entropy/data-adaptive JSCC | Original retained quality-1 model evaluated | Retained original checkpoint | Kodak24: 29.790670 dB RGB PSNR, 0.825372 SSIM, mean main-stream CBR 0.02397565 at 10 dB AWGN | Account for hyperprior/side information and profile inference |
 | JCM | Finite-constellation digital / joint reconstruction and classification | Native forward/objective/gradient equivalence; GPU training pilot; full pretrained evaluation | Downloaded native 16-QAM checkpoint and analog initialization | CIFAR-10 test10k: 23.409674 dB author PSNR; 23.363642 dB standard RGB PSNR; accuracy 87.64%, 12 dB, 128 complex uses | Profile inference; use native single-GPU semantics for training baseline |
 | DeepJSCC-Q | Finite-constellation neural JSCC | Candidate source and quantizer diagnostic only; model integration pending | No verified pretrained checkpoint | Fixed-constellation evaluation produced nonfinite output; learned quantizer mutates evaluation state | Resolve source/paper variant and explicitly document any fixes before training |
@@ -32,6 +32,13 @@ reproduction has been established in this execution.
 | MOC-RVQ | Residual VQ codebook | Research-only; not registered as an executable backend | None verified | None | Revisit author code/weights release |
 
 ## Measured results with protocol
+
+New native Swin receipts: `Docs/validation/swin_{fixed_c32,sa_ra}_gpu_metrics.json`
+and corresponding `profile_{full,encoder,decoder}.json`. Both Kodak24 variants
+completed on account B version2. Full fixed/adaptive T4 FP32 batch1 latency p50:
+260.84/274.57ms at512x768; partial profiler counts413.428/428.977GFLOPs.
+These are measured forwards, not complete arithmetic totals. See
+[the Stage1 report](STAGE_ONE_REPORT.md) for the consolidated evidence and limits.
 
 | Model / result type | Data and scope | Channel | Rate | Quality | Runtime / memory |
 |---|---|---|---|---|---|
@@ -82,8 +89,8 @@ No long training job was launched by those submissions. We have not trained
 every registered model for 150 epochs, and we have not yet demonstrated a new
 method outperforming the papers.
 
-1. Run the strictly loaded native Swin checkpoints through their native CUDA
-   channel and evaluate Kodak. Preserve the excluded retained run separately.
+1. Native Swin checkpoint evaluation is complete. Investigate the adaptive
+   checkpoint's low quality; preserve the excluded retained run separately.
 2. Evaluate ADJSCC and verify DeepJSCC's legacy channel/rate operating point.
 3. Complete inference timing, memory and supported FLOPs reports for runnable
    models, preserving unsupported-operation and diffusion-gradient limitations.

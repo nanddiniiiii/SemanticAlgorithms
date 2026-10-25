@@ -4,6 +4,7 @@ import hashlib
 import io
 import json
 from pathlib import Path
+import subprocess
 import zipfile
 
 root=Path(__file__).resolve().parents[1]
@@ -25,7 +26,7 @@ with zipfile.ZipFile(snapshot,'w',zipfile.ZIP_DEFLATED) as archive:
 (assets/'dataset-metadata.json').write_text(json.dumps({'title':'Semantic Lossless Private SQGAN Source',
     'id':'satyapaladuguplus/semantic-lossless-private-sqgan-source','licenses':[{'name':'other'}]},indent=2))
 payload=buffer.getvalue()
-bootstrap=f'''import base64, hashlib, io, os, sys, zipfile
+bootstrap=f'''import base64, hashlib, io, json, os, sys, zipfile
 from pathlib import Path
 blob=base64.b64decode({base64.b64encode(payload).decode()!r})
 assert hashlib.sha256(blob).hexdigest()=={hashlib.sha256(payload).hexdigest()!r}
@@ -34,6 +35,12 @@ with zipfile.ZipFile(io.BytesIO(blob)) as archive:
     for name in archive.namelist():(root/name).resolve().relative_to(root.resolve())
     archive.extractall(root)
 os.environ['SEMANTIC_LOSSLESS_ROOT']=str(root);os.chdir(root);sys.path.insert(0,str(root/'src'))
+provenance={{'source_bundle_sha256':hashlib.sha256(blob).hexdigest(),
+    'git_revision':{subprocess.check_output(['git','rev-parse','HEAD'],cwd=root,text=True).strip()!r},
+    'working_tree_dirty':{bool(subprocess.check_output(['git','status','--porcelain'],cwd=root,text=True).strip())!r},
+    'python':sys.version,'interpreter':sys.executable,'scope':'native SQ-GAN evaluation with explicitly separate added metrics'}}
+(root/'source_bundle.json').write_text(json.dumps(provenance,indent=2))
+print(json.dumps({{'stage':'source_preflight',**provenance}}),flush=True)
 snapshots=sorted({{p.resolve() for p in Path('/kaggle/input').rglob('sqgan-pinned-source.zip') if p.is_file()}})
 if len(snapshots)==1:
     assert hashlib.sha256(snapshots[0].read_bytes()).hexdigest()=={hashlib.sha256(snapshot.read_bytes()).hexdigest()!r}
@@ -57,6 +64,8 @@ from semantic_lossless.sources import fetch_source,source_path
 from semantic_lossless.sqgan import build_sqgan
 from semantic_lossless.codecs import upstream_import
 from semantic_lossless.artifacts import write_json
+from semantic_lossless.metrics import quality, profile_forward
+from semantic_lossless.compute import registered_kernel_flops
 from torchvision import transforms
 run=root/'Results/author_evaluation/sqgan_cityscapes_quarter_native_save'
 run.mkdir(parents=True,exist_ok=False)
@@ -113,8 +122,11 @@ try:
     write_json(run/'native_preprocessing.json',{'status':'passed','scope':'one real image: native RGB validation transform and one-hot labels; official raw-ID conversion'})
     torch.manual_seed(22);np.random.seed(22);random.seed(22)
     start=time.monotonic();total_psnr=0.;total_native_range1=0.;total_native_auto=0.
+    fidelity_totals={key:0. for key in ['ssim','ms_ssim','lpips','exact_uint8_sample_fraction','exact_uint8_spatial_pixel_fraction']}
+    confusion=torch.zeros(20,20,dtype=torch.int64,device='cuda')
+    from pytorch_msssim import ms_ssim
     with (run/'per_image.csv').open('w',newline='') as stream, torch.inference_mode():
-        writer=csv.DictWriter(stream,fieldnames=['sample','psnr_png_db','psnr_native_saved_range1_db','psnr_native_saved_auto_range_db','source_bits','paper_payload_bits','packet_bpp','paper_bpp'])
+        writer=csv.DictWriter(stream,fieldnames=['sample','psnr_png_db','psnr_native_saved_range1_db','psnr_native_saved_auto_range_db','source_bits','paper_payload_bits','packet_bpp','paper_bpp',*fidelity_totals])
         writer.writeheader()
         for index in range(len(dataset)):
             batch=dataset[index];image=batch['image'][None].cuda();semantic=batch['semantic'][None].cuda()
@@ -139,6 +151,12 @@ try:
             mse=(reconstruction-original).square().mean()
             assert torch.isfinite(reconstruction).all() and mse>0
             psnr=float(-10*torch.log10(mse));total_psnr+=psnr
+            fidelity=quality(original,reconstruction,use_lpips=True)
+            fidelity['ms_ssim']=float(ms_ssim(original,reconstruction,data_range=1))
+            for key in fidelity_totals:fidelity_totals[key]+=fidelity[key]
+            ground_truth=semantic.argmax(1);predicted=native_result[3].argmax(1)
+            valid=ground_truth<19
+            confusion+=torch.bincount((ground_truth[valid]*20+predicted[valid]).reshape(-1),minlength=400).reshape(20,20)
             native_reconstructed=native_pixels(native_result[0])
             native_original=native_pixels((image-mean)/std)
             native_a=native_original.astype(np.float64)/255
@@ -149,22 +167,46 @@ try:
             total_native_range1+=native_range1;total_native_auto+=native_auto
             paper_bits=result['vq_index_bits']+result['mask_bitmap_bits']
             writer.writerow({'sample':batch['sample'],'psnr_png_db':psnr,'psnr_native_saved_range1_db':native_range1,'psnr_native_saved_auto_range_db':native_auto,'source_bits':result['source_bits'],
-                'paper_payload_bits':paper_bits,'packet_bpp':result['source_bits']/(256*512),'paper_bpp':paper_bits/(256*512)})
+                'paper_payload_bits':paper_bits,'packet_bpp':result['source_bits']/(256*512),'paper_bpp':paper_bits/(256*512),
+                **{key:fidelity[key] for key in fidelity_totals}})
             stream.flush()
             if index==0:
                 Image.fromarray(native_reconstructed).save(run/'reconstruction.png')
                 (run/'source_packet.sq01').write_bytes(result['source_packet'])
             if index%25==0: print(json.dumps({'stage':'evaluation','images':index+1,'total':len(dataset)}),flush=True)
+    valid_confusion=confusion[:19,:].double()
+    intersections=valid_confusion[:,:19].diag()
+    unions=valid_confusion.sum(1)+valid_confusion[:,:19].sum(0)-intersections
+    class_ious=torch.where(unions>0,intersections/unions,torch.nan)
+    write_json(run/'semantic_branch.json',{'semantic_branch_miou':float(class_ious.nanmean()),
+        'class_ious':class_ious.tolist(),'confusion_gt19_pred20':valid_confusion.cpu().tolist(),
+        'scope':'decoded semantic branch vs supplied paired labels; NOT segmentation of reconstructed RGB or paper InternImage mIoU',
+        'ignore_gt_class':19,'absent_class_policy':'exclude zero-union classes','paired_labels_available_at_encoder':True})
+    import semantic_lossless.metrics as metric_module
+    if hasattr(metric_module,'_LPIPS'):del metric_module._LPIPS
+    del native_result,result,expected,reconstruction,original,image,semantic
+    torch.cuda.empty_cache()
+    first=dataset[0];profile_image=first['image'][None].cuda();profile_semantic=first['semantic'][None].cuda()
+    class NativeFull(torch.nn.Module):
+        def __init__(self):super().__init__();self.core=codec
+        def forward(self,value):return native_forward((value-mean)/std,profile_semantic)[0]
+    profile=profile_forward(NativeFull(),profile_image,warmup=3,repeats=20)
+    profile['registered_kernel_count']=registered_kernel_flops(NativeFull(),profile_image)
+    profile['flops_scope']='ten-component native forward_all at fixed .25/.25; includes both semantic and RGB branches, not packet coding or GAN training'
+    profile['semantic_input_shape']=list(profile_semantic.shape)
+    write_json(run/'profile_full.json',profile)
     write_json(run/'metrics.json',{'status':'completed','images':len(dataset),'mean_psnr_png_db':total_psnr/len(dataset),
         'mean_psnr_native_saved_range1_db':total_native_range1/len(dataset),'mean_psnr_native_saved_auto_range_db':total_native_auto/len(dataset),
-        'elapsed_seconds':time.monotonic()-start,'scope':'partial native-component evaluation at one source-codec rate; no channel model',
-        'unmeasured':['LPIPS','MS-SSIM','InternImage mIoU'],'training_reproduced':False,
+        'elapsed_seconds':time.monotonic()-start,'scope':'native-component evaluation at one source-codec rate with added conventional RGB fidelity and semantic-branch metrics; no channel model',
+        'unmeasured':['InternImage mIoU','separate encoder and decoder GPU profiles'],'training_reproduced':False,
+        **{'mean_'+key:value/len(dataset) for key,value in fidelity_totals.items()},
         'metric_protocol':'native forward; exact native normalized-space clamp and NumPy uint8 truncation; fixed-range and auto-range RGB PSNR formulas; conventional rounded PSNR also recorded'})
     print((run/'metrics.json').read_text(),flush=True)
 except Exception as error:
     write_json(run/'status.json',{'status':'failed','error':str(error)})
     raise
 '''
+body=body.replace("run.mkdir(parents=True,exist_ok=False)","run.mkdir(parents=True,exist_ok=False)\nsubprocess.run([sys.executable,'-m','pip','install','--no-deps','lpips==0.1.4','pytorch-msssim==1.0.0'],check=True)")
 script=bootstrap+body;compile(script,'sqgan_evaluation.py','exec')
 folder=root/'Kaggle/sqgan_evaluation';folder.mkdir(parents=True,exist_ok=True)
 (folder/'kernel.py').write_text(script)

@@ -1,7 +1,7 @@
 {
   "stage": 1,
   "stage2_started": false,
-  "snapshot_date": "2026-10-22",
+  "snapshot_date": "2026-10-25",
   "scope": "inventory and measured receipts; not a matched performance ranking",
   "missing_value_policy": "null means unmeasured/unsupported, never zero",
   "models": [
@@ -13,12 +13,14 @@
       "downloaded_author_weights": false,
       "implementation_backend": "retained",
       "fidelity_note": "Legacy channel; complex-use mapping not certified",
+      "quality_scope": "retained third-party historical checkpoint; tiled real-AWGN diagnostic, not original-paper reproduction or matched complex-radio comparison",
+      "matched_radio_comparison_eligible": false,
       "input_dimensions": null,
-      "dataset_evaluated": null,
+      "dataset_evaluated": "Kodak24; legacy real-channel diagnostic only",
       "pixel_and_perceptual": {
-        "psnr_db": null,
-        "ssim": null,
-        "ms_ssim": null,
+        "psnr_db": 16.429048880743576,
+        "ssim": 0.2309690366188685,
+        "ms_ssim": 0.47615506624182063,
         "lpips": null
       },
       "semantic": {
@@ -51,7 +53,7 @@
         "peak_memory": null,
         "reason": "Do not substitute whole evaluation duration or optimizer pilot for isolated inference latency"
       },
-      "evidence_receipt": null
+      "evidence_receipt": "Docs/validation/deepjscc_legacy_kodak24_metrics.json"
     },
     {
       "algorithm": "swinjscc",
@@ -60,14 +62,16 @@
       "retained_weights": true,
       "downloaded_author_weights": true,
       "implementation_backend": "retained",
-      "fidelity_note": "Retained port has masked-power SNR mismatch; audit-only until native author path is verified",
-      "input_dimensions": "native config256; Kodak full-resolution evaluation submitted",
-      "dataset_evaluated": null,
+      "fidelity_note": "Retained port audit-only for power mismatch; separate native fixed/adaptive Kodak24 evaluations and T4 profiles completed; adaptive quality anomaly unresolved",
+      "quality_scope": "native pretrained Kodak evaluation; one channel trial; no training reproduction",
+      "matched_radio_comparison_eligible": false,
+      "input_dimensions": "RGB 3x512x768 or3x768x512; native Kodak24 evaluation",
+      "dataset_evaluated": "Kodak24; native fixed-C32",
       "pixel_and_perceptual": {
-        "psnr_db": null,
-        "ssim": null,
-        "ms_ssim": null,
-        "lpips": null
+        "psnr_db": 29.371069591705858,
+        "ssim": 0.8233416080474854,
+        "ms_ssim": 0.9568434059619904,
+        "lpips": 0.22124184668064117
       },
       "semantic": {
         "metric": null,
@@ -75,26 +79,32 @@
         "reason": "Not measured on an independently labelled task in the current receipt"
       },
       "transmission": {
-        "value": null,
-        "unit": null,
-        "complete": false
+        "value": 0.020833333333333332,
+        "unit": "complex_uses_per_RGB_sample",
+        "complete": false,
+        "note": "native fixed-C32,10dB; overhead unspecified"
       },
       "compute": {
         "encoder_flops": null,
         "decoder_flops": null,
         "full_flops": null,
-        "counted_forward_flops": null,
-        "counted_forward_coverage": null,
-        "parameters": null,
-        "profile_input_shape": null,
-        "reason": "Validated Stage1 profile receipt not yet imported; no inferred FLOPs"
+        "counted_forward_flops": 413428359169,
+        "counted_forward_coverage": "partial_supported_operators",
+        "parameters": 28162000,
+        "profile_input_shape": [
+          1,
+          3,
+          512,
+          768
+        ],
+        "reason": "Partial GPU operator count; separate component receipts available; not total arithmetic"
       },
       "runtime_reliability": {
-        "latency": null,
-        "peak_memory": null,
-        "reason": "Do not substitute whole evaluation duration or optimizer pilot for isolated inference latency"
+        "latency": 0.2608441900000571,
+        "peak_memory": 969934336,
+        "reason": "T4 FP32 batch1 input[1, 3, 512, 768]; warmup3/repeats10; memory is process residency"
       },
-      "evidence_receipt": null
+      "evidence_receipt": "Docs/validation/swin_fixed_c32_gpu_metrics.json"
     },
     {
       "algorithm": "ntscc",
@@ -104,13 +114,15 @@
       "downloaded_author_weights": false,
       "implementation_backend": "retained",
       "fidelity_note": "Original NTSCC; main-latent rate excludes side information",
+      "quality_scope": "retained q1 GPU evaluation with device and entropy compatibility adapter; not author training reproduction",
+      "matched_radio_comparison_eligible": false,
       "input_dimensions": "Kodak native512x768 or768x512",
-      "dataset_evaluated": "Kodak24",
+      "dataset_evaluated": "Kodak24; retained q1 GPU",
       "pixel_and_perceptual": {
-        "psnr_db": 29.79066990411615,
-        "ssim": 0.825371707479159,
-        "ms_ssim": null,
-        "lpips": null
+        "psnr_db": 29.790245132494054,
+        "ssim": 0.825329860051473,
+        "ms_ssim": 0.9571655491987864,
+        "lpips": 0.22138667634377876
       },
       "semantic": {
         "metric": null,
@@ -118,10 +130,11 @@
         "reason": "Not measured on an independently labelled task in the current receipt"
       },
       "transmission": {
-        "value": 0.02397565488462095,
+        "value": 0.023975372314453125,
         "unit": "complex_uses_per_RGB_sample",
         "complete": false,
-        "note": "main stream only; side information omitted"
+        "note": "main stream only; rate-index/mask transport and power scale unmodeled; hyperprior refinement disabled",
+        "fixed_width_rate_index_bits_per_kodak": 6144
       },
       "compute": {
         "encoder_flops": null,
@@ -136,14 +149,14 @@
           512,
           768
         ],
-        "reason": "Partial supported-operator CPU forward count only; separate encoder/decoder and complete coverage pending"
+        "reason": "Partial GPU operator count; separate component receipts available; not total arithmetic"
       },
       "runtime_reliability": {
-        "latency": null,
-        "peak_memory": null,
-        "reason": "Do not substitute whole evaluation duration or optimizer pilot for isolated inference latency"
+        "latency": 0.3648117890000435,
+        "peak_memory": 1572884992,
+        "reason": "T4 FP32 batch1 input[1, 3, 512, 768]; warmup3/repeats20; memory is process residency"
       },
-      "evidence_receipt": "Docs/validation/ntscc_kodak24_metrics.json"
+      "evidence_receipt": "Docs/validation/ntscc_gpu_metrics.json"
     },
     {
       "algorithm": "jcm",
@@ -153,6 +166,8 @@
       "downloaded_author_weights": true,
       "implementation_backend": "jcm",
       "fidelity_note": "Native 32x32; reconstruction plus classification objective",
+      "quality_scope": "pretrained evaluation, not trained reproduction",
+      "matched_radio_comparison_eligible": false,
       "input_dimensions": "RGB 3x32x32",
       "dataset_evaluated": "CIFAR10 test10000",
       "pixel_and_perceptual": {
@@ -184,12 +199,12 @@
           32,
           32
         ],
-        "reason": "Partial supported-operator CPU forward count only; separate encoder/decoder and complete coverage pending"
+        "reason": "Partial GPU operator count; separate component receipts available; not total arithmetic"
       },
       "runtime_reliability": {
-        "latency": null,
-        "peak_memory": null,
-        "reason": "Do not substitute whole evaluation duration or optimizer pilot for isolated inference latency"
+        "latency": 0.00484653200004459,
+        "peak_memory": 75874816,
+        "reason": "T4 FP32 batch1 input[1, 3, 32, 32]; warmup10/repeats100; memory is process residency"
       },
       "evidence_receipt": "Docs/validation/jcm_pretrained_metrics.json"
     },
@@ -201,13 +216,15 @@
       "downloaded_author_weights": true,
       "implementation_backend": "adjscc",
       "fidelity_note": "DiffCom PyTorch architecture; per-image AWGN adaptation; original TF lineage stays separate",
+      "quality_scope": "pretrained evaluation of declared PyTorch lineage and transport adaptation; not original TensorFlow reproduction",
+      "matched_radio_comparison_eligible": false,
       "input_dimensions": null,
-      "dataset_evaluated": null,
+      "dataset_evaluated": "Kodak24; DiffCom PyTorch C2",
       "pixel_and_perceptual": {
-        "psnr_db": null,
-        "ssim": null,
-        "ms_ssim": null,
-        "lpips": null
+        "psnr_db": 27.645611967852503,
+        "ssim": 0.7896599844098091,
+        "ms_ssim": 0.9407755509018898,
+        "lpips": 0.299967681368192
       },
       "semantic": {
         "metric": null,
@@ -215,31 +232,32 @@
         "reason": "Not measured on an independently labelled task in the current receipt"
       },
       "transmission": {
-        "value": null,
-        "unit": null,
-        "complete": false
+        "value": 0.020833333333333332,
+        "unit": "complex_uses_per_RGB_sample",
+        "complete": false,
+        "note": "DiffCom C2; per-image AWGN adaptation; overhead unspecified"
       },
       "compute": {
         "encoder_flops": null,
         "decoder_flops": null,
         "full_flops": null,
-        "counted_forward_flops": 63503600167,
+        "counted_forward_flops": 381017901607,
         "counted_forward_coverage": "partial_supported_operators",
         "parameters": 15935028,
         "profile_input_shape": [
           1,
           3,
-          256,
-          256
+          512,
+          768
         ],
-        "reason": "Partial supported-operator CPU forward count only; separate encoder/decoder and complete coverage pending"
+        "reason": "Partial GPU operator count; separate component receipts available; not total arithmetic"
       },
       "runtime_reliability": {
-        "latency": null,
-        "peak_memory": null,
-        "reason": "Do not substitute whole evaluation duration or optimizer pilot for isolated inference latency"
+        "latency": 0.5834245240000087,
+        "peak_memory": 1387736064,
+        "reason": "T4 FP32 batch1 input[1, 3, 512, 768]; warmup3/repeats20; memory is process residency"
       },
-      "evidence_receipt": null
+      "evidence_receipt": "Docs/validation/adjscc_gpu_metrics.json"
     },
     {
       "algorithm": "shared_semantic_codebook",
@@ -249,6 +267,8 @@
       "downloaded_author_weights": false,
       "implementation_backend": "shared",
       "fidelity_note": "SAC without proposed information-theoretic loss term; lossy reconstruction; construct classifier/codebook first",
+      "quality_scope": null,
+      "matched_radio_comparison_eligible": false,
       "input_dimensions": "RGB 3x256x256; auxiliary classifier 3x96x96",
       "dataset_evaluated": null,
       "pixel_and_perceptual": {
@@ -292,13 +312,15 @@
       "downloaded_author_weights": true,
       "implementation_backend": "sqgan",
       "fidelity_note": "Ten-part strict checkpoint inference; native trainer pending",
+      "quality_scope": "native-component evaluation at one source-codec rate with added conventional RGB fidelity and semantic-branch metrics; no channel model",
+      "matched_radio_comparison_eligible": false,
       "input_dimensions": "RGB 3x256x512 + semantic 20x256x512",
       "dataset_evaluated": "Cityscapes val500",
       "pixel_and_perceptual": {
         "psnr_db": 21.240841088705064,
-        "ssim": null,
-        "ms_ssim": null,
-        "lpips": null
+        "ssim": 0.6609061824679374,
+        "ms_ssim": 0.7828344950675964,
+        "lpips": 0.27673418018221857
       },
       "semantic": {
         "metric": null,
@@ -315,7 +337,7 @@
         "encoder_flops": null,
         "decoder_flops": null,
         "full_flops": null,
-        "counted_forward_flops": 2336917424388,
+        "counted_forward_flops": 2336916637956,
         "counted_forward_coverage": "partial_supported_operators",
         "parameters": 186271386,
         "profile_input_shape": [
@@ -324,12 +346,12 @@
           256,
           512
         ],
-        "reason": "Partial supported-operator CPU forward count only; separate encoder/decoder and complete coverage pending"
+        "reason": "Partial GPU operator count; separate component receipts available; not total arithmetic"
       },
       "runtime_reliability": {
-        "latency": null,
-        "peak_memory": null,
-        "reason": "Do not substitute whole evaluation duration or optimizer pilot for isolated inference latency"
+        "latency": 0.645461704000013,
+        "peak_memory": 1364836864,
+        "reason": "T4 FP32 batch1 input[1, 3, 256, 512]; warmup3/repeats20; memory is process residency"
       },
       "evidence_receipt": "Docs/validation/sqgan_cityscapes500_native_metrics.json"
     },
@@ -341,6 +363,8 @@
       "downloaded_author_weights": false,
       "implementation_backend": "unavailable",
       "fidelity_note": "VQ-DeepSC: 2022 preprint, 2023 journal; already in survey; author code/checkpoints not verified; no local implementation",
+      "quality_scope": null,
+      "matched_radio_comparison_eligible": false,
       "input_dimensions": null,
       "dataset_evaluated": null,
       "pixel_and_perceptual": {
@@ -384,6 +408,8 @@
       "downloaded_author_weights": false,
       "implementation_backend": "unavailable",
       "fidelity_note": "VQ-DeepISC: 2025; already in survey; author code/checkpoints not verified; no local implementation",
+      "quality_scope": null,
+      "matched_radio_comparison_eligible": false,
       "input_dimensions": null,
       "dataset_evaluated": null,
       "pixel_and_perceptual": {
@@ -427,6 +453,8 @@
       "downloaded_author_weights": false,
       "implementation_backend": "unavailable",
       "fidelity_note": "SC-LMKB: arXiv2604.05504, 2026; source/channel knowledge generation and hallucination mitigation; cross-modal retrieval reference, not a pixel-reconstruction baseline; code/weights unverified",
+      "quality_scope": null,
+      "matched_radio_comparison_eligible": false,
       "input_dimensions": null,
       "dataset_evaluated": null,
       "pixel_and_perceptual": {
@@ -470,6 +498,8 @@
       "downloaded_author_weights": false,
       "implementation_backend": "pending",
       "fidelity_note": "Checkpoint and native runtime pilot required",
+      "quality_scope": null,
+      "matched_radio_comparison_eligible": false,
       "input_dimensions": null,
       "dataset_evaluated": null,
       "pixel_and_perceptual": {
@@ -513,6 +543,8 @@
       "downloaded_author_weights": true,
       "implementation_backend": "pending",
       "fidelity_note": "Author AWGN/Rayleigh pairs downloaded; native CUDA extension build failed; inference unverified",
+      "quality_scope": null,
+      "matched_radio_comparison_eligible": false,
       "input_dimensions": "filename claims256; stored config not runtime-certified",
       "dataset_evaluated": null,
       "pixel_and_perceptual": {
@@ -556,6 +588,8 @@
       "downloaded_author_weights": true,
       "implementation_backend": "diffcom",
       "fidelity_note": "Complete T4 posterior pilot passed; AWGN adapter differences remain explicit; no diffusion training",
+      "quality_scope": null,
+      "matched_radio_comparison_eligible": false,
       "input_dimensions": null,
       "dataset_evaluated": null,
       "pixel_and_perceptual": {
@@ -599,6 +633,8 @@
       "downloaded_author_weights": true,
       "implementation_backend": "pending",
       "fidelity_note": "Author Hugging Face checkpoint; inference integration pending",
+      "quality_scope": null,
+      "matched_radio_comparison_eligible": false,
       "input_dimensions": null,
       "dataset_evaluated": null,
       "pixel_and_perceptual": {
@@ -641,7 +677,9 @@
       "retained_weights": false,
       "downloaded_author_weights": false,
       "implementation_backend": "pending",
-      "fidelity_note": "Public trainer needs paper-variant verification",
+      "fidelity_note": "Candidate mixes paper variants; quantizer evaluation/regularizer defects verified; no faithful trained model yet",
+      "quality_scope": null,
+      "matched_radio_comparison_eligible": false,
       "input_dimensions": null,
       "dataset_evaluated": null,
       "pixel_and_perceptual": {
@@ -685,6 +723,8 @@
       "downloaded_author_weights": false,
       "implementation_backend": "hybrid",
       "fidelity_note": "Our frozen ADJSCC plus fixed DCT complement reference; not an author reproduction",
+      "quality_scope": null,
+      "matched_radio_comparison_eligible": false,
       "input_dimensions": null,
       "dataset_evaluated": null,
       "pixel_and_perceptual": {
@@ -728,6 +768,8 @@
       "downloaded_author_weights": false,
       "implementation_backend": "unavailable",
       "fidelity_note": "JSCC weights reserved for future release",
+      "quality_scope": null,
+      "matched_radio_comparison_eligible": false,
       "input_dimensions": null,
       "dataset_evaluated": null,
       "pixel_and_perceptual": {
@@ -771,6 +813,8 @@
       "downloaded_author_weights": false,
       "implementation_backend": "unavailable",
       "fidelity_note": "Verified author executable release not identified",
+      "quality_scope": null,
+      "matched_radio_comparison_eligible": false,
       "input_dimensions": null,
       "dataset_evaluated": null,
       "pixel_and_perceptual": {
@@ -814,6 +858,8 @@
       "downloaded_author_weights": false,
       "implementation_backend": "unavailable",
       "fidelity_note": "Released classification demo disables VQ/AWGN in inspected path",
+      "quality_scope": null,
+      "matched_radio_comparison_eligible": false,
       "input_dimensions": null,
       "dataset_evaluated": null,
       "pixel_and_perceptual": {
@@ -856,5 +902,25 @@
       "downloaded_author_weights": false,
       "fidelity_note": "Checked author-associated repository has code/weights forthcoming; not executable"
     }
-  ]
+  ],
+  "additional_checkpoint_variants": {
+    "swin_sa_ra": {
+      "status": "completed",
+      "variant": "sa_ra",
+      "images": 24,
+      "snr_db": 10,
+      "mean_psnr_db": 21.332709352032676,
+      "mean_ssim": 0.6247257168094317,
+      "mean_ms_ssim": 0.7839369724194208,
+      "mean_lpips": 0.49045174817244214,
+      "scope": "native pretrained Kodak evaluation; one channel trial; no training reproduction",
+      "rate_complete": false,
+      "rate_limitation": "native main-stream CBR; transport and shared side-information overhead not specified",
+      "semantic_metrics": null,
+      "semantic_metric_reason": "Kodak has no task labels; no invented semantic score",
+      "successful_images": 24,
+      "noise_seed": 22,
+      "profile_note": "first image at native dimensions; profiled FLOPs are partial, not certified total FLOPs"
+    }
+  }
 }

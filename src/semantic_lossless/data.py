@@ -48,6 +48,43 @@ class Images:
             values = np.asarray(image, dtype=np.float32).copy() / 255
         return {"image": torch.from_numpy(values).permute(2, 0, 1), "label": -1, "sample": path.relative_to(self.directory).as_posix()}
 
+
+class FrozenImages:
+    """Frozen adaptation membership; RGB reconstruction only, no invented labels."""
+    def __init__(self,config,split):
+        import hashlib
+        import json
+        self.config=config;self.split=split
+        path=resolve_path(config.model_options['dataset_manifest'])
+        manifest=json.loads(path.read_text())
+        rows=manifest['images']
+        digest=hashlib.sha256(json.dumps(rows,sort_keys=True,separators=(',',':')).encode()).hexdigest()
+        if manifest.get('status')!='frozen' or digest!=manifest['manifest_sha256']:
+            raise ValueError('Dataset manifest is not frozen or has been modified')
+        self.rows=[row for row in rows if row['split']==split]
+        if not self.rows:raise ValueError('No frozen images for '+split)
+        from .artifacts import sha256
+        for row in self.rows:
+            if sha256(Path(row['path']))!=row['file_sha256']:
+                raise ValueError('Dataset bytes changed: '+row['path'])
+    def __len__(self):return len(self.rows)
+    def __getitem__(self,index):
+        import numpy as np
+        import torch
+        from PIL import Image,ImageOps
+        row=self.rows[index];size=self.config.crop_size
+        with Image.open(row['path']) as handle:
+            image=ImageOps.exif_transpose(handle).convert('RGB')
+            if min(image.size)<size:raise ValueError('Frozen image is smaller than crop')
+            if self.split=='train':
+                left=random.randrange(image.width-size+1);top=random.randrange(image.height-size+1)
+            else:
+                left=(image.width-size)//2;top=(image.height-size)//2
+            image=image.crop((left,top,left+size,top+size))
+            values=np.asarray(image,dtype=np.float32).copy()/255
+        return {'image':torch.from_numpy(values).permute(2,0,1),'label':-1,
+            'sample':row['dataset']+':'+row['relative_path']}
+
 class CIFAR:
     def __init__(self, directory, config, split):
         self.config = config
@@ -83,6 +120,8 @@ class CIFAR:
 
 
 def build_dataset(config, split):
+    if config.dataset=='frozen_images':
+        return FrozenImages(config,split)
     if config.dataset == "stl10":
         return STL(config, split)
     if config.dataset == "cityscapes":

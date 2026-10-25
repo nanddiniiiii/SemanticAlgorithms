@@ -1,0 +1,25 @@
+{
+  "status": "completed",
+  "images": 24,
+  "device": "local CPU",
+  "torch": "2.10.0+cpu",
+  "training_snr_db": 200,
+  "evaluation_real_channel_snr_db": 10,
+  "seed": 22,
+  "scope": "retained third-party historical checkpoint; tiled real-AWGN diagnostic, not original-paper reproduction or matched complex-radio comparison",
+  "input_dimensions": "Kodak native resolution; independent128x128tiles; eachlatent19x29x29 real",
+  "complex_uses": null,
+  "rate_complete": false,
+  "rate_warning": "odd15979realvalues per tile; no explicit complex packing/padding/radio protocol is implemented",
+  "transmitted_real_values_per_kodak": 383496,
+  "exact_rgb_images": 0,
+  "unmeasured": [
+    "LPIPS",
+    "semantic fidelity",
+    "GPU latency",
+    "explicit complex radio cost"
+  ],
+  "mean_psnr_db": 16.429048880743576,
+  "mean_ssim": 0.2309690366188685,
+  "mean_ms_ssim": 0.47615506624182063
+}

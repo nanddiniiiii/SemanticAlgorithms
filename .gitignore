@@ -10,6 +10,7 @@ venv/
 env/
 .cpu_dependencies/
 .runtime_deps/
+/tmp/
 *.importing
 
 # Credentials and machine-specific manifests
@@ -80,6 +81,7 @@ Results/metrics.csv.lock
 
 # Author checkpoints are downloaded from their provenance ledger, not Git blobs
 Models/pretrained_downloads/
+Models/trained_checkpoints/SharedSemanticCodebook/
 Results/implementation_checks/
 Kaggle/assets/
 Results/kaggle_pilot/

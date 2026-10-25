@@ -1,0 +1,19 @@
+{
+  "status": "completed",
+  "images": 24,
+  "algorithm": "adjscc",
+  "variant": "diffcom_pytorch_C2_per_image_awgn",
+  "snr_db": 10,
+  "noise_seed": 22,
+  "scope": "pretrained evaluation of declared PyTorch lineage and transport adaptation; not original TensorFlow reproduction",
+  "rate_complete": false,
+  "rate_limitation": "main stream only; headers, pilots and CSI excluded",
+  "semantic_metrics": null,
+  "semantic_metric_reason": "Kodak has no independent task labels",
+  "main_stream_cbr": 0.020833333333333332,
+  "exact_images": 0,
+  "mean_psnr_db": 27.645611967852503,
+  "mean_ssim": 0.7896599844098091,
+  "mean_ms_ssim": 0.9407755509018898,
+  "mean_lpips": 0.299967681368192
+}

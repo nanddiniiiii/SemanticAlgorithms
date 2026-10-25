@@ -1,0 +1,18 @@
+{
+  "status": "completed",
+  "variant": "sa_ra",
+  "images": 24,
+  "snr_db": 10,
+  "mean_psnr_db": 21.332709352032676,
+  "mean_ssim": 0.6247257168094317,
+  "mean_ms_ssim": 0.7839369724194208,
+  "mean_lpips": 0.49045174817244214,
+  "scope": "native pretrained Kodak evaluation; one channel trial; no training reproduction",
+  "rate_complete": false,
+  "rate_limitation": "native main-stream CBR; transport and shared side-information overhead not specified",
+  "semantic_metrics": null,
+  "semantic_metric_reason": "Kodak has no task labels; no invented semantic score",
+  "successful_images": 24,
+  "noise_seed": 22,
+  "profile_note": "first image at native dimensions; profiled FLOPs are partial, not certified total FLOPs"
+}

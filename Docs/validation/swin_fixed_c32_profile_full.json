@@ -1,0 +1,35 @@
+{
+  "latency_p50_seconds": 0.2608441900000571,
+  "latency_p95_seconds": 0.26186695800004145,
+  "latency_note": "empirical repeated executions; p95 omitted below ten observations",
+  "parameters": 28162000,
+  "forward_flops": 413428359169,
+  "flops_scope": "native codec forward including channel, clamping and native loss; evaluator LPIPS/MS-SSIM excluded",
+  "flops_coverage": "partial_supported_operators",
+  "counted_operator_types": [
+    "aten::conv2d",
+    "aten::addmm",
+    "aten::mul",
+    "aten::bmm",
+    "aten::add",
+    "aten::mm"
+  ],
+  "profiler_error": null,
+  "batch_size": 1,
+  "precision": "torch.float32",
+  "input_shape": [
+    1,
+    3,
+    512,
+    768
+  ],
+  "peak_cuda_memory_bytes": 969934336,
+  "peak_cuda_reserved_bytes": 1495269376,
+  "baseline_cuda_allocated_bytes": 214566400,
+  "baseline_cuda_reserved_bytes": 1495269376,
+  "incremental_peak_cuda_allocated_bytes": 755367936,
+  "memory_scope": "repeated-forward process residency plus temporary allocations; not isolated component memory; subsequent FLOPs tracing excluded",
+  "warmup": 3,
+  "repeats": 10,
+  "training_flops_measured": false
+}

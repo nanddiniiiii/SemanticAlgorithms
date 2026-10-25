@@ -1,0 +1,24 @@
+{
+  "status": "completed",
+  "epochs_entered": 200,
+  "last_epoch_complete": true,
+  "optimizer_steps": 15800,
+  "training_images_seen": 1000000,
+  "strict_reload": true,
+  "elapsed_seconds": 971.5621853890001,
+  "peak_allocated_bytes": 523108352,
+  "semantic_codec_trained": false,
+  "next": "construct native semantic codebook; train selected published codec variant",
+  "last_epoch": {
+    "epoch": 200,
+    "epoch_complete": true,
+    "images": 5000,
+    "training_loss": 0.000978373847901821,
+    "training_accuracy": 1.0,
+    "steps": 15800,
+    "learning_rate": 0.0005,
+    "elapsed_seconds": 971.3953839910001
+  },
+  "checkpoint_sha256": "27a3a1cdc119252faffb5633bf122efae3523d613294d637b031c813d6c7dd70",
+  "scope": "auxiliary STL10 classifier; training-set metrics only; no semantic codec trained"
+}

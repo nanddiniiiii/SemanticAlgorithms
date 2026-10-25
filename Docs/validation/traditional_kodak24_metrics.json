@@ -1,0 +1,222 @@
+{
+  "status": "completed",
+  "dataset": "Kodak24 native RGB",
+  "variants": [
+    {
+      "variant": "RAW_RGB",
+      "images": 24,
+      "format": null,
+      "options": {},
+      "mean_bpp": 24.0,
+      "mean_encoded_bytes": 1179648.0,
+      "mean_psnr_db": null,
+      "psnr_is_infinite": true,
+      "mean_ssim": 1.0,
+      "exact_rgb_images": 24,
+      "mean_encode_seconds": 0.0004164166651510944,
+      "mean_decode_seconds": 0.00042096666584257036
+    },
+    {
+      "variant": "PNG",
+      "images": 24,
+      "format": "PNG",
+      "options": {
+        "compress_level": 9,
+        "optimize": false
+      },
+      "mean_bpp": 13.4311031765408,
+      "mean_encoded_bytes": 660165.5833333334,
+      "mean_psnr_db": null,
+      "psnr_is_infinite": true,
+      "mean_ssim": 1.0,
+      "exact_rgb_images": 24,
+      "mean_encode_seconds": 0.16449610417475924,
+      "mean_decode_seconds": 0.01555139165914928
+    },
+    {
+      "variant": "JPEG2000_lossless",
+      "images": 24,
+      "format": "JPEG2000",
+      "options": {
+        "irreversible": false
+      },
+      "mean_bpp": 13.454586452907987,
+      "mean_encoded_bytes": 661319.8333333334,
+      "mean_psnr_db": null,
+      "psnr_is_infinite": true,
+      "mean_ssim": 1.0,
+      "exact_rgb_images": 24,
+      "mean_encode_seconds": 0.22236449584306683,
+      "mean_decode_seconds": 0.16789918748448449
+    },
+    {
+      "variant": "JPEG_q10",
+      "images": 24,
+      "format": "JPEG",
+      "options": {
+        "quality": 10,
+        "subsampling": 2,
+        "optimize": false
+      },
+      "mean_bpp": 0.3265889485677083,
+      "mean_encoded_bytes": 16052.5,
+      "mean_psnr_db": 26.671820063345137,
+      "psnr_is_infinite": false,
+      "mean_ssim": 0.7449128205577532,
+      "exact_rgb_images": 0,
+      "mean_encode_seconds": 0.002219174998269106,
+      "mean_decode_seconds": 0.004340570832331044
+    },
+    {
+      "variant": "JPEG_q30",
+      "images": 24,
+      "format": "JPEG",
+      "options": {
+        "quality": 30,
+        "subsampling": 2,
+        "optimize": false
+      },
+      "mean_bpp": 0.6597925821940104,
+      "mean_encoded_bytes": 32430.125,
+      "mean_psnr_db": 30.491472583515815,
+      "psnr_is_infinite": false,
+      "mean_ssim": 0.8607559874653816,
+      "exact_rgb_images": 0,
+      "mean_encode_seconds": 0.0018416666813815634,
+      "mean_decode_seconds": 0.004663274996952775
+    },
+    {
+      "variant": "JPEG_q50",
+      "images": 24,
+      "format": "JPEG",
+      "options": {
+        "quality": 50,
+        "subsampling": 2,
+        "optimize": false
+      },
+      "mean_bpp": 0.9055209689670138,
+      "mean_encoded_bytes": 44508.166666666664,
+      "mean_psnr_db": 32.17381549501119,
+      "psnr_is_infinite": false,
+      "mean_ssim": 0.8957234422365824,
+      "exact_rgb_images": 0,
+      "mean_encode_seconds": 0.0024280000070575625,
+      "mean_decode_seconds": 0.0061867916471480084
+    },
+    {
+      "variant": "JPEG_q70",
+      "images": 24,
+      "format": "JPEG",
+      "options": {
+        "quality": 70,
+        "subsampling": 2,
+        "optimize": false
+      },
+      "mean_bpp": 1.2387576633029513,
+      "mean_encoded_bytes": 60887.416666666664,
+      "mean_psnr_db": 33.91674765351126,
+      "psnr_is_infinite": false,
+      "mean_ssim": 0.9227426648139954,
+      "exact_rgb_images": 0,
+      "mean_encode_seconds": 0.002105750002859471,
+      "mean_decode_seconds": 0.005093112510318558
+    },
+    {
+      "variant": "JPEG_q90",
+      "images": 24,
+      "format": "JPEG",
+      "options": {
+        "quality": 90,
+        "subsampling": 2,
+        "optimize": false
+      },
+      "mean_bpp": 2.346322801378038,
+      "mean_encoded_bytes": 115326.45833333333,
+      "mean_psnr_db": 38.03397309986308,
+      "psnr_is_infinite": false,
+      "mean_ssim": 0.9619416544834772,
+      "exact_rgb_images": 0,
+      "mean_encode_seconds": 0.0029116833223573244,
+      "mean_decode_seconds": 0.007073775016275856
+    },
+    {
+      "variant": "JPEG2000_ratio12",
+      "images": 24,
+      "format": "JPEG2000",
+      "options": {
+        "irreversible": true,
+        "quality_mode": "rates",
+        "quality_layers": [
+          12
+        ]
+      },
+      "mean_bpp": 1.9984088473849828,
+      "mean_encoded_bytes": 98225.79166666667,
+      "mean_psnr_db": 35.26804008194771,
+      "psnr_is_infinite": false,
+      "mean_ssim": 0.9046484256784121,
+      "exact_rgb_images": 0,
+      "mean_encode_seconds": 0.18848457500765411,
+      "mean_decode_seconds": 0.041777062506298535
+    },
+    {
+      "variant": "JPEG2000_ratio24",
+      "images": 24,
+      "format": "JPEG2000",
+      "options": {
+        "irreversible": true,
+        "quality_mode": "rates",
+        "quality_layers": [
+          24
+        ]
+      },
+      "mean_bpp": 0.9989267985026041,
+      "mean_encoded_bytes": 49099.25,
+      "mean_psnr_db": 31.67127622095062,
+      "psnr_is_infinite": false,
+      "mean_ssim": 0.8328047345081965,
+      "exact_rgb_images": 0,
+      "mean_encode_seconds": 0.18489549166406505,
+      "mean_decode_seconds": 0.029421591684998322
+    },
+    {
+      "variant": "JPEG2000_ratio48",
+      "images": 24,
+      "format": "JPEG2000",
+      "options": {
+        "irreversible": true,
+        "quality_mode": "rates",
+        "quality_layers": [
+          48
+        ]
+      },
+      "mean_bpp": 0.4991285536024306,
+      "mean_encoded_bytes": 24533.166666666668,
+      "mean_psnr_db": 28.984195119717707,
+      "psnr_is_infinite": false,
+      "mean_ssim": 0.7563629187643528,
+      "exact_rgb_images": 0,
+      "mean_encode_seconds": 0.28821930416840286,
+      "mean_decode_seconds": 0.037611958333097086
+    }
+  ],
+  "python": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+  "pillow": "12.3.0",
+  "openjpeg": "2.5.4",
+  "device": "local CPU",
+  "torch_threads": 2,
+  "timing_repeats": 1,
+  "runtime_scope": "single CPU encode/decode observations; not a stable latency distribution or GPU comparison",
+  "channel": null,
+  "snr_db": null,
+  "fec": null,
+  "radio_uses": null,
+  "rate_scope": "complete file bytes including codec headers, except headerless RAW_RGB; no radio/FEC overhead",
+  "exactness_scope": "decoded RGB samples, not byte-identical original PNG file",
+  "unmeasured": [
+    "LPIPS",
+    "semantic fidelity",
+    "radio errors",
+    "codec FLOPs"
+  ]
+}
