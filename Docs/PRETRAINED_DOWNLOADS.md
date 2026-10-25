@@ -128,6 +128,11 @@ These verdicts concern author-provided pretrained weights only; they do not mean
 
 ## Pending or not downloaded
 
+SC-LMKB ([arXiv2604.05504](https://arxiv.org/abs/2604.05504), 2026) was added
+on 25 October 2026 as an LLM-assisted knowledge-base research reference. Code and
+pretrained availability are unverified; no local implementation, checkpoint or
+result is claimed. Its reported task is cross-modal retrieval, not pixel recovery.
+
 25 October 2026 additions: [VQ-DeepSC](https://arxiv.org/abs/2209.11519)
 (2022 preprint / 2023 journal) and [VQ-DeepISC](https://arxiv.org/abs/2508.03740)
 (2025) are now in the Stage1 catalog. Both were already discussed in the research

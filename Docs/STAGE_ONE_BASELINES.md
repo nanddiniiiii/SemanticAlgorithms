@@ -23,6 +23,7 @@ Implementation fidelity is a separate column rather than a third weight category
 | SQ-GAN | Not previously trained by this execution | Ten native inference components downloaded | Native component inference/preprocessing checked; native three-stage trainer not integrated | Evaluate/profile native Cityscapes inference; Stage1 does not require retraining available weights |
 | VQ-DeepSC | None verified | Author code/checkpoint release not verified in 25 October 2026 check | Existing survey entry; 2022 preprint / 2023 journal; no local implementation | Added as multiscale CNN/VQ/GAN digital candidate; verify executable source before implementation/training |
 | VQ-DeepISC | None verified | Author code/checkpoint release not verified in 25 October 2026 check | Existing survey entry; 2025 preprint; no local implementation | Added as Swin/VQ/channel-adaptive QPSK-OFDM candidate; verify executable source before implementation/training |
+| SC-LMKB | None verified | Code/checkpoint availability not verified | [Semantic Communication with an LLM-enabled Knowledge Base](https://arxiv.org/abs/2604.05504), 7 April 2026 preprint; earlier ICC2025 conference version noted by authors | User-selected knowledge-base reference; cross-modal retrieval task, not a direct image reconstruction baseline; no implementation/training launched |
 | MambaJSCC | No verified local training | Native AWGN no-CSI C16 and Rayleigh CSI-ReST C32 pairs downloaded | Native CUDA build fails before inference | Resolve compatibility and evaluate downloaded weights; no scratch training while runtime is broken |
 | Shared Semantic-Aware Codebook | No verified trained codec for the requested native method | No checkpoint found in checked author tree; saved_model directories contain instructions only | Native backbone/construction components integrated with adaptations; published SAC without the proposed information-theoretic loss branch only; full proposed-loss branch not certified | Missing-weight training candidate: classifier prerequisite, codebook construction, selected native codec branch, then evaluation |
 | DeepJSCC-Q | No verified trained model | No official author checkpoint source verified | Candidate public trainer needs paper-variant and quantizer fixes verified | Missing-weight candidate, but blocked from long training until method/parameters pass audit |
@@ -52,6 +53,12 @@ claiming runnable code, downloaded weights or completed results. A public paper
 is not evidence of an executable release. Targeted paper/code searches did not
 verify author source or checkpoints; this is not proof that no release exists.
 Do not substitute a generic VQ-VAE or another DeepSC repository under their names.
+
+SC-LMKB was added at the user's request on 25 October 2026. It augments source
+and channel knowledge using LLM generation, with hallucination filtering and
+cross-domain fusion. Its reported retrieval gains must not be copied into our
+image PSNR, lossless recovery or compression results. Potential transfer to our
+data/knowledge-base methodology is a hypothesis, separate from native baselines.
 
 ## Training and evaluation queue
 
