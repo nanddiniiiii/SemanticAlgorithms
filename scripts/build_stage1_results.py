@@ -84,7 +84,7 @@ def main():
         'See STAGE_ONE_BASELINES.md for fidelity, blockers, semantic/rate/runtime fields and the training queue.',
         'The JSON inventory preserves metric groups and reasons. GPU job submission does not establish completion.']
     (ROOT/'Docs/STAGE_ONE_METRIC_COVERAGE.md').write_text('\n'.join(lines)+'\n', encoding='utf-8')
-    assert len(records) == len({r['algorithm'] for r in records}) == 17
+    assert len(records) == len({r['algorithm'] for r in records}) == len(MODELS)+1
     print(json.dumps({'models': len(records), 'quality_receipts': len(quality), 'output': str(output)}))
 
 

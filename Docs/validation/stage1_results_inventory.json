@@ -334,6 +334,92 @@
       "evidence_receipt": "Docs/validation/sqgan_cityscapes500_native_metrics.json"
     },
     {
+      "algorithm": "vq_deepsc",
+      "family": "digital/multiscale-codebook/CNN-GAN",
+      "action_group": "unverified_executable_release",
+      "retained_weights": false,
+      "downloaded_author_weights": false,
+      "implementation_backend": "unavailable",
+      "fidelity_note": "VQ-DeepSC: 2022 preprint, 2023 journal; already in survey; author code/checkpoints not verified; no local implementation",
+      "input_dimensions": null,
+      "dataset_evaluated": null,
+      "pixel_and_perceptual": {
+        "psnr_db": null,
+        "ssim": null,
+        "ms_ssim": null,
+        "lpips": null
+      },
+      "semantic": {
+        "metric": null,
+        "value": null,
+        "reason": "Not measured on an independently labelled task in the current receipt"
+      },
+      "transmission": {
+        "value": null,
+        "unit": null,
+        "complete": false
+      },
+      "compute": {
+        "encoder_flops": null,
+        "decoder_flops": null,
+        "full_flops": null,
+        "counted_forward_flops": null,
+        "counted_forward_coverage": null,
+        "parameters": null,
+        "profile_input_shape": null,
+        "reason": "Validated Stage1 profile receipt not yet imported; no inferred FLOPs"
+      },
+      "runtime_reliability": {
+        "latency": null,
+        "peak_memory": null,
+        "reason": "Do not substitute whole evaluation duration or optimizer pilot for isolated inference latency"
+      },
+      "evidence_receipt": null
+    },
+    {
+      "algorithm": "vq_deepisc",
+      "family": "digital/multiscale-codebook/Swin-OFDM",
+      "action_group": "unverified_executable_release",
+      "retained_weights": false,
+      "downloaded_author_weights": false,
+      "implementation_backend": "unavailable",
+      "fidelity_note": "VQ-DeepISC: 2025; already in survey; author code/checkpoints not verified; no local implementation",
+      "input_dimensions": null,
+      "dataset_evaluated": null,
+      "pixel_and_perceptual": {
+        "psnr_db": null,
+        "ssim": null,
+        "ms_ssim": null,
+        "lpips": null
+      },
+      "semantic": {
+        "metric": null,
+        "value": null,
+        "reason": "Not measured on an independently labelled task in the current receipt"
+      },
+      "transmission": {
+        "value": null,
+        "unit": null,
+        "complete": false
+      },
+      "compute": {
+        "encoder_flops": null,
+        "decoder_flops": null,
+        "full_flops": null,
+        "counted_forward_flops": null,
+        "counted_forward_coverage": null,
+        "parameters": null,
+        "profile_input_shape": null,
+        "reason": "Validated Stage1 profile receipt not yet imported; no inferred FLOPs"
+      },
+      "runtime_reliability": {
+        "latency": null,
+        "peak_memory": null,
+        "reason": "Do not substitute whole evaluation duration or optimizer pilot for isolated inference latency"
+      },
+      "evidence_receipt": null
+    },
+    {
       "algorithm": "mdjcm",
       "family": "digital/rate-adaptive",
       "action_group": "author_weights_inaccessible",

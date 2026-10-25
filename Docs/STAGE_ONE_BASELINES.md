@@ -21,6 +21,8 @@ Implementation fidelity is a separate column rather than a third weight category
 | ADJSCC | Historical artifact retained separately | DiffCom authors' PyTorch C2 downloaded | Adapted PyTorch lineage; GPU optimizer pilot passed; not an exact original TensorFlow reproduction | Evaluate/profile C2; no need to retrain just to obtain a model |
 | JCM | Not required | Native digital and analog-initialization checkpoints downloaded | Native forward/loss/gradient equivalence and full CIFAR evaluation passed; modern environment differences declared | Evaluate/profile native32x32 baseline; no Stage1 scratch retraining |
 | SQ-GAN | Not previously trained by this execution | Ten native inference components downloaded | Native component inference/preprocessing checked; native three-stage trainer not integrated | Evaluate/profile native Cityscapes inference; Stage1 does not require retraining available weights |
+| VQ-DeepSC | None verified | Author code/checkpoint release not verified in 25 October 2026 check | Existing survey entry; 2022 preprint / 2023 journal; no local implementation | Added as multiscale CNN/VQ/GAN digital candidate; verify executable source before implementation/training |
+| VQ-DeepISC | None verified | Author code/checkpoint release not verified in 25 October 2026 check | Existing survey entry; 2025 preprint; no local implementation | Added as Swin/VQ/channel-adaptive QPSK-OFDM candidate; verify executable source before implementation/training |
 | MambaJSCC | No verified local training | Native AWGN no-CSI C16 and Rayleigh CSI-ReST C32 pairs downloaded | Native CUDA build fails before inference | Resolve compatibility and evaluate downloaded weights; no scratch training while runtime is broken |
 | Shared Semantic-Aware Codebook | No verified trained codec for the requested native method | No checkpoint found in checked author tree; saved_model directories contain instructions only | Native backbone/construction components integrated with adaptations; published SAC without the proposed information-theoretic loss branch only; full proposed-loss branch not certified | Missing-weight training candidate: classifier prerequisite, codebook construction, selected native codec branch, then evaluation |
 | DeepJSCC-Q | No verified trained model | No official author checkpoint source verified | Candidate public trainer needs paper-variant and quantizer fixes verified | Missing-weight candidate, but blocked from long training until method/parameters pass audit |
@@ -37,6 +39,19 @@ Shared Codebook is not yet the complete paper method: a classifier checkpoint
 is only a prerequisite, and construction alone is not a trained encoder/decoder.
 No completed model training is claimed by launching that prerequisite.
 The checked availability is recorded with primary links in PRETRAINED_DOWNLOADS.md.
+
+### VQ additions checked 25 October 2026
+
+The user's "Vector Quantized Deep Semantic communication" is interpreted as
+VQ-DeepSC, officially titled [Vector Quantized Semantic Communication System](https://arxiv.org/abs/2209.11519).
+It and [VQ-DeepISC](https://arxiv.org/abs/2508.03740) were already described in
+the parent workspace's research/survey.md (R30/R31); VQ-DeepISC also appears as
+paper36 of its top50 review. They were missing from this executable-capability
+catalog and Stage1 inventory. These additions close that tracking gap without
+claiming runnable code, downloaded weights or completed results. A public paper
+is not evidence of an executable release. Targeted paper/code searches did not
+verify author source or checkpoints; this is not proof that no release exists.
+Do not substitute a generic VQ-VAE or another DeepSC repository under their names.
 
 ## Training and evaluation queue
 

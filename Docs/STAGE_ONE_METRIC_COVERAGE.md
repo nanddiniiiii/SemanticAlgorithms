@@ -12,6 +12,8 @@ Missing values are unmeasured, not zero. Different native datasets/protocols can
 | adjscc | use_downloaded_author_weights | — | — | — | — | 1x3x256x256 | 63.503600 |
 | shared_semantic_codebook | code_only_candidate | — | — | — | — | — | — |
 | sqgan | use_downloaded_author_weights | Cityscapes val500 | 21.240841 | — | — | 1x3x256x512 | 2336.917424 |
+| vq_deepsc | unverified_executable_release | — | — | — | — | — | — |
+| vq_deepisc | unverified_executable_release | — | — | — | — | — | — |
 | mdjcm | author_weights_inaccessible | — | — | — | — | — | — |
 | mambajscc | use_downloaded_author_weights | — | — | — | — | — | — |
 | diffcom | excluded_from_current_stage | — | — | — | — | — | — |

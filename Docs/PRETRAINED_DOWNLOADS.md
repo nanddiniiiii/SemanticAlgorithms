@@ -128,6 +128,15 @@ These verdicts concern author-provided pretrained weights only; they do not mean
 
 ## Pending or not downloaded
 
+25 October 2026 additions: [VQ-DeepSC](https://arxiv.org/abs/2209.11519)
+(2022 preprint / 2023 journal) and [VQ-DeepISC](https://arxiv.org/abs/2508.03740)
+(2025) are now in the Stage1 catalog. Both were already discussed in the research
+survey but had no executable entries here. Primary paper pages and targeted
+title/model-name searches did not verify an author code repository or pretrained
+checkpoint. Status for each is **author source/weights not verified**, not
+"code available, needs training" and not a claim that releases do not exist.
+No checkpoint or implementation was downloaded for either in this check.
+
 | Model/artifact | Author source | Status |
 |---|---|---|
 | Shared Semantic-Aware Codebook weights | [author repository](https://github.com/SJTU-mxtao/semantic-communication-w-codebook) | Not found in current Git tree; `saved_model` contains instruction placeholders only. See Stage 1 audit. |

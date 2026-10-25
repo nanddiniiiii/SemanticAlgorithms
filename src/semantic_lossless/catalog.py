@@ -21,6 +21,8 @@ MODELS = {
         Model("adjscc", "continuous/attention", "image_folder", "adjscc", True, "DiffCom PyTorch architecture; per-image AWGN adaptation; original TF lineage stays separate"),
         Model("shared_semantic_codebook", "shared-codebook", "stl10", "shared", True, "SAC without proposed information-theoretic loss term; lossy reconstruction; construct classifier/codebook first"),
         Model("sqgan", "codebook/generative", "cityscapes", "sqgan", note="Ten-part strict checkpoint inference; native trainer pending"),
+        Model("vq_deepsc", "digital/multiscale-codebook/CNN-GAN", "image_folder", "unavailable", note="VQ-DeepSC: 2022 preprint, 2023 journal; already in survey; author code/checkpoints not verified; no local implementation"),
+        Model("vq_deepisc", "digital/multiscale-codebook/Swin-OFDM", "image_folder", "unavailable", note="VQ-DeepISC: 2025; already in survey; author code/checkpoints not verified; no local implementation"),
         Model("mdjcm", "digital/rate-adaptive", "image_folder", "pending", note="Checkpoint and native runtime pilot required"),
         Model("mambajscc", "continuous/state-space", "image_folder", "pending", note="Author AWGN/Rayleigh pairs downloaded; native CUDA extension build failed; inference unverified"),
         Model("diffcom", "generative/diffusion", "image_folder", "diffcom", note="Complete T4 posterior pilot passed; AWGN adapter differences remain explicit; no diffusion training"),
