@@ -21,6 +21,7 @@ SOURCES = {
     "diffcom": ("wsxtyrdd/diffcom", "a8cc4d63304f5bb514d69576e689ff2412510161"),
     "diffjscc": ("mingyuyng/DiffJSCC", "13aeb62451b872ce41ceba132c9c30a9ca172c53"),
     "deepjscc_q": ("r0ymanesco/deepjscc_stream", "da863de5e3acb4fbb307c0cf8dfe830303e99aa7"),
+    "amp_sc": ("gmzSZU/AMP-SC", "063d8098633cf31acd236982b8510d969d225d7c"),
 }
 JCM_FILES = ["network.py", "modules.py", "analog_network.py", "main.py", "train.py",
              "train_analog.py", "evaluation.py", "utils.py", "requirements.txt", "README.md"]

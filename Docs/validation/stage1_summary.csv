@@ -10,6 +10,7 @@ vq_deepsc,digital/multiscale-codebook/CNN-GAN,unverified_executable_release,,,,,
 vq_deepisc,digital/multiscale-codebook/Swin-OFDM,unverified_executable_release,,,,,,,,False,,,,,,VQ-DeepISC: 2025; already in survey; author code/checkpoints not verified; no local implementation
 sc_lmkb,knowledge-base/LLM-assisted,reference_only_non_reconstruction,,,,,,,,False,,,,,,"SC-LMKB: arXiv2604.05504, 2026; source/channel knowledge generation and hallucination mitigation; cross-modal retrieval reference, not a pixel-reconstruction baseline; code/weights unverified"
 mdjcm,digital/rate-adaptive,author_weights_inaccessible,,,,,,,,False,,,,,,Checkpoint and native runtime pilot required
+amp_sc,digital/bitstream-mask-attack,code_only_candidate,,,,,,,,False,,,,,,Author RGB256 training code verified; pretrained feature-codec prerequisite unavailable; bit-flip native channel; not integrated or trained
 mambajscc,continuous/state-space,use_downloaded_author_weights,,,,,,,,False,,,,,,Author AWGN/Rayleigh pairs downloaded; native CUDA extension build failed; inference unverified
 diffcom,generative/diffusion,excluded_from_current_stage,,,,,,,,False,,,,,,Complete T4 posterior pilot passed; AWGN adapter differences remain explicit; no diffusion training
 diffjscc,generative/diffusion,excluded_from_current_stage,,,,,,,,False,,,,,,Author Hugging Face checkpoint; inference integration pending

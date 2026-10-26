@@ -47,7 +47,7 @@ def main():
                 metrics['ssim'] = receipt.get(ssim_key) if ssim_key else None
                 metrics['ms_ssim'] = receipt.get('mean_ms_ssim')
                 metrics['lpips'] = receipt.get('mean_lpips')
-        group = 'reference_only_non_reconstruction' if name == 'sc_lmkb' else 'excluded_from_current_stage' if name in excluded else 'retain_existing' if name in retained else 'use_downloaded_author_weights' if name in downloaded else 'author_weights_inaccessible' if name == 'mdjcm' else 'code_only_candidate' if name in {'shared_semantic_codebook','deepjscc_q'} else 'unverified_executable_release'
+        group = 'reference_only_non_reconstruction' if name == 'sc_lmkb' else 'excluded_from_current_stage' if name in excluded else 'retain_existing' if name in retained else 'use_downloaded_author_weights' if name in downloaded else 'author_weights_inaccessible' if name == 'mdjcm' else 'code_only_candidate' if name in {'shared_semantic_codebook','deepjscc_q','amp_sc'} else 'unverified_executable_release'
         semantic = {'metric': 'classification_accuracy', 'value': receipt['accuracy']} if name == 'jcm' and receipt else {'metric': None, 'value': None, 'reason': 'Not measured on an independently labelled task in the current receipt'}
         rate = {'value': None, 'unit': None, 'complete': False}
         if name == 'jcm': rate.update(value=128, unit='complex_uses_per_image', note='native16QAM at12dB; unspecified transport overhead')

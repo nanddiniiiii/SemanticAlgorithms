@@ -16,6 +16,7 @@ Missing values are unmeasured, not zero. Different native datasets/protocols can
 | vq_deepisc | unverified_executable_release | — | — | — | — | — | — |
 | sc_lmkb | reference_only_non_reconstruction | — | — | — | — | — | — |
 | mdjcm | author_weights_inaccessible | — | — | — | — | — | — |
+| amp_sc | code_only_candidate | — | — | — | — | — | — |
 | mambajscc | use_downloaded_author_weights | — | — | — | — | — | — |
 | diffcom | excluded_from_current_stage | — | — | — | — | — | — |
 | diffjscc | excluded_from_current_stage | — | — | — | — | — | — |

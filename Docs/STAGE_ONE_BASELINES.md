@@ -166,6 +166,95 @@ training. Job statuses must be checked and outputs downloaded before reporting
 results. The two account credentials remain separate; none belongs in Git.
 
 ## Continuation checkpoint
+
+## 26 October 2026: native-contract comparison and WSL-only training
+
+Current user authorization: new training uses account B (`satyapaladuguplus`)
+through its isolated WSL credentials only, with DataParallel after a real
+two-device pilot. No new MambaJSCC, NTSCC or diffusion training is queued.
+Existing artifacts remain preserved. Global batch size, normalization scope,
+codebook EMA and BatchNorm behavior must be checked: DataParallel alone does not
+establish native mathematical equivalence.
+
+The model target roster is DeepJSCC, ADJSCC, SwinJSCC, JCM, masked SQ-GAN,
+Shared Semantic-Aware Codebook, DeepJSCC-Q, MDJCM, VQ-DeepISC and AMP-SC.
+These are ten targets, not ten verified trainable implementations. AMP-SC's
+author source is pinned at063d8098633cf31acd236982b8510d969d225d7c; its pretrained
+feature-codec prerequisite remains unresolved. VQ-DeepISC still lacks a verified
+author code/checkpoint release. DeepJSCC-Q quantizer fidelity and MDJCM's digital
+configuration/staged training remain gates. No generic VQ model will be relabeled
+as either paper. BPG/learned entropy coding plus LDPC/QAM are separate digital
+reference systems and do not inflate the semantic-model count.
+
+Budget estimate: setup/pilots for already executable methods may take2-4hours;
+a first bounded multi-model comparison round may take12-24hours of elapsed
+queue time, conditional on pilot throughput and available GPU quota. Neither
+range includes guaranteed paper-level convergence or implementation of models
+without a complete verified release. Measured initial ADJSCC throughput was
+4181steps in7201.7seconds withB8 andtwoT4s; do not transfer that throughput to
+GANs, transformer branches or staged digital training. Every run has an explicit
+wall-time cap and actual completed update counts, not an assumed150epochs.
+
+The user-approved JCM spatial variant now has a separate implementation at
+src/semantic_lossless/jcm_spatial.py and training entry point
+scripts/train_custom_jcm_spatial.py. CPU64x96B2 forward/backward passed, with
+768complex uses/image and3072potentialamplitude-label bits. Reused native
+encoder/decoder weights remain immutable. The new spatial probability head,
+removed classification objective and per-image normalization are explicit
+adaptations. Its sample-scaled finite-amplitude simulation does not implement
+bit serialization/demapping or scale signalling, so raw label bits are not a
+measured digital packet size. A separate dualGPU pilot gates bounded training.
+
+Native encoder/decoder input dimensions, ranges, preprocessing, loss and channel
+contract are preserved for each native branch. The explicitly approved JCM
+larger-image reconstruction-only variant is separate from native32x32/CIFAR10
+joint reconstruction/classification JCM; modifications to dimensions, classifier
+head and objective must be recorded. These two variants are not two independent
+paper methods.
+
+Approved custom input preparation, without silently removing native inputs:
+
+- SQ-GAN: use a frozen Cityscapes19-class segmenter for custom RGB images,
+  preserve its native20-channel map (19 classes plus ignore), paired transforms,
+  masked VQ branches and256x512 contract. Preserve native Cityscapes GT training
+  separately. Pin model/processor revisions, record pseudo-label provenance and
+  measure segmenter compute/latency separately and in the complete transmitter.
+- Shared Codebook: use the frozen native10-class classifier to produce custom
+  prototype-construction pseudo-labels; record confidence, class coverage and
+  source-domain distribution. Keep true-label STL10 construction/training as
+  the native branch. Pseudo-labels are not ground truth or a semantic-accuracy
+  benchmark for unseen classes.
+- RGB-only methods: use their own native crop/resize/range contract on the same
+  frozen parent-image memberships. Do not force one256crop pipeline onto every
+  method. Compare quality only at compatible reconstruction resolutions/tasks.
+
+For each compatible model, evaluate two checkpoints (native-trained and
+custom-trained) on two domains (native heldout and custom heldout). First retain
+author/legacy checkpoint results as provenance-labeled references; for causal
+data comparisons, train paired native-data/custom-data branches from the same
+initialization with matched update budgets, optimizer, rate and channel. Save
+actual images seen and wall time; equal epochs across different dataset sizes
+are not equal compute. Keep budget-limited fine-tuning distinct from full paper
+convergence. Do not train another native branch merely to recreate already
+available weights without a defined comparison purpose.
+
+The frozen first mixture has3800training images (800DIV2K,2000COCO,1000TextOCR),
+400development images (100DIV2K,200COCO,100TextOCR), and324test-role images
+(200COCO,100TextOCR,24Kodak). Counts are a bounded starting design, not an
+optimized or representative population split. Kodak has already been inspected
+in baseline experiments and is an external development-exposed benchmark,
+not a pristine new final holdout. The other300test-role images remain reserved.
+Report per-source metrics plus macro averages so the larger COCO subset cannot
+hide text or high-quality-image failures. Only official training partitions feed
+optimization. Parent-image memberships, hashes and dedup decisions stay fixed;
+all derived crops and pseudo-labels inherit those memberships.
+
+Recovered custom ADJSCC v1 is a completed two-hour adaptation experiment:
+4181optimizer steps,9epochs entered with the last incomplete, actual DataParallel
+work on both T4s. Paired400-image development PSNR26.80484474->26.81924662dB;
+SSIM0.78881273->0.79078064. The changes are small development effects, not a
+confirmed generalization improvement. This run used the explicitly documented
+common ADJSCC adaptation pipeline; it is not a native-paper training reproduction.
 Recovered: native Swin fixed/adaptive Kodak24 profiles, ADJSCC Kodak24 profiles, Shared auxiliary classifier200epochs, traditional11x24 source-codec results, legacyDeepJSCC diagnostic24. All imported into Results/metrics.csv and Docs/validation/stage1_summary.csv. Report: output/pdf/SemanticLossless_Stage1_Report.pdf (6pages).
 Updated execution: JCM A v1, SQ-GAN B v10 and NTSCC A v1 completed and were recovered with hashes. SQ v9 failure remains preserved. Latest JCM and NTSCC measurements are imported by scripts/import_stage1_gpu_extension.py (repeat import appended zero rows); SQ v10 is imported separately. Shared native construction/prefix implementation is prepared with checkpoint and pilot gates; a launch does not establish training completion.
 

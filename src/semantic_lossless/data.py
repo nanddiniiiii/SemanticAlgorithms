@@ -63,9 +63,15 @@ class FrozenImages:
             raise ValueError('Dataset manifest is not frozen or has been modified')
         self.rows=[row for row in rows if row['split']==split]
         if not self.rows:raise ValueError('No frozen images for '+split)
+        remap=config.model_options.get('resolved_sources')
+        if remap:
+            sources=json.loads(resolve_path(remap).read_text())['sources']
+            roots={(source['dataset'],source['official_split']):Path(source['root']) for source in sources}
+            self.rows=[{**row,'runtime_path':str(roots[(row['dataset'],row['official_split'])]/row['relative_path'])}
+                for row in self.rows]
         from .artifacts import sha256
         for row in self.rows:
-            if sha256(Path(row['path']))!=row['file_sha256']:
+            if sha256(Path(row.get('runtime_path',row['path'])))!=row['file_sha256']:
                 raise ValueError('Dataset bytes changed: '+row['path'])
     def __len__(self):return len(self.rows)
     def __getitem__(self,index):
@@ -73,7 +79,7 @@ class FrozenImages:
         import torch
         from PIL import Image,ImageOps
         row=self.rows[index];size=self.config.crop_size
-        with Image.open(row['path']) as handle:
+        with Image.open(row.get('runtime_path',row['path'])) as handle:
             image=ImageOps.exif_transpose(handle).convert('RGB')
             if min(image.size)<size:raise ValueError('Frozen image is smaller than crop')
             if self.split=='train':

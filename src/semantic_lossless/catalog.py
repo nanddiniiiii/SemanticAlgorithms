@@ -25,6 +25,7 @@ MODELS = {
         Model("vq_deepisc", "digital/multiscale-codebook/Swin-OFDM", "image_folder", "unavailable", note="VQ-DeepISC: 2025; already in survey; author code/checkpoints not verified; no local implementation"),
         Model("sc_lmkb", "knowledge-base/LLM-assisted", "cross_modal_retrieval", "unavailable", note="SC-LMKB: arXiv2604.05504, 2026; source/channel knowledge generation and hallucination mitigation; cross-modal retrieval reference, not a pixel-reconstruction baseline; code/weights unverified"),
         Model("mdjcm", "digital/rate-adaptive", "image_folder", "pending", note="Checkpoint and native runtime pilot required"),
+        Model("amp_sc", "digital/bitstream-mask-attack", "image_folder", "pending", note="Author RGB256 training code verified; pretrained feature-codec prerequisite unavailable; bit-flip native channel; not integrated or trained"),
         Model("mambajscc", "continuous/state-space", "image_folder", "pending", note="Author AWGN/Rayleigh pairs downloaded; native CUDA extension build failed; inference unverified"),
         Model("diffcom", "generative/diffusion", "image_folder", "diffcom", note="Complete T4 posterior pilot passed; AWGN adapter differences remain explicit; no diffusion training"),
         Model("diffjscc", "generative/diffusion", "image_folder", "pending", note="Author Hugging Face checkpoint; inference integration pending"),

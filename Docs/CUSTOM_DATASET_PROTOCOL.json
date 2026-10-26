@@ -1,5 +1,5 @@
 {
-  "status": "approved_design_pending_actual_manifest",
+  "status": "frozen_membership_verified_20261026",
   "seed": 22,
   "minimum_dimension": 256,
   "training_track": "custom-data adaptation; separate from native Phase1 results",
@@ -33,12 +33,20 @@
   "first_model": "ADJSCC DiffCom PyTorch C2 checkpoint; pretrained finetuning, not original-paper training reproduction",
   "training_gate": "Actual image IDs, file hashes, dimensions, licensing provenance and split manifest must freeze before two-step GPU pilot, then bounded fine-tuning.",
   "native_contract_exclusions": "JCM classification labels and SQ-GAN20class paired segmentation are not supplied by this RGB mixture; no dummy labels or masks. No generic replacement algorithms.",
-  "test_policy": "Do not tune on locked test or Kodak; known benchmark exposure acknowledged; no claim of previously unseen data for pretrained authors' models.",
-  "notes": "Counts are planned until verified eligible unique files populate the frozen manifest. This file is not a runnable frozen manifest.",
+  "test_policy": "Only officialtrainingimages optimize weights. Reserve COCO200+TextOCR100 as new customtest; Kodak24 is development-exposed externalbenchmark, never train. Keep actualfrozenmemberships.",
+  "notes": "This protocol records verified membership but is not itself the full image manifest. Existing native benchmark exposure and pseudo-label limitations remain explicit.",
   "training_hardware": "Custom ADJSCC: DataParallel bothT4s, totalbatch8FP32, perimageAWGNnormalization, encoderdevicehooksverifyboth; development evaluationCUDA0",
   "planned_counts": {
     "train": 3800,
     "development": 400,
     "locked_test": 324
-  }
+  },
+  "native_input_policy": "Use each authors native shape/range/paired-input contract. First ADJSCC experiment remains a recorded adaptation, not universal preprocessing.",
+  "custom_label_adaptations": {
+    "sqgan": "Approved frozen Cityscapes19class segmenter maps, preserving native20channel semantic input; include segmentation cost.",
+    "shared_semantic_codebook": "Approved frozen native10class classifier pseudo-labels with confidence/domaincoverage; native STL10true-label track separate.",
+    "jcm": "Approved separate larger-image reconstruction-only variant; nativeCIFAR10jointtask model preserved."
+  },
+  "frozen_manifest_sha256": "4fec75d9c0e61c53f1f8b2f80869cab990fd624d3218b8db2a8148ce2d207737",
+  "frozen_manifest_path": "Results/stage1_operations/recovered/accountB/runs/custom-mixture-adjscc-adaptation/v1/Semantic_Lossless/Results/custom_adaptation/adjscc/mixture_v1/frozen_manifest.json"
 }
