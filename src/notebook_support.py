@@ -24,6 +24,7 @@ EXTRA={
 
 
 def setup_model(root,name,run,install=True,python_override=None,command_runner=None):
+    require_integrated(name)
     if name not in EXTRA:raise ValueError(name)
     root=Path(root);run=Path(run)
     if python_override:
@@ -110,3 +111,11 @@ def record_completion(session, name, trained, evaluated, packaged):
     ledger['models'][name]={'training_completed':bool(trained),'evaluation_completed':bool(evaluated),
                           'model_packaged':bool(packaged),'local_retrieval_acknowledged':False}
     write_json(path,ledger)
+
+
+def require_integrated(name):
+    """Keep source-only candidates visible without claiming they can train."""
+    roster=json.loads((Path(__file__).resolve().parents[1]/'configs/models.json').read_text())
+    reason=roster.get('integration_gates',{}).get(name)
+    if reason:
+        raise NotImplementedError(name+': '+reason+'. Other assigned models may continue; this slot is not implemented.')

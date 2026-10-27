@@ -16,6 +16,7 @@ def cell(source,kind='code',identifier=''):
 
 def build(team,names):
     cells=[cell(f'# Semantic Lossless: {team}\n\nAssigned models, in order: {", ".join(names)}.\n\n'
+        'Assignment is not implementation readiness. See configs/models.json integration_gates; blocked slots report an explicit error and do not train. '
         'Before running: enable Internet and T4 x2 in Kaggle settings and attach these datasets using Add Input: '
         '`soumikrakshit/div2k-high-resolution-images`, `daehoyang/flickr2k`, and `drxinchengzhu/kodak24`. '
         'A notebook cannot attach datasets to itself after it starts. The setup checks the attached files and prints errors. '

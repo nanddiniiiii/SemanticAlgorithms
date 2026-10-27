@@ -4,16 +4,16 @@ Repository: https://github.com/nanddiniiiii/Semantic_Lossless
 
 | Person | Notebook | Script | Assigned order |
 |---|---|---|---|
-| 1 | Notebooks/1.ipynb | scripts/1.py | DeepJSCC, ADJSCC, SwinJSCC, ISEC |
-| 2 | Notebooks/2.ipynb | scripts/2.py | HJSCC, JCM spatial variant, MDJCM, DeepJSCC |
-| 3 | Notebooks/3.ipynb | scripts/3.py | SQ-GAN, SharedSemanticCodebook, SwinJSCC, ADJSCC |
+| 1 | Notebooks/1.ipynb | scripts/1.py | DeepJSCC, ADJSCC, ISEC, NTSCC+ |
+| 2 | Notebooks/2.ipynb | scripts/2.py | Masked SQ-GAN, MDJCM, SharedSemanticCodebook, SSC |
+| 3 | Notebooks/3.ipynb | scripts/3.py | HJSCC, OFDM-guided JSCC, DeepJSCC-MIMO, DeepJSCC-WZ |
 
-These twelve slots contain nine distinct models. They are locally tested runners, not twelve completed GPU experiments. Default: AWGN10. Preserve the frozen common split and documented model adaptations.
+These twelve slots contain twelve distinct models. SwinJSCC is retained for evaluation only. They are locally tested runners, not twelve completed GPU experiments. Default: AWGN10. Preserve the frozen common split and documented model adaptations.
 
 ## Share with each person
 
 - Repository URL, their person number, this guide and `Docs/RESULT_COLLECTION.md`.
-- Person 3 additionally needs the approved `classifier.pt` through a private Kaggle Dataset attachment. This asset is **not in Git**. Do not substitute another classifier. Obtain the exact asset and provenance from the coordinator.
+- Person 2 additionally needs the approved `classifier.pt` through a private Kaggle Dataset attachment. This asset is **not in Git**. Do not substitute another classifier. Obtain the exact asset and provenance from the coordinator.
 - A shared Drive/OneDrive folder for their zipped `Models/teammate_N_models` after retrieval. Drive upload is manual.
 
 Author initializers are downloaded and hash-checked by the existing asset code. If upstream downloads fail, attach the exact documented author assets and configure overrides; do not silently replace pretrained weights with random initialization.
@@ -48,7 +48,7 @@ This submits the corresponding stable `semantic-notebook-N` identity, attaches t
 - `soumikrakshit/div2k-high-resolution-images`
 - `daehoyang/flickr2k`
 - `drxinchengzhu/kodak24`
-- Person 3: the private approved classifier Dataset.
+- Person 2: the private approved classifier Dataset.
 
 Run setup and initialization/pilot before long training. Execute cells in order. Four four-hour training budgets mean 16 hours **plus** setup/evaluation; select a smaller assigned subset when session quota is insufficient. A 150-epoch target is not a convergence/time guarantee.
 
@@ -73,8 +73,14 @@ Zip the entire teammate model folder for Drive/OneDrive. Weights stay outside Gi
 
 ## Message to each teammate
 
-> We are using https://github.com/nanddiniiiii/Semantic_Lossless. You are person **N**. Your notebook is `Notebooks/N.ipynb`; your local launcher is `scripts/N.py`. Read `Docs/TEAMMATE_HANDOFF.md` and give your Codex the prompt below. Use your own Kaggle T4 x2 session, the shared frozen datasets and default AWGN10. Do not start duplicate runs or alter algorithms. The script downloads saved outputs and publishes result files when you have GitHub write access; otherwise retain them locally. At completion zip `Models/teammate_N_models` and share it in our Drive/OneDrive folder. Person 3 also needs our exact classifier asset.
+> We are using https://github.com/nanddiniiiii/Semantic_Lossless. You are person **N**. Your notebook is `Notebooks/N.ipynb`; your local launcher is `scripts/N.py`. Read `Docs/TEAMMATE_HANDOFF.md` and give your Codex the prompt below. Use your own Kaggle T4 x2 session, the shared frozen datasets and default AWGN10. Do not start duplicate runs or alter algorithms. The script downloads saved outputs and publishes result files when you have GitHub write access; otherwise retain them locally. At completion zip `Models/teammate_N_models` and share it in our Drive/OneDrive folder. Person 2 also needs our exact classifier asset.
 
 ## Prompt for their Codex
 
 > I am person **N**. Work in the canonical clone of https://github.com/nanddiniiiii/Semantic_Lossless. Read AGENTS.md, Docs/TEAMMATE_HANDOFF.md, Docs/RESULT_COLLECTION.md, configs/README.md and Datasets/README.md. Inspect my numbered notebook/script and verify its pinned source exists remotely. Set up my local collector environment and my own Kaggle authentication; verify actual T4 x2 availability and exact required input/author/classifier assets. Keep secrets out of chat/logs/Git. Preserve assigned order, frozen splits, default AWGN10, model dimensions and documented adaptations. Run preflight before training. Use the existing stable notebook identity, never duplicate submissions. Help me run scripts/N.py and recover via its receipts when authorized. Preserve failures and report evidence before changing architecture/dependencies/data/metrics. Retrieve verified outputs, keep weights under Models/teammate_N_models, and use the existing result-only GitHub queue when write access is available. Otherwise retain everything locally. Do not commit weights, datasets or credentials, and do not claim untested GPU paths have passed.
+
+## Revised roster readiness
+
+This assignment supersedes the original table. SSC, OFDM-guided JSCC and DeepJSCC-MIMO are explicitly blocked pending faithful runner integration/pilots; notebooks must not be described as twelve ready training jobs. NTSCC+ needs its pinned NATTEN 0.14.6 CUDA environment pilot. Person 3 additionally requires native paired KITTI/Cityscapes inputs and paired_data_root for WZ, with its native DDP framework. WZ is separate from common unpaired RGB comparisons. HJSCC means hierarchical VAE JSCC, not dedicated hybrid digital–analog. Do not replace OFDM/MIMO native channels with scalar AWGN to make the jobs pass.
+
+Person 1 owns continuous/refinement/entropy-guided comparisons. Person 2 owns discrete/codebook comparisons and classifier asset preparation. Person 3 owns hierarchical/physical-layer/side-information systems and native task prerequisites. Each person should report blocked integrations before submitting a long run.

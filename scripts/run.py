@@ -43,6 +43,8 @@ def main():
             return
         name=options['algorithm']
         if args.stage=='prepare':
+            from src.notebook_support import require_integrated
+            require_integrated(name)
             from Infrastructure.conditions import validate_model_conditions
             validate_model_conditions(name,options)
             if name in {'sqgan','gbsed','deepjscc_wz'}:

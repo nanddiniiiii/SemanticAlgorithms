@@ -8,11 +8,11 @@ The active workflow uses one shared codebase and three Kaggle notebooks:
 
 | Person | Notebook | Models in execution order |
 |---|---|---|
-| 1 | [1.ipynb](Notebooks/1.ipynb) | DeepJSCC, ADJSCC, SwinJSCC, ISEC |
-| 2 | [2.ipynb](Notebooks/2.ipynb) | HJSCC, JCM spatial variant, MDJCM, DeepJSCC |
-| 3 | [3.ipynb](Notebooks/3.ipynb) | SQ-GAN, shared semantic-aware codebook, SwinJSCC, ADJSCC |
+| 1 | [1.ipynb](Notebooks/1.ipynb) | DeepJSCC, ADJSCC, ISEC, NTSCC+ |
+| 2 | [2.ipynb](Notebooks/2.ipynb) | Masked SQ-GAN, MDJCM, SharedSemanticCodebook, SSC |
+| 3 | [3.ipynb](Notebooks/3.ipynb) | HJSCC, OFDM-guided JSCC, DeepJSCC-MIMO, DeepJSCC-WZ |
 
-These twelve slots contain nine distinct models and three repeated baselines. The [setup guide](configs/README.md) explains datasets, credentials, model assets, scripts, and retrieval. Scripts create Kaggle jobs only when explicitly run. The numbered notebooks are pinned to the published implementation revision; a fresh Kaggle GPU pilot remains required.
+These twelve slots contain twelve distinct models; SwinJSCC is retained for evaluation. SSC, OFDM and MIMO slots currently fail explicitly until their integrations pass. The [setup guide](configs/README.md) explains datasets, credentials, model assets, scripts, and retrieval. Scripts create Kaggle jobs only when explicitly run. The numbered notebooks are pinned to the published implementation revision; a fresh Kaggle GPU pilot remains required.
 
 ## Project layout
 

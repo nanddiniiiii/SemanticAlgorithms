@@ -1,5 +1,5 @@
-# Teammate 3 models
+# Person 3 model bundles
 
-Assigned models: SQ-GAN, SharedSemanticCodebook, SwinJSCC, ADJSCC.
+Assigned: HJSCC, OFDM-guided-JSCC, DeepJSCC-MIMO, DeepJSCC-WZ.
 
-Trained bundles appear as <ModelName>/<run-id>/. Zip this whole folder for Drive/OneDrive. Empty model folders do not indicate trained weights.
+Successful integrated runs create model/run-id folders here. Existing older model folders are preserved history, not the current assignment. Zip this folder for Drive/OneDrive. No weights in Git.

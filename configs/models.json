@@ -1,12 +1,27 @@
 {
-  "protocol": "team-suite-v1",
+  "protocol": "three-person-v2",
   "channel": "AWGN",
   "snr_db": 10,
   "training_seconds_per_model": 14400,
   "teams": {
-    "1": ["deepjscc", "adjscc", "swinjscc", "isec"],
-    "2": ["hjscc", "jcm", "mdjcm", "deepjscc"],
-    "3": ["sqgan", "shared_semantic_codebook", "swinjscc", "adjscc"]
+    "1": [
+      "deepjscc",
+      "adjscc",
+      "isec",
+      "ntscc_plus"
+    ],
+    "2": [
+      "sqgan",
+      "mdjcm",
+      "shared_semantic_codebook",
+      "ssc"
+    ],
+    "3": [
+      "hjscc",
+      "ofdm_guided_jscc",
+      "deepjscc_mimo",
+      "deepjscc_wz"
+    ]
   },
   "native_exceptions": {
     "deepjscc_wz": "Native paired KITTI/Cityscapes; never give the target to the receiver as side information",
@@ -16,5 +31,13 @@
     "jcm": "Previously approved spatial reconstruction-only variant; native CIFAR classifier objective remains separate",
     "sqgan": "Previously approved frozen Cityscapes segmenter pseudo-labels; account for teacher compute; source codec has no native AWGN link",
     "shared_semantic_codebook": "Previously approved native classifier pseudo-labels; released SAC ablation differs from full proposed paper loss"
+  },
+  "retained_evaluation_only": [
+    "swinjscc"
+  ],
+  "integration_gates": {
+    "ssc": "Author EMA codebook requires synchronized distributed updates; shared-runner training/evaluation not yet integrated",
+    "ofdm_guided_jscc": "Author source uses legacy torch.fft/ifft API; audited FFT migration and native OFDM runner pending",
+    "deepjscc_mimo": "Author integration and source pin pending; do not launch training"
   }
 }

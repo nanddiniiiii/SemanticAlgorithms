@@ -516,3 +516,9 @@ Local verification: `python -m pytest tests/current -q` passed 52 tests; editabl
 ## 2026-10-27 channel and delivery increment
 
 Shared AWGN/perfect-CSI Rayleigh profiles now integrate with notebook preflight. DeepJSCC/ADJSCC and explicitly adapted fixed-C32 Swin support independent conditions; native digital chains remain protected by capability checks. User selected saved notebook outputs only; no private cloud outbox is authorized. A completion ledger is exported, and local collectors poll at 30 minutes with persistent recovery/publication queues. Result-only GitHub API commits preserve other teammates' events without modifying the local source checkout. Missing permissions retain pending events. Exact training resume and real-time live-file retrieval remain unsupported. See `Docs/RESULT_COLLECTION.md` for the canonical operating procedure. No new remote training was launched.
+
+## Revised twelve-model assignment
+
+Person 1: DeepJSCC, ADJSCC, ISEC, NTSCC+. Person 2: masked SQ-GAN, MDJCM, SharedSemanticCodebook, SSC. Person 3: HJSCC, OFDM-guided JSCC, DeepJSCC-MIMO, DeepJSCC-WZ. SwinJSCC is retained evaluation-only; no duplicate training slots. Existing historical folders/results remain intact.
+
+Assignments are not twelve implemented runners: SSC requires synchronized EMA updates and native channel accounting; OFDM requires audited legacy FFT conversion and runner integration; MIMO requires source pinning and integration. These three slots fail explicitly before training. NTSCC+ requires NATTEN CUDA qualification. WZ preserves paired data/native DDP and separate reporting. No new training was launched. The authoritative machine-readable readiness gates are configs/models.json.

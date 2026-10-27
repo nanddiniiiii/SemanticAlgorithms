@@ -12,6 +12,8 @@ from .runtime import write_json
 MODEL_NAMES = {
     'deepjscc': 'DeepJSCC', 'adjscc': 'ADJSCC', 'swinjscc': 'SwinJSCC',
     'isec': 'ISEC', 'hjscc': 'HJSCC', 'jcm': 'JCM', 'mdjcm': 'MDJCM',
+    'ntscc_plus':'NTSCC-plus','ssc':'SSC','ofdm_guided_jscc':'OFDM-guided-JSCC',
+    'deepjscc_mimo':'DeepJSCC-MIMO','deepjscc_wz':'DeepJSCC-WZ',
     'sqgan': 'SQ-GAN', 'shared_semantic_codebook': 'SharedSemanticCodebook',
 }
 
