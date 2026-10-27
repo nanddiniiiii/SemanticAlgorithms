@@ -10,6 +10,9 @@ venv/
 env/
 .cpu_dependencies/
 .runtime_deps/
+.venv-team/
+Results/team_downloads/
+Results/team_suite_validation/
 /tmp/
 *.importing
 

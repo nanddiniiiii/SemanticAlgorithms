@@ -12,6 +12,9 @@ from .artifacts import write_json
 from .paths import project_root
 
 SOURCES = {
+    "deepjscc": ("chunbaobao/Deep-JSCC-PyTorch", "2665e0dc6d8bf216daf9442c5d6e5d69c5ad2f06"),
+    "hjscc": ("zhang-guangyi/HJSCC", "bea5c6c7ec42ea62e5afac307d37f9e20129cc6d"),
+    "deepjscc_wz": ("ipc-lab/deepjscc-wz", "802394328838c478321413e5f72a771f86a7599d"),
     "swinjscc": ("semcomm/SwinJSCC", "a6d0e6da53548976acbe9317839a077ef31f190f"),
     "jcm": ("SJTU-mxtao/Joint-Coding-Modulation-for-Digital-Semantic-Communication", "9a53ef0a3df2f41ecae6cd531968f70a13d53088"),
     "shared_semantic_codebook": ("SJTU-mxtao/semantic-communication-w-codebook", "ee4ea1d3395a5100d79ebe7e19109a0c99d2eec6"),
@@ -22,6 +25,13 @@ SOURCES = {
     "diffjscc": ("mingyuyng/DiffJSCC", "13aeb62451b872ce41ceba132c9c30a9ca172c53"),
     "deepjscc_q": ("r0ymanesco/deepjscc_stream", "da863de5e3acb4fbb307c0cf8dfe830303e99aa7"),
     "amp_sc": ("gmzSZU/AMP-SC", "063d8098633cf31acd236982b8510d969d225d7c"),
+    "ofdm_guided_jscc": ("mingyuyng/OFDM-guided-JSCC", "85ef8b6a6a64dc084c8adada0681a5231e261610"),
+    "isec": ("changwoolee/isec-deep-jscc", "43d1a27beaeb89b7057f02bd2fa2dd05c46093e1"),
+    "deepjscc_lplusplus": ("aprilbian/deepjscc-lplusplus", "758f2f2f1396592f78d78d3cf871071e6b66fbe9"),
+    "ssc": ("gxh1106/SSC", "4b7f55e5219ca6d27b781f75807125f109998238"),
+    "dynamic_jscc": ("mingyuyng/Dynamic_JSCC", "6cef82201fe302dd47ddba4cdd2f61b02d7eb6dc"),
+    "ntscc_plus": ("wsxtyrdd/NTSCC_plus", "765c6f6c11cf3bbe249a26b624dbaf47a4f0676d"),
+    "gbsed": ("philpolo/gbsed", "d37fae66f4c802cd509bb31b4a1f99925c999409"),
 }
 JCM_FILES = ["network.py", "modules.py", "analog_network.py", "main.py", "train.py",
              "train_analog.py", "evaluation.py", "utils.py", "requirements.txt", "README.md"]
