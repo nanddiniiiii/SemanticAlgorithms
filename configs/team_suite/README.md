@@ -61,9 +61,10 @@ python scripts/bootstrap_team_environment.py --managed-runtime
 Torch. Without it, setup creates an independent environment and installs Torch.
 Heavy model dependencies are separate and have not all been runtime-validated.
 
-The source must be committed/published before a fresh public Git clone contains
-these files. Set `REVISION` to that reviewed commit before launch. No reset or
-pull happens while another cell trains. Upstreams are fetched by fixed SHA;
+The source must be published before a fresh public Git clone contains these
+files. The generated launchers pin a reviewed source commit in `REVISION`;
+update that pin only for a reviewed new source revision. No reset or pull
+happens while another cell trains. Upstreams are fetched by fixed SHA;
 their source receipts and project source-file hashes accompany each run.
 
 ## Per-model overrides
