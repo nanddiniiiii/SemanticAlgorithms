@@ -103,7 +103,7 @@ def invoke(name,stage):
     run=RUNS[name]
     run_command([str(PYTHONS[name]),'-u',str(REPO/'scripts/team_suite.py'),stage,
         '--config',str(run/'requested_config.json'),'--run',str(run)],
-        run/(stage+'_cell.log'),timeout=15000 if stage=='train' else 1800)
+        run/(stage+'_cell.log'),timeout=17400 if stage=='train' else 1800)
 
 print('END setup: membership frozen; use per-model initialization cells next',flush=True)
 '''
