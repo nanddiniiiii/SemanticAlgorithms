@@ -19,12 +19,12 @@ def main():
     import torch
     from PIL import Image
     from pytorch_msssim import ms_ssim
-    from semantic_lossless.artifacts import sha256, write_json
-    from semantic_lossless.config import Config
-    from semantic_lossless.adjscc import build_adjscc
-    from semantic_lossless.sources import fetch_source
-    from semantic_lossless.metrics import quality, profile_forward
-    from semantic_lossless.compute import registered_kernel_flops
+    from src.artifacts import sha256, write_json
+    from src.config import Config
+    from src.adjscc import build_adjscc
+    from src.sources import fetch_source
+    from src.metrics import quality, profile_forward
+    from src.compute import registered_kernel_flops
     assert torch.cuda.is_available()
     assert sha256(args.checkpoint) == 'c29d7610eb7b2e475a5ff029d16f0031fc43ac89f316d461b154cef993753c54'
     args.output.mkdir(parents=True, exist_ok=False)
@@ -67,7 +67,7 @@ def main():
         print({'stage': 'quality', 'completed': index+1, 'total': 24, 'psnr_db': values['psnr_db']}, flush=True)
     hook.remove()
     # LPIPS is an evaluator, not part of codec residency during profiling.
-    import semantic_lossless.metrics as metric_module
+    import src.metrics as metric_module
     if hasattr(metric_module, '_LPIPS'):
         del metric_module._LPIPS
     del image, reconstruction, output

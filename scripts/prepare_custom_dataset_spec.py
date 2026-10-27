@@ -2,6 +2,8 @@
 import argparse
 import json
 from pathlib import Path
+import hashlib
+import time
 
 
 def unique(paths,label):
@@ -10,11 +12,58 @@ def unique(paths,label):
     return values[0]
 
 
+def resolve_frozen_sources(manifest_path, mount):
+    """Remap recorded roots with bounded path probes, never scan image corpora."""
+    manifest=json.loads(manifest_path.read_text())
+    rows=manifest['images']
+    digest=hashlib.sha256(json.dumps(rows,sort_keys=True,separators=(',',':')).encode()).hexdigest()
+    if manifest.get('status')!='frozen' or digest!=manifest['manifest_sha256']:
+        raise ValueError('Frozen membership digest mismatch')
+    sources=[]
+    for source in manifest['spec']['sources']:
+        original=Path(source['root'])
+        parts=original.as_posix().split('/kaggle/input/',1)
+        if len(parts)!=2:
+            raise ValueError('Recorded source is not a Kaggle input root')
+        suffix=Path(parts[1])
+        candidates=[mount/suffix]
+        if len(suffix.parts)>=4 and suffix.parts[0]=='datasets':
+            candidates.append(mount/suffix.parts[2]/Path(*suffix.parts[3:]))
+        key=(source['dataset'],source['official_split'])
+        probes=[r['relative_path'] for r in rows
+                if (r['dataset'],r['official_split'])==key and r['split'] in ('train','val')][:2]
+        found=[]
+        for candidate in candidates:
+            if candidate.is_dir() and all((candidate/p).is_file() for p in probes):
+                resolved=candidate.resolve()
+                resolved.relative_to(mount.resolve())
+                if resolved not in found:found.append(resolved)
+        root=unique(found,source['dataset']+' '+source['official_split'])
+        sources.append({**source,'root':str(root)})
+        print(json.dumps({'stage':'resolve_frozen_source','dataset':key[0],
+            'official_split':key[1],'root':str(root),'path_probes':len(candidates),
+            'test_pixels_opened':False}),flush=True)
+    return {**manifest['spec'],'sources':sources,'frozen_manifest_sha256':digest,
+            'resolution_method':'bounded recorded-path probes; no recursive image traversal',
+            'test_pixels_opened':False}
+
+
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--mount',type=Path,default=Path('/kaggle/input'))
     parser.add_argument('--output',type=Path,required=True)
+    parser.add_argument('--frozen-manifest',type=Path)
     args=parser.parse_args();mount=args.mount
+    started=time.monotonic()
+    print(json.dumps({'stage':'resolve_sources','status':'started',
+        'mode':'frozen_path_remap' if args.frozen_manifest else 'initial_discovery'}),flush=True)
+    if args.frozen_manifest:
+        spec=resolve_frozen_sources(args.frozen_manifest,mount)
+        args.output.parent.mkdir(parents=True,exist_ok=True)
+        args.output.write_text(json.dumps(spec,indent=2)+'\n')
+        print(json.dumps({'stage':'resolve_sources','status':'completed',
+            'elapsed_seconds':time.monotonic()-started,'output':str(args.output)}),flush=True)
+        return
     sources=[]
     def add(name,root,official,counts,url,license_note,allowed=None):
         row={'dataset':name,'root':str(root),'official_split':official,'counts':counts,

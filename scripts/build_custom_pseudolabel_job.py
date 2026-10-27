@@ -14,7 +14,7 @@ namespace['write_job']('custom_pseudolabels','satyapaladuguplus','custom-mixture
         'satyapaladuguplus/semantic-lossless-pseudo-label-assets'],'''
 run_logged('dependencies',[sys.executable,'-m','pip','install','transformers==4.57.1'],600)
 sys.path.insert(0,str(root/'src'))
-from semantic_lossless.artifacts import sha256
+from src.artifacts import sha256
 manifests=sorted({p.resolve() for p in Path('/kaggle/input').rglob('frozen_manifest.json')})
 classifiers=sorted({p.resolve() for p in Path('/kaggle/input').rglob('classifier.pt')})
 segmenters=sorted({p.resolve().parent for p in Path('/kaggle/input').rglob('pytorch_model.bin')})

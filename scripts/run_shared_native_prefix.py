@@ -27,9 +27,9 @@ def main():
     import numpy as np
     import torch
     from torchvision.datasets import STL10
-    from semantic_lossless.artifacts import write_json,sha256
-    from semantic_lossless.sources import fetch_source
-    from semantic_lossless.shared_native import native_construction_definitions,build_native_sac
+    from src.artifacts import write_json,sha256
+    from src.sources import fetch_source
+    from src.shared_native import native_construction_definitions,build_native_sac
     assert torch.cuda.is_available()
     assert sha256(args.classifier)=='27a3a1cdc119252faffb5633bf122efae3523d613294d637b031c813d6c7dd70'
     args.output.mkdir(parents=True,exist_ok=False)

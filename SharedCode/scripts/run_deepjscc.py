@@ -22,7 +22,7 @@ from EncDecPipeline.Models.DeepJSCC.channel_wrapper import DeepJSCCChannelWrappe
 from EncDecPipeline.Preprocessing.image_loader import pil_to_tensor
 from Evaluation.Image.psnr import psnr
 from Evaluation.Image.ssim import ssim
-from INFRA.Artifacts import ImageArtifact
+from Infrastructure.Artifacts import ImageArtifact
 
 
 def default_semcom_root() -> Path:

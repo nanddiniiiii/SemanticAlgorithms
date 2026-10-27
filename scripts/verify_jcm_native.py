@@ -12,10 +12,10 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'src'))
 
 import torch
-from semantic_lossless.artifacts import write_json
-from semantic_lossless.codecs import build_codec, upstream_import
-from semantic_lossless.config import Config
-from semantic_lossless.sources import source_path
+from src.artifacts import write_json
+from src.codecs import build_codec, upstream_import
+from src.config import Config
+from src.sources import source_path
 import importlib
 
 

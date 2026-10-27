@@ -5,10 +5,10 @@ from pathlib import Path
 import pickle
 import tempfile
 import unittest
-from semantic_lossless.artifacts import export_manifest, write_json
-from semantic_lossless.config import Config, load_config
-from semantic_lossless.data import Images, cityscapes_label_lut
-from semantic_lossless.events import Events, collect
+from src.artifacts import export_manifest, write_json
+from src.config import Config, load_config
+from src.data import Images, cityscapes_label_lut
+from src.events import Events, collect
 
 
 class Contracts(unittest.TestCase):

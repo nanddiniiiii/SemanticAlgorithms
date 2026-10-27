@@ -12,7 +12,7 @@ if str(SRC) not in sys.path:
     sys.path.insert(0, str(SRC))
 
 from EncDecPipeline.Models.DeepJSCC.adapter import register_deepjscc
-from INFRA.Registries import ENCDEC_REGISTRY
+from Infrastructure.Registries import ENCDEC_REGISTRY
 
 
 def main() -> None:

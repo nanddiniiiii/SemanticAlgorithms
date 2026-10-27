@@ -5,7 +5,7 @@ try:
     import torch
 except ImportError:
     torch = None
-from semantic_lossless.metrics import profile_forward, quality
+from src.metrics import profile_forward, quality
 
 
 @unittest.skipIf(torch is None, 'Run these checks in the model Torch environment')
@@ -21,16 +21,16 @@ class MetricContracts(unittest.TestCase):
         self.assertEqual(result['exact_uint8_pixels'], 0)
 
     def test_cityscapes_validation_matches_pinned_author_loader(self):
-        from semantic_lossless.sources import source_path
+        from src.sources import source_path
         directory=source_path('sqgan')
         if not (directory/'data/cityscapes_base.py').is_file():
             self.skipTest('Fetch pinned SQ-GAN source for its independent loader check')
         import importlib
         import numpy as np
         from PIL import Image
-        from semantic_lossless.codecs import upstream_import
-        from semantic_lossless.config import Config
-        from semantic_lossless.data import Cityscapes
+        from src.codecs import upstream_import
+        from src.config import Config
+        from src.data import Cityscapes
         with tempfile.TemporaryDirectory() as temporary:
             root=Path(temporary)
             images=root/'leftImg8bit/val/city';labels=root/'gtFine/val/city'

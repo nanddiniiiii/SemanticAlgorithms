@@ -8,9 +8,9 @@ import gc
 ROOT=Path(__file__).resolve().parents[1]
 sys.path[:0]=[str(ROOT),str(ROOT/'src'),str(ROOT/'.runtime_deps')]
 import torch
-from semantic_lossless.codecs import build_codec
-from semantic_lossless.config import Config
-from semantic_lossless.artifacts import write_json
+from src.codecs import build_codec
+from src.config import Config
+from src.artifacts import write_json
 
 
 def main():

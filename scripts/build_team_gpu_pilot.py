@@ -35,7 +35,7 @@ with zipfile.ZipFile(io.BytesIO(payload)) as archive:
 os.environ['SEMANTIC_LOSSLESS_ROOT']=str(ROOT)
 sys.path.insert(0,str(ROOT/'src'))
 subprocess.run([sys.executable,'-m','pip','install','timm==0.4.12','PyYAML==6.0.3','einops==0.8.2','gdown==5.2.0','pytorch-msssim==1.0.0'],check=True)
-from semantic_lossless.team_suite.runtime import environment,write_json
+from src.runtime import environment,write_json
 OUT=Path('/kaggle/working/team_gpu_pilot');OUT.mkdir(exist_ok=True)
 write_json(OUT/'source_bundle.json',{{'sha256':{sha!r},'scope':'mutable local snapshot, identified by bundled bytes'}})
 write_json(OUT/'environment.json',environment(ROOT))
@@ -46,12 +46,12 @@ print('END source/environment setup',flush=True)
 '''
     body='MODELS='+repr(args.models)+'\n'+'''import gc, numpy as np, traceback, torch
 from PIL import Image
-from semantic_lossless.team_suite.dataset import freeze
-from semantic_lossless.team_suite.models import build
-from semantic_lossless.team_suite.train import train
-from semantic_lossless.team_suite.evaluate import evaluate
-from semantic_lossless.team_suite.runtime import stage,export
-from semantic_lossless.team_suite.assets import obtain
+from src.dataset import freeze
+from src.models import build
+from src.train import train
+from src.evaluate import evaluate
+from src.runtime import stage,export
+from src.assets import obtain
 print('START synthetic data generation; no benchmark images used',flush=True)
 rng=np.random.default_rng(22);roots={}
 for name,count in [('div2k_train',2),('flickr2k_train',2),('div2k_val',1),('kodak_test',1)]:
@@ -81,8 +81,8 @@ for name in MODELS:
                 options.update(checkpoint=str(paths[0]),swin_variant='fixed_c32',rate=32,from_scratch=False)
             if name=='jcm':options.update(checkpoint=str(obtain(name,ROOT/'Models/pretrained_downloads')),from_scratch=False)
             if name=='shared_semantic_codebook':
-                from semantic_lossless.sources import fetch_source
-                from semantic_lossless.team_suite.shared import construct
+                from src.sources import fetch_source
+                from src.shared import construct
                 fetch_source(name)
                 candidates=list(Path('/kaggle/input').rglob('classifier.pt'))
                 if len(candidates)!=1:raise RuntimeError('Mount exactly one verified frozen classifier.pt')
@@ -93,9 +93,9 @@ for name in MODELS:
             if name=='sqgan':
                 subprocess.run([sys.executable,'-m','pip','install','pytorch-lightning==1.9.5',
                     'torchmetrics==0.11.4','transformers==4.46.3','scipy','omegaconf'],check=True,timeout=600)
-                from semantic_lossless.sources import fetch_source
-                from semantic_lossless.team_suite.special import prepare
-                from semantic_lossless.team_suite.sqgan_train import execute
+                from src.sources import fetch_source
+                from src.special import prepare
+                from src.sqgan_train import execute
                 fetch_source(name)
                 options.update(checkpoint=str(obtain(name,ROOT/'Models/pretrained_downloads')),
                                manifest=str(manifest),learning_rate=1.25e-5)
@@ -132,7 +132,7 @@ print('END bounded GPU pilots',json.dumps(results),flush=True)
             'print("START real-data pilot using verified train/dev membership; Kodak untouched",flush=True)\n'
             'manifest=OUT/"real_manifest.json"\n'
             f'frozen=json.loads(zlib.decompress(base64.b64decode({base64.b64encode(compressed).decode()!r})))\n'
-            'from semantic_lossless.team_suite.dataset import discover\n'
+            'from src.dataset import discover\n'
             'roots=discover("/kaggle/input")\n'
             'print("Current dataset mounts:",json.dumps(roots),flush=True)\n'
             'if set(roots)!=set(frozen["roots"]): raise FileNotFoundError("All four verified dataset roots must be mounted")\n'

@@ -8,7 +8,7 @@ prefix=prefix.replace("'train_shared_native_classifier.py']", "'train_shared_nat
 needle="payload = buffer.getvalue()"
 extra="""
 with zipfile.ZipFile(buffer,'a',zipfile.ZIP_DEFLATED) as archive:
-    for name in ['EncDec/Research/model_wrappers.py','EncDec/Research/compressai_1_2_compat.py']:
+    for name in ['Archive/EncDec/Research/model_wrappers.py','Archive/EncDec/Research/compressai_1_2_compat.py']:
         archive.writestr(name,(ROOT/name).read_bytes())
     for path in sorted((ROOT/'Models/NTSCC/official').rglob('*.py')):
         archive.writestr(path.relative_to(ROOT).as_posix(),path.read_bytes())

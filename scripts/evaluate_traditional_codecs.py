@@ -19,8 +19,8 @@ def main():
     import torch
     import PIL
     from PIL import Image, features
-    from semantic_lossless.metrics import quality
-    from semantic_lossless.artifacts import write_json, sha256
+    from src.metrics import quality
+    from src.artifacts import write_json, sha256
     torch.set_num_threads(2)
     paths = sorted(args.images.glob('kodim*.png'))
     assert len(paths) == 24

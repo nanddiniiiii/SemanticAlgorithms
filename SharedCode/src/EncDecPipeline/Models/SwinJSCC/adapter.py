@@ -11,9 +11,9 @@ from typing import Any
 from Channels.awgn import AWGNChannel
 from Channels.channel_utils import require_torch
 from EncDecPipeline.Models.SwinJSCC.swin_config import BASE_MODEL_NAME, SwinJSCCConfig
-from INFRA.Artifacts import ImageArtifact, LatentArtifact, TransmissionArtifact
-from INFRA.Interfaces import EncDecInterface
-from INFRA.Registries import ENCDEC_REGISTRY
+from Infrastructure.Artifacts import ImageArtifact, LatentArtifact, TransmissionArtifact
+from Infrastructure.Interfaces import EncDecInterface
+from Infrastructure.Registries import ENCDEC_REGISTRY
 
 
 class SwinJSCCAdapter(EncDecInterface):

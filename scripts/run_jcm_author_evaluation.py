@@ -21,9 +21,9 @@ import torch
 import torchvision
 from torchvision import transforms
 from skimage.metrics import peak_signal_noise_ratio, structural_similarity
-from semantic_lossless.artifacts import write_json, sha256
-from semantic_lossless.codecs import upstream_import
-from semantic_lossless.sources import fetch_source, source_path, SOURCES
+from src.artifacts import write_json, sha256
+from src.codecs import upstream_import
+from src.sources import fetch_source, source_path, SOURCES
 
 
 def main():

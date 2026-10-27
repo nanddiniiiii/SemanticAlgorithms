@@ -1,6 +1,6 @@
 """Current-input semantic evidence contract. Stage 1B implementation is deferred."""
 
-from INFRA.errors import ComponentUnavailableError
+from Infrastructure.errors import ComponentUnavailableError
 
 
 class Stage1BParameterExtractor:

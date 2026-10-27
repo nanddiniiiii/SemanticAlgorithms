@@ -9,9 +9,9 @@ from typing import Any, Iterable
 import numpy as np
 
 from EncDecPipeline.Codebooks.codebook_codec import CodebookPacketHeader, encode_codebook_packet_bits, index_width
-from INFRA.Artifacts import LatentArtifact, TransmissionArtifact
-from INFRA.Interfaces import CodebookInterface
-from INFRA.Registries import CODEBOOK_REGISTRY
+from Infrastructure.Artifacts import LatentArtifact, TransmissionArtifact
+from Infrastructure.Interfaces import CodebookInterface
+from Infrastructure.Registries import CODEBOOK_REGISTRY
 
 
 class _TorchMiniBatchKMeans:

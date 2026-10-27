@@ -6,9 +6,9 @@ import sys
 ROOT=Path(__file__).resolve().parents[1]
 sys.path[:0]=[str(ROOT),str(ROOT/'src')]
 import torch
-from INFRA.Artifacts import LatentArtifact
-from INFRA.Channels.awgn import AWGNChannel
-from semantic_lossless.artifacts import write_json
+from Infrastructure.Artifacts import LatentArtifact
+from Infrastructure.Channels.awgn import AWGNChannel
+from src.artifacts import write_json
 
 
 def main():

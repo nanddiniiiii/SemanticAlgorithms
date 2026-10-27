@@ -11,7 +11,7 @@ exec(compile(prefix,str(builder),'exec'),namespace)
 namespace['write_job']('stage1_jcm_profile','satyapaladugu','stage1-jcm-native-profile',
     'Stage1 JCM Native Profile',['pankrzysiu/cifar10-python','satyapaladugu/semantic-lossless-private-jcm-assets'],'''
 sys.path.insert(0,str(root/'src'))
-from semantic_lossless.artifacts import sha256
+from src.artifacts import sha256
 expected='b7d3a1df66512421b057eabf4f7faa937a3dc22d6fe83632d3f0bca0f0c3b897'
 weights=sorted({p.resolve() for p in Path('/kaggle/input').rglob('*.tar') if p.is_file() and sha256(p)==expected})
 data=sorted({p.parent.resolve() for p in Path('/kaggle/input').rglob('cifar-10-batches-py') if (p/'test_batch').is_file()})

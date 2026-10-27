@@ -28,11 +28,11 @@ def main():
     from PIL import Image,ImageOps
     from transformers import SegformerImageProcessor,SegformerForSemanticSegmentation
     import transformers
-    from semantic_lossless.artifacts import sha256,write_json
-    from semantic_lossless.sources import fetch_source
-    from semantic_lossless.shared_native import native_construction_definitions
-    from semantic_lossless.metrics import profile_forward
-    from semantic_lossless.compute import registered_kernel_flops
+    from src.artifacts import sha256,write_json
+    from src.sources import fetch_source
+    from src.shared_native import native_construction_definitions
+    from src.metrics import profile_forward
+    from src.compute import registered_kernel_flops
     import queue
     assert torch.cuda.device_count()>=2,'DataParallel teacher inference requires two actual CUDA devices'
     manifest=json.loads(args.manifest.read_text())

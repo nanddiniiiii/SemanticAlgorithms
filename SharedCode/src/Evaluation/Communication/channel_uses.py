@@ -1,6 +1,6 @@
 """Channel-use accounting helpers."""
 
-from INFRA.Artifacts import TransmissionArtifact
+from Infrastructure.Artifacts import TransmissionArtifact
 
 
 def channel_uses_from_transmission(transmission: TransmissionArtifact, index: int = 0) -> int:

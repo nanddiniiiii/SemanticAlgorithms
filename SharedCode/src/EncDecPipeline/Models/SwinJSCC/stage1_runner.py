@@ -34,7 +34,7 @@ from EncDecPipeline.Postprocessing.tensor_to_image import tensor_to_pil
 from Evaluation.Communication.cbr import native_cbr
 from Evaluation.Image.psnr import psnr
 from Evaluation.Image.ssim import ssim
-from INFRA.Artifacts import ImageArtifact, TransmissionArtifact
+from Infrastructure.Artifacts import ImageArtifact, TransmissionArtifact
 
 
 def verify_kaggle_stage1a_runtime() -> dict[str, Any]:

@@ -13,9 +13,9 @@ from types import SimpleNamespace
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'src'))
 import torch
-from semantic_lossless.codecs import upstream_import
-from semantic_lossless.sources import fetch_source, source_path
-from semantic_lossless.artifacts import sha256, write_json
+from src.codecs import upstream_import
+from src.sources import fetch_source, source_path
+from src.artifacts import sha256, write_json
 
 
 def main():

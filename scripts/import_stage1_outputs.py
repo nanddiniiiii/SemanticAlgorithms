@@ -10,9 +10,9 @@ import sys
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT/'src'))
-from semantic_lossless.artifacts import export_manifest, sha256, write_json
-from semantic_lossless.config import Config
-from semantic_lossless.events import Events, collect
+from src.artifacts import export_manifest, sha256, write_json
+from src.config import Config
+from src.events import Events, collect
 
 
 def main(argv=None):

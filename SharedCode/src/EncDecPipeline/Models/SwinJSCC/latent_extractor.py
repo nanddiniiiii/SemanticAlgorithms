@@ -1,6 +1,6 @@
 """Named semantic boundary for consumers that need latent tensors only."""
 
-from INFRA.Artifacts import ImageArtifact, LatentArtifact
+from Infrastructure.Artifacts import ImageArtifact, LatentArtifact
 
 
 def extract_latent(adapter: object, image: ImageArtifact, snr_db: float, rate: int) -> LatentArtifact:

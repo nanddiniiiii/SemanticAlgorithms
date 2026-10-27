@@ -15,12 +15,12 @@ def main():
     parser.add_argument('--output',type=Path,required=True)
     args=parser.parse_args()
     import torch
-    from semantic_lossless.config import Config
-    from semantic_lossless.adjscc import build_adjscc
-    from semantic_lossless.sources import fetch_source
-    from semantic_lossless.data import FrozenImages
-    from semantic_lossless.metrics import quality
-    from semantic_lossless.artifacts import write_json,sha256
+    from src.config import Config
+    from src.adjscc import build_adjscc
+    from src.sources import fetch_source
+    from src.data import FrozenImages
+    from src.metrics import quality
+    from src.artifacts import write_json,sha256
     assert torch.cuda.is_available()
     args.output.mkdir(parents=True,exist_ok=False)
     fetch_source('diffcom')

@@ -3,8 +3,8 @@
 from __future__ import annotations
 
 from Channels.awgn import AWGNChannel
-from INFRA.Artifacts import LatentArtifact, TransmissionArtifact
-from INFRA.Interfaces import ChannelInterface
+from Infrastructure.Artifacts import LatentArtifact, TransmissionArtifact
+from Infrastructure.Interfaces import ChannelInterface
 
 
 class DeepJSCCChannelWrapper(ChannelInterface):

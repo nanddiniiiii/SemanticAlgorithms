@@ -53,7 +53,7 @@ def main() -> None:
         started = time.perf_counter()
         weights = ROOT / "Models/trained_checkpoints"
         if args.model == "deepjscc":
-            from EncDec.Research.model_wrappers import DeepJSCCAdapter
+            from Archive.EncDec.Research.model_wrappers import DeepJSCCAdapter
             adapter = DeepJSCCAdapter(ROOT / "Models/DeepJSCC/checkpoint_source",
                                      weights / "DeepJSCC/production/imagenet_10_0.33_200.00_32_19.pth",
                                      torch.device("cpu"), evaluation_snr_db=10)
@@ -63,7 +63,7 @@ def main() -> None:
                       "training_snr_db": adapter.checkpoint_training_snr_db,
                       "channel_note": "retained legacy channel convention; not a calibrated common benchmark"}
         elif args.model == "ntscc":
-            from EncDec.Research.model_wrappers import NTSCCWindowsAdapter
+            from Archive.EncDec.Research.model_wrappers import NTSCCWindowsAdapter
             adapter = NTSCCWindowsAdapter(ROOT / "Models/NTSCC/official",
                                          weights / "NTSCC/production/ntscc_hyperprior_quality_1_psnr.pth",
                                          torch.device("cpu"), evaluation_snr_db=10)
@@ -73,9 +73,9 @@ def main() -> None:
                       "training_snr_db": adapter.checkpoint_training_snr_db,
                       "rate_note": "main latent uses only; not complete digital bitstream accounting"}
         else:
-            from EncDec.Models.SwinJSCC.model_loader import load_stage1_swinjscc
-            from INFRA.Artifacts import ImageArtifact
-            from INFRA.Channels.awgn import AWGNChannel
+            from Archive.EncDec.Models.SwinJSCC.model_loader import load_stage1_swinjscc
+            from Infrastructure.Artifacts import ImageArtifact
+            from Infrastructure.Channels.awgn import AWGNChannel
             adapter = load_stage1_swinjscc(weights / "SwinJSCC/encdec_sa_ra", device="cpu",
                                           upstream_root=ROOT / "Models/SwinJSCC/local_source")
             adapter.encoder.eval()

@@ -20,7 +20,7 @@ assert (REPO / 'src/semantic_lossless/cli.py').is_file(), 'Mount/clone the updat
 os.chdir(REPO)
 os.environ['SEMANTIC_LOSSLESS_ROOT'] = str(REPO)
 sys.path.insert(0,str(REPO/'src'))
-from semantic_lossless.catalog import get_model
+from src.catalog import get_model
 # Set only native paths here. Credentials never belong in notebooks.
 CONFIGS = {}  # e.g. {'jcm': '/kaggle/working/jcm.json'}
 TRAIN_MODELS = set()  # Explicitly select audited native recipes; generic examples are adapted runs.

@@ -1,8 +1,8 @@
 """Rician support is deliberately deferred until its CSI assumptions are specified."""
 
-from INFRA.Artifacts import LatentArtifact, TransmissionArtifact
-from INFRA.Interfaces import ChannelInterface
-from INFRA.errors import ComponentUnavailableError
+from Infrastructure.Artifacts import LatentArtifact, TransmissionArtifact
+from Infrastructure.Interfaces import ChannelInterface
+from Infrastructure.errors import ComponentUnavailableError
 
 
 class RicianChannel(ChannelInterface):

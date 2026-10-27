@@ -16,10 +16,10 @@ def main():
     parser.add_argument('--models', nargs='+', choices=['jcm', 'adjscc', 'deepjscc', 'sqgan'], default=['jcm', 'adjscc'])
     args = parser.parse_args()
     import torch
-    from semantic_lossless.config import Config
-    from semantic_lossless.codecs import build_codec
-    from semantic_lossless.metrics import profile_forward
-    from semantic_lossless.artifacts import write_json
+    from src.config import Config
+    from src.codecs import build_codec
+    from src.metrics import profile_forward
+    from src.artifacts import write_json
     torch.set_num_threads(2)
     for name in args.models:
         size = {'jcm': 32, 'adjscc': 256, 'deepjscc': 128, 'sqgan': 256}[name]

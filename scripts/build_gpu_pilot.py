@@ -31,12 +31,12 @@ os.environ['SEMANTIC_LOSSLESS_ROOT']=str(ROOT)
 sys.path.insert(0,str(ROOT/'src'))
 '''
 body='''import torch
-from semantic_lossless.config import Config
-from semantic_lossless.codecs import build_codec
-from semantic_lossless.sources import fetch_source
-from semantic_lossless.artifacts import write_json, export_manifest
-from semantic_lossless.events import Events
-from semantic_lossless.training import train
+from src.config import Config
+from src.codecs import build_codec
+from src.sources import fetch_source
+from src.artifacts import write_json, export_manifest
+from src.events import Events
+from src.training import train
 assert torch.cuda.is_available(), 'No CUDA device allocated'
 assert torch.cuda.device_count()>=2, 'This pilot requires T4 x2'
 write_json(ROOT/'pilot_environment.json',{'torch':torch.__version__,'cuda':torch.version.cuda,'devices':[torch.cuda.get_device_name(i) for i in range(torch.cuda.device_count())],'scope':'GPU runtime checks; no quality benchmark'})
@@ -87,7 +87,7 @@ for algorithm in ['adjscc','jcm']:
     export_manifest(run)
     del codec
     gc.collect();torch.cuda.empty_cache()
-from semantic_lossless.events import collect
+from src.events import collect
 collect(ROOT/'Results/experiments',ROOT/'Results/metrics.csv')
 write_json(ROOT/'pilot_status.json',{'status':'completed','algorithms':['adjscc','jcm'],'scope':'real-data two-step GPU compatibility pilot plus synthetic target-size AMP checks'})
 print('DUAL_GPU_PILOT_COMPLETED',flush=True)

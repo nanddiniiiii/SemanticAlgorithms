@@ -8,8 +8,8 @@ ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT/'src'))
 import numpy as np
 import torch
-from semantic_lossless.sources import source_path,fetch_source
-from semantic_lossless.artifacts import write_json
+from src.sources import source_path,fetch_source
+from src.artifacts import write_json
 
 
 def main():

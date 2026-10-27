@@ -23,9 +23,9 @@ def main():
     import torch
     from PIL import Image
     from pytorch_msssim import ms_ssim
-    from semantic_lossless.artifacts import write_json, sha256
-    from semantic_lossless.metrics import quality, profile_forward
-    from semantic_lossless.swin_native import build_native_swin
+    from src.artifacts import write_json, sha256
+    from src.metrics import quality, profile_forward
+    from src.swin_native import build_native_swin
     assert torch.cuda.is_available(), 'A real CUDA device is required by the unmodified native implementation'
     random.seed(22); np.random.seed(22); torch.manual_seed(22)
     args.output.mkdir(parents=True, exist_ok=False)

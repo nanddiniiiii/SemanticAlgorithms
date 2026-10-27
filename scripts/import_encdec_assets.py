@@ -105,10 +105,10 @@ def main() -> None:
             copy_file(original, Path(destination or relative) / child,
                       "scheduler_encdec", original.relative_to(source).as_posix())
 
-    for relative in ["EncDec/__init__.py", "EncDec/Models/__init__.py", "INFRA/dependencies.py", "INFRA/errors.py"]:
+    for relative in ["Archive/EncDec/__init__.py", "Archive/EncDec/Models/__init__.py", "Infrastructure/dependencies.py", "Infrastructure/errors.py"]:
         copy_file(source / relative, Path(relative), "scheduler_encdec", relative)
-    for relative in ["EncDec/Research", "EncDec/Codebooks", "EncDec/Models/DeepJSCC", "EncDec/Models/SwinJSCC",
-                     "INFRA/Artifacts", "INFRA/Interfaces", "INFRA/Registries", "INFRA/Channels"]:
+    for relative in ["Archive/EncDec/Research", "Archive/EncDec/Codebooks", "Archive/EncDec/Models/DeepJSCC", "Archive/EncDec/Models/SwinJSCC",
+                     "Infrastructure/Artifacts", "Infrastructure/Interfaces", "Infrastructure/Registries", "Infrastructure/Channels"]:
         copy_tree(relative)
     for original, destination in [
         ("references/DeepJSCC_checkpoint_source", "Models/DeepJSCC/checkpoint_source"),
@@ -135,7 +135,7 @@ def main() -> None:
                   "supplemental_production_checkpoint", relative)
 
     # Importing the codec contracts must not import the scheduler's Core pipeline.
-    init = ROOT / "INFRA/__init__.py"
+    init = ROOT / "Infrastructure/__init__.py"
     content = '"""Retained codec contracts and channels; no scheduling runtime."""\n'
     if init.exists() and init.read_text(encoding="utf-8") != content:
         raise FileExistsError(init)

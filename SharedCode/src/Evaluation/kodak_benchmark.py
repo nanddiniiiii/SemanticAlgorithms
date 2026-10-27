@@ -24,7 +24,7 @@ from typing import Any, Callable, Iterable, Mapping, Protocol, Sequence
 
 from Evaluation.Image.psnr import psnr
 from Evaluation.Image.ssim import ssim
-from INFRA.Artifacts import ImageArtifact, LatentArtifact
+from Infrastructure.Artifacts import ImageArtifact, LatentArtifact
 
 
 SCHEMA_VERSION = "1.0"

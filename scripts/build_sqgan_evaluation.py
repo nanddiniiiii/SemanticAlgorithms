@@ -58,14 +58,14 @@ body='''import ast, csv, json, random, time, types, subprocess, importlib
 import numpy as np
 import torch
 from PIL import Image
-from semantic_lossless.config import Config
-from semantic_lossless.data import Cityscapes
-from semantic_lossless.sources import fetch_source,source_path
-from semantic_lossless.sqgan import build_sqgan
-from semantic_lossless.codecs import upstream_import
-from semantic_lossless.artifacts import write_json
-from semantic_lossless.metrics import quality, profile_forward
-from semantic_lossless.compute import registered_kernel_flops
+from src.config import Config
+from src.data import Cityscapes
+from src.sources import fetch_source,source_path
+from src.sqgan import build_sqgan
+from src.codecs import upstream_import
+from src.artifacts import write_json
+from src.metrics import quality, profile_forward
+from src.compute import registered_kernel_flops
 from torchvision import transforms
 run=root/'Results/author_evaluation/sqgan_cityscapes_quarter_native_save'
 run.mkdir(parents=True,exist_ok=False)
@@ -105,7 +105,7 @@ try:
     first_path=dataset.paths[0]
     relative=first_path.relative_to(dataset.image_root)
     raw_path=dataset.label_root/relative.parent/first_path.name.replace('_leftImg8bit.png','_gtFine_labelIds.png')
-    from semantic_lossless.data import cityscapes_label_lut
+    from src.data import cityscapes_label_lut
     with Image.open(raw_path) as handle:
         raw=np.asarray(handle,dtype=np.int64)
         mapped=np.asarray(cityscapes_label_lut(),dtype=np.uint8)[raw]
@@ -182,7 +182,7 @@ try:
         'class_ious':class_ious.tolist(),'confusion_gt19_pred20':valid_confusion.cpu().tolist(),
         'scope':'decoded semantic branch vs supplied paired labels; NOT segmentation of reconstructed RGB or paper InternImage mIoU',
         'ignore_gt_class':19,'absent_class_policy':'exclude zero-union classes','paired_labels_available_at_encoder':True})
-    import semantic_lossless.metrics as metric_module
+    import src.metrics as metric_module
     if hasattr(metric_module,'_LPIPS'):del metric_module._LPIPS
     del native_result,result,expected,reconstruction,original,image,semantic
     torch.cuda.empty_cache()

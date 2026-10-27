@@ -1,0 +1,10 @@
+{
+  "poll_seconds": 1800,
+  "default_channel_profile": "awgn",
+  "channel_profiles": {
+    "awgn": {"train_channel": "awgn", "train_snr_db": 10, "test_channel": "awgn", "test_snr_db": 10},
+    "rayleigh_symbol": {"train_channel": "rayleigh_perfect_csi", "train_snr_db": 10, "test_channel": "rayleigh_perfect_csi", "test_snr_db": 10, "train_coherence": "symbol", "test_coherence": "symbol"},
+    "rayleigh_block": {"train_channel": "rayleigh_perfect_csi", "train_snr_db": 10, "test_channel": "rayleigh_perfect_csi", "test_snr_db": 10, "train_coherence": "image", "test_coherence": "image"},
+    "awgn_to_rayleigh": {"train_channel": "awgn", "train_snr_db": 10, "test_channel": "rayleigh_perfect_csi", "test_snr_db": 10, "test_coherence": "symbol"}
+  }
+}

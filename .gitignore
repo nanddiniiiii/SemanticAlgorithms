@@ -33,6 +33,9 @@ COPY_MANIFEST.local.json
 **/KODAK/
 **/kodak24/
 **/datasets/
+!Datasets/
+Datasets/*
+!Datasets/README.md
 **/dataset_cache/
 **/download_parts/
 
@@ -85,6 +88,11 @@ Results/metrics.csv.lock
 # Author checkpoints are downloaded from their provenance ledger, not Git blobs
 Models/pretrained_downloads/
 Models/trained_checkpoints/SharedSemanticCodebook/
+# Shareable model bundles are transferred through Drive/OneDrive, not Git.
+Models/teammate_*_models/**
+!Models/teammate_1_models/README.md
+!Models/teammate_2_models/README.md
+!Models/teammate_3_models/README.md
 Results/implementation_checks/
 Kaggle/assets/
 Results/kaggle_pilot/
@@ -96,3 +104,8 @@ Results/mamba_latest_log.txt
 Results/stage1_downloads/
 Results/stage1_monitor/
 Results/stage1_operations/
+
+# Local durable collector state and pending publications (never source commits)
+Results/publication_queue/
+*.collector.lock
+Results/comparison.csv.lock

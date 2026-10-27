@@ -20,12 +20,12 @@ def main():
     import random
     import numpy as np
     import queue
-    from semantic_lossless.config import Config
-    from semantic_lossless.adjscc import build_adjscc
-    from semantic_lossless.sources import fetch_source
-    from semantic_lossless.training import train
-    from semantic_lossless.events import Events
-    from semantic_lossless.artifacts import write_json,sha256,export_manifest
+    from src.config import Config
+    from src.adjscc import build_adjscc
+    from src.sources import fetch_source
+    from src.training import train
+    from src.events import Events
+    from src.artifacts import write_json,sha256,export_manifest
     assert torch.cuda.is_available()
     assert torch.cuda.device_count()>=2,'Custom adaptation requests two actual GPUs'
     assert sha256(args.checkpoint)=='c29d7610eb7b2e475a5ff029d16f0031fc43ac89f316d461b154cef993753c54'

@@ -1,6 +1,6 @@
 """Per-image native channel-use accounting for a SwinJSCC latent."""
 
-from INFRA.Artifacts import LatentArtifact
+from Infrastructure.Artifacts import LatentArtifact
 
 
 def native_channel_uses_per_image(latent: LatentArtifact) -> list[int]:

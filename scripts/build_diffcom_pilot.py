@@ -31,10 +31,10 @@ body='''import json, time, traceback
 import numpy as np
 import torch
 from PIL import Image
-from semantic_lossless.config import Config
-from semantic_lossless.artifacts import write_json, sha256
-from semantic_lossless.sources import fetch_source
-from semantic_lossless.diffcom import build_diffcom
+from src.config import Config
+from src.artifacts import write_json, sha256
+from src.sources import fetch_source
+from src.diffcom import build_diffcom
 assert torch.cuda.is_available()
 run=root/'Results/implementation_checks/diffcom_gpu'
 run.mkdir(parents=True,exist_ok=False)

@@ -17,11 +17,11 @@ def main():
     import torch
     from PIL import Image
     from pytorch_msssim import ms_ssim
-    from semantic_lossless.config import Config
-    from semantic_lossless.codecs import build_codec
-    from semantic_lossless.metrics import quality,profile_forward
-    from semantic_lossless.compute import registered_kernel_flops
-    from semantic_lossless.artifacts import write_json,sha256
+    from src.config import Config
+    from src.codecs import build_codec
+    from src.metrics import quality,profile_forward
+    from src.compute import registered_kernel_flops
+    from src.artifacts import write_json,sha256
     assert torch.cuda.is_available()
     args.output.mkdir(parents=True,exist_ok=False)
     codec=build_codec(Config('ntscc',device='cuda:0',snr_db=10)).eval()
@@ -54,7 +54,7 @@ def main():
             first=image
             Image.fromarray(reconstruction[0].clamp(0,1).mul(255).round().byte().permute(1,2,0).cpu().numpy()).save(args.output/'reconstruction.png')
         print({'stage':'quality','completed':index+1,'total':24,'psnr_db':values['psnr_db'],'main_uses':uses},flush=True)
-    import semantic_lossless.metrics as metric_module
+    import src.metrics as metric_module
     if hasattr(metric_module,'_LPIPS'):del metric_module._LPIPS
     del image,reconstruction,output
     torch.cuda.empty_cache()

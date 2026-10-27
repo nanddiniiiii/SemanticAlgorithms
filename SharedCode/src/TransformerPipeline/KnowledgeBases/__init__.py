@@ -1,6 +1,6 @@
 """Historical/context evidence contract. This is a sibling, not a child, of TransformerParam."""
 
-from INFRA.errors import ComponentUnavailableError
+from Infrastructure.errors import ComponentUnavailableError
 
 
 class Stage1BKnowledgeBase:

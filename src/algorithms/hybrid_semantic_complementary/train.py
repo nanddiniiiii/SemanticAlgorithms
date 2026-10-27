@@ -1,0 +1,11 @@
+"""hybrid_semantic_complementary: run with --config; unsupported trainers fail explicitly."""
+import argparse
+from src.config import load_config
+from src.cli import main
+if __name__ == "__main__":
+    parser=argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--config",required=True)
+    args=parser.parse_args()
+    if load_config(args.config).algorithm != "hybrid_semantic_complementary":
+        parser.error("Configuration belongs to a different algorithm")
+    main(["train","--config",args.config])

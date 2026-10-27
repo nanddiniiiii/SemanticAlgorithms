@@ -28,8 +28,8 @@ class FrozenDataset(unittest.TestCase):
             command=[sys.executable,str(root/'scripts/freeze_custom_dataset.py'),'--spec',str(path),'--output',str(manifest)]
             result=subprocess.run(command,capture_output=True,text=True,timeout=30)
             self.assertEqual(result.returncode,0,result.stderr)
-            from semantic_lossless.config import Config
-            from semantic_lossless.data import FrozenImages
+            from src.config import Config
+            from src.data import FrozenImages
             config=Config('adjscc',crop_size=16,model_options={'dataset_manifest':str(manifest)})
             data=FrozenImages(config,'train');self.assertEqual(len(data),2)
             self.assertEqual(tuple(data[0]['image'].shape),(3,16,16))

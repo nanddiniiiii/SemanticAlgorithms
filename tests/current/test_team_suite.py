@@ -7,9 +7,9 @@ from pathlib import Path
 import pytest
 from PIL import Image
 
-from semantic_lossless.team_suite.dataset import freeze,ParentImages,discover
-from semantic_lossless.team_suite.runtime import export,stage
-from semantic_lossless.team_suite.monitor import verify_download,collect
+from src.dataset import freeze,ParentImages,discover
+from src.runtime import export,stage
+from src.monitor import verify_download,collect
 
 
 def test_discovery_nested_aliases_and_explicit_overrides(tmp_path):
@@ -30,18 +30,18 @@ def test_discovery_nested_aliases_and_explicit_overrides(tmp_path):
 def test_local_launcher_submits_and_collects_without_real_kaggle(tmp_path,monkeypatch):
     import sys
     from types import SimpleNamespace
-    from semantic_lossless.team_suite import launch
-    from semantic_lossless.team_suite.runtime import export
-    notebook=tmp_path/'Notebooks/TeamSuite/you.ipynb'
+    from src import launch
+    from src.runtime import export
+    notebook=tmp_path/'Notebooks/1.ipynb'
     notebook.parent.mkdir(parents=True)
-    notebook.write_text('{}')
+    notebook.write_text(json.dumps({'cells':[{'cell_type':'code','source':["REVISION = '"+'a'*40+"'\n"]}]}))
     calls=[]
     def fake_run(command,**kwargs):
         calls.append(command)
         if command[2]=='push':
             metadata=json.loads((Path(command[command.index('-p')+1])/'kernel-metadata.json').read_text())
             assert metadata['dataset_sources']==launch.DATASETS and metadata['enable_gpu']
-            assert metadata['id'].startswith('testuser/semantic-you-')
+            assert metadata['id']=='testuser/semantic-notebook-1'
         if command[2]=='status':return SimpleNamespace(returncode=0,stdout='COMPLETE',stderr='')
         if command[2]=='output':
             raw=Path(command[command.index('-p')+1]);run=raw/'team_results/you/run/deepjscc'
@@ -49,21 +49,66 @@ def test_local_launcher_submits_and_collects_without_real_kaggle(tmp_path,monkey
             (run/'metrics/per_image.csv').write_text('algorithm,psnr_db\ndeepjscc,10\n')
             (run/'checkpoints').mkdir()
             (run/'checkpoints/last.pt').write_bytes(b'weights')
+            (run/'resolved_config.json').write_text(json.dumps({'algorithm':'deepjscc'}))
+            for stage in ('train','evaluate'):
+                (run/f'{stage}_status.json').write_text(json.dumps({'status':'completed'}))
+            submission=next((tmp_path/'Results/team_downloads').rglob('submission.json'))
+            write=json.loads(submission.read_text())
+            (run/'delivery_identity.json').write_text(json.dumps({'delivery_run_id':write['run_id'],'team':'1'}))
+            from src.sharing import package_run
+            package_run(run,raw/'models','1','run-fixture')
             export(run)
         return SimpleNamespace(returncode=0,stdout='',stderr='')
     monkeypatch.setattr(launch,'ROOT',tmp_path)
+    versions=iter([None,1,1,1])
+    monkeypatch.setattr(launch,'current_version',lambda username,slug:next(versions))
     monkeypatch.setattr(launch.shutil,'which',lambda name:'fake-kaggle')
     monkeypatch.setattr(launch.subprocess,'run',fake_run)
-    monkeypatch.setattr(sys,'argv',['download_you.py','--username','testuser'])
-    launch.main('you')
+    monkeypatch.setattr(sys,'argv',['1.py','--username','testuser','--no-publish'])
+    launch.main('1')
     assert [cmd[2] for cmd in calls]==['push','status','output']
-    assert list((tmp_path/'Models/team_runs/you').rglob('last.pt'))
-    assert 'deepjscc' in (tmp_path/'Results/team_downloads/comparison.csv').read_text()
+    assert (tmp_path/'Models/teammate_1_models/DeepJSCC/run-fixture/last.pt').is_file()
+    assert 'deepjscc' in (tmp_path/'Results/comparison.csv').read_text()
+
+
+def test_launcher_refuses_unpinned_notebook_before_submission(tmp_path,monkeypatch):
+    import sys
+    from src import launch
+    notebook=tmp_path/'Notebooks/1.ipynb'
+    notebook.parent.mkdir(parents=True)
+    notebook.write_text(json.dumps({'cells':[{'source':["REVISION = ''\n"]}]}))
+    monkeypatch.setattr(launch,'ROOT',tmp_path)
+    monkeypatch.setattr(launch.shutil,'which',lambda name:'fake-kaggle')
+    monkeypatch.setattr(sys,'argv',['1.py','--username','testuser','--no-publish'])
+    with pytest.raises(RuntimeError,match='not published and pinned'):
+        launch.main('1')
+    assert not list((tmp_path/'Results').rglob('submission.json'))
+
+
+def test_launcher_does_not_replace_running_notebook(tmp_path,monkeypatch):
+    import sys
+    from types import SimpleNamespace
+    from src import launch
+    notebook=tmp_path/'Notebooks/1.ipynb'
+    notebook.parent.mkdir(parents=True)
+    notebook.write_text(json.dumps({'cells':[{'cell_type':'code','source':["REVISION = '"+'a'*40+"'\n"]}]}))
+    monkeypatch.setattr(launch,'ROOT',tmp_path)
+    monkeypatch.setattr(launch.shutil,'which',lambda name:'fake-kaggle')
+    monkeypatch.setattr(launch,'current_version',lambda username,slug:3)
+    calls=[]
+    def running(command,**kwargs):
+        calls.append(command)
+        return SimpleNamespace(returncode=0,stdout='RUNNING',stderr='')
+    monkeypatch.setattr(launch.subprocess,'run',running)
+    monkeypatch.setattr(sys,'argv',['1.py','--username','testuser','--no-publish'])
+    with pytest.raises(RuntimeError,match='Existing notebook is active'):
+        launch.main('1')
+    assert len(calls)==1 and calls[0][2]=='status'
 
 
 def test_sqgan_components_require_expected_digests(tmp_path,monkeypatch):
     import hashlib
-    from semantic_lossless.team_suite import assets
+    from src import assets
     (tmp_path/'encoder.ckpt').write_bytes(b'expected')
     monkeypatch.setattr(assets,'SQGAN_DIGESTS',{'encoder.ckpt':hashlib.sha256(b'expected').hexdigest()})
     assert assets.verified_sqgan_components(tmp_path)
@@ -74,7 +119,7 @@ def test_sqgan_components_require_expected_digests(tmp_path,monkeypatch):
 def test_sqgan_null_weight_exclusion_matches_loss_channels():
     torch=pytest.importorskip('torch')
     from types import SimpleNamespace
-    from semantic_lossless.team_suite.sqgan_train import align_cityscapes_loss_weights
+    from src.sqgan_train import align_cityscapes_loss_weights
     loss=SimpleNamespace(label_weight_tensor=torch.arange(20))
     align_cityscapes_loss_weights(loss)
     assert loss.label_weight_tensor.tolist()==list(range(19))
@@ -136,7 +181,7 @@ def test_tampered_manifest_and_changed_pixels_are_rejected(tmp_path):
 
 def test_partial_evaluation_preserves_results_but_fails_stage(tmp_path,monkeypatch):
     torch=pytest.importorskip('torch')
-    from semantic_lossless.team_suite import evaluate as evaluator, profile
+    from src import evaluate as evaluator, profiling
     roots=sample_roots(tmp_path);manifest=tmp_path/'manifest.json'
     freeze(roots,manifest,strict_counts=False)
     class Model(torch.nn.Module):
@@ -147,7 +192,7 @@ def test_partial_evaluation_preserves_results_but_fails_stage(tmp_path,monkeypat
             if self.calls==2:raise RuntimeError('simulated decode failure')
             return {'reconstruction':image*self.weight,'complex_uses':image.new_tensor([1])}
     monkeypatch.setattr(evaluator,'image_quality',lambda *a,**k:{'psnr_db':100.0})
-    monkeypatch.setattr(profile,'profile',lambda *a,**k:{'scope':'test stub'})
+    monkeypatch.setattr(profiling,'profile',lambda *a,**k:{'scope':'test stub'})
     with pytest.raises(RuntimeError,match='Incomplete evaluation'):
         evaluator.evaluate(Model(),manifest,tmp_path/'run',{'algorithm':'fixture','trials':2})
     evidence=json.loads((tmp_path/'run/metrics/per_image.json').read_text())
@@ -168,17 +213,38 @@ def test_export_after_stage_is_verifiable_and_detects_corruption(tmp_path):
 
 
 def test_three_notebooks_assign_tested_models_and_compile():
-    roster=json.loads((ROOT/'configs/team_suite/roster.json').read_text())['teams']
+    roster=json.loads((ROOT/'configs/models.json').read_text())['teams']
     assigned=[]
     for team,names in roster.items():
-        notebook=json.loads((ROOT/'Notebooks/TeamSuite'/(team+'.ipynb')).read_text())
-        assert notebook['metadata']['team_suite']['models']==names
+        notebook=json.loads((ROOT/'Notebooks'/(team+'.ipynb')).read_text())
+        assert notebook['metadata']['experiment']['models']==names
         assert len([c for c in notebook['cells'] if c['cell_type']=='code'])==14
         for item in notebook['cells']:
             if item['cell_type']=='code':ast.parse(''.join(item['source']))
         assigned+=names
     assert len(assigned)==12 and len(set(assigned))==9
     assert all(len(names)==4 and len(names)==len(set(names)) for names in roster.values())
+
+
+def test_notebook_slots_follow_user_model_order_and_package_models(tmp_path):
+    from scripts.build_notebooks import build
+    notebook=build('1',['deepjscc','swinjscc','adjscc','isec'])
+    calls=[];runs={}
+    def initialize(name):
+        run=tmp_path/name;run.mkdir();runs[name]=run
+    def invoke(name,stage):
+        calls.append((name,stage))
+        if stage=='package':
+            (runs[name]/'package_result.json').write_text('{"produced": true}')
+    namespace={'SESSION':tmp_path,'TEAM':'1','MODELS_TO_RUN':['swinjscc','deepjscc'],
+        'READY':{},'TRAINED':{},'EVALUATED':{},'PACKAGED':{},'EXPORTED':{},'RUNS':runs,
+        'REPO':ROOT,'json':json,'initialize':initialize,'invoke':invoke,
+        'write_json':lambda path,value:None,'environment':lambda root:{},'export':lambda path:None}
+    for cell in notebook['cells'][2:]:
+        if cell['cell_type']=='code':exec(compile(''.join(cell['source']),'notebook-stage','exec'),namespace)
+    expected=['prepare','pilot','train','evaluate','package','export']
+    assert calls==[(name,stage) for name in ['swinjscc','deepjscc'] for stage in expected]
+    assert namespace['PACKAGED']=={'swinjscc':True,'deepjscc':True}
 
 
 def test_collector_keeps_distinct_runs_excludes_pilots_and_is_repeatable(tmp_path):
@@ -197,7 +263,7 @@ def test_collector_keeps_distinct_runs_excludes_pilots_and_is_repeatable(tmp_pat
 
 
 def test_native_task_gates_do_not_substitute_rgb(tmp_path):
-    from semantic_lossless.team_suite.special import prepare
+    from src.special import prepare
     with pytest.raises(FileNotFoundError,match='paired_data_root'):
         prepare('deepjscc_wz',{},tmp_path)
     with pytest.raises(FileNotFoundError,match='training_extraction_config'):
@@ -206,12 +272,12 @@ def test_native_task_gates_do_not_substitute_rgb(tmp_path):
 
 def test_real_deepjscc_two_step_pilot_crosses_small_dataset_epoch(tmp_path):
     torch=pytest.importorskip('torch')
-    from semantic_lossless.sources import source_path
+    from src.sources import source_path
     if not (source_path('deepjscc')/'source_receipt.json').is_file():
         pytest.skip('Pinned source must be fetched explicitly before numerical integration check')
-    from semantic_lossless.team_suite.models import build
-    from semantic_lossless.team_suite.train import train
-    from semantic_lossless.team_suite.evaluate import evaluate
+    from src.models import build
+    from src.train import train
+    from src.evaluate import evaluate
     previous=torch.get_num_threads();torch.set_num_threads(2)
     try:
         roots=sample_roots(tmp_path);manifest=tmp_path/'manifest.json'
@@ -226,13 +292,24 @@ def test_real_deepjscc_two_step_pilot_crosses_small_dataset_epoch(tmp_path):
         metrics=evaluate(model,manifest,run,options,pilot=True)
         assert metrics['successful_trials']==1
         assert (run/'metrics/profile.json').is_file()
+        # A real saved model must survive the same folder-sharing path.
+        from src.runtime import write_json
+        from src.sharing import package_run,load_bundle
+        write_json(run/'resolved_config.json',options)
+        for stage in ('train','evaluate'):write_json(run/f'{stage}_status.json',{'status':'completed'})
+        bundle=package_run(run,tmp_path/'Models','1','real-deepjscc')
+        restored,_=load_bundle(bundle)
+        image=torch.rand(1,3,32,32)
+        torch.manual_seed(98);expected=model(image)['reconstruction']
+        torch.manual_seed(98);actual=restored(image)['reconstruction']
+        torch.testing.assert_close(actual,expected)
     finally:
         torch.set_num_threads(previous)
 
 
 def test_graph_runtime_configs_preserve_originals_and_isolate_outputs(tmp_path):
     yaml=pytest.importorskip('yaml')
-    from semantic_lossless.team_suite.special import prepare_graph_configs
+    from src.special import prepare_graph_configs
     train=tmp_path/'training.pkl';train.write_bytes(b'no deserialization in config test')
     evaluation=tmp_path/'evaluation.pkl';evaluation.write_bytes(b'other split')
     weights=tmp_path/'author.pt';weights.write_bytes(b'immutable original')
@@ -255,11 +332,12 @@ def test_graph_runtime_configs_preserve_originals_and_isolate_outputs(tmp_path):
 
 
 def test_notebook_does_not_report_success_after_evaluation_failure(tmp_path):
-    from scripts.build_team_notebooks import build
+    from scripts.build_notebooks import build
     notebook=build('you',['deepjscc'])
     source=''.join(notebook['cells'][-1]['source'])
     namespace={'SESSION':tmp_path,'TEAM':'you','READY':{'deepjscc':True},
                'TRAINED':{'deepjscc':True},'EVALUATED':{'deepjscc':False},
+               'PACKAGED':{'deepjscc':False},'EXPORTED':{'deepjscc':False},'export':lambda path:None,
                'MODELS_TO_RUN':['deepjscc'],'REPO':ROOT,'environment':lambda root:{},
                'write_json':lambda path,value:None,'json':json}
     with pytest.raises(RuntimeError,match='did not complete evaluation'):
@@ -268,7 +346,7 @@ def test_notebook_does_not_report_success_after_evaluation_failure(tmp_path):
 
 def test_legacy_quantizer_preserves_rounded_values_and_identity_gradient():
     torch=pytest.importorskip('torch')
-    from semantic_lossless.team_suite.models import legacy_ste_round
+    from src.models import legacy_ste_round
     value=torch.tensor([-1.75,-.5,-.01,0.,.5,2.4],requires_grad=True)
     result=legacy_ste_round(value)
     torch.testing.assert_close(result,torch.round(value),atol=0,rtol=0)
@@ -278,7 +356,7 @@ def test_legacy_quantizer_preserves_rounded_values_and_identity_gradient():
 
 def test_checkpoint_regenerates_only_resolution_masks_and_rejects_weights():
     torch=pytest.importorskip('torch')
-    from semantic_lossless.team_suite.models import load_training_state
+    from src.models import load_training_state
     model=torch.nn.Linear(2,2)
     model.register_buffer('attn_mask',torch.zeros(2,2))
     state={**model.state_dict(),'attn_mask':torch.ones(7,7)}
@@ -297,12 +375,12 @@ def test_replica_ema_matches_native_combined_batch_update():
     pytest.importorskip('einops')
     import copy
     import importlib.util
-    from semantic_lossless.sources import source_path
+    from src.sources import source_path
     path=source_path('sqgan')/'modules/vector_quantization/quantize2.py'
     if not path.is_file():pytest.skip('Pinned SQ-GAN source not fetched')
     spec=importlib.util.spec_from_file_location('test_sq_native_quantize',path)
     module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module)
-    from semantic_lossless.team_suite.ema import ReplicaEMA
+    from src.ema import ReplicaEMA
     torch.manual_seed(22)
     native=module.VQEmbedding(4,3,restart_unused_codes=False).train()
     aggregated=copy.deepcopy(native)

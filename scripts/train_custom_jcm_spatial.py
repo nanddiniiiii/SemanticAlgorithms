@@ -21,11 +21,11 @@ def main():
     import numpy as np
     import torch
     import queue
-    from semantic_lossless.config import Config
-    from semantic_lossless.jcm_spatial import build_jcm_spatial
-    from semantic_lossless.training import train
-    from semantic_lossless.events import Events
-    from semantic_lossless.artifacts import write_json,sha256,export_manifest
+    from src.config import Config
+    from src.jcm_spatial import build_jcm_spatial
+    from src.training import train
+    from src.events import Events
+    from src.artifacts import write_json,sha256,export_manifest
     assert torch.cuda.device_count()>=2
     random.seed(22);np.random.seed(22);torch.manual_seed(22)
     manifest=json.loads(args.manifest.read_text());assert manifest['status']=='frozen'

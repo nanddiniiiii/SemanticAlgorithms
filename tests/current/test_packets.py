@@ -1,5 +1,5 @@
 import unittest
-from semantic_lossless.bitstream import encode_packet,decode_packet,pack_codes,unpack_codes
+from src.bitstream import encode_packet,decode_packet,pack_codes,unpack_codes
 class Packets(unittest.TestCase):
     def test_all_index_values_and_partial_byte(self):
         for values in [list(range(1024)),[1],[0,1023,4]]:

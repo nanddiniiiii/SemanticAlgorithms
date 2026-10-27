@@ -1,8 +1,8 @@
 """Typed image evaluator registered for dependency-injected pipeline use."""
 
-from INFRA.Artifacts import EvaluationArtifact, ImageArtifact
-from INFRA.Interfaces import EvaluatorInterface
-from INFRA.Registries import EVALUATOR_REGISTRY
+from Infrastructure.Artifacts import EvaluationArtifact, ImageArtifact
+from Infrastructure.Interfaces import EvaluatorInterface
+from Infrastructure.Registries import EVALUATOR_REGISTRY
 from Evaluation.Image.psnr import psnr
 from Evaluation.Image.ssim import ssim
 

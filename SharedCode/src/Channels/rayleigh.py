@@ -9,8 +9,8 @@ from Channels.channel_utils import (
     real_to_complex_per_image,
     require_torch,
 )
-from INFRA.Artifacts import LatentArtifact, TransmissionArtifact
-from INFRA.Interfaces import ChannelInterface
+from Infrastructure.Artifacts import LatentArtifact, TransmissionArtifact
+from Infrastructure.Interfaces import ChannelInterface
 
 
 @dataclass(slots=True)

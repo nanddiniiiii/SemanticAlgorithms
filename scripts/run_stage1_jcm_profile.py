@@ -17,12 +17,12 @@ def main():
     import torch
     from torchvision.datasets import CIFAR10
     from torchvision.transforms import ToTensor
-    from semantic_lossless.artifacts import sha256, write_json
-    from semantic_lossless.codecs import build_codec, upstream_import
-    from semantic_lossless.config import Config
-    from semantic_lossless.sources import fetch_source, source_path
-    from semantic_lossless.metrics import profile_forward
-    from semantic_lossless.compute import registered_kernel_flops
+    from src.artifacts import sha256, write_json
+    from src.codecs import build_codec, upstream_import
+    from src.config import Config
+    from src.sources import fetch_source, source_path
+    from src.metrics import profile_forward
+    from src.compute import registered_kernel_flops
     assert torch.cuda.is_available()
     assert sha256(args.checkpoint) == 'b7d3a1df66512421b057eabf4f7faa937a3dc22d6fe83632d3f0bca0f0c3b897'
     args.output.mkdir(parents=True, exist_ok=False)

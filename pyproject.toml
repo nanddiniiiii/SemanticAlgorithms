@@ -16,11 +16,12 @@ metrics = ["pytorch-msssim", "lpips"]
 test = ["pytest"]
 
 [project.scripts]
-semcom = "semantic_lossless.cli:main"
+semcom = "src.cli:main"
 
 [tool.setuptools.packages.find]
-where = ["src"]
+where = ["."]
+include = ["src", "src.*", "Infrastructure", "Infrastructure.*", "Archive", "Archive.EncDec", "Archive.EncDec.*"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests/current"]
-pythonpath = ["src", "."]
+pythonpath = ["."]

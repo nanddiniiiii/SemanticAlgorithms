@@ -48,7 +48,7 @@ print(json.dumps({{'stage':'source_preflight','status':'passed',**provenance}}),
 import torch
 assert torch.cuda.is_available(),'Actual GPU hardware was not allocated'
 print(json.dumps({{'stage':'environment','torch':torch.__version__,'gpus':[torch.cuda.get_device_name(i) for i in range(torch.cuda.device_count())]}}),flush=True)
-subprocess.run([sys.executable,'-c','from semantic_lossless.paths import project_root; print("VERIFIED_PROJECT_ROOT",project_root(),flush=True)'],check=True)
+subprocess.run([sys.executable,'-c','from src.paths import project_root; print("VERIFIED_PROJECT_ROOT",project_root(),flush=True)'],check=True)
 logs=root/'run_logs';logs.mkdir(exist_ok=True)
 def run_logged(stage,command,timeout):
     start=time.monotonic();path=logs/(stage+'.log')

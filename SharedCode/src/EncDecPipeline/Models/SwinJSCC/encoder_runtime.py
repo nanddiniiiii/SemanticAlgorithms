@@ -1,6 +1,6 @@
 """Explicit encoder-only inference facade."""
 
-from INFRA.Artifacts import ImageArtifact, LatentArtifact
+from Infrastructure.Artifacts import ImageArtifact, LatentArtifact
 
 
 class EncoderRuntime:

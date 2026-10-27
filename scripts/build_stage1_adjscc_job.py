@@ -13,7 +13,7 @@ namespace['write_job']('stage1_adjscc', 'satyapaladuguplus', 'stage1-adjscc-koda
     ['sherylmehta/kodak-dataset', 'satyapaladuguplus/semantic-lossless-private-adjscc-assets'], '''
 run_logged('dependencies',[sys.executable,'-m','pip','install','--no-deps','pytorch-msssim==1.0.0','lpips==0.1.4'],300)
 sys.path.insert(0,str(root/'src'))
-from semantic_lossless.artifacts import sha256
+from src.artifacts import sha256
 expected='c29d7610eb7b2e475a5ff029d16f0031fc43ac89f316d461b154cef993753c54'
 weights=sorted({p.resolve() for p in Path('/kaggle/input').rglob('*.tar') if p.is_file() and sha256(p)==expected})
 pictures=sorted({p.resolve().parent for p in Path('/kaggle/input').rglob('kodim01.png')})

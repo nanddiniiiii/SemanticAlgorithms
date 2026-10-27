@@ -16,9 +16,9 @@ def main():
     import torch
     from PIL import Image
     from pytorch_msssim import ms_ssim
-    from EncDec.Research.model_wrappers import DeepJSCCAdapter
-    from semantic_lossless.artifacts import write_json
-    from semantic_lossless.metrics import quality
+    from Archive.EncDec.Research.model_wrappers import DeepJSCCAdapter
+    from src.artifacts import write_json
+    from src.metrics import quality
     torch.set_num_threads(2)
     args.output.mkdir(parents=True,exist_ok=False)
     adapter=DeepJSCCAdapter(ROOT/'Models/DeepJSCC/checkpoint_source',

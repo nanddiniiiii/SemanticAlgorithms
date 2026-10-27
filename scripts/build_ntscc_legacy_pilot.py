@@ -35,7 +35,7 @@ try:
     run([str(python),'-m','pip','install','numpy<2','torch==1.9.0+cu111','torchvision==0.10.0+cu111',
          '-f','https://download.pytorch.org/whl/torch_stable.html'],900)
     run([str(python),'-m','pip','install','natten==0.14.6+torch190cu111',
-         '-f','https://shi-labs.com/natten/wheels'],600)
+         '-f','https://whl.natten.org/old/'],600)
     check="""import json, torch, natten
 from natten import NeighborhoodAttention2D
 assert torch.cuda.is_available(), 'CUDA unavailable'

@@ -1,9 +1,9 @@
-"""Concrete channel factory; no channel implementation is hosted inside INFRA."""
+"""Concrete channel factory; no channel implementation is hosted inside Infrastructure."""
 
 from Channels.awgn import AWGNChannel
 from Channels.rayleigh import RayleighChannel
 from Channels.rician import RicianChannel
-from INFRA.Registries import CHANNEL_REGISTRY
+from Infrastructure.Registries import CHANNEL_REGISTRY
 
 
 def register_builtin_channels() -> None:

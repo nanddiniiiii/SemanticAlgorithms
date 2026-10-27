@@ -1,6 +1,6 @@
 """Communication bandwidth ratio based on complex channel uses."""
 
-from INFRA.Artifacts import ImageArtifact, TransmissionArtifact
+from Infrastructure.Artifacts import ImageArtifact, TransmissionArtifact
 
 
 def native_cbr(image: ImageArtifact, transmission: TransmissionArtifact, index: int = 0) -> float:

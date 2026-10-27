@@ -28,8 +28,8 @@ def main():
     import torch
     import torchvision
     from torchvision.datasets import STL10
-    from semantic_lossless.artifacts import write_json
-    from semantic_lossless.sources import fetch_source, source_path
+    from src.artifacts import write_json
+    from src.sources import fetch_source, source_path
     assert torch.cuda.is_available(), 'Native-size classifier training requires actual CUDA hardware'
     args.output.mkdir(parents=True, exist_ok=False)
     receipt = fetch_source('shared_semantic_codebook')

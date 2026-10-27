@@ -16,7 +16,7 @@ namespace['write_job']('custom_jcm_spatial','satyapaladuguplus','custom-mixture-
         'satyapaladuguplus/semantic-lossless-pseudo-label-assets'],'''
 run_logged('dependencies',[sys.executable,'-m','pip','install','--no-deps','pytorch-msssim==1.0.0'],300)
 sys.path.insert(0,str(root/'src'))
-from semantic_lossless.artifacts import sha256
+from src.artifacts import sha256
 weights=sorted({p.resolve() for p in Path('/kaggle/input').rglob('*.tar')
     if p.is_file() and sha256(p)=='b7d3a1df66512421b057eabf4f7faa937a3dc22d6fe83632d3f0bca0f0c3b897'})
 manifests=sorted({p.resolve() for p in Path('/kaggle/input').rglob('frozen_manifest.json')})
