@@ -83,7 +83,7 @@ def collect(root):
 def main(team):
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--kernel',required=True,help='owner/slug of the teammate notebook')
-    parser.add_argument('--version',required=True,type=int,help='Pin the saved notebook version; never infer latest')
+    parser.add_argument('--version',required=True,type=int,help='Expected saved notebook version; keep this kernel unchanged until retrieval')
     parser.add_argument('--output',type=Path,default=Path('Results/team_downloads'))
     parser.add_argument('--config-dir',type=Path,help='Optional isolated Kaggle credential directory; never print its contents')
     parser.add_argument('--interval',type=int,default=60)
@@ -104,20 +104,14 @@ def main(team):
     while time.monotonic()-start<args.max_hours*3600:
         status=subprocess.run(['kaggle','kernels','status',ref],env=environment,capture_output=True,text=True,timeout=90)
         output=(status.stdout+'\n'+status.stderr).strip()
-        record={'kernel':args.kernel,'version':args.version,'returncode':status.returncode,'status':output}
+        # Kaggle CLI status resolves the latest run even when a version is
+        # supplied. Never treat that response as proof of an exact version.
+        record={'kernel':args.kernel,'expected_version':args.version,'returncode':status.returncode,'status':output,
+                'status_scope':'latest kernel run; CLI does not establish version identity'}
         write_json(target/'remote_status.json',record)
         if output!=previous:print(output,flush=True);previous=output
         terminal=status.returncode==0 and any(word in output.upper() for word in ('COMPLETE','ERROR','CANCELLED'))
         if terminal:
-            raw=target/'published_output'
-            if not (target/'retrieval_verified.json').exists():
-                result=subprocess.run(['kaggle','kernels','output',ref,'-p',str(raw)],env=environment,timeout=1800)
-                if result.returncode:raise RuntimeError('Kaggle output retrieval failed; no verified-completion marker written')
-                verification=verify_download(raw)
-                write_json(target/'retrieval_verified.json',{**verification,
-                    'remote_version':ref,'terminal_status':output,'scientific_validity_certified':False})
-            count=collect(args.output.resolve())
-            print('Retrieved and verified:',target,'merged rows:',count,flush=True)
-            return
+            raise RuntimeError('Automatic retrieval disabled: Kaggle CLI status is latest-run scoped and cannot verify the requested version. Verify remote notebook identity and retrieve manually.')
         if args.once:return
         time.sleep(args.interval)
