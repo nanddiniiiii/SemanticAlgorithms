@@ -4,6 +4,7 @@ import json
 from pathlib import Path
 
 ROOT=Path(__file__).resolve().parents[1]
+PINNED_REVISION='5d81187468c594f09126504d7acf75785aeb0cee'
 ROSTER=json.loads((ROOT/'configs/models.json').read_text())
 
 
@@ -28,7 +29,7 @@ def build(team,names):
 import json, os, subprocess, sys, time, uuid
 print('START setup: public Git clone, project environment, source identity', flush=True)
 URL = 'https://github.com/nanddiniiiii/Semantic_Lossless.git'
-REVISION = ''  # Set to the reviewed flattened-source commit after publication.
+REVISION = '__PINNED_REVISION__'  # Published implementation commit.
 REPO = Path('/tmp/Semantic_Lossless')  # Disposable checkout and environments; results live under /kaggle/working.
 if not REVISION:
     raise RuntimeError('The flattened source revision is not published yet; set REVISION before running')
@@ -134,6 +135,7 @@ def invoke(name,stage):
 
 print('END setup: membership frozen; use per-model initialization cells next',flush=True)
 '''
+    setup=setup.replace('__PINNED_REVISION__',PINNED_REVISION)
     setup='DELIVERY_RUN_ID = None  # Bound by the local launcher; manual Kaggle runs may leave None\n'+'TEAM='+repr(team)+'\nASSIGNED='+repr(names)+'\n'+setup
     cells.append(cell(setup,identifier='setup'))
     for position,name in enumerate(names):

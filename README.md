@@ -12,7 +12,7 @@ The active workflow uses one shared codebase and three Kaggle notebooks:
 | 2 | [2.ipynb](Notebooks/2.ipynb) | HJSCC, JCM spatial variant, MDJCM, DeepJSCC |
 | 3 | [3.ipynb](Notebooks/3.ipynb) | SQ-GAN, shared semantic-aware codebook, SwinJSCC, ADJSCC |
 
-These twelve slots contain nine distinct models and three repeated baselines. The [setup guide](configs/README.md) explains datasets, credentials, model assets, scripts, and retrieval. Scripts create Kaggle jobs only when explicitly run. The notebooks are temporarily blocked until the flattened source revision is published and pinned.
+These twelve slots contain nine distinct models and three repeated baselines. The [setup guide](configs/README.md) explains datasets, credentials, model assets, scripts, and retrieval. Scripts create Kaggle jobs only when explicitly run. The numbered notebooks are pinned to the published implementation revision; a fresh Kaggle GPU pilot remains required.
 
 ## Project layout
 
@@ -50,3 +50,5 @@ Zip a teammate folder to share it. Each bundle includes checkpoints, configurati
 Result-only GitHub commits are now queued automatically after verified retrieval; source changes are never committed automatically. See the [workflow audit](Docs/TRAINING_WORKFLOW_AUDIT.md) for checks, remaining blockers and the distinction between completed execution and validated results.
 
 The [collection guide](Docs/RESULT_COLLECTION.md) explains 30-minute polling, restart recovery, GitHub permissions and the saved-notebook-output limitation.
+
+Start here: [teammate handoff and draft messages](Docs/TEAMMATE_HANDOFF.md).

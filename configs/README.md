@@ -1,6 +1,6 @@
 # Experiment setup
 
-This migration is in progress. The numbered notebooks intentionally stop until a reviewed flattened-source revision is published and pinned.
+The numbered notebooks pin the published implementation revision. Review the teammate handoff and run a fresh GPU pilot before long training.
 
 The assignments are in `configs/models.json`. Set `MODELS_TO_RUN` in the setup cell to choose their execution order. Local entry points are `scripts/1.py`, `scripts/2.py`, and `scripts/3.py`.
 
