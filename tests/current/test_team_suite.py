@@ -27,6 +27,40 @@ def test_discovery_nested_aliases_and_explicit_overrides(tmp_path):
     assert discover(tmp_path,keys=[])=={}
 
 
+def test_local_launcher_submits_and_collects_without_real_kaggle(tmp_path,monkeypatch):
+    import sys
+    from types import SimpleNamespace
+    from semantic_lossless.team_suite import launch
+    from semantic_lossless.team_suite.runtime import export
+    notebook=tmp_path/'Notebooks/TeamSuite/you.ipynb'
+    notebook.parent.mkdir(parents=True)
+    notebook.write_text('{}')
+    calls=[]
+    def fake_run(command,**kwargs):
+        calls.append(command)
+        if command[2]=='push':
+            metadata=json.loads((Path(command[command.index('-p')+1])/'kernel-metadata.json').read_text())
+            assert metadata['dataset_sources']==launch.DATASETS and metadata['enable_gpu']
+            assert metadata['id'].startswith('testuser/semantic-you-')
+        if command[2]=='status':return SimpleNamespace(returncode=0,stdout='COMPLETE',stderr='')
+        if command[2]=='output':
+            raw=Path(command[command.index('-p')+1]);run=raw/'team_results/you/run/deepjscc'
+            (run/'metrics').mkdir(parents=True)
+            (run/'metrics/per_image.csv').write_text('algorithm,psnr_db\ndeepjscc,10\n')
+            (run/'checkpoints').mkdir()
+            (run/'checkpoints/last.pt').write_bytes(b'weights')
+            export(run)
+        return SimpleNamespace(returncode=0,stdout='',stderr='')
+    monkeypatch.setattr(launch,'ROOT',tmp_path)
+    monkeypatch.setattr(launch.shutil,'which',lambda name:'fake-kaggle')
+    monkeypatch.setattr(launch.subprocess,'run',fake_run)
+    monkeypatch.setattr(sys,'argv',['download_you.py','--username','testuser'])
+    launch.main('you')
+    assert [cmd[2] for cmd in calls]==['push','status','output']
+    assert list((tmp_path/'Models/team_runs/you').rglob('last.pt'))
+    assert 'deepjscc' in (tmp_path/'Results/team_downloads/comparison.csv').read_text()
+
+
 def test_sqgan_components_require_expected_digests(tmp_path,monkeypatch):
     import hashlib
     from semantic_lossless.team_suite import assets
@@ -133,7 +167,7 @@ def test_export_after_stage_is_verifiable_and_detects_corruption(tmp_path):
         verify_download(tmp_path)
 
 
-def test_three_notebooks_assign_each_model_once_and_compile():
+def test_three_notebooks_assign_tested_models_and_compile():
     roster=json.loads((ROOT/'configs/team_suite/roster.json').read_text())['teams']
     assigned=[]
     for team,names in roster.items():
@@ -143,7 +177,8 @@ def test_three_notebooks_assign_each_model_once_and_compile():
         for item in notebook['cells']:
             if item['cell_type']=='code':ast.parse(''.join(item['source']))
         assigned+=names
-    assert len(assigned)==len(set(assigned))==12
+    assert len(assigned)==12 and len(set(assigned))==9
+    assert all(len(names)==4 and len(names)==len(set(names)) for names in roster.values())
 
 
 def test_collector_keeps_distinct_runs_excludes_pilots_and_is_repeatable(tmp_path):

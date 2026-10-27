@@ -1,5 +1,38 @@
 # Three-team experiment configuration
 
+## Run from your computer
+
+Clone the public repository, install/authenticate the Kaggle CLI in the Python
+environment you use, then run one script for your team:
+
+```text
+python scripts/download_you.py --username YOUR_KAGGLE_USERNAME
+python scripts/download_teammate_1.py --username YOUR_KAGGLE_USERNAME
+python scripts/download_teammate_2.py --username YOUR_KAGGLE_USERNAME --asset YOUR_ACCOUNT/DATASET_WITH_CLASSIFIER
+```
+
+Run only your assigned script. It creates a unique private Kaggle notebook,
+attaches the three common datasets through metadata, requests T4 GPUs and
+internet, waits for terminal status, and downloads the saved output. Its status
+checks refer to the latest run, so do not create a second version of that unique
+notebook before retrieval. Each account must be able to access each dataset.
+The shared-codebook model additionally needs a Kaggle dataset containing the
+authorized `classifier.pt`; the script's `--asset` flag attaches it. If no
+classifier is supplied, that model fails its initialization and the rest can
+continue. GPU quota or Kaggle platform errors can also stop a run.
+
+The launcher's generated unique run outputs are retained under
+`Results/team_downloads/`, model checkpoint copies under `Models/team_runs/`,
+and the collector rebuilds `Results/team_downloads/comparison.csv` from verified
+retrievals. Only exported checkpoint artifacts are copied. The ordered model lists
+are in `configs/team_suite/roster.json` and in each notebook's setup cell. Nine
+distinct pilot-tested models are assigned across 12 slots; DeepJSCC, SwinJSCC
+and ADJSCC repeat to provide four models per person. Their repeats are separate
+experiments, not additional algorithm families. Model budgets are up to four
+hours each plus setup and evaluation. SQ-GAN currently has no radio-channel link.
+The launcher and collector have local simulated-CLI tests; a full three-team
+Kaggle run has not been certified.
+
 This is the operating guide for `Notebooks/TeamSuite/`. The canonical current
 decision record remains `Docs/SEMANTIC_LOSSLESS_EXECUTION_PLAN.md`.
 
@@ -8,7 +41,8 @@ decision record remains `Docs/SEMANTIC_LOSSLESS_EXECUTION_PLAN.md`.
 The notebooks are configurable launchers, not twelve GPU-certified experiments.
 Do not submit a full training queue until its initialization and real-data GPU
 pilot pass. Source download, CPU execution and paper reproduction are distinct.
-No full training queue has been launched. Bounded GPU pilot versions are
+The previous full SwinJSCC job ended in error; no full comparison is complete.
+Bounded GPU pilot versions are
 recorded in `Docs/KAGGLE_RUNS.md` and `Docs/TEAM_SUITE_VALIDATION.md`.
 
 ## Common data

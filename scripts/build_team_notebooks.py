@@ -14,7 +14,11 @@ def cell(source,kind='code',identifier=''):
 
 
 def build(team,names):
-    cells=[cell(f'# Semantic Lossless: {team}\n\nAssigned models: {", ".join(names)}.\n\n'
+    cells=[cell(f'# Semantic Lossless: {team}\n\nAssigned models, in order: {", ".join(names)}.\n\n'
+        'Before running: enable Internet and T4 x2 in Kaggle settings and attach these datasets using Add Input: '
+        '`soumikrakshit/div2k-high-resolution-images`, `daehoyang/flickr2k`, and `drxinchengzhu/kodak24`. '
+        'A notebook cannot attach datasets to itself after it starts. The setup checks the attached files and prints errors. '
+        'Shared codebook requires a separately attached classifier checkpoint; see the overrides in the setup cell.\n\n'
         'Initialization → two-step pilot and bounded training → evaluation/export, three cells per model. '
         'Failures are saved and displayed; later models continue, but a failed model is never reported as trained. '
         'CPU pilots are not T4 tests. Native GBSED/WZ tasks remain separate. SQ-GAN is an ideal source codec '
@@ -51,6 +55,11 @@ EXPECTED_DATASET_IDENTITY = 'add977eb3277909e5ad1447770abdb368458445ab42b2f48a91
 # Identity is the verified account-B v2 manifest; any change requires a new protocol.
 MANIFEST=SESSION/'common_dataset.json'
 OVERRIDES={}  # Per-model native data paths/checkpoints; see configs/team_suite/README.md.
+classifiers=list(Path('/kaggle/input').rglob('classifier.pt'))
+if len(classifiers)==1:
+    OVERRIDES['shared_semantic_codebook']={'classifier':str(classifiers[0])}
+elif 'shared_semantic_codebook' in MODELS_TO_RUN:
+    print('Shared codebook: attach exactly one dataset containing classifier.pt, or set OVERRIDES manually.',flush=True)
 # Examples:
 # OVERRIDES['sqgan']={'checkpoint':'/kaggle/input/author-assets/Final_ckpt_parts'}
 # OVERRIDES['shared_semantic_codebook']={'classifier':'/kaggle/input/author-assets/classifier.pt'}

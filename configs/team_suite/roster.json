@@ -5,8 +5,8 @@
   "training_seconds_per_model": 14400,
   "teams": {
     "you": ["deepjscc", "adjscc", "swinjscc", "isec"],
-    "teammate_1": ["ntscc_plus", "hjscc", "jcm", "mdjcm"],
-    "teammate_2": ["sqgan", "shared_semantic_codebook", "deepjscc_wz", "gbsed"]
+    "teammate_1": ["hjscc", "jcm", "mdjcm", "deepjscc"],
+    "teammate_2": ["sqgan", "shared_semantic_codebook", "swinjscc", "adjscc"]
   },
   "native_exceptions": {
     "deepjscc_wz": "Native paired KITTI/Cityscapes; never give the target to the receiver as side information",
