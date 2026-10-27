@@ -25,7 +25,7 @@ import json, os, subprocess, sys, time, uuid
 print('START setup: public Git clone, project environment, source identity', flush=True)
 URL = 'https://github.com/nanddiniiiii/Semantic_Lossless.git'
 REVISION = '05164d6170e601ac9a43dcdd767fd5282baa6d9a'  # Reviewed source snapshot.
-REPO = Path('/kaggle/working/Semantic_Lossless')
+REPO = Path('/tmp/Semantic_Lossless')  # Disposable checkout and environments; results live under /kaggle/working.
 if not REPO.exists():
     subprocess.run(['git','clone','--filter=blob:none',URL,str(REPO)],check=True,
                    env={**os.environ,'GIT_LFS_SKIP_SMUDGE':'1'})
