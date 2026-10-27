@@ -212,7 +212,7 @@ def test_export_after_stage_is_verifiable_and_detects_corruption(tmp_path):
         verify_download(tmp_path)
 
 
-def test_three_notebooks_assign_tested_models_and_compile():
+def test_three_notebooks_assign_current_roster_and_compile():
     roster=json.loads((ROOT/'configs/models.json').read_text())['teams']
     assigned=[]
     for team,names in roster.items():
@@ -222,7 +222,7 @@ def test_three_notebooks_assign_tested_models_and_compile():
         for item in notebook['cells']:
             if item['cell_type']=='code':ast.parse(''.join(item['source']))
         assigned+=names
-    assert len(assigned)==12 and len(set(assigned))==9
+    assert len(assigned)==12 and len(set(assigned))==12
     assert all(len(names)==4 and len(names)==len(set(names)) for names in roster.values())
 
 
