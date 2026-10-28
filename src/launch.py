@@ -237,7 +237,10 @@ def dispatch(team,args,username):
         # explicit authorization plus an exact owner-filtered list check.
         import csv,io
         listing=subprocess.run(['kaggle','kernels','list','--mine','--csv','--page-size','100'],env=env,capture_output=True,text=True,check=True,timeout=90)
-        rows=list(csv.DictReader(io.StringIO(listing.stdout)))
+        lines=listing.stdout.splitlines()
+        header=next((index for index,line in enumerate(lines) if line.lstrip('\ufeff').startswith('ref,title,')),None)
+        if header is None:raise RuntimeError('Kaggle owned inventory did not contain the expected CSV header')
+        rows=list(csv.DictReader(io.StringIO('\n'.join(lines[header:]).lstrip('\ufeff'))))
         if not rows or 'ref' not in rows[0]:raise RuntimeError('Cannot verify owned notebook inventory before creation')
         if len(rows)>=100:raise RuntimeError('Owned notebook inventory requires pagination; refusing to infer absence')
         if any(row.get('ref')==ref for row in rows):raise RuntimeError('Notebook exists but is inaccessible; refusing replacement')
