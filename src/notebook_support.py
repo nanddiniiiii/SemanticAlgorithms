@@ -21,7 +21,7 @@ EXTRA={
     'jcm':[], 'shared_semantic_codebook':['timm==0.4.12'],
     'sqgan':['pytorch-lightning==1.9.5','torchmetrics==0.11.4','transformers==4.46.3','scipy','omegaconf'],
     'deepjscc_wz':['lightning==2.0.6','torchmetrics==1.0.1','hydra-core==1.3.2','hydra-colorlog==1.2.0',
-        'pyrootutils','rich','kornia','compressai','lmdb','tensorboard','diffusers','scikit-learn','opencv-python','mlflow'],
+        'hydra-joblib-launcher==1.2.0','pyrootutils','rich','kornia','compressai','lmdb','tensorboard','diffusers','scikit-learn','opencv-python','mlflow'],
     'gbsed':[]
 }
 

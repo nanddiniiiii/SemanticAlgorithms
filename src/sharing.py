@@ -183,7 +183,7 @@ def load_bundle(folder, device='cpu', checkpoint='last.pt'):
         import hydra
         from .codecs import upstream_import
         from .sources import source_path
-        recipe=json.loads((folder/'native_recipe.json', 'native_data_identity.json').read_text())
+        recipe=json.loads((folder/'native_recipe.json').read_text(encoding='utf-8'))
         with upstream_import(source_path(name),('src',)):
             model=hydra.utils.instantiate(recipe['model'],input_dims=tuple(recipe['input_dims']),output_dir=str(folder))
         checkpoint='last.ckpt' if checkpoint=='last.pt' else checkpoint

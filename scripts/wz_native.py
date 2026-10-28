@@ -34,7 +34,7 @@ def main():
     if int(options.get('batch_size',2))<1 or int(options.get('epochs',150))<1 or not 0<float(options.get('max_seconds',14400))<=14400:
         raise ValueError('Invalid WZ batch/epochs/training budget')
     if evaluation and (target/'metrics/summary.json').exists():raise FileExistsError('Preserve existing WZ evaluation; use a new run')
-    overrides=['logger=null','paths.root_dir='+str(source),'paths.work_dir='+str(native),'paths.log_dir='+str(native/'logs'),'data.name='+options.get('paired_dataset','KittiStereo'),
+    overrides=['~logger','paths.root_dir='+str(source),'paths.work_dir='+str(native),'paths.log_dir='+str(native/'logs'),'data.name='+options.get('paired_dataset','KittiStereo'),
         'paths.data_dir='+str(Path(options['paired_data_root']).resolve()),'paths.output_dir='+str(native),
         'model=base_deepjscc','model._target_=src.models.wz.deepjscc_wz_baseline2.DeepJSCCWZBaseline2',
         'model.N=256','model.bw_factor=16','model.snr='+str(snr),'model.csi.min='+str(snr),'model.csi.max='+str(snr),
@@ -46,9 +46,10 @@ def main():
     data=hydra.utils.instantiate(cfg.data);data.setup()
     model=hydra.utils.instantiate(cfg.model,input_dims=data.input_dims,output_dir=str(native))
     model_dir=target/'checkpoints';model_dir.mkdir(exist_ok=True)
-    save(target/'native_recipe.json',{'model':OmegaConf.to_container(cfg.model,resolve=True),
-        'input_dims':list(data.input_dims),'paired_dataset':options.get('paired_dataset','KittiStereo'),
-        'reconstruction':'left view; clean right view supplied only at receiver','snr_db':snr})
+    if int(os.environ.get('LOCAL_RANK','0'))==0:
+        save(target/'native_recipe.json',{'model':OmegaConf.to_container(cfg.model,resolve=True),
+            'input_dims':list(data.input_dims),'paired_dataset':options.get('paired_dataset','KittiStereo'),
+            'reconstruction':'left view; clean right view supplied only at receiver','snr_db':snr})
     use_cuda=options.get('device','cpu').startswith('cuda')
     devices=2 if use_cuda and options.get('data_parallel',True) and not evaluation else 1
     class Evidence(pl.Callback):
@@ -117,13 +118,14 @@ def main():
         if trainer.is_global_zero:
             state=torch.load(checkpoint,map_location='cpu',weights_only=False)
             model.load_state_dict(state['state_dict'],strict=True)
+            if int(trainer.global_step)<(2 if pilot else 1):
+                raise RuntimeError('WZ did not complete the required optimizer updates')
             save(target/'training_summary.json',{'status':'pilot_completed' if pilot else 'budget_limited_training_completed',
                 'steps':int(trainer.global_step),'strict_reload':True,'elapsed_seconds':time.monotonic()-started,
                 'distributed_world_size':devices,'paper_convergence_reproduced':False})
             save(run/'model.json',{'algorithm':'deepjscc_wz','source_commit':'802394328838c478321413e5f72a771f86a7599d',
                 'channel':'native AWGN with clean decoder-only side information','input_dims':list(data.input_dims),
                 'native_recipe':'native_recipe.json','rate_scope':'transmitted left latent only; side image/CSI excluded'})
-            if pilot and int(trainer.global_step)<2:raise RuntimeError('WZ pilot did not complete two steps')
             if pilot:save(run/'pilot_passed.json',{'scope':'native paired data, two updates and strict checkpoint reload','world_size':devices})
 
 if __name__=='__main__':main()

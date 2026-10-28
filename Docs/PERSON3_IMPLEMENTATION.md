@@ -20,3 +20,11 @@ WZ is a separate native paired-data comparison. The common dataset manifest is n
 Local tests cover split validation, command/config wiring, native strict-load and metric persistence paths by inspection. WZ's full Lightning/VGG/CompressAI environment and actual paired GPU dataset were not executed on this CPU environment. Its notebook pilot must pass before training; missing data/dependencies are errors, never substituted architectures. OFDM/MIMO/SSC actual CPU optimizer and checkpoint checks are recorded in NATIVE_SYSTEMS_IMPLEMENTATION.md. Real two-GPU DDP/NCCL remains unverified for the changed code.
 
 Latest local validation:82 tests passed across the existing suite, including real CPU OFDM/MIMO optimizer/reload checks and WZ paired-layout/dispatch tests. The WZ-specific native dependency environment is not present locally, so this is not evidence of its full Lightning execution.
+
+## Validation follow-up — 2026-10-28
+
+Fresh full suite before follow-up fixes: 82 passed. Real CPU author OFDM/MIMO/SSC optimizer and strict checkpoint tests executed. WZ bundle round-trip regression uses a small controlled model and does not establish native architecture execution.
+
+Fixed during validation: WZ tuple/path error in bundle loading; missing Hydra Joblib launcher dependency; invalid logger=null override (now ~logger); rank-zero ownership for recipe writes; missing WZ pilot gate; rejection of zero-update training; native split whitespace mismatch. Exact current worker Hydra overrides were executed with Hydra1.3.2, hydra-colorlog1.2.0 and hydra-joblib-launcher1.2.0: composition passed, selecting DeepJSCCWZBaseline2, N256, bw_factor16.
+
+Readiness limits remain: no current full native WZ Lightning/VGG run, no real paired dataset pilot, no current dual-T4 certification of all Person3 pipelines. Kaggle input metadata audit found no verified complete native three-split stereo attachment. See experiments/person3_wz_input_audit/ and the existing Kaggle artifact map. Person2 v1 was not changed or interrupted.

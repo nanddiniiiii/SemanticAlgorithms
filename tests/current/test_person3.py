@@ -19,6 +19,20 @@ def test_wz_native_split_validation_and_no_target_sideinfo(tmp_path):
     with pytest.raises(ValueError,match='must not be the target'):validate_pairs(tmp_path,'KittiStereo')
 
 
+def test_wz_training_requires_successful_pilot(tmp_path):
+    from src.special import execute
+    with pytest.raises(RuntimeError,match='successful real-data pilot'):
+        execute('deepjscc_wz','train',{},tmp_path)
+
+
+def test_wz_rejects_manifest_whitespace_native_loader_cannot_handle(tmp_path):
+    paired_fixture(tmp_path)
+    path=tmp_path/'KITTI_stereo_train.txt'
+    path.write_text(path.read_text()+'\n')
+    with pytest.raises(ValueError,match='blank lines'):
+        validate_pairs(tmp_path,'KittiStereo')
+
+
 def test_wz_worker_command_avoids_native_multirun_and_records_budget(tmp_path):
     options={'paired_data_root':str(tmp_path),'paired_dataset':'KittiStereo','max_seconds':7200}
     command,cwd=native_command('deepjscc_wz','evaluate',options,tmp_path)
@@ -35,3 +49,24 @@ def test_wz_worker_compiles_and_preserves_native_pair_contract():
     source=path.read_text(encoding='utf-8-sig');ast.parse(source)
     assert "model.load_state_dict(state['state_dict'],strict=True)" in source
     assert "trainer.test(model,datamodule=data,ckpt_path=None)" in source
+
+
+def test_wz_bundle_reads_recipe_and_reloads_strictly(tmp_path,monkeypatch):
+    import sys
+    from types import SimpleNamespace
+    from contextlib import nullcontext
+    import torch
+    from src import sharing,sources,codecs
+    model=torch.nn.Linear(2,2)
+    torch.save({'state_dict':model.state_dict()},tmp_path/'last.ckpt')
+    (tmp_path/'portable_config.json').write_text('{}')
+    (tmp_path/'native_recipe.json').write_text(json.dumps({'model':{'_target_':'native.Model'},'input_dims':[3,128,256]}))
+    monkeypatch.setattr(sharing,'verify_bundle',lambda folder:{'algorithm':'deepjscc_wz','missing_constructor_assets':[],
+        'files':[{'path':'last.ckpt'}]})
+    monkeypatch.setattr(sources,'fetch_source',lambda name:None)
+    monkeypatch.setattr(codecs,'upstream_import',lambda *args:nullcontext())
+    restored=torch.nn.Linear(2,2)
+    monkeypatch.setitem(sys.modules,'hydra',SimpleNamespace(utils=SimpleNamespace(instantiate=lambda *args,**kwargs:restored)))
+    loaded,options=sharing.load_bundle(tmp_path)
+    assert loaded is restored and not loaded.training
+    torch.testing.assert_close(loaded.weight,model.weight)

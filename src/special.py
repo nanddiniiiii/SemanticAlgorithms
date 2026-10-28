@@ -131,6 +131,8 @@ def prepare_graph_configs(options,run):
 
 def execute(name,stage,options,run):
     if name=='deepjscc_wz':
+        if stage=='train' and not (Path(run)/'pilot_passed.json').is_file():
+            raise RuntimeError('Native-task training requires a successful real-data pilot')
         command,cwd=native_command(name,stage,options,run)
         from .runtime import run_process_group
         write_json(run/(stage+'_command.json'),{'command':command,'cwd':str(cwd),'paired_task':True})
@@ -181,7 +183,9 @@ def validate_pairs(root,dataset):
         if dataset=='KittiStereo':
             path=root/('KITTI_stereo_'+split+'.txt')
             if not path.is_file():raise FileNotFoundError('Missing native paired split: '+str(path))
-            lines=[line.strip() for line in path.read_text().splitlines() if line.strip()]
+            lines=path.read_text().splitlines()
+            if any(not line.strip() or line!=line.strip() for line in lines):
+                raise ValueError('Native KITTI split paths must not contain blank lines or surrounding whitespace')
             if not lines or len(lines)%2:raise ValueError('KITTI paired split must contain alternating left/right paths')
             pairs=[(root/lines[i],root/lines[i+1]) for i in range(0,len(lines),2)]
         else:
