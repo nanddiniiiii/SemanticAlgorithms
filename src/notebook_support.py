@@ -79,6 +79,7 @@ def default_options(name,manifest):
            'train_snr_db':10,'test_snr_db':10,'seed':22,'batch_size':2,'crop':256,'epochs':150,'max_seconds':14400,
            'learning_rate':1e-4,'from_scratch':True,'trials':3,'workers':2,
            'dataset_adaptation':True,'paper_convergence_reproduced':False}
+    if name=='deepjscc_wz':value.update(workers=2,paired_dataset='KittiStereo',native_distributed=True)
     if name=='ssc':value.update(learning_rate=3e-5,native_distributed=True)
     if name=='ofdm_guided_jscc':value.update(evaluation_tile=[256,256],native_data_parallel=True,epochs=20,clip_norm=0)
     if name=='deepjscc_mimo':value.update(crop=32,evaluation_tile=[32,32],tcn=8,antennas=2,epochs=6000,clip_norm=0)

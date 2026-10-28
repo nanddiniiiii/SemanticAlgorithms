@@ -20,6 +20,12 @@ def prepare(name,options,run):
             raise FileNotFoundError('Set paired_data_root to native KITTI/Cityscapes views and split files')
         if options.get('paired_dataset','KittiStereo') not in {'KittiStereo','Cityscape'}:
             raise ValueError('Unknown native paired dataset')
+        counts=validate_pairs(root,options.get('paired_dataset','KittiStereo'))
+        from .dataset import digest
+        write_json(Path(run)/'native_data_identity.json',{'dataset':options.get('paired_dataset','KittiStereo'),
+            'counts':counts,'split_manifest_sha256':{split:digest(root/('KITTI_stereo_'+split+'.txt')) for split in counts} if options.get('paired_dataset','KittiStereo')=='KittiStereo' else {},
+            'validation_scope':'native file layout, split path disjointness; decoded pixel identity not checked',
+            'common_rgb_manifest_applies':False,'side_information':'clean correlated right image, receiver only'})
         options['native_task_note']='Paired-view reconstruction; no Kodak common-RGB substitution; native DDP, not DataParallel'
     elif name=='gbsed':
         for key in ('training_extraction_config','training_learning_config',
@@ -55,28 +61,10 @@ def prepare(name,options,run):
 def native_command(name,stage,options,run):
     root=source_path(name);pilot=stage=='pilot'
     if name=='deepjscc_wz':
-        if stage=='evaluate':
-            checkpoint=options.get('native_trained_checkpoint')
-            if not checkpoint:
-                candidates=sorted((run/'native').rglob('*.ckpt'),key=lambda p:p.stat().st_mtime_ns)
-                checkpoint=str(candidates[-1]) if candidates else None
-            if not checkpoint:raise FileNotFoundError('No WZ native checkpoint to evaluate')
-            return [sys.executable,'eval.py','trainer.devices=[0]','experiment=wz/wz_eval',
-                    'ckpt_path='+str(Path(checkpoint).resolve()),
-                    'paths.data_dir='+str(Path(options['paired_data_root']).resolve()),
-                    'paths.output_dir='+str((run/'native/evaluation').resolve()),'logger=null'],root/'src'
-        command=[sys.executable,'train.py','trainer.devices=[0,1]','+trainer.strategy=ddp',
-            'seed='+str(int(options.get('seed',22))),
-            'test=False',
-            'model=base_deepjscc','model.N=256','model.snr=undefined',
-            'model.csi.min=10.0','model.csi.max=10.0','model/loss=mse_lpips','model.loss.lpips_weight=0.001',
-            'data.name='+options.get('paired_dataset','KittiStereo'),
-            'model._target_=src.models.wz.deepjscc_wz_baseline2.DeepJSCCWZBaseline2','model.bw_factor=16',
-            'paths.data_dir='+str(Path(options['paired_data_root']).resolve()),
-            'paths.output_dir='+str((run/'native').resolve()),'+trainer.max_time=00:04:00:00',
-            'logger=null']
-        if pilot:command+=['+trainer.fast_dev_run=2']
-        return command,root/'src'
+        worker=Path(__file__).resolve().parents[1]/'scripts/wz_native.py'
+        config=run/'wz_worker_config.json';write_json(config,options)
+        return [sys.executable,str(worker),'--source',str(root),'--config',str(config),
+                '--run',str(run),'--stage',stage],root
     if name=='gbsed':
         if stage=='train':
             return [sys.executable,'rs2vec_training.py','--train_config_filename',options['training_extraction_config'],
@@ -142,6 +130,12 @@ def prepare_graph_configs(options,run):
 
 
 def execute(name,stage,options,run):
+    if name=='deepjscc_wz':
+        command,cwd=native_command(name,stage,options,run)
+        from .runtime import run_process_group
+        write_json(run/(stage+'_command.json'),{'command':command,'cwd':str(cwd),'paired_task':True})
+        run_process_group(command,cwd, min(float(options.get('max_seconds',14400)),180) +600 if stage=='pilot' else float(options.get('max_seconds',14400))+600)
+        return
     if name=='sqgan':
         from .sqgan_train import execute as sqgan_execute
         return sqgan_execute(stage,options,run)
@@ -179,3 +173,28 @@ def execute(name,stage,options,run):
     write_json(run/(stage+'_native_result.json'),{'returncode':process.returncode,
         'elapsed_seconds':time.monotonic()-started,'native_files':[str(p.relative_to(run)) for p in (run/'native').rglob('*') if p.is_file()],
         'metric_integration':'Native output tables; common RGB metrics not inferred'})
+
+
+def validate_pairs(root,dataset):
+    root=Path(root).resolve();seen=set();counts={}
+    for split in ('train','val','test'):
+        if dataset=='KittiStereo':
+            path=root/('KITTI_stereo_'+split+'.txt')
+            if not path.is_file():raise FileNotFoundError('Missing native paired split: '+str(path))
+            lines=[line.strip() for line in path.read_text().splitlines() if line.strip()]
+            if not lines or len(lines)%2:raise ValueError('KITTI paired split must contain alternating left/right paths')
+            pairs=[(root/lines[i],root/lines[i+1]) for i in range(0,len(lines),2)]
+        else:
+            base=root/'cityscape_dataset';left=base/'leftImg8bit'/split;right=base/'rightImg8bit'/split
+            pairs=[(path,right/path.relative_to(left).parent/path.name.replace('_leftImg8bit','_rightImg8bit')) for path in left.glob('*/*_leftImg8bit.png')]
+        if not pairs:raise ValueError('Native paired split is empty: '+split)
+        current=set()
+        for left,right in pairs:
+            for path in (left,right):
+                path=path.resolve();path.relative_to(root)
+                if not path.is_file():raise FileNotFoundError('Missing stereo image: '+str(path))
+                current.add(path)
+            if left.resolve()==right.resolve():raise ValueError('Receiver side image must not be the target image')
+        if seen & current:raise ValueError('Paired split path leakage detected')
+        seen.update(current);counts[split]=len(pairs)
+    return counts

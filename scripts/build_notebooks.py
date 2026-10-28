@@ -96,10 +96,10 @@ if EXPECTED_DATASET_IDENTITY and frozen['identity']!=EXPECTED_DATASET_IDENTITY:
 write_json(SESSION/'environment.json',environment(REPO))
 
 def run_command(command,log,timeout=1800):
-    import threading
+    import threading, signal
     started=time.monotonic()
     with Path(log).open('w',encoding='utf-8') as stream:
-        process=subprocess.Popen(command,stdout=subprocess.PIPE,stderr=subprocess.STDOUT,text=True,bufsize=1)
+        process=subprocess.Popen(command,stdout=subprocess.PIPE,stderr=subprocess.STDOUT,text=True,bufsize=1,start_new_session=True)
         def drain():
             for line in process.stdout:
                 print(line,end='',flush=True);stream.write(line);stream.flush()
@@ -107,9 +107,9 @@ def run_command(command,log,timeout=1800):
         try:
             code=process.wait(timeout=timeout)
         except subprocess.TimeoutExpired:
-            process.terminate()
+            os.killpg(process.pid,signal.SIGTERM)
             try:process.wait(timeout=60)
-            except subprocess.TimeoutExpired:process.kill();process.wait()
+            except subprocess.TimeoutExpired:os.killpg(process.pid,signal.SIGKILL);process.wait()
             reader.join(timeout=10)
             raise TimeoutError('Stage timeout; logs and earlier checkpoints retained: '+str(log))
         reader.join(timeout=10)

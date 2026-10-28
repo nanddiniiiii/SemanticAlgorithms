@@ -71,7 +71,7 @@ def package_run(run, models_root, teammate, run_id):
             shutil.copy2(checkpoint, staging / checkpoint.name)
         for filename in ('requested_config.json', 'resolved_config.json', 'model.json', 'source.json',
                          'dataset_identity.json', 'environment.json', 'environment_plan.json',
-                         'training_summary.json', 'evaluation_reload.json', 'pseudo_label_coverage.json'):
+                         'training_summary.json', 'evaluation_reload.json', 'pseudo_label_coverage.json', 'native_recipe.json', 'native_data_identity.json'):
             if (run / filename).is_file():
                 shutil.copy2(run / filename, staging / filename)
         if (run / 'metrics').is_dir():
@@ -179,6 +179,20 @@ def load_bundle(folder, device='cpu', checkpoint='last.pt'):
     options['device']=device
     name=metadata['algorithm']
     fetch_source('diffcom' if name=='adjscc' else name)
+    if name=='deepjscc_wz':
+        import hydra
+        from .codecs import upstream_import
+        from .sources import source_path
+        recipe=json.loads((folder/'native_recipe.json', 'native_data_identity.json').read_text())
+        with upstream_import(source_path(name),('src',)):
+            model=hydra.utils.instantiate(recipe['model'],input_dims=tuple(recipe['input_dims']),output_dir=str(folder))
+        checkpoint='last.ckpt' if checkpoint=='last.pt' else checkpoint
+        checkpoint_path=(folder/checkpoint).resolve();checkpoint_path.relative_to(folder)
+        if checkpoint not in {item['path'] for item in metadata['files']}:raise ValueError('WZ checkpoint not verified')
+        state=torch.load(checkpoint_path,map_location=device,weights_only=False)
+        model.load_state_dict(state['state_dict'],strict=True)
+        model.to(device).eval()
+        return model,options
     if name=='sqgan':
         from .sqgan_train import build as build_sqgan
         model=build_sqgan(options)

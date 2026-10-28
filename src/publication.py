@@ -67,7 +67,7 @@ def enqueue_bundles(root, folders):
             path=(folder/rel).resolve()
             path.relative_to(folder)
             allowed=(path.parent==folder/'metrics' and path.suffix in {'.csv','.json'}) or rel in {
-                'training_summary.json','model.json','dataset_identity.json','evaluation_reload.json'}
+                'training_summary.json','model.json','dataset_identity.json','native_data_identity.json','evaluation_reload.json'}
             if path.is_file() and allowed:
                 if path.stat().st_size>4*1024*1024:raise ValueError('Result file exceeds publication size budget: '+rel)
                 files[rel]={'local_path':str(path),'sha256':digest(path)}

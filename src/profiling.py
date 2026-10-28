@@ -37,7 +37,9 @@ def profile(model,image,predict,warmup=3,repeats=10):
         # Separate instrumented pass: synchronized hooks add overhead, so their
         # durations must not be subtracted from the uninstrumented total above.
         candidates={'encoder':'encoder','decoder':'decoder','core.encoder':'encoder','core.decoder':'decoder',
-            'core.jscc_encoder':'encoder','core.jscc_decoder':'decoder','core.ga':'encoder','core.gs':'decoder'}
+            'core.jscc_encoder':'encoder','core.jscc_decoder':'decoder','core.ga':'encoder','core.gs':'decoder',
+            'core.encoder_2d':'encoder','encoder.encoder_2d':'encoder','encoder.decoder_tran':'decoder',
+            'networks.E':'encoder','networks.G':'decoder','core.g_a':'encoder','core.g_a2':'receiver_side_encoder','core.g_s':'decoder'}
         clocks={};components={};hooks=[]
         def before(name):
             def callback(module,args):sync();clocks[name]=time.perf_counter()
