@@ -124,7 +124,7 @@ def initialize(name):
         command_runner=lambda command,timeout:run_command(command,run/'dependencies.log',timeout))
     PYTHONS[name]=python
     config=environment_options(name,MANIFEST,ENVIRONMENT,CHANNEL_PROFILE,OVERRIDES.get(name))
-    config.update(teammate=TEAM,run_id=SESSION.name,models_root='/kaggle/working/models')
+    config.update(teammate=TEAM,run_id=SESSION.name,models_root='/kaggle/working/models',max_seconds=TRAINING_SECONDS)
     path=run/'requested_config.json';write_json(path,config)
     return path
 
@@ -137,7 +137,7 @@ def invoke(name,stage):
 print('END setup: membership frozen; use per-model initialization cells next',flush=True)
 '''
     setup=setup.replace('__PINNED_REVISION__',PINNED_REVISION)
-    setup='DELIVERY_RUN_ID = None  # Bound by the local launcher; manual Kaggle runs may leave None\n'+'TEAM='+repr(team)+'\nASSIGNED='+repr(names)+'\n'+setup
+    setup='TRAINING_SECONDS = 14400  # Per-model upper budget; launcher may set a smaller recorded budget\n'+'DELIVERY_RUN_ID = None  # Bound by the local launcher; manual Kaggle runs may leave None\n'+'TEAM='+repr(team)+'\nASSIGNED='+repr(names)+'\n'+setup
     cells.append(cell(setup,identifier='setup'))
     for position,name in enumerate(names):
         cells.append(cell(f'## Slot {position+1}\nDefault: {name}. The model comes from MODELS_TO_RUN[{position}]; changing that list changes execution order.\n',kind='markdown',identifier=name+'-description'))
