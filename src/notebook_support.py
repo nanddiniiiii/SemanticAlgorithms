@@ -38,12 +38,23 @@ def setup_model(root,name,run,install=True,python_override=None,command_runner=N
     destination=root/'.venv-team'/name
     if not (destination/'pyvenv.cfg').is_file():
         print('Creating isolated model environment:',destination,flush=True)
-        venv.EnvBuilder(with_pip=True,system_site_packages=True).create(destination)
+        # Managed runtimes may omit/break ensurepip. The running interpreter's
+        # pip can install into a pip-less venv through its explicit --python flag.
+        venv.EnvBuilder(with_pip=False,system_site_packages=True).create(destination)
     python=destination/('Scripts/python.exe' if sys.platform=='win32' else 'bin/python')
     dependencies=BASE+EXTRA[name]
     def execute(command,timeout=1200):
         if command_runner:return command_runner(command,timeout)
-        return subprocess.run(command,check=True,timeout=timeout)
+        log=run/'environment_setup.log';log.parent.mkdir(parents=True,exist_ok=True)
+        print('Environment command:',command,'log:',log,flush=True)
+        with log.open('a',encoding='utf-8') as stream:
+            stream.write('\nCOMMAND '+repr(command)+'\n');stream.flush()
+            result=subprocess.run(command,stdout=stream,stderr=subprocess.STDOUT,timeout=timeout)
+        if result.returncode:
+            print(log.read_text(encoding='utf-8',errors='replace')[-12000:],flush=True)
+            raise subprocess.CalledProcessError(result.returncode,command)
+        return result
+    pip=[sys.executable,'-m','pip','--python',str(python)]
     write_json(run/'environment_plan.json',{'python':str(python),'inherits_platform_torch':True,
         'dependencies':dependencies,'requested_model':name,'torch_stack_replaced':False})
     if name=='gbsed':
@@ -54,7 +65,7 @@ def setup_model(root,name,run,install=True,python_override=None,command_runner=N
     if install:
         print('Installing model dependencies in subprocess environment:',dependencies,flush=True)
         regular=[item for item in dependencies if item!='natten==0.14.6']
-        execute([str(python),'-m','pip','install','-e',str(root),*regular])
+        execute([*pip,'install','-e',str(root),*regular])
         if name=='ntscc_plus':
             # Legacy setup imports the installed Torch headers while building.
             # Build isolation hides those headers; newer NATTEN is not equivalent.
@@ -65,7 +76,7 @@ def setup_model(root,name,run,install=True,python_override=None,command_runner=N
                 os.environ['MAX_JOBS']='2'
                 os.environ['TORCH_CUDA_ARCH_LIST']=';'.join(sorted({
                     '.'.join(map(str,torch.cuda.get_device_capability(i))) for i in range(torch.cuda.device_count())}))
-                execute([str(python),'-m','pip','install','--no-build-isolation','natten==0.14.6'],timeout=600)
+                execute([*pip,'install','--no-build-isolation','natten==0.14.6'],timeout=600)
             finally:
                 for key,value in old.items():
                     if value is None:os.environ.pop(key,None)
