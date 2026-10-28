@@ -266,7 +266,7 @@ def dispatch(team,args,username):
         folder=Path(tmp)
         (folder/'notebook.ipynb').write_text(json.dumps(bind_delivery(notebook,run_id,args.training_seconds)),encoding='utf-8')
         (folder/'kernel-metadata.json').write_text(json.dumps(metadata,indent=2),encoding='utf-8')
-        subprocess.run(['kaggle','kernels','push','-p',str(folder)],env=env,check=True,timeout=180)
+        subprocess.run(['kaggle','kernels','push','-p',str(folder),'--accelerator','NvidiaTeslaT4'],env=env,check=True,timeout=180)
     submitted=current_version(username,slug)
     if submitted is None or submitted!=(existing or 0)+1:
         raise RuntimeError('Could not verify submitted notebook version; inspect Kaggle before retrying')
