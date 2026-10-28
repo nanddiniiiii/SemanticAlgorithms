@@ -4,7 +4,7 @@ import json
 from pathlib import Path
 
 ROOT=Path(__file__).resolve().parents[1]
-PINNED_REVISION='d48af5be4330ac7ed1b04f2f2130c517e99201ed'
+PINNED_REVISION='a2fcf923c5271ffe0946885e317fa0c8f36af3ad'
 ROSTER=json.loads((ROOT/'configs/models.json').read_text())
 
 
