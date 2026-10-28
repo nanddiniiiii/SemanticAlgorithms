@@ -170,6 +170,7 @@ def main(team):
     parser.add_argument('--asset',action='append',default=[],help='Additional Kaggle dataset owner/slug containing model assets; repeat as needed')
     parser.add_argument('--interval',type=int,default=1800)
     parser.add_argument('--resume',nargs='?',const='latest',help='Resume a saved local run directory, or latest')
+    parser.add_argument('--create-missing',action='store_true',help='Explicitly authorize first notebook creation when Kaggle masks an absent identity with HTTP403; verify account and mine-list first')
     parser.add_argument('--new-run',action='store_true',help='Explicitly submit another training run after earlier runs')
     parser.add_argument('--once',action='store_true',help='Check/retrieve/publish once without waiting')
     parser.add_argument('--no-publish',action='store_true',help='Retain results locally without GitHub publication')
@@ -226,7 +227,22 @@ def dispatch(team,args,username):
     notebook_path=ROOT/'Notebooks'/(team+'.ipynb')
     notebook=json.loads(notebook_path.read_text(encoding='utf-8'))
     revision=notebook_revision(notebook)
-    existing=current_version(username,slug)
+    try:
+        existing=current_version(username,slug)
+    except Exception as error:
+        from requests import HTTPError
+        if not (args.create_missing and isinstance(error,HTTPError) and error.response is not None and error.response.status_code==403):
+            raise
+        # Kaggle can mask absent private kernels with403. Creation still requires
+        # explicit authorization plus an exact owner-filtered list check.
+        import csv,io
+        listing=subprocess.run(['kaggle','kernels','list','--mine','--csv','--page-size','100'],env=env,capture_output=True,text=True,check=True,timeout=90)
+        rows=list(csv.DictReader(io.StringIO(listing.stdout)))
+        if not rows or 'ref' not in rows[0]:raise RuntimeError('Cannot verify owned notebook inventory before creation')
+        if len(rows)>=100:raise RuntimeError('Owned notebook inventory requires pagination; refusing to infer absence')
+        if any(row.get('ref')==ref for row in rows):raise RuntimeError('Notebook exists but is inaccessible; refusing replacement')
+        existing=None
+        print('Explicit first-creation authorized; notebook absent from owned inventory',flush=True)
     if existing is not None:
         status=subprocess.run(['kaggle','kernels','status',ref],env=env,capture_output=True,text=True,timeout=90)
         message=(status.stdout+'\n'+status.stderr).strip()
