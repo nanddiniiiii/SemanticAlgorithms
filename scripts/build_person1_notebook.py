@@ -14,6 +14,7 @@ PERSON1_MODEL = 'deepjscc'
 PERSON1_MODE = 'pilot'
 from pathlib import Path
 import os, subprocess, sys
+os.environ['GIT_LFS_SKIP_SMUDGE']='1'
 URL = 'https://github.com/nanddiniiiii/Semantic_Lossless.git'
 REVISION = {revision!r}
 REPO = Path('/tmp/Semantic_Lossless')
