@@ -48,6 +48,10 @@ def package_run(run, models_root, teammate, run_id):
     config_path = run / 'resolved_config.json'
     options = json.loads(config_path.read_text(encoding='utf-8'))
     algorithm = options['algorithm']
+    if options.get('person1_runtime'):
+        from .person1.protocol import require_complete
+        require_complete(json.loads((run/'training_summary.json').read_text()),
+                         {'jscc':150,'denoiser':150} if algorithm=='isec' else {'codec':150})
     if algorithm not in MODEL_NAMES:
         raise ValueError('No shareable bundle specification for ' + algorithm)
     checkpoints = sorted((run / 'checkpoints').glob('*'))
@@ -80,6 +84,9 @@ def package_run(run, models_root, teammate, run_id):
             for path in (run / 'metrics').glob('*'):
                 if path.is_file() and path.suffix in {'.json', '.csv'}:
                     shutil.copy2(path, target / path.name)
+        if options.get('person1_runtime'):
+            for path in [run/'profile.json',*run.glob('training_profile-*.json')]:
+                if path.is_file():shutil.copy2(path,staging/path.name)
         portable = dict(options)
         portable['manifest'] = None  # Original dataset paths are provenance, not a portable dataset.
         missing_assets = []
@@ -163,14 +170,17 @@ def import_bundles(download_root, models_root, teammate):
 
 def load_bundle(folder, device='cpu', checkpoint='last.pt'):
     """Restore a packaged model using this repository and its pinned upstreams."""
-    import torch
-    from .models import build, load_training_state
-    from .sources import fetch_source
     folder=Path(folder).resolve()
     metadata=verify_bundle(folder)
     if metadata['missing_constructor_assets']:
         raise FileNotFoundError('Bundle needs constructor assets: '+str(metadata['missing_constructor_assets']))
     options=json.loads((folder/'portable_config.json').read_text(encoding='utf-8'))
+    if options.get('person1_runtime'):
+        from .person1.reload import bundle
+        return bundle(folder,options,device,checkpoint)
+    import torch
+    from .models import build, load_training_state
+    from .sources import fetch_source
     for key in ('checkpoint','classifier','codebook'):
         if options.get(key):
             path=(folder/options[key]).resolve()
