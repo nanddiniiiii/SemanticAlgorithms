@@ -18,6 +18,10 @@ def test_revised_roster_is_unique_and_notebooks_match():
         assert 'ASSIGNED='+repr(names) in code
 
 @pytest.mark.parametrize('name',['ssc','ofdm_guided_jscc','deepjscc_mimo'])
-def test_unintegrated_slots_are_not_silently_trainable(name):
-    with pytest.raises(NotImplementedError,match='not implemented'):
-        require_integrated(name)
+def test_integrated_system_slots_have_training_dependencies_and_sharing_names(name):
+    from src.notebook_support import EXTRA,default_options
+    from src.sharing import MODEL_NAMES
+    require_integrated(name)
+    assert name in EXTRA and name in MODEL_NAMES
+    options=default_options(name,'manifest')
+    assert options['max_seconds']==14400

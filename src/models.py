@@ -62,6 +62,10 @@ def build(name, options, device='cpu'):
     common = dict(algorithm=name, device=device, snr_db=snr, learning_rate=lr,
                   checkpoint=checkpoint or '', model_options=options)
 
+    if name in {'ssc','ofdm_guided_jscc','deepjscc_mimo'}:
+        from .system_models import build_ssc,build_ofdm,build_mimo
+        return {'ssc':build_ssc,'ofdm_guided_jscc':build_ofdm,'deepjscc_mimo':build_mimo}[name]({**options,'snr_db':conditions.train.snr_db},device)
+
     if name == 'adjscc':
         from src.adjscc import build_adjscc
         fetch_source('diffcom')

@@ -189,7 +189,7 @@ def load_bundle(folder, device='cpu', checkpoint='last.pt'):
     if checkpoint_path.relative_to(folder).as_posix() not in {item['path'] for item in metadata['files']}:
         raise ValueError('Checkpoint is not listed in the verified bundle')
     state=torch.load(checkpoint_path,map_location=device,weights_only=True)
-    load_training_state(model,state['state_dict'])
+    load_training_state(model,state.get('ema_state_dict',state['state_dict']) if name=='ssc' else state['state_dict'])
     if name=='isec':model.stage='denoiser'
     model.eval()
     return model,options

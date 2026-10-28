@@ -81,6 +81,10 @@ def enqueue_bundles(root, folders):
             protocol[stage+'_snr_db']=options.get(stage+'_snr_db',options.get('snr_db',10)) if metadata['algorithm']!='sqgan' else None
             protocol[stage+'_coherence']=options.get(stage+'_coherence','symbol') if protocol[stage+'_channel']=='rayleigh_perfect_csi' else None
         protocol['channel_backend']=options.get('channel_backend','infrastructure' if metadata['algorithm'] in {'deepjscc','adjscc'} else 'native')
+        if 'model.json' in listed:
+            native=json.loads((folder/'model.json').read_text())
+            protocol['native_channel']=native.get('evaluation_channel',native.get('channel'))
+            protocol['rate_scope']=native.get('rate_scope')
         fingerprint=hashlib.sha256(json.dumps({'files':{k:v['sha256'] for k,v in files.items()},'protocol':protocol},sort_keys=True).encode()).hexdigest()
         target=root/'Results/publication_queue'/(key+'.json')
         if target.exists():

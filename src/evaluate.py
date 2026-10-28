@@ -137,9 +137,9 @@ def evaluate(model,manifest,run,options,pilot=False):
                 if torch.is_tensor(side):side=float(side.sum())
                 row={'algorithm':options['algorithm'],'sample':sample['sample'],'trial':trial,'seed':seed,
                     'height':image.shape[-2],'width':image.shape[-1],'rgb_samples':image.numel(),
-                    'snr_db':options.get('test_snr_db',options.get('snr_db',10)) if uses is not None else None,
+                    'snr_db':options.get('test_snr_db',options.get('snr_db',10)) if uses is not None or options.get('algorithm')=='ssc' else None,
                     'fading_coherence':options.get('test_coherence','symbol') if options.get('test_channel')=='rayleigh_perfect_csi' and uses is not None else None,
-                    'channel':options.get('test_channel','awgn') if uses is not None else 'not_simulated',
+                    'channel':{'ofdm_guided_jscc':'native_multipath_OFDM','deepjscc_mimo':'native_Rayleigh_MIMO','ssc':'native_FA_IM'}.get(options.get('algorithm'),options.get('test_channel','awgn') if uses is not None else 'not_simulated'),
                     'complex_channel_uses':uses,'cbr_complex_per_rgb_sample':uses/image.numel() if uses is not None else None,
                     'complex_uses_per_spatial_pixel':uses/(image.shape[-2]*image.shape[-1]) if uses is not None else None,
                     'source_bits':bits,'source_bpp':bits/(image.shape[-2]*image.shape[-1]) if bits is not None else None,

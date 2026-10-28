@@ -109,3 +109,22 @@ def export(run):
         'excluded_live_file':'export_cell.log continues writing after this receipt; other logs are hashed',
         'note':'Kaggle output becomes downloadable after a saved version publishes it'})
     return files
+
+
+def run_process_group(command, cwd, timeout):
+    """Terminate this job's whole process group on timeout/interruption."""
+    import signal
+    options={'cwd':cwd,'start_new_session':os.name!='nt'}
+    if os.name=='nt':options['creationflags']=subprocess.CREATE_NEW_PROCESS_GROUP
+    process=subprocess.Popen(command,**options)
+    try:
+        code=process.wait(timeout=timeout)
+        if code:raise subprocess.CalledProcessError(code,command)
+    except (subprocess.TimeoutExpired,KeyboardInterrupt):
+        if os.name=='nt':subprocess.run(['taskkill','/PID',str(process.pid),'/T','/F'],capture_output=True)
+        else:
+            os.killpg(process.pid,signal.SIGTERM)
+            try:process.wait(timeout=30)
+            except subprocess.TimeoutExpired:os.killpg(process.pid,signal.SIGKILL)
+        process.wait()
+        raise

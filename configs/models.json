@@ -35,9 +35,5 @@
   "retained_evaluation_only": [
     "swinjscc"
   ],
-  "integration_gates": {
-    "ssc": "Author EMA codebook requires synchronized distributed updates; shared-runner training/evaluation not yet integrated",
-    "ofdm_guided_jscc": "Author source uses legacy torch.fft/ifft API; audited FFT migration and native OFDM runner pending",
-    "deepjscc_mimo": "Author integration and source pin pending; do not launch training"
-  }
+  "integration_gates": {}
 }

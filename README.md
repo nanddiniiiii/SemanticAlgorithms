@@ -12,7 +12,7 @@ The active workflow uses one shared codebase and three Kaggle notebooks:
 | 2 | [2.ipynb](Notebooks/2.ipynb) | Masked SQ-GAN, MDJCM, SharedSemanticCodebook, SSC |
 | 3 | [3.ipynb](Notebooks/3.ipynb) | HJSCC, OFDM-guided JSCC, DeepJSCC-MIMO, DeepJSCC-WZ |
 
-These twelve slots contain twelve distinct models; SwinJSCC is retained for evaluation. SSC, OFDM and MIMO slots currently fail explicitly until their integrations pass. The [setup guide](configs/README.md) explains datasets, credentials, model assets, scripts, and retrieval. Scripts create Kaggle jobs only when explicitly run. The numbered notebooks are pinned to the published implementation revision; a fresh Kaggle GPU pilot remains required.
+These twelve slots contain twelve distinct models; SwinJSCC is retained for evaluation. SSC, OFDM and MIMO adapters are implemented; their two-T4 preflight remains mandatory. See Docs/NATIVE_SYSTEMS_IMPLEMENTATION.md. The [setup guide](configs/README.md) explains datasets, credentials, model assets, scripts, and retrieval. Scripts create Kaggle jobs only when explicitly run. The numbered notebooks are pinned to the published implementation revision; a fresh Kaggle GPU pilot remains required.
 
 ## Project layout
 

@@ -109,3 +109,9 @@ Results/stage1_operations/
 Results/publication_queue/
 *.collector.lock
 Results/comparison.csv.lock
+
+.runtime_sources/
+experiments/roster_validation/runs/
+experiments/roster_validation/tmp/
+
+experiments/native_systems/runs/

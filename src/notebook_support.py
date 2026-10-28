@@ -10,6 +10,9 @@ from .runtime import write_json
 
 BASE=['gdown==5.2.0','pytorch-msssim==1.0.0','lpips==0.1.4','PyYAML==6.0.3','einops==0.8.2']
 EXTRA={
+    'ssc':['timm==0.4.12','addict','opencv-python-headless','scipy','lmdb','yapf','tensorboard'],
+    'ofdm_guided_jscc':['easydict','scipy'],
+    'deepjscc_mimo':[],
     'deepjscc':[], 'adjscc':[], 'swinjscc':['timm==0.4.12'],
     'isec':[],
     'ntscc_plus':['timm==0.4.12','compressai==1.2.6','natten==0.14.6'],
@@ -76,6 +79,9 @@ def default_options(name,manifest):
            'train_snr_db':10,'test_snr_db':10,'seed':22,'batch_size':2,'crop':256,'epochs':150,'max_seconds':14400,
            'learning_rate':1e-4,'from_scratch':True,'trials':3,'workers':2,
            'dataset_adaptation':True,'paper_convergence_reproduced':False}
+    if name=='ssc':value.update(learning_rate=3e-5,native_distributed=True)
+    if name=='ofdm_guided_jscc':value.update(evaluation_tile=[256,256],native_data_parallel=True,epochs=20,clip_norm=0)
+    if name=='deepjscc_mimo':value.update(crop=32,evaluation_tile=[32,32],tcn=8,antennas=2,epochs=6000,clip_norm=0)
     if name=='isec':value.update(crop=128,learning_rate=1e-3,iterations=50,latent_channels=16)
     if name=='adjscc':value.update(latent_channels=2,from_scratch=False)
     if name=='swinjscc':value.update(swin_variant='fixed_c32',rate=32,from_scratch=False)

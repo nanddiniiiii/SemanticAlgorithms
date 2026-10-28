@@ -28,10 +28,10 @@ def train(model, manifest, run, options, pilot=False):
     multi=bool(options.get('data_parallel',True)) and device.type=='cuda'
     if multi and (torch.cuda.device_count()<2 or batch_size<2):
         raise RuntimeError('Requested DataParallel needs two CUDA GPUs and a global batch >=2')
-    parallel=torch.nn.DataParallel(model,device_ids=[0,1]) if multi else model
+    parallel=torch.nn.DataParallel(model,device_ids=[0,1]) if multi and not getattr(model,'native_data_parallel',False) else model
     observed_devices=set();hooks=[]
     candidates={'encoder','core.encoder','core.jscc_encoder','core.ga',
-                'core.ntc.g_a0','core.patch_downsample_1'}
+                'core.ntc.g_a0','core.patch_downsample_1','networks.E.module','networks.E','encoder.encoder_2d'}
     if multi:
         def observe(module,inputs):
             if inputs and torch.is_tensor(inputs[0]):observed_devices.add(str(inputs[0].device))
@@ -72,7 +72,9 @@ def train(model, manifest, run, options, pilot=False):
                     parameter.requires_grad_(stage_name=='jscc');parameter.grad=None
             for parameter in model.denoiser.parameters():parameter.requires_grad_(stage_name=='denoiser')
         optimizer=model.optimizer()
-        if options.get('algorithm')=='isec':
+        if hasattr(model,'scheduler'):
+            scheduler=model.scheduler(optimizer)
+        elif options.get('algorithm')=='isec':
             interval=30 if stage_name=='jscc' else max(1,int(options.get('epochs',150))//2)
             scheduler=torch.optim.lr_scheduler.StepLR(optimizer,step_size=interval,gamma=.1)
         elif options.get('algorithm')=='mdjcm':

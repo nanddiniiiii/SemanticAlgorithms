@@ -522,3 +522,9 @@ Shared AWGN/perfect-CSI Rayleigh profiles now integrate with notebook preflight.
 Person 1: DeepJSCC, ADJSCC, ISEC, NTSCC+. Person 2: masked SQ-GAN, MDJCM, SharedSemanticCodebook, SSC. Person 3: HJSCC, OFDM-guided JSCC, DeepJSCC-MIMO, DeepJSCC-WZ. SwinJSCC is retained evaluation-only; no duplicate training slots. Existing historical folders/results remain intact.
 
 Assignments are not twelve implemented runners: SSC requires synchronized EMA updates and native channel accounting; OFDM requires audited legacy FFT conversion and runner integration; MIMO requires source pinning and integration. These three slots fail explicitly before training. NTSCC+ requires NATTEN CUDA qualification. WZ preserves paired data/native DDP and separate reporting. No new training was launched. The authoritative machine-readable readiness gates are configs/models.json.
+
+## 2026-10-28 native-system implementation
+
+SSC, OFDM and MIMO now have executable author-architecture adapters; prior integration gates removed. Compatibility copies preserve immutable downloads with per-file hash checks. SSC uses a dedicated DDP worker and native codebook synchronization with alias-aware model EMA. OFDM preserves native subnetwork DataParallel, FFT/pilot/CP/CE/EQ operations, optimizer/loss/scheduler; MIMO retains its32x32/64-token source geometry with explicit tiling. Source pins, contracts and limits are in Docs/NATIVE_SYSTEMS_IMPLEMENTATION.md. CPU architecture/optimizer/reload tests passed; SSC full local pilot passed. Real two-T4 validation remains a release/runtime preflight, not claimed completed.
+
+Local release checks: full suite78 passed after system integration and portability fixes; tied-codebook EMA regression subsequently passed separately. Architecture optimizer/reload checks run against actual pinned cached sources, not substituted toy networks. No Kaggle jobs submitted.

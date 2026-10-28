@@ -56,6 +56,9 @@ def main():
             from src.sources import fetch_source
             source='diffcom' if name=='adjscc' else name
             receipt=fetch_source(source)
+            if name in {'ssc','ofdm_guided_jscc','deepjscc_mimo'}:
+                from src.native_runtime import runtime_source
+                runtime_source(name)
             write_json(run/'source.json',receipt)
             if options.get('manifest'):
                 frozen=json.loads(Path(options['manifest']).read_text())
@@ -80,6 +83,28 @@ def main():
             execute(name,args.stage,options,run)
             return
         from src.models import build
+        if name=='ssc' and args.stage in {'pilot','train'}:
+            import subprocess
+            target=run/'pilot' if args.stage=='pilot' else run
+            if args.stage=='train' and not (run/'pilot_passed.json').is_file():raise RuntimeError('SSC requires a successful distributed pilot')
+            if (target/'checkpoints/last.pt').exists():raise FileExistsError('SSC checkpoint already exists; do not overwrite')
+            world=2 if options.get('data_parallel',True) and options.get('device','cpu').startswith('cuda') else 1
+            command=[sys.executable,'-m','torch.distributed.run','--standalone','--nproc_per_node='+str(world),
+                     '-m','src.ssc_training','--config',str(prepared),'--run',str(target)]
+            if world==1:command=[sys.executable,'-m','src.ssc_training','--config',str(prepared),'--run',str(target)]
+            if args.stage=='pilot':command.append('--pilot')
+            from src.runtime import run_process_group
+            run_process_group(command,ROOT,options.get('max_seconds',14400)+300)
+            if args.stage=='pilot':
+                from src.evaluate import evaluate
+                import torch
+                model=build(name,options,options.get('device','cpu'))
+                state=torch.load(target/'checkpoints/last.pt',map_location=options.get('device','cpu'),weights_only=True)
+                from src.models import load_training_state
+                load_training_state(model,state.get('ema_state_dict',state['state_dict']) if name=='ssc' else state['state_dict'])
+                evaluate(model,options['manifest'],target,options,pilot=True)
+                write_json(run/'pilot_passed.json',{'scope':'SSC native EMA training, strict reload, native FA-IM development inference','world_size':world})
+            return
         model=build(name,options,options.get('device','cpu'))
         if args.stage=='pilot':
             from src.train import train
@@ -104,9 +129,9 @@ def main():
             if not path.is_file():raise FileNotFoundError('No trained checkpoint: '+str(path))
             state=torch.load(path,map_location=options.get('device','cpu'),weights_only=True)
             from src.models import load_training_state
-            reload_info=load_training_state(model,state['state_dict'])
+            reload_info=load_training_state(model,state.get('ema_state_dict',state['state_dict']) if name=='ssc' else state['state_dict'])
             reload_info.update({'checkpoint':str(path),'selection_rule':'last checkpoint at training stop',
-                                'development_best_checkpoint_used':False})
+                                'development_best_checkpoint_used':False,'network_ema_selected':name=='ssc'})
             write_json(run/'evaluation_reload.json',reload_info)
             if name=='isec':model.stage='denoiser'
             evaluate(model,options['manifest'],run,options)

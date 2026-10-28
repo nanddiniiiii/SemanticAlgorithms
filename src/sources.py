@@ -12,6 +12,7 @@ from .artifacts import write_json
 from .paths import project_root
 
 SOURCES = {
+    "deepjscc_mimo": ("eedavidwu/DeepJSCC-MIMO", "ad6f4bfc41709646fb2bc05fcfcf8806520da988"),
     "deepjscc": ("chunbaobao/Deep-JSCC-PyTorch", "2665e0dc6d8bf216daf9442c5d6e5d69c5ad2f06"),
     "hjscc": ("zhang-guangyi/HJSCC", "bea5c6c7ec42ea62e5afac307d37f9e20129cc6d"),
     "deepjscc_wz": ("ipc-lab/deepjscc-wz", "802394328838c478321413e5f72a771f86a7599d"),
