@@ -16,6 +16,12 @@ def _write(path, value):
     path.write_text(json.dumps(value))
 
 
+def test_empty_owned_inventory_is_confirmed_absence(monkeypatch):
+    monkeypatch.setattr(collection.subprocess,'run',lambda *a,**k:
+                        types.SimpleNamespace(returncode=0,stdout='No datasets found\n',stderr=''))
+    assert collection.owned_dataset_exists('owner/p1-checkpoint',{}) is False
+
+
 def test_existing_partial_directory_recovers_missing_checkpoint(tmp_path):
     """A crash after mkdir must not strand the only continuation checkpoint."""
     root = tmp_path / "repo"

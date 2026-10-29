@@ -29,6 +29,7 @@ def owned_dataset_exists(ref,env):
     listing=subprocess.run(['kaggle','datasets','list','--mine','--search',slug,'--page-size','100','--csv'],
                            env=env,capture_output=True,text=True,timeout=90)
     if listing.returncode:raise RuntimeError('Cannot verify private checkpoint inventory; no upload attempted')
+    if listing.stdout.strip()=='No datasets found':return False
     lines=listing.stdout.splitlines();header=next((i for i,line in enumerate(lines) if line.lstrip('\ufeff').startswith('ref,')),None)
     if header is None:raise RuntimeError('Owned Dataset inventory header unavailable')
     rows=list(csv.DictReader(io.StringIO('\n'.join(lines[header:]).lstrip('\ufeff'))))
