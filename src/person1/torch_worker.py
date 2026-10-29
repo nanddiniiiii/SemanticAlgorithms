@@ -58,6 +58,50 @@ def stage_model(model, stage):
         for p in model.denoiser.parameters():p.requires_grad_(stage=='denoiser');p.grad=None
 
 
+def gradient_probe(model, options, run):
+    """Compare actual DP gradients with independently accumulated replicas."""
+    import copy
+    if next(model.parameters()).device.type!='cuda':
+        raise RuntimeError('Gradient aggregation qualification requires two real GPUs')
+    data=Images(options['manifest'],'train',options['crop'],options.get('horizontal_flip',False))
+    image=torch.from_numpy(np.stack([data.array(i,0,options['seed']) for i in range(2)])).permute(0,3,1,2).cuda(0)
+    original={k:v.detach().cpu().clone() for k,v in model.state_dict().items()}
+    random_state=rng_state();previous=getattr(model,'stage',None)
+    records=[]
+    try:
+        for stage in (['jscc','denoiser'] if previous is not None else ['codec']):
+            model.load_state_dict(original,strict=True);stage_model(model,stage);model.train()
+            if stage=='denoiser':model.encoder.eval();model.decoder.eval()
+            replica=copy.deepcopy(model).to('cuda:1')
+            before=rng_state();model.zero_grad()
+            output=torch.nn.DataParallel(model,[0,1])(image)
+            model.loss(output,{'image':image}).backward()
+            actual={n:p.grad.detach().cpu().clone() for n,p in model.named_parameters() if p.grad is not None}
+            model.load_state_dict(original,strict=True);model.zero_grad();replica.zero_grad();restore_rng(before)
+            for device,reference in enumerate((model,replica)):
+                part=image[device:device+1].to('cuda:'+str(device))
+                reference.loss(reference(part),{'image':part}).mul(.5).backward()
+            reference_parameters=dict(replica.named_parameters());maximum=0.
+            for name,parameter in model.named_parameters():
+                other=reference_parameters[name]
+                expected=(None if parameter.grad is None else parameter.grad.detach().cpu())
+                if other.grad is not None:expected=other.grad.detach().cpu() if expected is None else expected+other.grad.detach().cpu()
+                if expected is None:
+                    if name in actual:raise AssertionError('Unexpected DP gradient: '+name)
+                    continue
+                if name not in actual or not torch.allclose(actual[name],expected,rtol=1e-4,atol=1e-5):
+                    raise AssertionError('DP gradient differs from weighted replica sum: '+name)
+                maximum=max(maximum,float((actual[name]-expected).abs().max()))
+            records.append(dict(stage=stage,parameter_gradients=len(actual),max_absolute_difference=maximum))
+            del replica,output,actual
+    finally:
+        model.load_state_dict(original,strict=True);model.zero_grad();restore_rng(random_state)
+        if previous is not None:stage_model(model,previous)
+    write(Path(run)/'gradient_aggregation.json',dict(passed=True,devices=['cuda:0','cuda:1'],
+          scope='actual model DP gradients versus two weighted independent replicas; same device RNG states',
+          microbatch_per_device=1,rtol=1e-4,atol=1e-5,stages=records,optimizer_updates=0))
+
+
 def train(model, options, run, pilot=False):
     run=Path(run);(run/'checkpoints').mkdir(parents=True,exist_ok=True)
     seed=int(options['seed']);torch.manual_seed(seed);np.random.seed(seed);random.seed(seed)
@@ -366,6 +410,7 @@ def main():
     elif a.stage=='pilot':
         target=run/'pilot';target.mkdir(exist_ok=False)
         train(model,options,target,True)
+        gradient_probe(model,options,target)
         profile_training(model,options,target)
         model.eval()
         if hasattr(model,'stage'):model.stage='denoiser'
