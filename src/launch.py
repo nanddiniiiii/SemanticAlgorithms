@@ -34,9 +34,13 @@ def notebook_revision(notebook):
     return revisions[0]
 
 
-def bind_delivery(notebook, run_id, training_seconds=14400):
+def bind_delivery(notebook, run_id, training_seconds=14400, models=None):
     import copy
     notebook=copy.deepcopy(notebook)
+    if models is not None:
+        assigned=notebook.get('metadata',{}).get('experiment',{}).get('models',[])
+        if not models or len(set(models))!=len(models) or set(models)-set(assigned):
+            raise ValueError('Select a nonempty unique subset of this notebook roster')
     replacement='DELIVERY_RUN_ID = '+repr(run_id)+'\n'
     found=False
     for cell in notebook.get('cells',[]):
@@ -44,6 +48,8 @@ def bind_delivery(notebook, run_id, training_seconds=14400):
         lines=''.join(cell.get('source',[])).splitlines(keepends=True)
         for index,line in enumerate(lines):
             if line.startswith('TRAINING_SECONDS = '):lines[index]='TRAINING_SECONDS = '+str(training_seconds)+'\n'
+            if models is not None and line.startswith('MODELS_TO_RUN = '):
+                lines[index]='MODELS_TO_RUN = '+repr(list(models))+'\n'
             if line.startswith('DELIVERY_RUN_ID = '):
                 if found:raise ValueError('Duplicate notebook delivery identity')
                 lines[index]=replacement;found=True
@@ -167,6 +173,7 @@ def main(team):
     parser.add_argument('--username',help='Your Kaggle username; prompted if omitted')
     parser.add_argument('--config-dir',help='Optional Kaggle CLI credential directory')
     parser.add_argument('--training-seconds',type=int,default=14400,help='Per-model training budget, at most14400 seconds')
+    parser.add_argument('--models',nargs='+',help='Run only these assigned model IDs, in this order')
     parser.add_argument('--asset',action='append',default=[],help='Additional Kaggle dataset owner/slug containing model assets; repeat as needed')
     parser.add_argument('--interval',type=int,default=1800)
     parser.add_argument('--resume',nargs='?',const='latest',help='Resume a saved local run directory, or latest')
@@ -260,14 +267,14 @@ def dispatch(team,args,username):
         'machine_shape':'NvidiaTeslaT4','dataset_sources':DATASETS+args.asset,'kernel_sources':[],
         'competition_sources':[],'model_sources':[]}
     write_json(destination/'submission.json',{'kernel':ref,'team':team,'datasets':DATASETS+args.asset,
-        'source_revision':revision,'training_seconds_per_model':args.training_seconds,
+        'source_revision':revision,'training_seconds_per_model':args.training_seconds,'selected_models':getattr(args,'models',None),
         'previous_version':existing,'run_id':run_id,
         'note':'Stable kernel identity; do not create another version before retrieval'})
     print('Submitting private notebook:',ref,flush=True)
     print('The three common image datasets will be attached automatically. Additional private model assets may require setup.',flush=True)
     with tempfile.TemporaryDirectory(prefix='semantic-kaggle-') as tmp:
         folder=Path(tmp)
-        (folder/'notebook.ipynb').write_text(json.dumps(bind_delivery(notebook,run_id,args.training_seconds)),encoding='utf-8')
+        (folder/'notebook.ipynb').write_text(json.dumps(bind_delivery(notebook,run_id,args.training_seconds,getattr(args,'models',None))),encoding='utf-8')
         (folder/'kernel-metadata.json').write_text(json.dumps(metadata,indent=2),encoding='utf-8')
         subprocess.run(['kaggle','kernels','push','-p',str(folder),'--accelerator','NvidiaTeslaT4'],env=env,check=True,timeout=180)
     submitted=current_version(username,slug)

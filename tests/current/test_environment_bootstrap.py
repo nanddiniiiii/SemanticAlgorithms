@@ -15,6 +15,8 @@ def test_bootstrap_avoids_ensurepip_and_targets_model_environment(tmp_path,monke
     python=notebook_support.setup_model(tmp_path,'ssc',tmp_path/'run',command_runner=lambda command,timeout:commands.append(command))
     assert calls==[('create',False,True)]
     assert commands[0][:5]==[sys.executable,'-m','pip','--python',str(python)]
+    assert 'timm==1.0.29' in commands[0]
+    assert 'from timm.layers import' in commands[1][-1]
 
 
 def test_bootstrap_preserves_installer_stderr(tmp_path,monkeypatch):
@@ -27,3 +29,15 @@ def test_bootstrap_preserves_installer_stderr(tmp_path,monkeypatch):
     with pytest.raises(subprocess.CalledProcessError):
         notebook_support.setup_model(tmp_path,'ssc',tmp_path/'run')
     assert 'specific installer failure' in (tmp_path/'run/environment_setup.log').read_text()
+
+
+def test_retry_selects_only_failed_model_without_changing_canonical_notebook():
+    import json
+    from pathlib import Path
+    from src.launch import bind_delivery
+    notebook=json.loads((Path(__file__).parents[2]/'Notebooks/2.ipynb').read_text())
+    bound=bind_delivery(notebook,'retry',7200,['ssc'])
+    text=lambda value:'\n'.join(''.join(cell['source']) for cell in value['cells'])
+    assert "MODELS_TO_RUN = ['ssc']" in text(bound)
+    assert "MODELS_TO_RUN = ASSIGNED[:]" in text(notebook)
+    with pytest.raises(ValueError):bind_delivery(notebook,'retry',7200,['not_assigned'])

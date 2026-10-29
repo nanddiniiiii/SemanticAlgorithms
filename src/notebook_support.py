@@ -10,7 +10,7 @@ from .runtime import write_json
 
 BASE=['gdown==5.2.0','pytorch-msssim==1.0.0','lpips==0.1.4','PyYAML==6.0.3','einops==0.8.2']
 EXTRA={
-    'ssc':['timm==0.4.12','addict','opencv-python-headless','scipy','lmdb','yapf','tensorboard'],
+    'ssc':['timm==1.0.29','addict','opencv-python-headless','scipy','lmdb','yapf','tensorboard'],
     'ofdm_guided_jscc':['easydict','scipy'],
     'deepjscc_mimo':[],
     'deepjscc':[], 'adjscc':[], 'swinjscc':['timm==0.4.12'],
@@ -66,6 +66,9 @@ def setup_model(root,name,run,install=True,python_override=None,command_runner=N
         print('Installing model dependencies in subprocess environment:',dependencies,flush=True)
         regular=[item for item in dependencies if item!='natten==0.14.6']
         execute([*pip,'install','-e',str(root),*regular])
+        if name=='ssc':
+            execute([str(python),'-c',
+                'import timm; from timm.layers import DropPath, to_2tuple, trunc_normal_; print("SSC timm API verified:", timm.__version__)'])
         if name=='ntscc_plus':
             # Legacy setup imports the installed Torch headers while building.
             # Build isolation hides those headers; newer NATTEN is not equivalent.
