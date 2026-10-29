@@ -2,12 +2,6 @@
 
 Repository: https://github.com/nanddiniiiii/Semantic_Lossless
 
-Person1's150-epoch correction uses the dedicated source/continuation workflow in
-`Docs/PERSON1_IMPLEMENTATION.md`. Its numbered notebook defaults to a pilot and
-runs one model per saved version. `scripts/1.py --campaign --username hmmmkk`
-uses the same stable identity and creates private hash-checked checkpoint inputs
-after collection. Persons2/3 retain the bounded workflow described below.
-
 | Person | Notebook | Script | Assigned order |
 |---|---|---|---|
 | 1 | Notebooks/1.ipynb | scripts/1.py | DeepJSCC, ADJSCC, ISEC, NTSCC+ |
@@ -87,7 +81,7 @@ Zip the entire teammate model folder for Drive/OneDrive. Weights stay outside Gi
 
 ## Revised roster readiness
 
-This assignment supersedes the original table. SSC, OFDM-guided JSCC and DeepJSCC-MIMO now have implemented adapters and CPU validation. Their actual two-T4 pilots remain required before full training; see Docs/NATIVE_SYSTEMS_IMPLEMENTATION.md. SSC uses native distributed codebook synchronization. MIMO uses32x32 training/evaluation tiles. NTSCC+ needs its pinned NATTEN 0.14.6 CUDA environment pilot. Person 3 additionally requires native paired KITTI/Cityscapes inputs and paired_data_root for WZ, with its native DDP framework. WZ is separate from common unpaired RGB comparisons. HJSCC means hierarchical VAE JSCC, not dedicated hybrid digitalâ€“analog. Do not replace OFDM/MIMO native channels with scalar AWGN to make the jobs pass.
+This assignment supersedes the original table. SSC, OFDM-guided JSCC and DeepJSCC-MIMO now have implemented adapters and CPU validation. Their actual two-T4 pilots remain required before full training; see Docs/NATIVE_SYSTEMS_IMPLEMENTATION.md. SSC uses native distributed codebook synchronization. MIMO uses32x32 training/evaluation tiles. NTSCC+ needs its pinned NATTEN 0.14.6 CUDA environment pilot. Person 3 additionally requires native paired KITTI/Cityscapes inputs and paired_data_root for WZ, with its native DDP framework. WZ is separate from common unpaired RGB comparisons. HJSCC means hierarchical VAE JSCC, not dedicated hybrid digital–analog. Do not replace OFDM/MIMO native channels with scalar AWGN to make the jobs pass.
 
 Person 1 owns continuous/refinement/entropy-guided comparisons. Person 2 owns discrete/codebook comparisons and classifier asset preparation. Person 3 owns hierarchical/physical-layer/side-information systems and native task prerequisites. Each person must inspect the real GPU pilot and required assets before long training.
 

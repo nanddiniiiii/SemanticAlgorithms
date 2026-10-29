@@ -1,11 +1,5 @@
 # Channels, saved-output collection and result publication
 
-Person1 exception: the corrected `src/person1` runner adds genuine training
-continuation and150-complete-epoch gates. It creates private checkpoint Dataset
-inputs only after locally verifying saved outputs, and preserves the existing
-result-only GitHub queue. See `PERSON1_IMPLEMENTATION.md`. The legacy bounded
-trainer and collector-only recovery limitations below still apply to other runners.
-
 ## Configuration
 
 `configs/environment.json` is shared by all three notebooks. Default: AWGN at 10 dB for training and evaluation. Profiles also define symbol-iid Rayleigh, one-block-per-image Rayleigh, and AWGN training / Rayleigh evaluation. Set `CHANNEL_PROFILE` in notebook setup. Unsupported model/profile combinations fail before expensive setup. See `Infrastructure/README.md` for supported adapters, normalization, perfect-CSI assumptions and exclusions.

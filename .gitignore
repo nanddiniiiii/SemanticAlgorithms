@@ -3,7 +3,6 @@ __pycache__/
 *.py[cod]
 .ipynb_checkpoints/
 .pytest_cache/
-.pytest-person1/
 .mypy_cache/
 .venv/
 .venv*/
@@ -108,8 +107,6 @@ Results/stage1_operations/
 
 # Local durable collector state and pending publications (never source commits)
 Results/publication_queue/
-Results/person1_checkpoints/
-Results/person1_campaign/
 *.collector.lock
 Results/comparison.csv.lock
 

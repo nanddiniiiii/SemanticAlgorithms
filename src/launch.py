@@ -8,7 +8,6 @@ import os
 from pathlib import Path
 import shutil
 import subprocess
-import sys
 import tempfile
 import time
 import uuid
@@ -35,7 +34,7 @@ def notebook_revision(notebook):
     return revisions[0]
 
 
-def bind_delivery(notebook, run_id, training_seconds=14400, model=None, mode=None):
+def bind_delivery(notebook, run_id, training_seconds=14400):
     import copy
     notebook=copy.deepcopy(notebook)
     replacement='DELIVERY_RUN_ID = '+repr(run_id)+'\n'
@@ -45,8 +44,6 @@ def bind_delivery(notebook, run_id, training_seconds=14400, model=None, mode=Non
         lines=''.join(cell.get('source',[])).splitlines(keepends=True)
         for index,line in enumerate(lines):
             if line.startswith('TRAINING_SECONDS = '):lines[index]='TRAINING_SECONDS = '+str(training_seconds)+'\n'
-            if model is not None and line.startswith('PERSON1_MODEL = '):lines[index]='PERSON1_MODEL = '+repr(model)+'\n'
-            if mode is not None and line.startswith('PERSON1_MODE = '):lines[index]='PERSON1_MODE = '+repr(mode)+'\n'
             if line.startswith('DELIVERY_RUN_ID = '):
                 if found:raise ValueError('Duplicate notebook delivery identity')
                 lines[index]=replacement;found=True
@@ -101,9 +98,6 @@ def finish_retrieval(destination, env, team, publish=True):
     else:
         verify_download(raw)
     folders=import_bundles(raw,ROOT/'Models',team)
-    if str(team)=='1':
-        from .person1.collection import preserve_chunks
-        preserve_chunks(ROOT,destination,env)
     enqueue_bundles(ROOT,folders)
     rows=collect(ROOT/'Results/team_downloads',ROOT/'Results/comparison.csv')
     if publish:flush(ROOT)
@@ -171,9 +165,6 @@ def watch(destination, env, team, interval=1800, once=False, publish=True, max_h
 def main(team):
     parser=argparse.ArgumentParser(description='Submit this team notebook and retrieve its completed outputs.')
     parser.add_argument('--username',help='Your Kaggle username; prompted if omitted')
-    parser.add_argument('--model',choices=['deepjscc','adjscc','isec','ntscc_plus'],help='Person1: one model per saved version')
-    parser.add_argument('--mode',choices=['pilot','train'],default='pilot',help='Person1 only; default real-data pilot')
-    parser.add_argument('--continue-from',help='Person1: private checkpoint Dataset owner/slug from verified earlier chunk')
     parser.add_argument('--config-dir',help='Optional Kaggle CLI credential directory')
     parser.add_argument('--training-seconds',type=int,default=14400,help='Per-model training budget, at most14400 seconds')
     parser.add_argument('--asset',action='append',default=[],help='Additional Kaggle dataset owner/slug containing model assets; repeat as needed')
@@ -204,7 +195,6 @@ def dispatch(team,args,username):
     if args.interval<10:raise ValueError('Polling interval must be at least 10 seconds')
     if shutil.which('kaggle') is None:raise RuntimeError('Install and authenticate the Kaggle CLI in this Python environment first')
     env=os.environ.copy()
-    env['PATH']=str(Path(sys.executable).parent)+os.pathsep+env.get('PATH','')
     if args.config_dir:
         env['KAGGLE_CONFIG_DIR']=str(Path(args.config_dir).expanduser().resolve())
         os.environ['KAGGLE_CONFIG_DIR']=env['KAGGLE_CONFIG_DIR']
@@ -234,17 +224,6 @@ def dispatch(team,args,username):
             raise RuntimeError('Submission receipt exists but version acknowledgement is missing. Verify Kaggle before any resubmission.')
         watch(target,env,team,args.interval,args.once,not args.no_publish,args.max_hours)
         return
-    if str(team)=='1':
-        from kagglesdk.kernels.types.kernels_api_service import ApiGetAcceleratorQuotaStatisticsRequest
-        from kaggle.api.kaggle_api_extended import KaggleApi
-        api=KaggleApi();api.authenticate()
-        with api.build_kaggle_client() as client:
-            quota=client.kernels.kernels_api_client.get_accelerator_quota_statistics(ApiGetAcceleratorQuotaStatisticsRequest())
-        gpu=quota.gpu_quota
-        if gpu is None:raise RuntimeError('Cannot verify GPU quota before submission')
-        remaining=(gpu.total_time_allowed-gpu.time_used-gpu.time_reserved).total_seconds()
-        if remaining<1800:raise RuntimeError('Insufficient free GPU quota; checkpoint/receipts retained')
-        print('Free GPU seconds available:',remaining,'weekly reset:',quota.quota_refresh_time,flush=True)
     notebook_path=ROOT/'Notebooks'/(team+'.ipynb')
     notebook=json.loads(notebook_path.read_text(encoding='utf-8'))
     revision=notebook_revision(notebook)
@@ -276,28 +255,19 @@ def dispatch(team,args,username):
     run_id=uuid.uuid4().hex
     destination=ROOT/'Results'/'team_downloads'/team/(username+'__'+slug)/run_id
     destination.mkdir(parents=True,exist_ok=False)
-    extra_inputs=list(args.asset)
-    if getattr(args,'continue_from',None):
-        if str(team)!='1':raise ValueError('Person1 continuation cannot change other teammate inputs')
-        extra_inputs.append(args.continue_from)
     metadata={'id':ref,'title':slug,'code_file':'notebook.ipynb','language':'python',
         'kernel_type':'notebook','is_private':True,'enable_gpu':True,'enable_internet':True,
-        'machine_shape':'NvidiaTeslaT4','dataset_sources':DATASETS+extra_inputs,'kernel_sources':[],
+        'machine_shape':'NvidiaTeslaT4','dataset_sources':DATASETS+args.asset,'kernel_sources':[],
         'competition_sources':[],'model_sources':[]}
-    write_json(destination/'submission.json',{'kernel':ref,'team':team,'datasets':DATASETS+extra_inputs,
+    write_json(destination/'submission.json',{'kernel':ref,'team':team,'datasets':DATASETS+args.asset,
         'source_revision':revision,'training_seconds_per_model':args.training_seconds,
-        'person1_model':getattr(args,'model',None) or ('deepjscc' if str(team)=='1' else None),
-        'person1_mode':getattr(args,'mode',None) if str(team)=='1' else None,
         'previous_version':existing,'run_id':run_id,
         'note':'Stable kernel identity; do not create another version before retrieval'})
     print('Submitting private notebook:',ref,flush=True)
     print('The three common image datasets will be attached automatically. Additional private model assets may require setup.',flush=True)
     with tempfile.TemporaryDirectory(prefix='semantic-kaggle-') as tmp:
         folder=Path(tmp)
-        bound=bind_delivery(notebook,run_id,args.training_seconds,
-            (getattr(args,'model',None) or 'deepjscc') if str(team)=='1' else None,
-            getattr(args,'mode','pilot') if str(team)=='1' else None)
-        (folder/'notebook.ipynb').write_text(json.dumps(bound),encoding='utf-8')
+        (folder/'notebook.ipynb').write_text(json.dumps(bind_delivery(notebook,run_id,args.training_seconds)),encoding='utf-8')
         (folder/'kernel-metadata.json').write_text(json.dumps(metadata,indent=2),encoding='utf-8')
         subprocess.run(['kaggle','kernels','push','-p',str(folder),'--accelerator','NvidiaTeslaT4'],env=env,check=True,timeout=180)
     submitted=current_version(username,slug)
