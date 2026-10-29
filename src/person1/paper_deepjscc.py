@@ -50,7 +50,8 @@ class DeepJSCC(nn.Module):
             encoder_filters=[16,32,32,32,c],decoder_filters=[32,32,32,16,3],
             kernel_sizes=[5]*10,encoder_strides=[2,2,1,1,1],decoder_strides=[1,1,1,2,2],
             prelu='per-channel; paper sharing unspecified',initializers='PyTorch defaults; paper unspecified',
-            rate_scope='all complex latent pairs; no framing/CSI overhead',native_input_range='[0,1]')
+            rate_scope='all complex latent pairs; no framing/CSI overhead',native_input_range='[0,1]',
+            objective='MSE after native255 denormalization, paper Eq3')
 
     def forward(self, image):
         if image.shape[-2]%4 or image.shape[-1]%4:
@@ -67,7 +68,7 @@ class DeepJSCC(nn.Module):
                 'complex_uses':image.new_full((len(image),),float(k))}
 
     def loss(self, output, batch):
-        return F.mse_loss(output['reconstruction'],batch['image'])
+        return F.mse_loss(output['reconstruction']*255.,batch['image']*255.)
 
     def optimizer(self):
         return torch.optim.Adam(self.parameters(),lr=self.lr)

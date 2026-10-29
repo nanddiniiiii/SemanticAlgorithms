@@ -16,6 +16,7 @@ def options(name, manifest):
                  epochs=150, snr_db=10., train_channel='awgn', test_channel='awgn',
                  train_snr_db=10., test_snr_db=10., seed=22, batch_size=2, crop=256,
                  learning_rate=1e-4, max_seconds=14400, trials=10, data_parallel=True,
+                 workers=4,
                  from_scratch=True, clip_norm=0., resume_checkpoint=None,
                  dataset_adaptation=True, paper_convergence_reproduced=False,
                  person1_runtime=True)
@@ -26,7 +27,8 @@ def options(name, manifest):
         value.update(crop=128, batch_size=16, latent_channels=16, backend='author_tensorflow')
     elif name == 'isec':
         value.update(crop=128, batch_size=2, latent_channels=6, learning_rate=1e-3,
-                     denoiser_learning_rate=2e-4, iterations=50,horizontal_flip=True)
+                     denoiser_learning_rate=2e-4, iterations=50,horizontal_flip=True,
+                     refinement_lr=.001, alpha=4., delta=1.)
     else:
         value.update(clip_norm=1., train_lambda=.72, eta=.2, backend='author_natten0146')
     return value
@@ -34,7 +36,7 @@ def options(name, manifest):
 
 def fingerprint(options, identity):
     ignored = {'manifest', 'max_seconds', 'resume_checkpoint', 'run_id', 'models_root',
-               'teammate', 'source_revision', 'pilot', 'stop_after_steps'}
+               'teammate', 'source_revision', 'pilot', 'stop_after_steps','workers'}
     payload = {k: v for k, v in options.items() if k not in ignored}
     payload['dataset_identity'] = identity
     return hashlib.sha256(json.dumps(payload, sort_keys=True).encode()).hexdigest()

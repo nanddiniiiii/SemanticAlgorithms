@@ -1,5 +1,6 @@
 """Original ADJSCC TensorFlow modules with deterministic common-data adapter."""
 import argparse
+from concurrent.futures import ThreadPoolExecutor
 import io
 import json
 import os
@@ -18,6 +19,9 @@ def write(path,value):
 
 def build(options, strategy):
     import tensorflow as tf
+    # Load the installed Linux wheel before the author's path is prepended:
+    # upstream also contains a macOS-only tensorflow_compression snapshot.
+    import tensorflow_compression
     from .imports import upstream
     with upstream(options['source_dir'],('util_module','util_channel')):
         from util_module import Attention_Encoder,Attention_Decoder
@@ -44,6 +48,7 @@ def train(options,run,pilot=False):
     tf.keras.utils.set_random_seed(options['seed'])
     model,optimizer=build(options,strategy)
     data=Images(options['manifest'],'train',options['crop']);dev=Images(options['manifest'],'val',options['crop'])
+    readers=ThreadPoolExecutor(max_workers=max(1,int(options.get('workers',4))))
     contract=fingerprint(options,data.manifest['identity']);run=Path(run);(run/'checkpoints').mkdir(parents=True,exist_ok=True)
     state=dict(epoch=0,offset=0,step=0,images_seen=0,best=None,contract=contract,completed_epochs={'codec':0})
     checkpoint=tf.train.Checkpoint(model=model,optimizer=optimizer)
@@ -74,7 +79,7 @@ def train(options,run,pilot=False):
         while state['offset']<len(order):
             if time.monotonic()>=deadline or (options.get('stop_after_steps') and state['step']>=options['stop_after_steps']):stopped=True;break
             selected=order[state['offset']:state['offset']+options['batch_size']]
-            array=np.stack([data.array(i,state['epoch'],options['seed']) for i in selected])*255
+            array=np.stack(list(readers.map(lambda i:data.array(i,state['epoch'],options['seed']),selected)))*255
             batch=tf.convert_to_tensor(array);size=len(array)
             # Stateless step identity controls native tf.random.normal calls in
             # eager MirroredStrategy; the author channel source is untouched.
@@ -115,6 +120,7 @@ def train(options,run,pilot=False):
             import shutil
             shutil.copy2(run/'checkpoints/last-tf.zip',run/'checkpoints/best-tf.zip')
         print(json.dumps(dict(epoch_completed=state['epoch'],parents=len(data),validation=validation)),flush=True)
+    readers.shutdown(wait=True)
     save();before=[v.numpy().copy() for v in model.weights];restore(run/'checkpoints/last-tf.zip')
     if any(not np.array_equal(a,b.numpy()) for a,b in zip(before,model.weights)):raise ValueError('TF strict checkpoint reload changed weights')
     if gpus and not all(any(('GPU:'+str(i)) in d.upper() for d in observed) for i in range(2)):
@@ -200,6 +206,7 @@ def profile(model,image,options,run):
     for _ in range(10):
         tick=time.perf_counter();call();timings.append(time.perf_counter()-tick)
     result=graph_flops(model,options,image.shape[1],image.shape[2],1)
+    result['flops_coverage']=result['coverage']
     result.update(warmup=3,repeats=10,latency_p50_seconds=float(np.median(timings)),
                   latency_p95_seconds=float(np.quantile(timings,.95)),precision='float32',device='GPU0')
     try:

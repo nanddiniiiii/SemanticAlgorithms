@@ -26,9 +26,9 @@ def create(root,output=None):
         if not accepted:raise ValueError('No completed150-epoch bundle for '+name)
         verified.extend(accepted)
     paths=[]
-    for relative in ('Models/teammate_1_models','Results/team_downloads/1','src','Infrastructure','configs','scripts'):
+    for relative in ('Models/teammate_1_models','Results/team_downloads/1','Results/person1_campaign','src','Infrastructure','configs','scripts'):
         paths.extend(p for p in (root/relative).rglob('*') if p.is_file() and '__pycache__' not in p.parts and p.suffix!='.pyc')
-    paths += [root/'Notebooks/1.ipynb',root/'pyproject.toml',root/'AGENTS.md',root/'Docs/TEAMMATE_HANDOFF.md',root/'Docs/RESULT_COLLECTION.md']
+    paths += [root/'Notebooks/1.ipynb',root/'pyproject.toml',root/'AGENTS.md',root/'Docs/TEAMMATE_HANDOFF.md',root/'Docs/RESULT_COLLECTION.md',root/'Docs/PERSON1_IMPLEMENTATION.md',root/'Results/comparison.csv']
     paths=sorted(set(p for p in paths if p.is_file() and not p.name.endswith(('.lock','.tmp'))))
     manifest=dict(files=[dict(path=p.relative_to(root).as_posix(),bytes=p.stat().st_size,sha256=digest(p)) for p in paths],
                   accepted_models=verified,credentials_included=False,datasets_included=False)

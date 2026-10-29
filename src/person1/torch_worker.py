@@ -1,5 +1,6 @@
 """Real author-model updates with replayable data and strict chunk continuation."""
 import argparse
+from concurrent.futures import ThreadPoolExecutor
 from contextlib import nullcontext
 import hashlib
 import json
@@ -66,6 +67,7 @@ def train(model, options, run, pilot=False):
     torch.backends.cudnn.benchmark=False;torch.backends.cudnn.deterministic=True
     dataset=Images(options['manifest'],'train',options['crop'],options.get('horizontal_flip',False))
     development=Images(options['manifest'],'val',options['crop'])
+    readers=ThreadPoolExecutor(max_workers=max(1,int(options.get('workers',4))))
     contract=fingerprint(options,dataset.manifest['identity'])
     stages=['jscc','denoiser'] if hasattr(model,'stage') else ['codec']
     targets={s:int(options['epochs']) for s in stages}
@@ -122,7 +124,7 @@ def train(model, options, run, pilot=False):
                     stopped=True;break
                 selected=order[state['offset']:state['offset']+options['batch_size']]
                 data_started=time.monotonic()
-                array=np.stack([dataset.array(i,epoch,seed) for i in selected])
+                array=np.stack(list(readers.map(lambda i:dataset.array(i,epoch,seed),selected)))
                 image=torch.from_numpy(array).permute(0,3,1,2).to(device)
                 data_seconds=time.monotonic()-data_started
                 parallel.train()
@@ -130,21 +132,9 @@ def train(model, options, run, pilot=False):
                 optimizer.zero_grad()
                 if aux:aux.zero_grad()
                 step_started=time.monotonic()
-                counter=None
-                if pilot and pilot_steps[stage]==0:
-                    try:
-                        from torch.utils.flop_counter import FlopCounterMode
-                        counter=FlopCounterMode(display=False)
-                    except ImportError:pass
-                with counter if counter is not None else nullcontext():
-                    output=parallel(image);loss=model.loss(output,{'image':image})
-                    if not torch.isfinite(loss):raise FloatingPointError('Nonfinite objective')
-                    loss.backward()
-                if pilot and pilot_steps[stage]==0:
-                    write(run/('training_profile-'+stage+'.json'),dict(batch_size=len(image),input_shape=list(image.shape),
-                         forward_backward_registered_flops=counter.get_total_flops() if counter else None,
-                         coverage='registered PyTorch kernels only; optimizer/auxiliary arithmetic excluded;2FLOPs/MAC',
-                         complete_training_flops=False,precision=str(image.dtype)))
+                output=parallel(image);loss=model.loss(output,{'image':image})
+                if not torch.isfinite(loss):raise FloatingPointError('Nonfinite objective')
+                loss.backward()
                 if not all(torch.isfinite(p.grad).all() for p in model.parameters() if p.grad is not None):
                     raise FloatingPointError('Nonfinite gradients')
                 if options.get('clip_norm',0)>0:torch.nn.utils.clip_grad_norm_(model.parameters(),options['clip_norm'])
@@ -199,6 +189,7 @@ def train(model, options, run, pilot=False):
                  images_seen=state['images_seen'],elapsed_seconds=state['elapsed_seconds'],
                  strict_reload=True,observed_encoder_devices=sorted(observed),contract=contract,
                  resume_supported=True,partial_epoch_offset=state['offset'],paper_convergence_reproduced=False)
+    readers.shutdown(wait=True)
     write(run/'training_summary.json',summary);print(json.dumps(summary),flush=True)
     return summary
 
@@ -212,6 +203,47 @@ def predict(model, image, options):
     out['reconstruction']=out['reconstruction'][...,t:t+h,l:l+w]
     out['geometry']=dict(original=[h,w],padded=list(padded.shape[-2:]),padding=[l,pw-l,t,ph-t])
     return out
+
+
+def profile_training(model,options,run):
+    """Profile one real-data microbatch on one replica, without an update.
+
+    Dispatch modes do not reliably enter DataParallel's Python threads. This
+    explicit measurement avoids publishing a backward-only count as a full step.
+    """
+    device=next(model.parameters()).device
+    data=Images(options['manifest'],'train',options['crop'],options.get('horizontal_flip',False))
+    batch=max(1,options['batch_size']//2)
+    image=torch.from_numpy(np.stack([data.array(i,0,options['seed']) for i in range(batch)])).permute(0,3,1,2).to(device)
+    state={k:v.detach().cpu().clone() for k,v in model.state_dict().items()};random_state=rng_state()
+    previous_stage=getattr(model,'stage',None);modes={name:module.training for name,module in model.named_modules()}
+    for stage in (['jscc','denoiser'] if previous_stage is not None else ['codec']):
+        stage_model(model,stage);model.train()
+        if stage=='denoiser':model.encoder.eval();model.decoder.eval()
+        model.zero_grad();counter=None;value=None;error=None
+        def measured():
+            out=model(image);model.loss(out,{'image':image}).backward()
+            if hasattr(model,'aux_loss'):model.aux_loss().backward()
+        try:
+            try:
+                from torch.utils.flop_counter import FlopCounterMode
+                counter=FlopCounterMode(display=False)
+                with counter:measured()
+                value=counter.get_total_flops()
+            except ImportError:
+                with torch.profiler.profile(activities=[torch.profiler.ProfilerActivity.CPU],with_flops=True) as counter:measured()
+                value=sum(getattr(event,'flops',0) for event in counter.key_averages())
+        except Exception as exc:error=type(exc).__name__+': '+str(exc)
+        finally:
+            model.load_state_dict(state,strict=True);model.zero_grad();restore_rng(random_state)
+        write(Path(run)/('training_profile-'+stage+'.json'),dict(measured_microbatch=batch,
+              training_global_batch=options['batch_size'],input_shape=list(image.shape),precision=str(image.dtype),
+              registered_forward_backward_auxiliary_flops=value if value and not error else None,
+              registered_flops_per_image=value/batch if value and not error else None,error=error,
+              coverage='one replica, registered operators only; optimizer arithmetic and unsupported kernels excluded;2FLOPs/MAC',
+              complete_training_flops=False,weights_restored=True,optimizer_updates=0))
+    if previous_stage is not None:stage_model(model,previous_stage)
+    for name,module in model.named_modules():module.training=modes[name]
 
 
 def evaluate(model, options, run, pilot=False):
@@ -329,11 +361,12 @@ def main():
         compare(one['state_dict'],two['state_dict'])
         for key in ('optimizer_states','scheduler_states','auxiliary_states','completed_epochs','step','images_seen'):
             compare(one['progress'][key],two['progress'][key])
-        write(run/'resume_probe.json',dict(passed=True,scope='actual author model;4 real-parent crop fixture;uninterrupted vs split',
+        write(run/'resume_probe.json',dict(passed=True,scope='selected model implementation;4 real-parent crop fixture;uninterrupted vs split',
              rtol=1e-6,atol=1e-7,max_absolute_tensor_difference=maximum))
     elif a.stage=='pilot':
         target=run/'pilot';target.mkdir(exist_ok=False)
         train(model,options,target,True)
+        profile_training(model,options,target)
         model.eval()
         if hasattr(model,'stage'):model.stage='denoiser'
         geometry=[]

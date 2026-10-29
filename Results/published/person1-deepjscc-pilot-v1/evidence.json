@@ -1,0 +1,105 @@
+{
+  "record_type": "gpu_preflight",
+  "algorithm": "DeepJSCC paper reproduction",
+  "notebook": "https://www.kaggle.com/code/hmmmkk/semantic-notebook-1",
+  "version": 1,
+  "source_revision": "88b63e7ff26d3060720426dd433907c981c69d58",
+  "training_completed": false,
+  "completed_training_epochs": 0,
+  "real_data_optimizer_updates": 2,
+  "real_data_image_presentations": 64,
+  "observed_encoder_devices": [
+    "cuda:0",
+    "cuda:1"
+  ],
+  "gpu_names": [
+    "Tesla T4",
+    "Tesla T4"
+  ],
+  "strict_reload": true,
+  "dataset": {
+    "identity": "add977eb3277909e5ad1447770abdb368458445ab42b2f48a91c24f4c31f7fa0",
+    "counts": {
+      "train": 3450,
+      "val": 100,
+      "test": 24
+    },
+    "protocol": "div2k-flickr2k-kodak-v1",
+    "duplicate_policy": "retain and record within training; reject duplicates involving validation or test"
+  },
+  "geometry_probe": {
+    "passed": true,
+    "synthetic": true,
+    "images": [
+      {
+        "original": [
+          512,
+          768
+        ],
+        "padded": [
+          512,
+          768
+        ],
+        "padding": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "original": [
+          768,
+          512
+        ],
+        "padded": [
+          768,
+          512
+        ],
+        "padding": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "original": [
+          513,
+          769
+        ],
+        "padded": [
+          516,
+          772
+        ],
+        "padding": [
+          1,
+          2,
+          1,
+          2
+        ]
+      }
+    ]
+  },
+  "resume_probe": {
+    "passed": true,
+    "scope": "paper reproduction;4 real-parent crop fixture;uninterrupted vs split",
+    "rtol": 1E-06,
+    "atol": 1E-07,
+    "max_absolute_tensor_difference": 0.0
+  },
+  "retrieval": {
+    "manifests": 2,
+    "verified_files": 109,
+    "kernel": "hmmmkk/semantic-notebook-1",
+    "version": 1,
+    "identity_scope": "latest output; current version checked before and after retrieval",
+    "submission_identity_verified": true,
+    "session_identity_verified": false,
+    "identity_limitation": "A rerun of the same saved version may reuse the baked-in submission identity",
+    "scientific_validity_certified": false
+  },
+  "quality_benchmark_completed": false,
+  "pilot_objective": "RGB [0,1] MSE; historical mechanics test only",
+  "qualification_limitation": "Production objective corrected to paper pixel-scale [0,255] MSE; a new source-pinned GPU pilot is required before training."
+}

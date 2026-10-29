@@ -21,3 +21,9 @@ def test_same_transpose_is_adjoint_for_even_geometry():
         x=torch.randn(1,2,8,12,requires_grad=True);out=conv(x);probe=torch.randn_like(out)
         (out*probe).sum().backward()
         assert torch.allclose(x.grad,trans(probe),atol=1e-6)
+
+
+def test_paper_pixel_mse_uses_denormalized_8bit_range():
+    model=DeepJSCC({})
+    loss=model.loss({'reconstruction':torch.zeros(1,3,4,4)},{'image':torch.ones(1,3,4,4)})
+    assert loss.item()==255**2

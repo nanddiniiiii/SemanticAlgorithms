@@ -2,6 +2,12 @@
 
 Research code for image semantic communication experiments. The project name does not imply that neural models provide lossless reconstruction.
 
+Person1's corrected150-epoch workflow is documented in
+[PERSON1_IMPLEMENTATION.md](Docs/PERSON1_IMPLEMENTATION.md). The DeepJSCC
+paper-reproduction GPU pilot passed on two T4s; its109 retrieved artifact checks
+are recorded in [the preflight receipt](Results/published/person1-deepjscc-pilot-v1/evidence.json).
+This is pilot evidence; completed full-data150-epoch results are still pending.
+
 ## Three-team experiments
 
 The active workflow uses one shared codebase and three Kaggle notebooks:

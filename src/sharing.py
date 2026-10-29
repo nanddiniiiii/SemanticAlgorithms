@@ -111,6 +111,8 @@ def package_run(run, models_root, teammate, run_id):
                 shutil.copy2(path, target / path.name)
             portable[key] = (target.relative_to(staging) / paths[0].name).as_posix() if len(paths) == 1 else target.relative_to(staging).as_posix()
         write_json(staging / 'portable_config.json', portable)
+        resume_note=('Person1 supports contract-checked optimizer/RNG/data-position continuation; the GPU resume probe is recorded with raw evidence.'
+                     if options.get('person1_runtime') else 'Exact training resume is not implemented for this legacy runner.')
         (staging / 'README.md').write_text(
             f'# {MODEL_NAMES[algorithm]} — teammate {teammate}\n\n'
             f'Run: `{run_id}`. Training/evaluation status is in the accompanying JSON files.\n\n'
@@ -118,7 +120,7 @@ def package_run(run, models_root, teammate, run_id):
             'Keep each run separate. `last.pt` is the final saved checkpoint; '
             '`best.pt`, if present, is the development-selected checkpoint. '
             'These files include optimizer/progress state where the trainer supports it, '
-            'but exact training resume is not implemented.\n\n'
+            f'{resume_note}\n\n'
             'Use the matching repository revision and model dependencies recorded in '
             '`environment.json`/`source.json`. Paths in `portable_config.json` are relative '
             'to this folder. Dataset inputs are not bundled. Some author code and frozen '

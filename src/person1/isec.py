@@ -128,8 +128,8 @@ def build(options: dict, device: str, source_dir: str | Path) -> nn.Module:
                         test_snr_db=test_snr,
                         training_snr_db=train_snr,
                         iterations=int(options.get("iterations", 50)),
-                        learning_rate=float(options.get("refinement_lr", 0.002)),
-                        alpha=float(options.get("alpha", 1.0)),
+                        learning_rate=float(options.get("refinement_lr", 0.001)),
+                        alpha=float(options.get("alpha", 4.0)),
                         delta=float(options.get("delta", 1.0)),
                     )
                 recon = self.decoder(received)
